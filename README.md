@@ -8,3 +8,12 @@ Supports the following files:
 * .IE - Inazuma Eleven GO CS/Galaxy Save Format by Level 5
 * .IE4 - Inazuma Eleven GO Save Format by Level 5
 * .SAV - DS Generic Save
+* .PLA - NFFM Player File
+
+Supports the follow games:
+* Inazuma Eleven 1 (EUR)
+* Inazuma Eleven 2 (EUR)
+* Inazuma Eleven 3 (EUR)
+* Inazuma Eleven Go (EUR)
+* Inazuma Eleven Go Chrono Stone (EUR)
+* Inazuma Eleven Go Galaxy (JP)
