@@ -4,7 +4,7 @@ NoFarmForMe is a simple Inazuma Eleven Save Editor, programmed in C#.
 
 You don't need to run the game to build your Team, the application 
 
-has a instructive and simple interface. It's your turn to create your Dream Team!
+has a simple and instructive interface. It's your turn to create your Dream Team!
 
 Supports the following files:
 * .DAT - 3DS Generic Save
@@ -22,4 +22,4 @@ Supports the follow games:
 * Inazuma Eleven Go Chrono Stone (EUR)
 * Inazuma Eleven Go Galaxy (JP)
 
-Enjoy with NoFarmForMe
+Enjoy with the power of NoFarmForMe!
