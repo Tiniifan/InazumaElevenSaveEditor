@@ -1,7 +1,11 @@
 # [NoFarmForMe](https://discord.gg/3FpDBSz)
 
-The Source Code is empty for the moment because I work on a Dragon Ball Fusion Save Editor
+The Source Code is empty for the moment because 
+
+I work on a Dragon Ball Fusion Save Editor
+
 You can Star and follow this repository if you want to be aware of the updates!
+
 
 NoFarmForMe is a simple Inazuma Eleven Save Editor, programmed in C#.
 
