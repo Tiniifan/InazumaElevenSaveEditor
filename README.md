@@ -2,7 +2,7 @@
 
 The Source Code is empty for the moment because 
 
-I work on a Dragon Ball Fusion Save Editor
+I work on a Yo-kai Watch 1 Randomizer 
 
 You can Star and follow this repository if you want to be aware of the updates!
 
