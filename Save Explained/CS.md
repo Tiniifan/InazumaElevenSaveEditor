@@ -19,4 +19,4 @@ Offset | Name | DataType | Description
 0x58 | Move 1 | UInt32 |
 0x5C | Move 1 Level | Byte |
 0x5D | Move 1 Usage | Byte |
-0x5E | Move 1 Learned | Byte | 1 = True / 0 = False
+0x5E | Move 1 Learned | Byte | 1 = True / 0 = False |
