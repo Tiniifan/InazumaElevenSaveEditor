@@ -11,7 +11,7 @@ Offset | Name
 
 Player Block
 Offset | Name | DataType | Description
---- | --- | --- |
+--- | --- | --- | --- 
 0x00 | Player Index ID | UInt32 |
 0x04 | Player ID | UInt32 |
 0x12 | Level | Byte |
