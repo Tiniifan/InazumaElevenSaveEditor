@@ -1,8 +1,8 @@
 # Inazuma Eleven Go Chrono Stone Save Explained
 
 Important Address
-Offset | Name |
---- | --- | ---
+Offset | Name
+--- | ---
 0x3C | Save Name 
 0x64 | Team Name
 0x10C | Map Location
