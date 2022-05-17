@@ -10,9 +10,13 @@ Offset | Name
 0x5B1C | First Player of the save
 
 Player Block
-Offset | Name | DataType
---- | --- | ---
-0x00 | Player Index ID | UInt32
-0x04 | Player ID | UInt32
-0x12 | Level | Byte
-0x14 | Player MixiMax Index ID | UInt32
+Offset | Name | DataType | Description
+--- | --- | --- |
+0x00 | Player Index ID | UInt32 |
+0x04 | Player ID | UInt32 |
+0x12 | Level | Byte |
+0x14 | Player MixiMax Index ID | UInt32 |
+0x58 | Move 1 | UInt32 |
+0x5C | Move 1 Level | Byte |
+0x5D | Move 1 Usage | Byte |
+0x5E | Move 1 Learned | Byte | 1 = True / 0 = False
