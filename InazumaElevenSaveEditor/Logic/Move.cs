@@ -22,6 +22,8 @@ namespace InazumaElevenSaveEditor.Logic
 
         public EvolutionSpeed EvolutionSpeed;
 
+        public UltimateEvolution UltimateEvolution;
+
         public List<int> PowerLevel = new List<int>();
 
         public int Level;
@@ -30,110 +32,10 @@ namespace InazumaElevenSaveEditor.Logic
 
         public Move()
         {
+
         }
 
-        public Move(string _Name, string _Element, string _Position, int _Power, int _Tp, int _Difficulty, int _Damage, int _EvolutionCount, string _EvolutionSpeed, string _Game)
-        {
-            Name = _Name;
-            switch (_Element)
-            {
-                case "Earth":
-                    Element = Element.Earth();
-                    break;
-                case "Fire":
-                    Element = Element.Fire();
-                    break;
-                case "Wind":
-                    Element = Element.Wind();
-                    break;
-                case "Wood":
-                    Element = Element.Wood();
-                    break;
-                case "Void":
-                    Element = Element.Void();
-                    break;
-                default:
-                    Element = null;
-                    break;
-            }
-            switch (_Position)
-            {
-                case "Shoot":
-                    Position = Position.Shoot();
-                    break;
-                case "Dribble":
-                    Position = Position.Dribble();
-                    break;
-                case "Catch":
-                    Position = Position.Block();
-                    break;
-                case "Block":
-                    Position = Position.Catch();
-                    break;
-                default:
-                    Position = null;
-                    break;
-            }
-            switch (_EvolutionSpeed)
-            {
-                case "Slow":
-                    EvolutionSpeed = EvolutionSpeed.Slow(_EvolutionCount, _Game);
-                    break;
-                case "Medium":
-                    EvolutionSpeed = EvolutionSpeed.Medium(_EvolutionCount, _Game);
-                    break;
-                case "Fast":
-                    EvolutionSpeed = EvolutionSpeed.Fast(_EvolutionCount, _Game);
-                    break;
-                case "Turbo":
-                    EvolutionSpeed = EvolutionSpeed.Turbo();
-                    break;
-                default:
-                    EvolutionSpeed = null;
-                    break;
-            }
-            Power = _Power;
-            TP = _Tp;
-            Difficulty = _Difficulty;
-            Damage = _Damage;
-            EvolutionCount = _EvolutionCount;
-            Level = 1;
-
-            if (this.EvolutionSpeed != null)
-            {
-                PowerLevel.Add(_Power);
-
-                if (this.EvolutionSpeed.PowerLevel.Count != 0)
-                {
-                    for (int i = 0; i < EvolutionCount - 1; i++)
-                    {
-                        PowerLevel.Add(_Power + EvolutionSpeed.PowerLevel[i]);
-                    }
-                }
-                else
-                {
-                    if (_EvolutionCount < 6)
-                    {
-                        for (int i = 0; i < EvolutionCount - 1; i++)
-                        {
-                            PowerLevel.Add(PowerLevel[i] + (10 / PowerLevel[i] * 100));
-                        }
-                    }
-                    else
-                    {
-                        for (int i = 0; i < 5; i++)
-                        {
-                            PowerLevel.Add(PowerLevel[i] + (10 / PowerLevel[i] * 100));
-                        }
-                        // Missing Ultimate Evolution
-                    }
-                }
-
-                EvolutionSpeed.TimeLevel.Insert(0, 0);
-            }
-        }
-
-        public Move(string _Name, Element _Element, Position _Position, int _Power, int _Tp, int _Difficulty, int _Damage, int _EvolutionCount, EvolutionSpeed _EvolutionSpeed)
+        public Move(string _Name, Element _Element, Position _Position, int _Power, int _Tp, int _Difficulty, int _Damage, int _EvolutionCount, EvolutionSpeed _EvolutionSpeed, UltimateEvolution _UltimateEvolution)
         {
             Name = _Name;
             Element = _Element;
@@ -150,6 +52,7 @@ namespace InazumaElevenSaveEditor.Logic
             {
                 PowerLevel.Add(_Power);
 
+                // true =  IE1/IE2/IE Game & False = Go/Cs/Galaxy
                 if (this.EvolutionSpeed.PowerLevel.Count != 0)
                 {
                     for (int i = 0; i < EvolutionCount - 1; i++)
@@ -172,6 +75,7 @@ namespace InazumaElevenSaveEditor.Logic
                         {
                             PowerLevel.Add(PowerLevel[i] + (10 / PowerLevel[i] * 100));
                         }
+                        UltimateEvolution = _UltimateEvolution;
                         // Missing Ultimate Evolution
                     }
                 }
@@ -189,6 +93,10 @@ namespace InazumaElevenSaveEditor.Logic
             else if (level == 0 | level == 1)
             {
                 return PowerLevel[0];
+            }
+            else if (level == 6)
+            {
+                return UltimateEvolution.PowerM;
             }
             else
             {
@@ -287,6 +195,222 @@ namespace InazumaElevenSaveEditor.Logic
         public static EvolutionSpeed Turbo()
         {
             return new EvolutionSpeed("Turbo", new List<int> { }, new List<int> { 5, 10, 10, 15 });
+        }
+    }
+
+    public class UltimateEvolution
+    {
+        public string Name;
+
+        public int PowerM;
+
+        public int TP;
+
+        public int Difficulty;
+
+        public int Damage;
+
+        public UltimateEvolution(string _Name)
+        {
+
+        }
+
+        public UltimateEvolution Power(string _Position, int _Difficulty)
+        {
+            UltimateEvolution power = new UltimateEvolution("Power");
+
+            switch(_Position)
+            {
+                case "Shoot":
+                    PowerM = 320;
+                    TP = 99;
+                    Damage = 10;
+                    break;
+                case "Dribble":
+                    PowerM = 320;
+                    TP = 99;
+                    Damage = 5;
+                    break;
+                case "Block":
+                    PowerM = 320;
+                    TP = 85;
+                    Damage = 5;
+                    break;
+                case "Catch":
+                    PowerM = 320;
+                    TP = 85;
+                    Damage = -10;
+                    break;
+                default:
+                    break;
+            }
+
+            if (Difficulty < 100)
+            {
+                Difficulty = 100;
+            } 
+            else
+            {
+                Difficulty = _Difficulty;
+            }
+
+            return power;
+        }
+
+        public UltimateEvolution Balanced(string _Position, int _Difficulty)
+        {
+            UltimateEvolution balanced = new UltimateEvolution("Balanced");
+
+            switch (_Position)
+            {
+                case "Shoot":
+                    PowerM = 300;
+                    TP = 99;
+                    Damage = 50;
+                    break;
+                case "Dribble":
+                    PowerM = 300;
+                    TP = 99;
+                    Damage = 80;
+                    break;
+                case "Block":
+                    PowerM = 300;
+                    TP = 85;
+                    Damage = 80;
+                    break;
+                case "Catch":
+                    PowerM = 300;
+                    TP = 85;
+                    Damage = -40;
+                    break;
+                default:
+                    break;
+            }
+
+            if (Difficulty < 100)
+            {
+                Difficulty = 100;
+            }
+            else
+            {
+                Difficulty = _Difficulty;
+            }
+
+            return balanced;
+        }
+
+        public UltimateEvolution Stunner(string _Position, int _Difficulty)
+        {
+            UltimateEvolution stunner = new UltimateEvolution("Balanced");
+
+            switch (_Position)
+            {
+                case "Shoot":
+                    PowerM = 290;
+                    TP = 99;
+                    Damage = 100;
+                    break;
+                case "Dribble":
+                    PowerM = 290;
+                    TP = 99;
+                    Damage = 150;
+                    break;
+                case "Block":
+                    PowerM = 290;
+                    TP = 85;
+                    Damage = 150;
+                    break;
+                case "Catch":
+                    PowerM = 290;
+                    TP = 85;
+                    Damage = -80;
+                    break;
+                default:
+                    break;
+            }
+
+            if (Difficulty < 100)
+            {
+                Difficulty = 100;
+            }
+            else
+            {
+                Difficulty = _Difficulty;
+            }
+
+            return stunner;
+        }
+
+        public UltimateEvolution ChainBlockLongShot(int _Difficulty)
+        {
+            UltimateEvolution power = new UltimateEvolution("Power");
+
+            PowerM = 300;
+            TP = 99;
+            Damage = 5;
+
+            if (Difficulty < 100)
+            {
+                Difficulty = 100;
+            }
+            else
+            {
+                Difficulty = _Difficulty;
+            }
+
+            return power;
+        }
+
+        public UltimateEvolution PunchingCatchDamageDribble(string _Position, int _Difficulty)
+        {
+            UltimateEvolution stunner = new UltimateEvolution("Stunner");
+
+            PowerM = 280;
+
+            switch (_Position.ToString())
+            {
+                case "Dribble":
+                    TP = 99;
+                    Damage = 150;
+                    break;
+                case "Catch":
+                    TP = 85;
+                    Damage = -80;
+                    break;
+                default:
+                    break;
+            }
+
+            if (Difficulty < 100)
+            {
+                Difficulty = 100;
+            }
+            else
+            {
+                Difficulty = _Difficulty;
+            }
+
+            return stunner;
+        }
+
+        public UltimateEvolution DefenseBlock(int _Difficulty)
+        {
+            UltimateEvolution balanced = new UltimateEvolution("Balanced");
+
+            PowerM = 280;
+            TP = 85;
+            Damage = 50;
+
+            if (Difficulty < 100)
+            {
+                Difficulty = 100;
+            }
+            else
+            {
+                Difficulty = _Difficulty;
+            }
+
+            return balanced;
         }
     }
 }

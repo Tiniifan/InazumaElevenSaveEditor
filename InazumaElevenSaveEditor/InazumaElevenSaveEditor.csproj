@@ -48,9 +48,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\InazumaElevenGo\Avatar\Avatars.cs" />
-    <Compile Include="Common\InazumaElevenGo\Best Match\BestMatchs.cs" />
+    <Compile Include="Common\InazumaElevenGo\Avatars\Avatars.cs" />
+    <Compile Include="Common\InazumaElevenGo\Best Matchs\BestMatchs.cs" />
     <Compile Include="Common\InazumaElevenGo\Equipments\Equipments.cs" />
+    <Compile Include="Common\InazumaElevenGo\Items\Items.cs" />
+    <Compile Include="Common\InazumaElevenGo\Moves\Moves.cs" />
+    <Compile Include="Common\InazumaElevenGo\Players\Players.cs" />
     <Compile Include="Formats\ContainerFormats.cs" />
     <Compile Include="Formats\ContainerGames.cs" />
     <Compile Include="Formats\Games\IEGOCS.cs" />
@@ -100,6 +103,8 @@
       <DependentUpon>Welcome.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\PlayerRectangleBox.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -6,8 +6,6 @@ namespace InazumaElevenSaveEditor.Logic
     {
         public string Name;
 
-        public string ID;
-
         public Element Element;
 
         public Position Position;
@@ -49,7 +47,7 @@ namespace InazumaElevenSaveEditor.Logic
 
         }
 
-        public Player(string _Name, string _Position, string _Element, string _Gender, List<int> _Stat, List<Move> _Techniques, string _ID)
+        public Player(string _Name, string _Position, string _Element, string _Gender, List<int> _Stat, List<Move> _Techniques)
         {
             Name = _Name;
             switch (_Element)
@@ -108,7 +106,6 @@ namespace InazumaElevenSaveEditor.Logic
             }
             Stat = _Stat;
             Techniques = _Techniques;
-            ID = _ID;
             InvestedFreedom = new List<int>(new int[8]);
         }
 

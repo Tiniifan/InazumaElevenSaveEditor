@@ -1,4 +1,10 @@
-﻿namespace InazumaElevenSaveEditor.Logic
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace InazumaElevenSaveEditor.Logic
 {
     public class Position
     {
@@ -39,14 +45,14 @@
             return new Position("Defender");
         }
 
-        public static Position Catch()
+        public static Position Save()
         {
-            return new Position("Catch");
+            return new Position("Save");
         }
 
-        public static Position Shoot()
+        public static Position Shot()
         {
-            return new Position("Shoot");
+            return new Position("Shot");
         }
 
         public static Position Dribble()
