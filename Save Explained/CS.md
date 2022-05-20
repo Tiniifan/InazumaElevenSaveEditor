@@ -14,6 +14,9 @@ Offset | Name | DataType | Description
 --- | --- | --- | --- 
 0x00 | Player Index ID | UInt32 |
 0x04 | Player ID | UInt32 |
+0x0C | Gp | UInt16 |
+0x0E | Tp | UInt16 |
+0x10 | Freedom | UInt16 |
 0x12 | Level | Byte |
 0x14 | Player MixiMax Index ID | UInt32 |
 0x58 | Move 1 | UInt32 |
