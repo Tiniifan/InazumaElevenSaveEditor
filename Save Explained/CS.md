@@ -31,6 +31,12 @@ Offset | Name | DataType | Description
 0x36 | Stamina Point | UInt16 |
 0x38 | Catch Point | UInt16 |
 0x3A | Luck Point | UInt16 |
+0x3C | Fighting Spirit ID | UInt32 |
+0x40 | Fighting Spirit Level | Byte |
+0x44 | Boots Index ID | UInt32 |
+0x48 | Bracelet Index ID | UInt32 |
+0x50 | Gloves Index ID | UInt32 |
+0x44 | Boots Index ID | UInt32 |
 0x58 | Move 1 | UInt32 |
 0x5C | Move 1 Level | Byte |
 0x5D | Move 1 Usage | Byte |
