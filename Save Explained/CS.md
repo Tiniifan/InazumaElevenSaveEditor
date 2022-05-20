@@ -21,6 +21,16 @@ Offset | Name | DataType | Description
 0x14 | MixiMax Index ID | UInt32 |
 0x20 | MixiMax Move 1 | Byte |
 0x21 | MixiMax Move 2 | Byte |
+0x22 | Spirit Information | Byte |
+0x23 | Style | Byte |
+0x2C | Kick Point | UInt16 |
+0x2E | Dribble Point | UInt16 |
+0x30 | Technique Point | UInt16 |
+0x32 | Defense Point | UInt16 |
+0x34 | Speed Point | UInt16 |
+0x36 | Stamina Point | UInt16 |
+0x38 | Catch Point | UInt16 |
+0x3A | Luck Point | UInt16 |
 0x58 | Move 1 | UInt32 |
 0x5C | Move 1 Level | Byte |
 0x5D | Move 1 Usage | Byte |
