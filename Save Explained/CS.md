@@ -18,7 +18,7 @@ Offset | Name | DataType | Description
 0x0E | Tp | UInt16 |
 0x10 | Freedom | UInt16 |
 0x12 | Level | Byte |
-0x13 | MixiMax Index ID | UInt32 |
+0x14 | MixiMax Index ID | UInt32 |
 0x20 | MixiMax Move 1 | Byte |
 0x21 | MixiMax Move 2 | Byte |
 0x58 | Move 1 | UInt32 |
