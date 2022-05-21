@@ -884,10 +884,11 @@ namespace NoFarmForMeOpenSource
             // Get New Player Informations
             var newPlayer = game.Players.FirstOrDefault(x => x.Value.Name == nameBox.Items[nameBox.SelectedIndex].ToString());
             game.PlayersInSave[game.PlayersInSaveSort[currentPlayer]].Name = newPlayer.Value.Name;
+            game.PlayersInSave[game.PlayersInSaveSort[currentPlayer]].ID = newPlayer.Key;
+            game.PlayersInSave[game.PlayersInSaveSort[currentPlayer]].Freedom = newPlayer.Value.Freedom;
             game.PlayersInSave[game.PlayersInSaveSort[currentPlayer]].Element = newPlayer.Value.Element;
             game.PlayersInSave[game.PlayersInSaveSort[currentPlayer]].Position = newPlayer.Value.Position;
-            game.PlayersInSave[game.PlayersInSaveSort[currentPlayer]].Gender = newPlayer.Value.Gender;
-            game.PlayersInSave[game.PlayersInSaveSort[currentPlayer]].ID = newPlayer.Key;
+            game.PlayersInSave[game.PlayersInSaveSort[currentPlayer]].Gender = newPlayer.Value.Gender;;
 
             // Get New Player Stats
             for (int i = 0; i < game.PlayersInSave[game.PlayersInSaveSort[currentPlayer]].Stat.Count; i++)
