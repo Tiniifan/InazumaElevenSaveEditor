@@ -875,5 +875,40 @@ namespace NoFarmForMeOpenSource
             movedPlayerPictureBox.Visible = false;
             PageComboBox_SelectedIndexChanged(sender, e);
         }
+
+        private void NameBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!nameBox.Focused) return;
+            if (game == null) return;
+
+            // Get New Player Informations
+            var newPlayer = game.Players.FirstOrDefault(x => x.Value.Name == nameBox.Items[nameBox.SelectedIndex].ToString());
+            game.PlayersInSave[game.PlayersInSaveSort[currentPlayer]].Name = newPlayer.Value.Name;
+            game.PlayersInSave[game.PlayersInSaveSort[currentPlayer]].Element = newPlayer.Value.Element;
+            game.PlayersInSave[game.PlayersInSaveSort[currentPlayer]].Position = newPlayer.Value.Position;
+            game.PlayersInSave[game.PlayersInSaveSort[currentPlayer]].Gender = newPlayer.Value.Gender;
+            game.PlayersInSave[game.PlayersInSaveSort[currentPlayer]].ID = newPlayer.Key;
+
+            // Get New Player Stats
+            for (int i = 0; i < game.PlayersInSave[game.PlayersInSaveSort[currentPlayer]].Stat.Count; i++)
+            {
+                game.PlayersInSave[game.PlayersInSaveSort[currentPlayer]].Stat[i] = newPlayer.Value.Stat[i];
+            }
+
+            // Get New Player Moves
+            for (int i = 0; i < newPlayer.Value.UInt32Moves.Count; i++)
+            {
+                Move newTechnique = game.Moves[newPlayer.Value.UInt32Moves[i]];
+                newTechnique.Level = 1;
+                newTechnique.Unlock = true;
+                game.PlayersInSave[game.PlayersInSaveSort[currentPlayer]].Moves[i] = newTechnique;
+            }
+
+            // Reset Invested Point + Print Current Page
+            // resetButton_Click(sender, e);
+            PrintPlayer(game.GetPlayer(currentPlayer));
+            PageComboBox_SelectedIndexChanged(sender, e);
+            tabPage1.Focus();
+        }
     }
 }

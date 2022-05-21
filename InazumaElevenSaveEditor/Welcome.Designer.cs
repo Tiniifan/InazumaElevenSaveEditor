@@ -576,6 +576,7 @@ namespace NoFarmForMeOpenSource
             this.nameBox.Name = "nameBox";
             this.nameBox.Size = new System.Drawing.Size(237, 21);
             this.nameBox.TabIndex = 208;
+            this.nameBox.SelectedIndexChanged += new System.EventHandler(this.NameBox_SelectedIndexChanged);
             // 
             // label10
             // 
