@@ -4,11 +4,10 @@ NoFarmForMe, old Inazuma Eleven Save Editor was discontinued I decided to bring 
 
 This new version is much more lite than NoFarmForMe, I deleted the "gimmick" functions, 
 
-and and I rewrote to be understandable by everyone!
+and I rewrote the code to be understandable by everyone!
 
 Inazuma Eleven Save Editor is a Save Editor (tool to modify a save) programmed in C#.
 
 You don't need to run the game to build your Team, the application 
 
-has a simple and instructive interface. It's your turn to create your Dream Team!
-
+has a simple and instructive GUI. It's your turn to create your Dream Team!
