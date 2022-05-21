@@ -1,10 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace InazumaElevenSaveEditor.Logic
 {
     public class Player
     {
         public string Name;
+
+        public UInt32 ID;
 
         public Element Element;
 
@@ -14,7 +17,11 @@ namespace InazumaElevenSaveEditor.Logic
 
         public List<int> Stat;
 
-        public List<Move> Techniques;
+        public int Freedom;
+
+        public List<Move> Moves;
+
+        public List<UInt32> UInt32Moves;
 
         public int Level;
 
@@ -32,9 +39,7 @@ namespace InazumaElevenSaveEditor.Logic
 
         public List<Equipment> Equipments;
 
-        public string IndexSorted;
-
-        public int PositionInFile;
+        public long PositionInFile;
 
         public MixiMax MixiMax;
 
@@ -47,65 +52,27 @@ namespace InazumaElevenSaveEditor.Logic
 
         }
 
-        public Player(string _Name, string _Position, string _Element, string _Gender, List<int> _Stat, List<Move> _Techniques)
+        public Player(Player player)
+        {
+            Name = player.Name;
+            Position = player.Position;
+            Element = player.Element;
+            Gender = player.Gender;
+            UInt32Moves = player.UInt32Moves;
+            Stat = player.Stat;
+            Freedom = player.Freedom;
+            InvestedFreedom = new List<int>(new int[8]);
+        }
+
+        public Player(string _Name, Position _Position, Element _Element, Gender _Gender, List<UInt32> _Moves, List<int> _Stat, int _Freedom)
         {
             Name = _Name;
-            switch (_Element)
-            {
-                case "Earth":
-                    Element = Element.Earth();
-                    break;
-                case "Fire":
-                    Element = Element.Fire();
-                    break;
-                case "Wind":
-                    Element = Element.Wind();
-                    break;
-                case "Wood":
-                    Element = Element.Wood();
-                    break;
-                case "Void":
-                    Element = Element.Void();
-                    break;
-                default:
-                    Element = Element.Earth();
-                    break;
-            }
-            switch (_Position)
-            {
-                case "Forward":
-                    Position = Position.Forward();
-                    break;
-                case "Midfielder":
-                    Position = Position.Midfielder();
-                    break;
-                case "Defender":
-                    Position = Position.Defender();
-                    break;
-                case "Goalkeeper":
-                    Position = Position.Goalkeeper();
-                    break;
-                default:
-                    Position = Position.None();
-                    break;
-            }
-            switch (_Gender)
-            {
-                case "Boy":
-                    Gender = Gender.Boy();
-                    break;
-                case "Girl":
-                    Gender = Gender.Girl();
-                    break;
-                case "Unknow":
-                    Gender = Gender.Unknow();
-                    break;
-                default:
-                    Gender = Gender.Unknow();
-                    break;
-            }
+            Position = _Position;
+            Element = _Element;
+            Gender = _Gender;
+            UInt32Moves = _Moves;
             Stat = _Stat;
-            Techniques = _Techniques;
+            Freedom = _Freedom;
             InvestedFreedom = new List<int>(new int[8]);
         }
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using InazumaElevenSaveEditor.Logic;
 
-namespace InazumaElevenSaveEditor.Common.InazumaElevenGo.Items
+namespace InazumaElevenSaveEditor.Common.InazumaElevenGo
 {
     public static class Items
     {

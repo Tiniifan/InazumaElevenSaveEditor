@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using InazumaElevenSaveEditor.Logic;
 
-namespace InazumaElevenSaveEditor.Common.InazumaElevenGo.Moves
+namespace InazumaElevenSaveEditor.Common.InazumaElevenGo
 {
     public static class Moves
     {

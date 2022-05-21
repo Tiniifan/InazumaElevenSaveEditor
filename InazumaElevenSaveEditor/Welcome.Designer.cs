@@ -29,15 +29,15 @@ namespace NoFarmForMeOpenSource
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Welcome));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.openToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.joinDiscordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mainPlayerBox = new System.Windows.Forms.PictureBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.styleBox = new System.Windows.Forms.ComboBox();
@@ -47,7 +47,7 @@ namespace NoFarmForMeOpenSource
             this.positionBox = new System.Windows.Forms.TextBox();
             this.statBox2 = new System.Windows.Forms.TextBox();
             this.statBox1 = new System.Windows.Forms.TextBox();
-            this.statBox11 = new System.Windows.Forms.TextBox();
+            this.freedomBox = new System.Windows.Forms.TextBox();
             this.statBox10 = new System.Windows.Forms.TextBox();
             this.statBox8 = new System.Windows.Forms.TextBox();
             this.statBox7 = new System.Windows.Forms.TextBox();
@@ -89,50 +89,48 @@ namespace NoFarmForMeOpenSource
             this.miximaxAvatarLabel = new System.Windows.Forms.Label();
             this.miximaxAvatarNameBox = new System.Windows.Forms.ComboBox();
             this.miximaxAvatarNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.techniqueBox8 = new System.Windows.Forms.ComboBox();
-            this.techniqueBox7 = new System.Windows.Forms.ComboBox();
-            this.techniqueLabel8 = new System.Windows.Forms.Label();
-            this.techniqueNumericUpDown8 = new System.Windows.Forms.NumericUpDown();
-            this.techniqueNumericUpDown7 = new System.Windows.Forms.NumericUpDown();
-            this.techniqueLabel7 = new System.Windows.Forms.Label();
+            this.moveBox8 = new System.Windows.Forms.ComboBox();
+            this.moveBox7 = new System.Windows.Forms.ComboBox();
+            this.moveLabel8 = new System.Windows.Forms.Label();
+            this.moveNumericUpDown8 = new System.Windows.Forms.NumericUpDown();
+            this.moveNumericUpDown7 = new System.Windows.Forms.NumericUpDown();
+            this.moveLabel7 = new System.Windows.Forms.Label();
             this.label46 = new System.Windows.Forms.Label();
             this.invokeBox = new System.Windows.Forms.CheckBox();
             this.label45 = new System.Windows.Forms.Label();
             this.miximaxCheckBox = new System.Windows.Forms.CheckBox();
             this.miximaxFaceBox = new System.Windows.Forms.PictureBox();
-            this.techniqueCheckBox6 = new System.Windows.Forms.CheckBox();
-            this.techniqueCheckBox5 = new System.Windows.Forms.CheckBox();
-            this.techniqueCheckBox4 = new System.Windows.Forms.CheckBox();
-            this.techniqueCheckBox3 = new System.Windows.Forms.CheckBox();
-            this.techniqueCheckBox2 = new System.Windows.Forms.CheckBox();
-            this.techniqueCheckBox1 = new System.Windows.Forms.CheckBox();
-            this.label42 = new System.Windows.Forms.Label();
-            this.techniqueBox3 = new System.Windows.Forms.ComboBox();
-            this.techniqueBox6 = new System.Windows.Forms.ComboBox();
+            this.moveCheckBox6 = new System.Windows.Forms.CheckBox();
+            this.moveCheckBox5 = new System.Windows.Forms.CheckBox();
+            this.moveCheckBox4 = new System.Windows.Forms.CheckBox();
+            this.moveCheckBox3 = new System.Windows.Forms.CheckBox();
+            this.moveCheckBox2 = new System.Windows.Forms.CheckBox();
+            this.moveCheckBox1 = new System.Windows.Forms.CheckBox();
+            this.moveLabel1 = new System.Windows.Forms.Label();
+            this.moveBox3 = new System.Windows.Forms.ComboBox();
+            this.moveBox6 = new System.Windows.Forms.ComboBox();
             this.label17 = new System.Windows.Forms.Label();
-            this.techniqueBox5 = new System.Windows.Forms.ComboBox();
-            this.techniqueBox4 = new System.Windows.Forms.ComboBox();
+            this.moveBox5 = new System.Windows.Forms.ComboBox();
+            this.moveBox4 = new System.Windows.Forms.ComboBox();
             this.label22 = new System.Windows.Forms.Label();
             this.armedBox = new System.Windows.Forms.CheckBox();
             this.avatarNameBox = new System.Windows.Forms.ComboBox();
             this.avatarNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.label20 = new System.Windows.Forms.Label();
-            this.techniqueNumericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.techniqueNumericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.moveNumericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.moveNumericUpDown2 = new System.Windows.Forms.NumericUpDown();
             this.label18 = new System.Windows.Forms.Label();
-            this.techniqueNumericUpDown3 = new System.Windows.Forms.NumericUpDown();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
-            this.techniqueNumericUpDown4 = new System.Windows.Forms.NumericUpDown();
-            this.techniqueBox1 = new System.Windows.Forms.ComboBox();
-            this.techniqueBox2 = new System.Windows.Forms.ComboBox();
-            this.techniqueNumericUpDown6 = new System.Windows.Forms.NumericUpDown();
-            this.techniqueNumericUpDown5 = new System.Windows.Forms.NumericUpDown();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.avatarFaceBox = new System.Windows.Forms.PictureBox();
-            this.avatarFaceBorder = new System.Windows.Forms.PictureBox();
+            this.moveNumericUpDown3 = new System.Windows.Forms.NumericUpDown();
+            this.moveLabel4 = new System.Windows.Forms.Label();
+            this.moveLabel3 = new System.Windows.Forms.Label();
+            this.moveLabel6 = new System.Windows.Forms.Label();
+            this.moveNumericUpDown4 = new System.Windows.Forms.NumericUpDown();
+            this.moveBox1 = new System.Windows.Forms.ComboBox();
+            this.moveBox2 = new System.Windows.Forms.ComboBox();
+            this.moveNumericUpDown6 = new System.Windows.Forms.NumericUpDown();
+            this.moveNumericUpDown5 = new System.Windows.Forms.NumericUpDown();
+            this.moveLabel2 = new System.Windows.Forms.Label();
+            this.moveLabel5 = new System.Windows.Forms.Label();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.label62 = new System.Windows.Forms.Label();
             this.label54 = new System.Windows.Forms.Label();
@@ -170,31 +168,33 @@ namespace NoFarmForMeOpenSource
             this.label48 = new System.Windows.Forms.Label();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.pictureBox8 = new System.Windows.Forms.PictureBox();
-            this.pictureBox9 = new System.Windows.Forms.PictureBox();
-            this.pictureBox10 = new System.Windows.Forms.PictureBox();
-            this.pictureBox11 = new System.Windows.Forms.PictureBox();
-            this.pictureBox12 = new System.Windows.Forms.PictureBox();
-            this.pictureBox13 = new System.Windows.Forms.PictureBox();
-            this.pictureBox14 = new System.Windows.Forms.PictureBox();
-            this.pictureBox15 = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this.pictureBox7 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.playerPictureBox1 = new System.Windows.Forms.PictureBox();
+            this.playerPictureBox16 = new System.Windows.Forms.PictureBox();
+            this.playerPictureBox8 = new System.Windows.Forms.PictureBox();
+            this.playerPictureBox15 = new System.Windows.Forms.PictureBox();
+            this.playerPictureBox7 = new System.Windows.Forms.PictureBox();
+            this.playerPictureBox14 = new System.Windows.Forms.PictureBox();
+            this.playerPictureBox6 = new System.Windows.Forms.PictureBox();
+            this.playerPictureBox13 = new System.Windows.Forms.PictureBox();
+            this.playerPictureBox5 = new System.Windows.Forms.PictureBox();
+            this.playerPictureBox12 = new System.Windows.Forms.PictureBox();
+            this.playerPictureBox4 = new System.Windows.Forms.PictureBox();
+            this.playerPictureBox11 = new System.Windows.Forms.PictureBox();
+            this.playerPictureBox3 = new System.Windows.Forms.PictureBox();
+            this.playerPictureBox10 = new System.Windows.Forms.PictureBox();
+            this.playerPictureBox2 = new System.Windows.Forms.PictureBox();
+            this.playerPictureBox9 = new System.Windows.Forms.PictureBox();
+            this.previousButton = new System.Windows.Forms.Button();
+            this.nextButton = new System.Windows.Forms.Button();
+            this.pageComboBox = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.saveInformationButton = new System.Windows.Forms.Button();
             this.playRecordsButton = new System.Windows.Forms.Button();
             this.streetpassButton = new System.Windows.Forms.Button();
             this.inventoryButton = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.movedPlayerPictureBox = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.mainPlayerBox)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.investedNumericUpDown9)).BeginInit();
@@ -210,46 +210,63 @@ namespace NoFarmForMeOpenSource
             this.tabControl3.SuspendLayout();
             this.tabPage5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.miximaxAvatarNumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.techniqueNumericUpDown8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.techniqueNumericUpDown7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.moveNumericUpDown8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.moveNumericUpDown7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.miximaxFaceBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.avatarNumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.techniqueNumericUpDown1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.techniqueNumericUpDown2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.techniqueNumericUpDown3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.techniqueNumericUpDown4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.techniqueNumericUpDown6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.techniqueNumericUpDown5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.avatarFaceBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.avatarFaceBorder)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.moveNumericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.moveNumericUpDown2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.moveNumericUpDown3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.moveNumericUpDown4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.moveNumericUpDown6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.moveNumericUpDown5)).BeginInit();
             this.tabPage6.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.tabPage3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.playerPictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.playerPictureBox16)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.playerPictureBox8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.playerPictureBox15)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.playerPictureBox7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.playerPictureBox14)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.playerPictureBox6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.playerPictureBox13)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.playerPictureBox5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.playerPictureBox12)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.playerPictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.playerPictureBox11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.playerPictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.playerPictureBox10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.playerPictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.playerPictureBox9)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.movedPlayerPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem1});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(850, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem1
+            // 
+            this.fileToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openToolStripMenuItem1});
+            this.fileToolStripMenuItem1.Name = "fileToolStripMenuItem1";
+            this.fileToolStripMenuItem1.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem1.Text = "File";
+            // 
+            // openToolStripMenuItem1
+            // 
+            this.openToolStripMenuItem1.Name = "openToolStripMenuItem1";
+            this.openToolStripMenuItem1.Size = new System.Drawing.Size(103, 22);
+            this.openToolStripMenuItem1.Text = "Open";
+            this.openToolStripMenuItem1.Click += new System.EventHandler(this.OpenToolStripMenuItem1_Click);
             // 
             // fileToolStripMenuItem
             // 
@@ -290,16 +307,6 @@ namespace NoFarmForMeOpenSource
             this.joinDiscordToolStripMenuItem.Size = new System.Drawing.Size(83, 20);
             this.joinDiscordToolStripMenuItem.Text = "Join Discord";
             // 
-            // mainPlayerBox
-            // 
-            this.mainPlayerBox.Image = global::InazumaElevenSaveEditor.Properties.Resources.PlayerRectangleBox;
-            this.mainPlayerBox.Location = new System.Drawing.Point(10, 6);
-            this.mainPlayerBox.Name = "mainPlayerBox";
-            this.mainPlayerBox.Size = new System.Drawing.Size(195, 20);
-            this.mainPlayerBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.mainPlayerBox.TabIndex = 0;
-            this.mainPlayerBox.TabStop = false;
-            // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
@@ -320,7 +327,7 @@ namespace NoFarmForMeOpenSource
             this.tabPage1.Controls.Add(this.positionBox);
             this.tabPage1.Controls.Add(this.statBox2);
             this.tabPage1.Controls.Add(this.statBox1);
-            this.tabPage1.Controls.Add(this.statBox11);
+            this.tabPage1.Controls.Add(this.freedomBox);
             this.tabPage1.Controls.Add(this.statBox10);
             this.tabPage1.Controls.Add(this.statBox8);
             this.tabPage1.Controls.Add(this.statBox7);
@@ -369,6 +376,13 @@ namespace NoFarmForMeOpenSource
             this.styleBox.BackColor = System.Drawing.SystemColors.ControlLight;
             this.styleBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.styleBox.FormattingEnabled = true;
+            this.styleBox.Items.AddRange(new object[] {
+            "All",
+            "Lively",
+            "Fun",
+            "Fierce",
+            "Cool",
+            "Cute"});
             this.styleBox.Location = new System.Drawing.Point(263, 68);
             this.styleBox.Name = "styleBox";
             this.styleBox.Size = new System.Drawing.Size(121, 21);
@@ -434,15 +448,15 @@ namespace NoFarmForMeOpenSource
             this.statBox1.Size = new System.Drawing.Size(48, 20);
             this.statBox1.TabIndex = 235;
             // 
-            // statBox11
+            // freedomBox
             // 
-            this.statBox11.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.statBox11.Enabled = false;
-            this.statBox11.Location = new System.Drawing.Point(160, 316);
-            this.statBox11.Name = "statBox11";
-            this.statBox11.ReadOnly = true;
-            this.statBox11.Size = new System.Drawing.Size(48, 20);
-            this.statBox11.TabIndex = 234;
+            this.freedomBox.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.freedomBox.Enabled = false;
+            this.freedomBox.Location = new System.Drawing.Point(160, 316);
+            this.freedomBox.Name = "freedomBox";
+            this.freedomBox.ReadOnly = true;
+            this.freedomBox.Size = new System.Drawing.Size(48, 20);
+            this.freedomBox.TabIndex = 234;
             // 
             // statBox10
             // 
@@ -874,50 +888,48 @@ namespace NoFarmForMeOpenSource
             this.tabPage5.Controls.Add(this.miximaxAvatarLabel);
             this.tabPage5.Controls.Add(this.miximaxAvatarNameBox);
             this.tabPage5.Controls.Add(this.miximaxAvatarNumericUpDown);
-            this.tabPage5.Controls.Add(this.techniqueBox8);
-            this.tabPage5.Controls.Add(this.techniqueBox7);
-            this.tabPage5.Controls.Add(this.techniqueLabel8);
-            this.tabPage5.Controls.Add(this.techniqueNumericUpDown8);
-            this.tabPage5.Controls.Add(this.techniqueNumericUpDown7);
-            this.tabPage5.Controls.Add(this.techniqueLabel7);
+            this.tabPage5.Controls.Add(this.moveBox8);
+            this.tabPage5.Controls.Add(this.moveBox7);
+            this.tabPage5.Controls.Add(this.moveLabel8);
+            this.tabPage5.Controls.Add(this.moveNumericUpDown8);
+            this.tabPage5.Controls.Add(this.moveNumericUpDown7);
+            this.tabPage5.Controls.Add(this.moveLabel7);
             this.tabPage5.Controls.Add(this.label46);
             this.tabPage5.Controls.Add(this.invokeBox);
             this.tabPage5.Controls.Add(this.label45);
             this.tabPage5.Controls.Add(this.miximaxCheckBox);
             this.tabPage5.Controls.Add(this.miximaxFaceBox);
-            this.tabPage5.Controls.Add(this.techniqueCheckBox6);
-            this.tabPage5.Controls.Add(this.techniqueCheckBox5);
-            this.tabPage5.Controls.Add(this.techniqueCheckBox4);
-            this.tabPage5.Controls.Add(this.techniqueCheckBox3);
-            this.tabPage5.Controls.Add(this.techniqueCheckBox2);
-            this.tabPage5.Controls.Add(this.techniqueCheckBox1);
-            this.tabPage5.Controls.Add(this.label42);
-            this.tabPage5.Controls.Add(this.techniqueBox3);
-            this.tabPage5.Controls.Add(this.techniqueBox6);
+            this.tabPage5.Controls.Add(this.moveCheckBox6);
+            this.tabPage5.Controls.Add(this.moveCheckBox5);
+            this.tabPage5.Controls.Add(this.moveCheckBox4);
+            this.tabPage5.Controls.Add(this.moveCheckBox3);
+            this.tabPage5.Controls.Add(this.moveCheckBox2);
+            this.tabPage5.Controls.Add(this.moveCheckBox1);
+            this.tabPage5.Controls.Add(this.moveLabel1);
+            this.tabPage5.Controls.Add(this.moveBox3);
+            this.tabPage5.Controls.Add(this.moveBox6);
             this.tabPage5.Controls.Add(this.label17);
-            this.tabPage5.Controls.Add(this.techniqueBox5);
-            this.tabPage5.Controls.Add(this.techniqueBox4);
+            this.tabPage5.Controls.Add(this.moveBox5);
+            this.tabPage5.Controls.Add(this.moveBox4);
             this.tabPage5.Controls.Add(this.label22);
             this.tabPage5.Controls.Add(this.armedBox);
             this.tabPage5.Controls.Add(this.avatarNameBox);
             this.tabPage5.Controls.Add(this.avatarNumericUpDown);
             this.tabPage5.Controls.Add(this.label20);
-            this.tabPage5.Controls.Add(this.techniqueNumericUpDown1);
-            this.tabPage5.Controls.Add(this.techniqueNumericUpDown2);
+            this.tabPage5.Controls.Add(this.moveNumericUpDown1);
+            this.tabPage5.Controls.Add(this.moveNumericUpDown2);
             this.tabPage5.Controls.Add(this.label18);
-            this.tabPage5.Controls.Add(this.techniqueNumericUpDown3);
-            this.tabPage5.Controls.Add(this.label13);
-            this.tabPage5.Controls.Add(this.label12);
-            this.tabPage5.Controls.Add(this.label24);
-            this.tabPage5.Controls.Add(this.techniqueNumericUpDown4);
-            this.tabPage5.Controls.Add(this.techniqueBox1);
-            this.tabPage5.Controls.Add(this.techniqueBox2);
-            this.tabPage5.Controls.Add(this.techniqueNumericUpDown6);
-            this.tabPage5.Controls.Add(this.techniqueNumericUpDown5);
-            this.tabPage5.Controls.Add(this.label11);
-            this.tabPage5.Controls.Add(this.label23);
-            this.tabPage5.Controls.Add(this.avatarFaceBox);
-            this.tabPage5.Controls.Add(this.avatarFaceBorder);
+            this.tabPage5.Controls.Add(this.moveNumericUpDown3);
+            this.tabPage5.Controls.Add(this.moveLabel4);
+            this.tabPage5.Controls.Add(this.moveLabel3);
+            this.tabPage5.Controls.Add(this.moveLabel6);
+            this.tabPage5.Controls.Add(this.moveNumericUpDown4);
+            this.tabPage5.Controls.Add(this.moveBox1);
+            this.tabPage5.Controls.Add(this.moveBox2);
+            this.tabPage5.Controls.Add(this.moveNumericUpDown6);
+            this.tabPage5.Controls.Add(this.moveNumericUpDown5);
+            this.tabPage5.Controls.Add(this.moveLabel2);
+            this.tabPage5.Controls.Add(this.moveLabel5);
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
@@ -967,95 +979,95 @@ namespace NoFarmForMeOpenSource
             0,
             0});
             // 
-            // techniqueBox8
+            // moveBox8
             // 
-            this.techniqueBox8.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.techniqueBox8.Enabled = false;
-            this.techniqueBox8.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.techniqueBox8.FormattingEnabled = true;
-            this.techniqueBox8.Location = new System.Drawing.Point(107, 272);
-            this.techniqueBox8.Name = "techniqueBox8";
-            this.techniqueBox8.Size = new System.Drawing.Size(185, 21);
-            this.techniqueBox8.TabIndex = 251;
+            this.moveBox8.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.moveBox8.Enabled = false;
+            this.moveBox8.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.moveBox8.FormattingEnabled = true;
+            this.moveBox8.Location = new System.Drawing.Point(107, 272);
+            this.moveBox8.Name = "moveBox8";
+            this.moveBox8.Size = new System.Drawing.Size(185, 21);
+            this.moveBox8.TabIndex = 251;
             // 
-            // techniqueBox7
+            // moveBox7
             // 
-            this.techniqueBox7.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.techniqueBox7.Enabled = false;
-            this.techniqueBox7.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.techniqueBox7.FormattingEnabled = true;
-            this.techniqueBox7.Location = new System.Drawing.Point(107, 244);
-            this.techniqueBox7.Name = "techniqueBox7";
-            this.techniqueBox7.Size = new System.Drawing.Size(185, 21);
-            this.techniqueBox7.TabIndex = 252;
+            this.moveBox7.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.moveBox7.Enabled = false;
+            this.moveBox7.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.moveBox7.FormattingEnabled = true;
+            this.moveBox7.Location = new System.Drawing.Point(107, 244);
+            this.moveBox7.Name = "moveBox7";
+            this.moveBox7.Size = new System.Drawing.Size(185, 21);
+            this.moveBox7.TabIndex = 252;
             // 
-            // techniqueLabel8
+            // moveLabel8
             // 
-            this.techniqueLabel8.AutoSize = true;
-            this.techniqueLabel8.Enabled = false;
-            this.techniqueLabel8.Location = new System.Drawing.Point(20, 273);
-            this.techniqueLabel8.Name = "techniqueLabel8";
-            this.techniqueLabel8.Size = new System.Drawing.Size(83, 13);
-            this.techniqueLabel8.TabIndex = 254;
-            this.techniqueLabel8.Text = "Miximax Move 2";
+            this.moveLabel8.AutoSize = true;
+            this.moveLabel8.Enabled = false;
+            this.moveLabel8.Location = new System.Drawing.Point(20, 273);
+            this.moveLabel8.Name = "moveLabel8";
+            this.moveLabel8.Size = new System.Drawing.Size(83, 13);
+            this.moveLabel8.TabIndex = 254;
+            this.moveLabel8.Text = "Miximax Move 2";
             // 
-            // techniqueNumericUpDown8
+            // moveNumericUpDown8
             // 
-            this.techniqueNumericUpDown8.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.techniqueNumericUpDown8.Enabled = false;
-            this.techniqueNumericUpDown8.Location = new System.Drawing.Point(298, 271);
-            this.techniqueNumericUpDown8.Maximum = new decimal(new int[] {
+            this.moveNumericUpDown8.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.moveNumericUpDown8.Enabled = false;
+            this.moveNumericUpDown8.Location = new System.Drawing.Point(298, 271);
+            this.moveNumericUpDown8.Maximum = new decimal(new int[] {
             6,
             0,
             0,
             0});
-            this.techniqueNumericUpDown8.Minimum = new decimal(new int[] {
+            this.moveNumericUpDown8.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.techniqueNumericUpDown8.Name = "techniqueNumericUpDown8";
-            this.techniqueNumericUpDown8.Size = new System.Drawing.Size(38, 20);
-            this.techniqueNumericUpDown8.TabIndex = 256;
-            this.techniqueNumericUpDown8.Value = new decimal(new int[] {
+            this.moveNumericUpDown8.Name = "moveNumericUpDown8";
+            this.moveNumericUpDown8.Size = new System.Drawing.Size(38, 20);
+            this.moveNumericUpDown8.TabIndex = 256;
+            this.moveNumericUpDown8.Value = new decimal(new int[] {
             1,
             0,
             0,
             0});
             // 
-            // techniqueNumericUpDown7
+            // moveNumericUpDown7
             // 
-            this.techniqueNumericUpDown7.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.techniqueNumericUpDown7.Enabled = false;
-            this.techniqueNumericUpDown7.Location = new System.Drawing.Point(298, 243);
-            this.techniqueNumericUpDown7.Maximum = new decimal(new int[] {
+            this.moveNumericUpDown7.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.moveNumericUpDown7.Enabled = false;
+            this.moveNumericUpDown7.Location = new System.Drawing.Point(298, 243);
+            this.moveNumericUpDown7.Maximum = new decimal(new int[] {
             6,
             0,
             0,
             0});
-            this.techniqueNumericUpDown7.Minimum = new decimal(new int[] {
+            this.moveNumericUpDown7.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.techniqueNumericUpDown7.Name = "techniqueNumericUpDown7";
-            this.techniqueNumericUpDown7.Size = new System.Drawing.Size(38, 20);
-            this.techniqueNumericUpDown7.TabIndex = 255;
-            this.techniqueNumericUpDown7.Value = new decimal(new int[] {
+            this.moveNumericUpDown7.Name = "moveNumericUpDown7";
+            this.moveNumericUpDown7.Size = new System.Drawing.Size(38, 20);
+            this.moveNumericUpDown7.TabIndex = 255;
+            this.moveNumericUpDown7.Value = new decimal(new int[] {
             1,
             0,
             0,
             0});
             // 
-            // techniqueLabel7
+            // moveLabel7
             // 
-            this.techniqueLabel7.AutoSize = true;
-            this.techniqueLabel7.Enabled = false;
-            this.techniqueLabel7.Location = new System.Drawing.Point(20, 246);
-            this.techniqueLabel7.Name = "techniqueLabel7";
-            this.techniqueLabel7.Size = new System.Drawing.Size(81, 13);
-            this.techniqueLabel7.TabIndex = 253;
-            this.techniqueLabel7.Text = "Mixmax Move 1";
+            this.moveLabel7.AutoSize = true;
+            this.moveLabel7.Enabled = false;
+            this.moveLabel7.Location = new System.Drawing.Point(20, 246);
+            this.moveLabel7.Name = "moveLabel7";
+            this.moveLabel7.Size = new System.Drawing.Size(81, 13);
+            this.moveLabel7.TabIndex = 253;
+            this.moveLabel7.Text = "Mixmax Move 1";
             // 
             // label46
             // 
@@ -1107,94 +1119,94 @@ namespace NoFarmForMeOpenSource
             this.miximaxFaceBox.TabIndex = 249;
             this.miximaxFaceBox.TabStop = false;
             // 
-            // techniqueCheckBox6
+            // moveCheckBox6
             // 
-            this.techniqueCheckBox6.AutoSize = true;
-            this.techniqueCheckBox6.Location = new System.Drawing.Point(315, 215);
-            this.techniqueCheckBox6.Name = "techniqueCheckBox6";
-            this.techniqueCheckBox6.Size = new System.Drawing.Size(60, 17);
-            this.techniqueCheckBox6.TabIndex = 245;
-            this.techniqueCheckBox6.Text = "Unlock";
-            this.techniqueCheckBox6.UseVisualStyleBackColor = true;
+            this.moveCheckBox6.AutoSize = true;
+            this.moveCheckBox6.Location = new System.Drawing.Point(315, 215);
+            this.moveCheckBox6.Name = "moveCheckBox6";
+            this.moveCheckBox6.Size = new System.Drawing.Size(60, 17);
+            this.moveCheckBox6.TabIndex = 245;
+            this.moveCheckBox6.Text = "Unlock";
+            this.moveCheckBox6.UseVisualStyleBackColor = true;
             // 
-            // techniqueCheckBox5
+            // moveCheckBox5
             // 
-            this.techniqueCheckBox5.AutoSize = true;
-            this.techniqueCheckBox5.Location = new System.Drawing.Point(315, 187);
-            this.techniqueCheckBox5.Name = "techniqueCheckBox5";
-            this.techniqueCheckBox5.Size = new System.Drawing.Size(60, 17);
-            this.techniqueCheckBox5.TabIndex = 244;
-            this.techniqueCheckBox5.Text = "Unlock";
-            this.techniqueCheckBox5.UseVisualStyleBackColor = true;
+            this.moveCheckBox5.AutoSize = true;
+            this.moveCheckBox5.Location = new System.Drawing.Point(315, 187);
+            this.moveCheckBox5.Name = "moveCheckBox5";
+            this.moveCheckBox5.Size = new System.Drawing.Size(60, 17);
+            this.moveCheckBox5.TabIndex = 244;
+            this.moveCheckBox5.Text = "Unlock";
+            this.moveCheckBox5.UseVisualStyleBackColor = true;
             // 
-            // techniqueCheckBox4
+            // moveCheckBox4
             // 
-            this.techniqueCheckBox4.AutoSize = true;
-            this.techniqueCheckBox4.Location = new System.Drawing.Point(315, 159);
-            this.techniqueCheckBox4.Name = "techniqueCheckBox4";
-            this.techniqueCheckBox4.Size = new System.Drawing.Size(60, 17);
-            this.techniqueCheckBox4.TabIndex = 243;
-            this.techniqueCheckBox4.Text = "Unlock";
-            this.techniqueCheckBox4.UseVisualStyleBackColor = true;
+            this.moveCheckBox4.AutoSize = true;
+            this.moveCheckBox4.Location = new System.Drawing.Point(315, 159);
+            this.moveCheckBox4.Name = "moveCheckBox4";
+            this.moveCheckBox4.Size = new System.Drawing.Size(60, 17);
+            this.moveCheckBox4.TabIndex = 243;
+            this.moveCheckBox4.Text = "Unlock";
+            this.moveCheckBox4.UseVisualStyleBackColor = true;
             // 
-            // techniqueCheckBox3
+            // moveCheckBox3
             // 
-            this.techniqueCheckBox3.AutoSize = true;
-            this.techniqueCheckBox3.Location = new System.Drawing.Point(315, 131);
-            this.techniqueCheckBox3.Name = "techniqueCheckBox3";
-            this.techniqueCheckBox3.Size = new System.Drawing.Size(60, 17);
-            this.techniqueCheckBox3.TabIndex = 242;
-            this.techniqueCheckBox3.Text = "Unlock";
-            this.techniqueCheckBox3.UseVisualStyleBackColor = true;
+            this.moveCheckBox3.AutoSize = true;
+            this.moveCheckBox3.Location = new System.Drawing.Point(315, 131);
+            this.moveCheckBox3.Name = "moveCheckBox3";
+            this.moveCheckBox3.Size = new System.Drawing.Size(60, 17);
+            this.moveCheckBox3.TabIndex = 242;
+            this.moveCheckBox3.Text = "Unlock";
+            this.moveCheckBox3.UseVisualStyleBackColor = true;
             // 
-            // techniqueCheckBox2
+            // moveCheckBox2
             // 
-            this.techniqueCheckBox2.AutoSize = true;
-            this.techniqueCheckBox2.Location = new System.Drawing.Point(315, 103);
-            this.techniqueCheckBox2.Name = "techniqueCheckBox2";
-            this.techniqueCheckBox2.Size = new System.Drawing.Size(60, 17);
-            this.techniqueCheckBox2.TabIndex = 241;
-            this.techniqueCheckBox2.Text = "Unlock";
-            this.techniqueCheckBox2.UseVisualStyleBackColor = true;
+            this.moveCheckBox2.AutoSize = true;
+            this.moveCheckBox2.Location = new System.Drawing.Point(315, 103);
+            this.moveCheckBox2.Name = "moveCheckBox2";
+            this.moveCheckBox2.Size = new System.Drawing.Size(60, 17);
+            this.moveCheckBox2.TabIndex = 241;
+            this.moveCheckBox2.Text = "Unlock";
+            this.moveCheckBox2.UseVisualStyleBackColor = true;
             // 
-            // techniqueCheckBox1
+            // moveCheckBox1
             // 
-            this.techniqueCheckBox1.AutoSize = true;
-            this.techniqueCheckBox1.Location = new System.Drawing.Point(314, 75);
-            this.techniqueCheckBox1.Name = "techniqueCheckBox1";
-            this.techniqueCheckBox1.Size = new System.Drawing.Size(60, 17);
-            this.techniqueCheckBox1.TabIndex = 240;
-            this.techniqueCheckBox1.Text = "Unlock";
-            this.techniqueCheckBox1.UseVisualStyleBackColor = true;
+            this.moveCheckBox1.AutoSize = true;
+            this.moveCheckBox1.Location = new System.Drawing.Point(314, 75);
+            this.moveCheckBox1.Name = "moveCheckBox1";
+            this.moveCheckBox1.Size = new System.Drawing.Size(60, 17);
+            this.moveCheckBox1.TabIndex = 240;
+            this.moveCheckBox1.Text = "Unlock";
+            this.moveCheckBox1.UseVisualStyleBackColor = true;
             // 
-            // label42
+            // moveLabel1
             // 
-            this.label42.AutoSize = true;
-            this.label42.Location = new System.Drawing.Point(6, 74);
-            this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(43, 13);
-            this.label42.TabIndex = 239;
-            this.label42.Text = "Move 1";
+            this.moveLabel1.AutoSize = true;
+            this.moveLabel1.Location = new System.Drawing.Point(6, 74);
+            this.moveLabel1.Name = "moveLabel1";
+            this.moveLabel1.Size = new System.Drawing.Size(43, 13);
+            this.moveLabel1.TabIndex = 239;
+            this.moveLabel1.Text = "Move 1";
             // 
-            // techniqueBox3
+            // moveBox3
             // 
-            this.techniqueBox3.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.techniqueBox3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.techniqueBox3.FormattingEnabled = true;
-            this.techniqueBox3.Location = new System.Drawing.Point(80, 129);
-            this.techniqueBox3.Name = "techniqueBox3";
-            this.techniqueBox3.Size = new System.Drawing.Size(185, 21);
-            this.techniqueBox3.TabIndex = 238;
+            this.moveBox3.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.moveBox3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.moveBox3.FormattingEnabled = true;
+            this.moveBox3.Location = new System.Drawing.Point(80, 129);
+            this.moveBox3.Name = "moveBox3";
+            this.moveBox3.Size = new System.Drawing.Size(185, 21);
+            this.moveBox3.TabIndex = 238;
             // 
-            // techniqueBox6
+            // moveBox6
             // 
-            this.techniqueBox6.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.techniqueBox6.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.techniqueBox6.FormattingEnabled = true;
-            this.techniqueBox6.Location = new System.Drawing.Point(80, 213);
-            this.techniqueBox6.Name = "techniqueBox6";
-            this.techniqueBox6.Size = new System.Drawing.Size(185, 21);
-            this.techniqueBox6.TabIndex = 215;
+            this.moveBox6.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.moveBox6.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.moveBox6.FormattingEnabled = true;
+            this.moveBox6.Location = new System.Drawing.Point(80, 213);
+            this.moveBox6.Name = "moveBox6";
+            this.moveBox6.Size = new System.Drawing.Size(185, 21);
+            this.moveBox6.TabIndex = 215;
             // 
             // label17
             // 
@@ -1206,25 +1218,25 @@ namespace NoFarmForMeOpenSource
             this.label17.TabIndex = 230;
             this.label17.Text = "Fighting Spirit/Soul";
             // 
-            // techniqueBox5
+            // moveBox5
             // 
-            this.techniqueBox5.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.techniqueBox5.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.techniqueBox5.FormattingEnabled = true;
-            this.techniqueBox5.Location = new System.Drawing.Point(80, 185);
-            this.techniqueBox5.Name = "techniqueBox5";
-            this.techniqueBox5.Size = new System.Drawing.Size(185, 21);
-            this.techniqueBox5.TabIndex = 217;
+            this.moveBox5.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.moveBox5.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.moveBox5.FormattingEnabled = true;
+            this.moveBox5.Location = new System.Drawing.Point(80, 185);
+            this.moveBox5.Name = "moveBox5";
+            this.moveBox5.Size = new System.Drawing.Size(185, 21);
+            this.moveBox5.TabIndex = 217;
             // 
-            // techniqueBox4
+            // moveBox4
             // 
-            this.techniqueBox4.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.techniqueBox4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.techniqueBox4.FormattingEnabled = true;
-            this.techniqueBox4.Location = new System.Drawing.Point(80, 157);
-            this.techniqueBox4.Name = "techniqueBox4";
-            this.techniqueBox4.Size = new System.Drawing.Size(185, 21);
-            this.techniqueBox4.TabIndex = 216;
+            this.moveBox4.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.moveBox4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.moveBox4.FormattingEnabled = true;
+            this.moveBox4.Location = new System.Drawing.Point(80, 157);
+            this.moveBox4.Name = "moveBox4";
+            this.moveBox4.Size = new System.Drawing.Size(185, 21);
+            this.moveBox4.TabIndex = 216;
             // 
             // label22
             // 
@@ -1284,47 +1296,47 @@ namespace NoFarmForMeOpenSource
             this.label20.TabIndex = 237;
             this.label20.Text = "Lv.";
             // 
-            // techniqueNumericUpDown1
+            // moveNumericUpDown1
             // 
-            this.techniqueNumericUpDown1.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.techniqueNumericUpDown1.Location = new System.Drawing.Point(271, 74);
-            this.techniqueNumericUpDown1.Maximum = new decimal(new int[] {
+            this.moveNumericUpDown1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.moveNumericUpDown1.Location = new System.Drawing.Point(271, 74);
+            this.moveNumericUpDown1.Maximum = new decimal(new int[] {
             6,
             0,
             0,
             0});
-            this.techniqueNumericUpDown1.Minimum = new decimal(new int[] {
+            this.moveNumericUpDown1.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.techniqueNumericUpDown1.Name = "techniqueNumericUpDown1";
-            this.techniqueNumericUpDown1.Size = new System.Drawing.Size(38, 20);
-            this.techniqueNumericUpDown1.TabIndex = 229;
-            this.techniqueNumericUpDown1.Value = new decimal(new int[] {
+            this.moveNumericUpDown1.Name = "moveNumericUpDown1";
+            this.moveNumericUpDown1.Size = new System.Drawing.Size(38, 20);
+            this.moveNumericUpDown1.TabIndex = 229;
+            this.moveNumericUpDown1.Value = new decimal(new int[] {
             1,
             0,
             0,
             0});
             // 
-            // techniqueNumericUpDown2
+            // moveNumericUpDown2
             // 
-            this.techniqueNumericUpDown2.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.techniqueNumericUpDown2.Location = new System.Drawing.Point(271, 102);
-            this.techniqueNumericUpDown2.Maximum = new decimal(new int[] {
+            this.moveNumericUpDown2.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.moveNumericUpDown2.Location = new System.Drawing.Point(271, 102);
+            this.moveNumericUpDown2.Maximum = new decimal(new int[] {
             6,
             0,
             0,
             0});
-            this.techniqueNumericUpDown2.Minimum = new decimal(new int[] {
+            this.moveNumericUpDown2.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.techniqueNumericUpDown2.Name = "techniqueNumericUpDown2";
-            this.techniqueNumericUpDown2.Size = new System.Drawing.Size(38, 20);
-            this.techniqueNumericUpDown2.TabIndex = 231;
-            this.techniqueNumericUpDown2.Value = new decimal(new int[] {
+            this.moveNumericUpDown2.Name = "moveNumericUpDown2";
+            this.moveNumericUpDown2.Size = new System.Drawing.Size(38, 20);
+            this.moveNumericUpDown2.TabIndex = 231;
+            this.moveNumericUpDown2.Value = new decimal(new int[] {
             1,
             0,
             0,
@@ -1340,179 +1352,162 @@ namespace NoFarmForMeOpenSource
             this.label18.TabIndex = 227;
             this.label18.Text = "Lv.";
             // 
-            // techniqueNumericUpDown3
+            // moveNumericUpDown3
             // 
-            this.techniqueNumericUpDown3.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.techniqueNumericUpDown3.Location = new System.Drawing.Point(271, 130);
-            this.techniqueNumericUpDown3.Maximum = new decimal(new int[] {
+            this.moveNumericUpDown3.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.moveNumericUpDown3.Location = new System.Drawing.Point(271, 130);
+            this.moveNumericUpDown3.Maximum = new decimal(new int[] {
             6,
             0,
             0,
             0});
-            this.techniqueNumericUpDown3.Minimum = new decimal(new int[] {
+            this.moveNumericUpDown3.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.techniqueNumericUpDown3.Name = "techniqueNumericUpDown3";
-            this.techniqueNumericUpDown3.Size = new System.Drawing.Size(38, 20);
-            this.techniqueNumericUpDown3.TabIndex = 232;
-            this.techniqueNumericUpDown3.Value = new decimal(new int[] {
+            this.moveNumericUpDown3.Name = "moveNumericUpDown3";
+            this.moveNumericUpDown3.Size = new System.Drawing.Size(38, 20);
+            this.moveNumericUpDown3.TabIndex = 232;
+            this.moveNumericUpDown3.Value = new decimal(new int[] {
             1,
             0,
             0,
             0});
             // 
-            // label13
+            // moveLabel4
             // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(6, 155);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(43, 13);
-            this.label13.TabIndex = 220;
-            this.label13.Text = "Move 4";
+            this.moveLabel4.AutoSize = true;
+            this.moveLabel4.Location = new System.Drawing.Point(6, 155);
+            this.moveLabel4.Name = "moveLabel4";
+            this.moveLabel4.Size = new System.Drawing.Size(43, 13);
+            this.moveLabel4.TabIndex = 220;
+            this.moveLabel4.Text = "Move 4";
             // 
-            // label12
+            // moveLabel3
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(6, 128);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(43, 13);
-            this.label12.TabIndex = 219;
-            this.label12.Text = "Move 3";
+            this.moveLabel3.AutoSize = true;
+            this.moveLabel3.Location = new System.Drawing.Point(6, 128);
+            this.moveLabel3.Name = "moveLabel3";
+            this.moveLabel3.Size = new System.Drawing.Size(43, 13);
+            this.moveLabel3.TabIndex = 219;
+            this.moveLabel3.Text = "Move 3";
             // 
-            // label24
+            // moveLabel6
             // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(6, 210);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(43, 13);
-            this.label24.TabIndex = 226;
-            this.label24.Text = "Move 6";
+            this.moveLabel6.AutoSize = true;
+            this.moveLabel6.Location = new System.Drawing.Point(6, 210);
+            this.moveLabel6.Name = "moveLabel6";
+            this.moveLabel6.Size = new System.Drawing.Size(43, 13);
+            this.moveLabel6.TabIndex = 226;
+            this.moveLabel6.Text = "Move 6";
             // 
-            // techniqueNumericUpDown4
+            // moveNumericUpDown4
             // 
-            this.techniqueNumericUpDown4.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.techniqueNumericUpDown4.Location = new System.Drawing.Point(271, 158);
-            this.techniqueNumericUpDown4.Maximum = new decimal(new int[] {
+            this.moveNumericUpDown4.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.moveNumericUpDown4.Location = new System.Drawing.Point(271, 158);
+            this.moveNumericUpDown4.Maximum = new decimal(new int[] {
             6,
             0,
             0,
             0});
-            this.techniqueNumericUpDown4.Minimum = new decimal(new int[] {
+            this.moveNumericUpDown4.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.techniqueNumericUpDown4.Name = "techniqueNumericUpDown4";
-            this.techniqueNumericUpDown4.Size = new System.Drawing.Size(38, 20);
-            this.techniqueNumericUpDown4.TabIndex = 233;
-            this.techniqueNumericUpDown4.Value = new decimal(new int[] {
+            this.moveNumericUpDown4.Name = "moveNumericUpDown4";
+            this.moveNumericUpDown4.Size = new System.Drawing.Size(38, 20);
+            this.moveNumericUpDown4.TabIndex = 233;
+            this.moveNumericUpDown4.Value = new decimal(new int[] {
             1,
             0,
             0,
             0});
             // 
-            // techniqueBox1
+            // moveBox1
             // 
-            this.techniqueBox1.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.techniqueBox1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.techniqueBox1.FormattingEnabled = true;
-            this.techniqueBox1.Location = new System.Drawing.Point(80, 73);
-            this.techniqueBox1.Name = "techniqueBox1";
-            this.techniqueBox1.Size = new System.Drawing.Size(185, 21);
-            this.techniqueBox1.TabIndex = 223;
+            this.moveBox1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.moveBox1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.moveBox1.FormattingEnabled = true;
+            this.moveBox1.Location = new System.Drawing.Point(80, 73);
+            this.moveBox1.Name = "moveBox1";
+            this.moveBox1.Size = new System.Drawing.Size(185, 21);
+            this.moveBox1.TabIndex = 223;
             // 
-            // techniqueBox2
+            // moveBox2
             // 
-            this.techniqueBox2.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.techniqueBox2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.techniqueBox2.FormattingEnabled = true;
-            this.techniqueBox2.Location = new System.Drawing.Point(80, 101);
-            this.techniqueBox2.Name = "techniqueBox2";
-            this.techniqueBox2.Size = new System.Drawing.Size(185, 21);
-            this.techniqueBox2.TabIndex = 225;
+            this.moveBox2.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.moveBox2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.moveBox2.FormattingEnabled = true;
+            this.moveBox2.Location = new System.Drawing.Point(80, 101);
+            this.moveBox2.Name = "moveBox2";
+            this.moveBox2.Size = new System.Drawing.Size(185, 21);
+            this.moveBox2.TabIndex = 225;
             // 
-            // techniqueNumericUpDown6
+            // moveNumericUpDown6
             // 
-            this.techniqueNumericUpDown6.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.techniqueNumericUpDown6.Location = new System.Drawing.Point(271, 214);
-            this.techniqueNumericUpDown6.Maximum = new decimal(new int[] {
+            this.moveNumericUpDown6.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.moveNumericUpDown6.Location = new System.Drawing.Point(271, 214);
+            this.moveNumericUpDown6.Maximum = new decimal(new int[] {
             6,
             0,
             0,
             0});
-            this.techniqueNumericUpDown6.Minimum = new decimal(new int[] {
+            this.moveNumericUpDown6.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.techniqueNumericUpDown6.Name = "techniqueNumericUpDown6";
-            this.techniqueNumericUpDown6.Size = new System.Drawing.Size(38, 20);
-            this.techniqueNumericUpDown6.TabIndex = 235;
-            this.techniqueNumericUpDown6.Value = new decimal(new int[] {
+            this.moveNumericUpDown6.Name = "moveNumericUpDown6";
+            this.moveNumericUpDown6.Size = new System.Drawing.Size(38, 20);
+            this.moveNumericUpDown6.TabIndex = 235;
+            this.moveNumericUpDown6.Value = new decimal(new int[] {
             1,
             0,
             0,
             0});
             // 
-            // techniqueNumericUpDown5
+            // moveNumericUpDown5
             // 
-            this.techniqueNumericUpDown5.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.techniqueNumericUpDown5.Location = new System.Drawing.Point(271, 186);
-            this.techniqueNumericUpDown5.Maximum = new decimal(new int[] {
+            this.moveNumericUpDown5.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.moveNumericUpDown5.Location = new System.Drawing.Point(271, 186);
+            this.moveNumericUpDown5.Maximum = new decimal(new int[] {
             6,
             0,
             0,
             0});
-            this.techniqueNumericUpDown5.Minimum = new decimal(new int[] {
+            this.moveNumericUpDown5.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.techniqueNumericUpDown5.Name = "techniqueNumericUpDown5";
-            this.techniqueNumericUpDown5.Size = new System.Drawing.Size(38, 20);
-            this.techniqueNumericUpDown5.TabIndex = 234;
-            this.techniqueNumericUpDown5.Value = new decimal(new int[] {
+            this.moveNumericUpDown5.Name = "moveNumericUpDown5";
+            this.moveNumericUpDown5.Size = new System.Drawing.Size(38, 20);
+            this.moveNumericUpDown5.TabIndex = 234;
+            this.moveNumericUpDown5.Value = new decimal(new int[] {
             1,
             0,
             0,
             0});
             // 
-            // label11
+            // moveLabel2
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(6, 101);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(43, 13);
-            this.label11.TabIndex = 218;
-            this.label11.Text = "Move 2";
+            this.moveLabel2.AutoSize = true;
+            this.moveLabel2.Location = new System.Drawing.Point(6, 101);
+            this.moveLabel2.Name = "moveLabel2";
+            this.moveLabel2.Size = new System.Drawing.Size(43, 13);
+            this.moveLabel2.TabIndex = 218;
+            this.moveLabel2.Text = "Move 2";
             // 
-            // label23
+            // moveLabel5
             // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(6, 182);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(43, 13);
-            this.label23.TabIndex = 224;
-            this.label23.Text = "Move 5";
-            // 
-            // avatarFaceBox
-            // 
-            this.avatarFaceBox.Location = new System.Drawing.Point(315, 13);
-            this.avatarFaceBox.Name = "avatarFaceBox";
-            this.avatarFaceBox.Size = new System.Drawing.Size(50, 50);
-            this.avatarFaceBox.TabIndex = 259;
-            this.avatarFaceBox.TabStop = false;
-            // 
-            // avatarFaceBorder
-            // 
-            this.avatarFaceBorder.BackColor = System.Drawing.Color.Red;
-            this.avatarFaceBorder.Location = new System.Drawing.Point(314, 12);
-            this.avatarFaceBorder.Name = "avatarFaceBorder";
-            this.avatarFaceBorder.Size = new System.Drawing.Size(52, 52);
-            this.avatarFaceBorder.TabIndex = 260;
-            this.avatarFaceBorder.TabStop = false;
+            this.moveLabel5.AutoSize = true;
+            this.moveLabel5.Location = new System.Drawing.Point(6, 182);
+            this.moveLabel5.Name = "moveLabel5";
+            this.moveLabel5.Size = new System.Drawing.Size(43, 13);
+            this.moveLabel5.TabIndex = 224;
+            this.moveLabel5.Text = "Move 5";
             // 
             // tabPage6
             // 
@@ -1900,25 +1895,26 @@ namespace NoFarmForMeOpenSource
             // 
             // tabPage3
             // 
-            this.tabPage3.Controls.Add(this.pictureBox8);
-            this.tabPage3.Controls.Add(this.pictureBox9);
-            this.tabPage3.Controls.Add(this.pictureBox10);
-            this.tabPage3.Controls.Add(this.pictureBox11);
-            this.tabPage3.Controls.Add(this.pictureBox12);
-            this.tabPage3.Controls.Add(this.pictureBox13);
-            this.tabPage3.Controls.Add(this.pictureBox14);
-            this.tabPage3.Controls.Add(this.pictureBox15);
-            this.tabPage3.Controls.Add(this.pictureBox4);
-            this.tabPage3.Controls.Add(this.pictureBox5);
-            this.tabPage3.Controls.Add(this.pictureBox6);
-            this.tabPage3.Controls.Add(this.pictureBox7);
-            this.tabPage3.Controls.Add(this.pictureBox2);
-            this.tabPage3.Controls.Add(this.pictureBox3);
-            this.tabPage3.Controls.Add(this.pictureBox1);
-            this.tabPage3.Controls.Add(this.button2);
-            this.tabPage3.Controls.Add(this.button1);
-            this.tabPage3.Controls.Add(this.comboBox1);
-            this.tabPage3.Controls.Add(this.mainPlayerBox);
+            this.tabPage3.Controls.Add(this.movedPlayerPictureBox);
+            this.tabPage3.Controls.Add(this.playerPictureBox1);
+            this.tabPage3.Controls.Add(this.playerPictureBox16);
+            this.tabPage3.Controls.Add(this.playerPictureBox8);
+            this.tabPage3.Controls.Add(this.playerPictureBox15);
+            this.tabPage3.Controls.Add(this.playerPictureBox7);
+            this.tabPage3.Controls.Add(this.playerPictureBox14);
+            this.tabPage3.Controls.Add(this.playerPictureBox6);
+            this.tabPage3.Controls.Add(this.playerPictureBox13);
+            this.tabPage3.Controls.Add(this.playerPictureBox5);
+            this.tabPage3.Controls.Add(this.playerPictureBox12);
+            this.tabPage3.Controls.Add(this.playerPictureBox4);
+            this.tabPage3.Controls.Add(this.playerPictureBox11);
+            this.tabPage3.Controls.Add(this.playerPictureBox3);
+            this.tabPage3.Controls.Add(this.playerPictureBox10);
+            this.tabPage3.Controls.Add(this.playerPictureBox2);
+            this.tabPage3.Controls.Add(this.playerPictureBox9);
+            this.tabPage3.Controls.Add(this.previousButton);
+            this.tabPage3.Controls.Add(this.nextButton);
+            this.tabPage3.Controls.Add(this.pageComboBox);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
@@ -1927,230 +1923,275 @@ namespace NoFarmForMeOpenSource
             this.tabPage3.Text = "Save Reserve";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // pictureBox8
+            // playerPictureBox1
             // 
-            this.pictureBox8.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.playerPictureBox1.Location = new System.Drawing.Point(10, 6);
+            this.playerPictureBox1.Name = "playerPictureBox1";
+            this.playerPictureBox1.Size = new System.Drawing.Size(195, 20);
+            this.playerPictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.playerPictureBox1.TabIndex = 0;
+            this.playerPictureBox1.TabStop = false;
+            this.playerPictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox1_MouseDown);
+            this.playerPictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox1_MouseMove);
+            this.playerPictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox1_MouseUp);
+            // 
+            // playerPictureBox16
+            // 
+            this.playerPictureBox16.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox8.Image = global::InazumaElevenSaveEditor.Properties.Resources.PlayerRectangleBox;
-            this.pictureBox8.Location = new System.Drawing.Point(206, 153);
-            this.pictureBox8.Name = "pictureBox8";
-            this.pictureBox8.Size = new System.Drawing.Size(195, 20);
-            this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox8.TabIndex = 19;
-            this.pictureBox8.TabStop = false;
+            this.playerPictureBox16.Location = new System.Drawing.Point(206, 153);
+            this.playerPictureBox16.Name = "playerPictureBox16";
+            this.playerPictureBox16.Size = new System.Drawing.Size(195, 20);
+            this.playerPictureBox16.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.playerPictureBox16.TabIndex = 19;
+            this.playerPictureBox16.TabStop = false;
+            this.playerPictureBox16.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox16_MouseDown);
+            this.playerPictureBox16.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox16_MouseMove);
+            this.playerPictureBox16.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox16_MouseUp);
             // 
-            // pictureBox9
+            // playerPictureBox8
             // 
-            this.pictureBox9.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.playerPictureBox8.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox9.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox9.Image")));
-            this.pictureBox9.Location = new System.Drawing.Point(10, 153);
-            this.pictureBox9.Name = "pictureBox9";
-            this.pictureBox9.Size = new System.Drawing.Size(195, 20);
-            this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox9.TabIndex = 18;
-            this.pictureBox9.TabStop = false;
+            this.playerPictureBox8.Location = new System.Drawing.Point(10, 153);
+            this.playerPictureBox8.Name = "playerPictureBox8";
+            this.playerPictureBox8.Size = new System.Drawing.Size(195, 20);
+            this.playerPictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.playerPictureBox8.TabIndex = 18;
+            this.playerPictureBox8.TabStop = false;
+            this.playerPictureBox8.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox8_MouseDown);
+            this.playerPictureBox8.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox8_MouseMove);
+            this.playerPictureBox8.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox8_MouseUp);
             // 
-            // pictureBox10
+            // playerPictureBox15
             // 
-            this.pictureBox10.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.playerPictureBox15.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox10.Image = global::InazumaElevenSaveEditor.Properties.Resources.PlayerRectangleBox;
-            this.pictureBox10.Location = new System.Drawing.Point(206, 132);
-            this.pictureBox10.Name = "pictureBox10";
-            this.pictureBox10.Size = new System.Drawing.Size(195, 20);
-            this.pictureBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox10.TabIndex = 17;
-            this.pictureBox10.TabStop = false;
+            this.playerPictureBox15.Location = new System.Drawing.Point(206, 132);
+            this.playerPictureBox15.Name = "playerPictureBox15";
+            this.playerPictureBox15.Size = new System.Drawing.Size(195, 20);
+            this.playerPictureBox15.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.playerPictureBox15.TabIndex = 17;
+            this.playerPictureBox15.TabStop = false;
+            this.playerPictureBox15.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox15_MouseDown);
+            this.playerPictureBox15.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox15_MouseMove);
+            this.playerPictureBox15.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox15_MouseUp);
             // 
-            // pictureBox11
+            // playerPictureBox7
             // 
-            this.pictureBox11.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.playerPictureBox7.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox11.Image = global::InazumaElevenSaveEditor.Properties.Resources.PlayerRectangleBox;
-            this.pictureBox11.Location = new System.Drawing.Point(10, 132);
-            this.pictureBox11.Name = "pictureBox11";
-            this.pictureBox11.Size = new System.Drawing.Size(195, 20);
-            this.pictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox11.TabIndex = 16;
-            this.pictureBox11.TabStop = false;
+            this.playerPictureBox7.Location = new System.Drawing.Point(10, 132);
+            this.playerPictureBox7.Name = "playerPictureBox7";
+            this.playerPictureBox7.Size = new System.Drawing.Size(195, 20);
+            this.playerPictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.playerPictureBox7.TabIndex = 16;
+            this.playerPictureBox7.TabStop = false;
+            this.playerPictureBox7.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox7_MouseDown);
+            this.playerPictureBox7.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox7_MouseMove);
+            this.playerPictureBox7.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox7_MouseUp);
             // 
-            // pictureBox12
+            // playerPictureBox14
             // 
-            this.pictureBox12.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.playerPictureBox14.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox12.Image = global::InazumaElevenSaveEditor.Properties.Resources.PlayerRectangleBox;
-            this.pictureBox12.Location = new System.Drawing.Point(206, 111);
-            this.pictureBox12.Name = "pictureBox12";
-            this.pictureBox12.Size = new System.Drawing.Size(195, 20);
-            this.pictureBox12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox12.TabIndex = 15;
-            this.pictureBox12.TabStop = false;
+            this.playerPictureBox14.Location = new System.Drawing.Point(206, 111);
+            this.playerPictureBox14.Name = "playerPictureBox14";
+            this.playerPictureBox14.Size = new System.Drawing.Size(195, 20);
+            this.playerPictureBox14.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.playerPictureBox14.TabIndex = 15;
+            this.playerPictureBox14.TabStop = false;
+            this.playerPictureBox14.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox14_MouseDown);
+            this.playerPictureBox14.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox14_MouseMove);
+            this.playerPictureBox14.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox14_MouseUp);
             // 
-            // pictureBox13
+            // playerPictureBox6
             // 
-            this.pictureBox13.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.playerPictureBox6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox13.Image = global::InazumaElevenSaveEditor.Properties.Resources.PlayerRectangleBox;
-            this.pictureBox13.Location = new System.Drawing.Point(10, 111);
-            this.pictureBox13.Name = "pictureBox13";
-            this.pictureBox13.Size = new System.Drawing.Size(195, 20);
-            this.pictureBox13.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox13.TabIndex = 14;
-            this.pictureBox13.TabStop = false;
+            this.playerPictureBox6.Location = new System.Drawing.Point(10, 111);
+            this.playerPictureBox6.Name = "playerPictureBox6";
+            this.playerPictureBox6.Size = new System.Drawing.Size(195, 20);
+            this.playerPictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.playerPictureBox6.TabIndex = 14;
+            this.playerPictureBox6.TabStop = false;
+            this.playerPictureBox6.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox6_MouseDown);
+            this.playerPictureBox6.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox6_MouseMove);
+            this.playerPictureBox6.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox6_MouseUp);
             // 
-            // pictureBox14
+            // playerPictureBox13
             // 
-            this.pictureBox14.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.playerPictureBox13.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox14.Image = global::InazumaElevenSaveEditor.Properties.Resources.PlayerRectangleBox;
-            this.pictureBox14.Location = new System.Drawing.Point(206, 90);
-            this.pictureBox14.Name = "pictureBox14";
-            this.pictureBox14.Size = new System.Drawing.Size(195, 20);
-            this.pictureBox14.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox14.TabIndex = 13;
-            this.pictureBox14.TabStop = false;
+            this.playerPictureBox13.Location = new System.Drawing.Point(206, 90);
+            this.playerPictureBox13.Name = "playerPictureBox13";
+            this.playerPictureBox13.Size = new System.Drawing.Size(195, 20);
+            this.playerPictureBox13.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.playerPictureBox13.TabIndex = 13;
+            this.playerPictureBox13.TabStop = false;
+            this.playerPictureBox13.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox13_MouseDown);
+            this.playerPictureBox13.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox13_MouseMove);
+            this.playerPictureBox13.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox13_MouseUp);
             // 
-            // pictureBox15
+            // playerPictureBox5
             // 
-            this.pictureBox15.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.playerPictureBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox15.Image = global::InazumaElevenSaveEditor.Properties.Resources.PlayerRectangleBox;
-            this.pictureBox15.Location = new System.Drawing.Point(10, 90);
-            this.pictureBox15.Name = "pictureBox15";
-            this.pictureBox15.Size = new System.Drawing.Size(195, 20);
-            this.pictureBox15.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox15.TabIndex = 12;
-            this.pictureBox15.TabStop = false;
+            this.playerPictureBox5.Location = new System.Drawing.Point(10, 90);
+            this.playerPictureBox5.Name = "playerPictureBox5";
+            this.playerPictureBox5.Size = new System.Drawing.Size(195, 20);
+            this.playerPictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.playerPictureBox5.TabIndex = 12;
+            this.playerPictureBox5.TabStop = false;
+            this.playerPictureBox5.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox5_MouseDown);
+            this.playerPictureBox5.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox5_MouseMove);
+            this.playerPictureBox5.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox5_MouseUp);
             // 
-            // pictureBox4
+            // playerPictureBox12
             // 
-            this.pictureBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.playerPictureBox12.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox4.Image = global::InazumaElevenSaveEditor.Properties.Resources.PlayerRectangleBox;
-            this.pictureBox4.Location = new System.Drawing.Point(206, 69);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(195, 20);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox4.TabIndex = 11;
-            this.pictureBox4.TabStop = false;
+            this.playerPictureBox12.Location = new System.Drawing.Point(206, 69);
+            this.playerPictureBox12.Name = "playerPictureBox12";
+            this.playerPictureBox12.Size = new System.Drawing.Size(195, 20);
+            this.playerPictureBox12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.playerPictureBox12.TabIndex = 11;
+            this.playerPictureBox12.TabStop = false;
+            this.playerPictureBox12.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox12_MouseDown);
+            this.playerPictureBox12.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox12_MouseMove);
+            this.playerPictureBox12.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox12_MouseUp);
             // 
-            // pictureBox5
+            // playerPictureBox4
             // 
-            this.pictureBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.playerPictureBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox5.Image = global::InazumaElevenSaveEditor.Properties.Resources.PlayerRectangleBox;
-            this.pictureBox5.Location = new System.Drawing.Point(10, 69);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(195, 20);
-            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox5.TabIndex = 10;
-            this.pictureBox5.TabStop = false;
+            this.playerPictureBox4.Location = new System.Drawing.Point(10, 69);
+            this.playerPictureBox4.Name = "playerPictureBox4";
+            this.playerPictureBox4.Size = new System.Drawing.Size(195, 20);
+            this.playerPictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.playerPictureBox4.TabIndex = 10;
+            this.playerPictureBox4.TabStop = false;
+            this.playerPictureBox4.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox4_MouseDown);
+            this.playerPictureBox4.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox4_MouseMove);
+            this.playerPictureBox4.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox4_MouseUp);
             // 
-            // pictureBox6
+            // playerPictureBox11
             // 
-            this.pictureBox6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.playerPictureBox11.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox6.Image = global::InazumaElevenSaveEditor.Properties.Resources.PlayerRectangleBox;
-            this.pictureBox6.Location = new System.Drawing.Point(206, 48);
-            this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(195, 20);
-            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox6.TabIndex = 9;
-            this.pictureBox6.TabStop = false;
+            this.playerPictureBox11.Location = new System.Drawing.Point(206, 48);
+            this.playerPictureBox11.Name = "playerPictureBox11";
+            this.playerPictureBox11.Size = new System.Drawing.Size(195, 20);
+            this.playerPictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.playerPictureBox11.TabIndex = 9;
+            this.playerPictureBox11.TabStop = false;
+            this.playerPictureBox11.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox11_MouseDown);
+            this.playerPictureBox11.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox11_MouseMove);
+            this.playerPictureBox11.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox11_MouseUp);
             // 
-            // pictureBox7
+            // playerPictureBox3
             // 
-            this.pictureBox7.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.playerPictureBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox7.Image = global::InazumaElevenSaveEditor.Properties.Resources.PlayerRectangleBox;
-            this.pictureBox7.Location = new System.Drawing.Point(10, 48);
-            this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(195, 20);
-            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox7.TabIndex = 8;
-            this.pictureBox7.TabStop = false;
+            this.playerPictureBox3.Location = new System.Drawing.Point(10, 48);
+            this.playerPictureBox3.Name = "playerPictureBox3";
+            this.playerPictureBox3.Size = new System.Drawing.Size(195, 20);
+            this.playerPictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.playerPictureBox3.TabIndex = 8;
+            this.playerPictureBox3.TabStop = false;
+            this.playerPictureBox3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox3_MouseDown);
+            this.playerPictureBox3.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox3_MouseMove);
+            this.playerPictureBox3.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox3_MouseUp);
             // 
-            // pictureBox2
+            // playerPictureBox10
             // 
-            this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.playerPictureBox10.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox2.Image = global::InazumaElevenSaveEditor.Properties.Resources.PlayerRectangleBox;
-            this.pictureBox2.Location = new System.Drawing.Point(206, 27);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(195, 20);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 7;
-            this.pictureBox2.TabStop = false;
+            this.playerPictureBox10.Location = new System.Drawing.Point(206, 27);
+            this.playerPictureBox10.Name = "playerPictureBox10";
+            this.playerPictureBox10.Size = new System.Drawing.Size(195, 20);
+            this.playerPictureBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.playerPictureBox10.TabIndex = 7;
+            this.playerPictureBox10.TabStop = false;
+            this.playerPictureBox10.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox10_MouseDown);
+            this.playerPictureBox10.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox10_MouseMove);
+            this.playerPictureBox10.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox10_MouseUp);
             // 
-            // pictureBox3
+            // playerPictureBox2
             // 
-            this.pictureBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.playerPictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox3.Image = global::InazumaElevenSaveEditor.Properties.Resources.PlayerRectangleBox;
-            this.pictureBox3.Location = new System.Drawing.Point(10, 27);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(195, 20);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox3.TabIndex = 6;
-            this.pictureBox3.TabStop = false;
+            this.playerPictureBox2.Location = new System.Drawing.Point(10, 27);
+            this.playerPictureBox2.Name = "playerPictureBox2";
+            this.playerPictureBox2.Size = new System.Drawing.Size(195, 20);
+            this.playerPictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.playerPictureBox2.TabIndex = 6;
+            this.playerPictureBox2.TabStop = false;
+            this.playerPictureBox2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox2_MouseDown);
+            this.playerPictureBox2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox2_MouseMove);
+            this.playerPictureBox2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox2_MouseUp);
             // 
-            // pictureBox1
+            // playerPictureBox9
             // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.playerPictureBox9.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.Image = global::InazumaElevenSaveEditor.Properties.Resources.PlayerRectangleBox;
-            this.pictureBox1.Location = new System.Drawing.Point(206, 6);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(195, 20);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 5;
-            this.pictureBox1.TabStop = false;
+            this.playerPictureBox9.Location = new System.Drawing.Point(206, 6);
+            this.playerPictureBox9.Name = "playerPictureBox9";
+            this.playerPictureBox9.Size = new System.Drawing.Size(195, 20);
+            this.playerPictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.playerPictureBox9.TabIndex = 5;
+            this.playerPictureBox9.TabStop = false;
+            this.playerPictureBox9.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox9_MouseDown);
+            this.playerPictureBox9.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox9_MouseMove);
+            this.playerPictureBox9.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox9_MouseUp);
             // 
-            // button2
+            // previousButton
             // 
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button2.Location = new System.Drawing.Point(47, 180);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "<";
-            this.button2.UseVisualStyleBackColor = true;
+            this.previousButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.previousButton.Location = new System.Drawing.Point(47, 180);
+            this.previousButton.Name = "previousButton";
+            this.previousButton.Size = new System.Drawing.Size(75, 23);
+            this.previousButton.TabIndex = 4;
+            this.previousButton.Text = "<";
+            this.previousButton.UseVisualStyleBackColor = true;
+            this.previousButton.Click += new System.EventHandler(this.PreviousButton_Click);
             // 
-            // button1
+            // nextButton
             // 
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button1.Location = new System.Drawing.Point(289, 180);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 3;
-            this.button1.Text = ">";
-            this.button1.UseVisualStyleBackColor = true;
+            this.nextButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.nextButton.Location = new System.Drawing.Point(289, 180);
+            this.nextButton.Name = "nextButton";
+            this.nextButton.Size = new System.Drawing.Size(75, 23);
+            this.nextButton.TabIndex = 3;
+            this.nextButton.Text = ">";
+            this.nextButton.UseVisualStyleBackColor = true;
+            this.nextButton.Click += new System.EventHandler(this.NextButton_Click);
             // 
-            // comboBox1
+            // pageComboBox
             // 
-            this.comboBox1.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.comboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(128, 182);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(155, 21);
-            this.comboBox1.TabIndex = 1;
+            this.pageComboBox.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.pageComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.pageComboBox.FormattingEnabled = true;
+            this.pageComboBox.Location = new System.Drawing.Point(128, 182);
+            this.pageComboBox.Name = "pageComboBox";
+            this.pageComboBox.Size = new System.Drawing.Size(155, 21);
+            this.pageComboBox.TabIndex = 1;
+            this.pageComboBox.SelectedIndexChanged += new System.EventHandler(this.PageComboBox_SelectedIndexChanged);
             // 
             // panel1
             // 
@@ -2204,6 +2245,20 @@ namespace NoFarmForMeOpenSource
             this.inventoryButton.Text = "Inventory";
             this.inventoryButton.UseVisualStyleBackColor = true;
             // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // movedPlayerPictureBox
+            // 
+            this.movedPlayerPictureBox.Location = new System.Drawing.Point(10, 182);
+            this.movedPlayerPictureBox.Name = "movedPlayerPictureBox";
+            this.movedPlayerPictureBox.Size = new System.Drawing.Size(195, 20);
+            this.movedPlayerPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.movedPlayerPictureBox.TabIndex = 20;
+            this.movedPlayerPictureBox.TabStop = false;
+            this.movedPlayerPictureBox.Visible = false;
+            // 
             // Welcome
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2217,12 +2272,8 @@ namespace NoFarmForMeOpenSource
             this.MaximumSize = new System.Drawing.Size(866, 460);
             this.Name = "Welcome";
             this.Text = "Welcome";
-            this.Load += new System.EventHandler(this.Welcome_Load);
-            this.SizeChanged += new System.EventHandler(this.Welcome_SizeChanged);
-            this.Layout += new System.Windows.Forms.LayoutEventHandler(this.Welcome_Layout);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.mainPlayerBox)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
@@ -2240,38 +2291,38 @@ namespace NoFarmForMeOpenSource
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.miximaxAvatarNumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.techniqueNumericUpDown8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.techniqueNumericUpDown7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.moveNumericUpDown8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.moveNumericUpDown7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.miximaxFaceBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.avatarNumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.techniqueNumericUpDown1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.techniqueNumericUpDown2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.techniqueNumericUpDown3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.techniqueNumericUpDown4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.techniqueNumericUpDown6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.techniqueNumericUpDown5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.avatarFaceBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.avatarFaceBorder)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.moveNumericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.moveNumericUpDown2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.moveNumericUpDown3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.moveNumericUpDown4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.moveNumericUpDown6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.moveNumericUpDown5)).EndInit();
             this.tabPage6.ResumeLayout(false);
             this.tabPage6.PerformLayout();
             this.tabControl2.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.playerPictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.playerPictureBox16)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.playerPictureBox8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.playerPictureBox15)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.playerPictureBox7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.playerPictureBox14)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.playerPictureBox6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.playerPictureBox13)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.playerPictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.playerPictureBox12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.playerPictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.playerPictureBox11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.playerPictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.playerPictureBox10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.playerPictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.playerPictureBox9)).EndInit();
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.movedPlayerPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2286,7 +2337,7 @@ namespace NoFarmForMeOpenSource
         private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem joinDiscordToolStripMenuItem;
-        public System.Windows.Forms.PictureBox mainPlayerBox;
+        public System.Windows.Forms.PictureBox playerPictureBox1;
         public System.Windows.Forms.TabControl tabControl1;
         public System.Windows.Forms.TabPage tabPage1;
         public System.Windows.Forms.ComboBox styleBox;
@@ -2296,7 +2347,7 @@ namespace NoFarmForMeOpenSource
         public System.Windows.Forms.TextBox positionBox;
         public System.Windows.Forms.TextBox statBox2;
         public System.Windows.Forms.TextBox statBox1;
-        public System.Windows.Forms.TextBox statBox11;
+        public System.Windows.Forms.TextBox freedomBox;
         public System.Windows.Forms.TextBox statBox10;
         public System.Windows.Forms.TextBox statBox8;
         public System.Windows.Forms.TextBox statBox7;
@@ -2338,50 +2389,48 @@ namespace NoFarmForMeOpenSource
         public System.Windows.Forms.Label miximaxAvatarLabel;
         public System.Windows.Forms.ComboBox miximaxAvatarNameBox;
         public System.Windows.Forms.NumericUpDown miximaxAvatarNumericUpDown;
-        public System.Windows.Forms.ComboBox techniqueBox8;
-        public System.Windows.Forms.ComboBox techniqueBox7;
-        public System.Windows.Forms.Label techniqueLabel8;
-        public System.Windows.Forms.NumericUpDown techniqueNumericUpDown8;
-        public System.Windows.Forms.NumericUpDown techniqueNumericUpDown7;
-        public System.Windows.Forms.Label techniqueLabel7;
+        public System.Windows.Forms.ComboBox moveBox8;
+        public System.Windows.Forms.ComboBox moveBox7;
+        public System.Windows.Forms.Label moveLabel8;
+        public System.Windows.Forms.NumericUpDown moveNumericUpDown8;
+        public System.Windows.Forms.NumericUpDown moveNumericUpDown7;
+        public System.Windows.Forms.Label moveLabel7;
         public System.Windows.Forms.Label label46;
         public System.Windows.Forms.CheckBox invokeBox;
         public System.Windows.Forms.Label label45;
         public System.Windows.Forms.CheckBox miximaxCheckBox;
         public System.Windows.Forms.PictureBox miximaxFaceBox;
-        public System.Windows.Forms.CheckBox techniqueCheckBox6;
-        public System.Windows.Forms.CheckBox techniqueCheckBox5;
-        public System.Windows.Forms.CheckBox techniqueCheckBox4;
-        public System.Windows.Forms.CheckBox techniqueCheckBox3;
-        public System.Windows.Forms.CheckBox techniqueCheckBox2;
-        public System.Windows.Forms.CheckBox techniqueCheckBox1;
-        public System.Windows.Forms.Label label42;
-        public System.Windows.Forms.ComboBox techniqueBox3;
-        public System.Windows.Forms.ComboBox techniqueBox6;
+        public System.Windows.Forms.CheckBox moveCheckBox6;
+        public System.Windows.Forms.CheckBox moveCheckBox5;
+        public System.Windows.Forms.CheckBox moveCheckBox4;
+        public System.Windows.Forms.CheckBox moveCheckBox3;
+        public System.Windows.Forms.CheckBox moveCheckBox2;
+        public System.Windows.Forms.CheckBox moveCheckBox1;
+        public System.Windows.Forms.Label moveLabel1;
+        public System.Windows.Forms.ComboBox moveBox3;
+        public System.Windows.Forms.ComboBox moveBox6;
         public System.Windows.Forms.Label label17;
-        public System.Windows.Forms.ComboBox techniqueBox5;
-        public System.Windows.Forms.ComboBox techniqueBox4;
+        public System.Windows.Forms.ComboBox moveBox5;
+        public System.Windows.Forms.ComboBox moveBox4;
         public System.Windows.Forms.Label label22;
         public System.Windows.Forms.CheckBox armedBox;
         public System.Windows.Forms.ComboBox avatarNameBox;
         public System.Windows.Forms.NumericUpDown avatarNumericUpDown;
         public System.Windows.Forms.Label label20;
-        public System.Windows.Forms.NumericUpDown techniqueNumericUpDown1;
-        public System.Windows.Forms.NumericUpDown techniqueNumericUpDown2;
+        public System.Windows.Forms.NumericUpDown moveNumericUpDown1;
+        public System.Windows.Forms.NumericUpDown moveNumericUpDown2;
         public System.Windows.Forms.Label label18;
-        public System.Windows.Forms.NumericUpDown techniqueNumericUpDown3;
-        public System.Windows.Forms.Label label13;
-        public System.Windows.Forms.Label label12;
-        public System.Windows.Forms.Label label24;
-        public System.Windows.Forms.NumericUpDown techniqueNumericUpDown4;
-        public System.Windows.Forms.ComboBox techniqueBox1;
-        public System.Windows.Forms.ComboBox techniqueBox2;
-        public System.Windows.Forms.NumericUpDown techniqueNumericUpDown6;
-        public System.Windows.Forms.NumericUpDown techniqueNumericUpDown5;
-        public System.Windows.Forms.Label label11;
-        public System.Windows.Forms.Label label23;
-        public System.Windows.Forms.PictureBox avatarFaceBox;
-        public System.Windows.Forms.PictureBox avatarFaceBorder;
+        public System.Windows.Forms.NumericUpDown moveNumericUpDown3;
+        public System.Windows.Forms.Label moveLabel4;
+        public System.Windows.Forms.Label moveLabel3;
+        public System.Windows.Forms.Label moveLabel6;
+        public System.Windows.Forms.NumericUpDown moveNumericUpDown4;
+        public System.Windows.Forms.ComboBox moveBox1;
+        public System.Windows.Forms.ComboBox moveBox2;
+        public System.Windows.Forms.NumericUpDown moveNumericUpDown6;
+        public System.Windows.Forms.NumericUpDown moveNumericUpDown5;
+        public System.Windows.Forms.Label moveLabel2;
+        public System.Windows.Forms.Label moveLabel5;
         public System.Windows.Forms.TabPage tabPage6;
         public System.Windows.Forms.Label label62;
         public System.Windows.Forms.Label label54;
@@ -2419,28 +2468,32 @@ namespace NoFarmForMeOpenSource
         public System.Windows.Forms.Label label48;
         public System.Windows.Forms.TabControl tabControl2;
         public System.Windows.Forms.TabPage tabPage3;
-        public System.Windows.Forms.PictureBox pictureBox8;
-        public System.Windows.Forms.PictureBox pictureBox9;
-        public System.Windows.Forms.PictureBox pictureBox10;
-        public System.Windows.Forms.PictureBox pictureBox11;
-        public System.Windows.Forms.PictureBox pictureBox12;
-        public System.Windows.Forms.PictureBox pictureBox13;
-        public System.Windows.Forms.PictureBox pictureBox14;
-        public System.Windows.Forms.PictureBox pictureBox15;
-        public System.Windows.Forms.PictureBox pictureBox4;
-        public System.Windows.Forms.PictureBox pictureBox5;
-        public System.Windows.Forms.PictureBox pictureBox6;
-        public System.Windows.Forms.PictureBox pictureBox7;
-        public System.Windows.Forms.PictureBox pictureBox2;
-        public System.Windows.Forms.PictureBox pictureBox3;
-        public System.Windows.Forms.PictureBox pictureBox1;
-        public System.Windows.Forms.Button button2;
-        public System.Windows.Forms.Button button1;
-        public System.Windows.Forms.ComboBox comboBox1;
+        public System.Windows.Forms.PictureBox playerPictureBox16;
+        public System.Windows.Forms.PictureBox playerPictureBox8;
+        public System.Windows.Forms.PictureBox playerPictureBox15;
+        public System.Windows.Forms.PictureBox playerPictureBox7;
+        public System.Windows.Forms.PictureBox playerPictureBox14;
+        public System.Windows.Forms.PictureBox playerPictureBox6;
+        public System.Windows.Forms.PictureBox playerPictureBox13;
+        public System.Windows.Forms.PictureBox playerPictureBox5;
+        public System.Windows.Forms.PictureBox playerPictureBox12;
+        public System.Windows.Forms.PictureBox playerPictureBox4;
+        public System.Windows.Forms.PictureBox playerPictureBox11;
+        public System.Windows.Forms.PictureBox playerPictureBox3;
+        public System.Windows.Forms.PictureBox playerPictureBox10;
+        public System.Windows.Forms.PictureBox playerPictureBox2;
+        public System.Windows.Forms.PictureBox playerPictureBox9;
+        public System.Windows.Forms.Button previousButton;
+        public System.Windows.Forms.Button nextButton;
+        public System.Windows.Forms.ComboBox pageComboBox;
         public System.Windows.Forms.Panel panel1;
         public System.Windows.Forms.Button saveInformationButton;
         public System.Windows.Forms.Button playRecordsButton;
         public System.Windows.Forms.Button streetpassButton;
         public System.Windows.Forms.Button inventoryButton;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem1;
+        public System.Windows.Forms.PictureBox movedPlayerPictureBox;
     }
 }

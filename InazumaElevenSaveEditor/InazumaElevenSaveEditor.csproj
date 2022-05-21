@@ -53,6 +53,7 @@
     <Compile Include="Common\InazumaElevenGo\Equipments\Equipments.cs" />
     <Compile Include="Common\InazumaElevenGo\Items\Items.cs" />
     <Compile Include="Common\InazumaElevenGo\Moves\Moves.cs" />
+    <Compile Include="Common\InazumaElevenGo\Players\Auras.cs" />
     <Compile Include="Common\InazumaElevenGo\Players\Players.cs" />
     <Compile Include="Formats\ContainerFormats.cs" />
     <Compile Include="Formats\ContainerGames.cs" />
@@ -82,6 +83,7 @@
     <Compile Include="Tools\Crc32.cs" />
     <Compile Include="Tools\DataReader.cs" />
     <Compile Include="Tools\DataWriter.cs" />
+    <Compile Include="Tools\Draw.cs" />
     <Compile Include="Tools\Level5.cs" />
     <Compile Include="Tools\ResourceReader.cs" />
     <Compile Include="Welcome.cs">
@@ -105,6 +107,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\PlayerRectangleBox.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MovedPlayerRectangleBox.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

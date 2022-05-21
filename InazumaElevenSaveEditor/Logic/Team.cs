@@ -20,6 +20,7 @@ namespace InazumaElevenSaveEditor.Logic
 
         public Team()
         {
+
         }
 
         public Team(string _Name, int _Level, Item _Emblem, Item _Kit, Item _Formation, Item _Coach)

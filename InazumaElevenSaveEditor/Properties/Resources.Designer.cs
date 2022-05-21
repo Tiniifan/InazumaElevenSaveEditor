@@ -63,6 +63,16 @@ namespace InazumaElevenSaveEditor.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap MovedPlayerRectangleBox {
+            get {
+                object obj = ResourceManager.GetObject("MovedPlayerRectangleBox", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap PlayerRectangleBox {
             get {
                 object obj = ResourceManager.GetObject("PlayerRectangleBox", resourceCulture);

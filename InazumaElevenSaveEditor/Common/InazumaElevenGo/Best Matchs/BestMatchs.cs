@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using InazumaElevenSaveEditor.Logic;
 
-namespace InazumaElevenSaveEditor.Common.InazumaElevenGo.Best_Match
+namespace InazumaElevenSaveEditor.Common.InazumaElevenGo
 {
     public static class BestMatchs
     {
-        //  Not Finished
+        //  Missing Galaxy Best Matchs
+
         public static IList<BestMatch> Cs = new List<BestMatch>
         {
                 new BestMatch(0x70117122, 0xF04E002B, 0x87471489),

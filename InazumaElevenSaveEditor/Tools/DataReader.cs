@@ -66,6 +66,13 @@ namespace InazumaElevenSaveEditor.Tools
             return b;
         }
 
+        public UInt32 Reverse(UInt32 u)
+        {
+            byte[] b = BitConverter.GetBytes(u);
+            Array.Reverse(b);
+            return BitConverter.ToUInt32(b, 0);
+        }
+
         public byte[] GetSection(uint Offset, int Size)
         {
             long temp = (uint)BaseStream.Position;

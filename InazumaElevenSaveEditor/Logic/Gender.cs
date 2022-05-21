@@ -19,9 +19,14 @@
             return new Gender("Girl");
         }
 
-        public static Gender Unknow()
+        public static Gender Unknown()
         {
             return new Gender("Unknown");
+        }
+
+        public override string ToString()
+        {
+            return Name;
         }
     }
 }

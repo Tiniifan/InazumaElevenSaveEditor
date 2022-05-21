@@ -1,10 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace InazumaElevenSaveEditor.Logic
 {
     public class Equipment
     {
         public string Name;
+
+        public UInt32 ID;
 
         public EquipmentType Type;
 
