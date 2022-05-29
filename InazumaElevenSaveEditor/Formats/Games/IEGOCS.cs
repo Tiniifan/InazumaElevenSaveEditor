@@ -203,25 +203,11 @@ namespace InazumaElevenSaveEditor.Formats.Games
             }
 
             File.Skip(10);
-            bool invoke = false;
-            bool armed = false;
             int canInvokeArmed = File.ReadByte();
-            if (canInvokeArmed < 3)
-            {
-                invoke = false;
-                armed = false;
-            }
-            else if (canInvokeArmed > 8 & canInvokeArmed < 11)
-            {
-                invoke = true;
-                armed = false;
-            }
-            else if (canInvokeArmed > 23 & canInvokeArmed < 27)
-            {
-                invoke = true;
-                armed = true;
-            }
-            newPlayer.Style = Convert.ToInt32(File.ReadByte().ToString("X2").Substring(0, 1), 16);
+            bool invoke = (canInvokeArmed & 8) != 0;
+            bool armed = (canInvokeArmed & 16) != 0;
+
+            newPlayer.Style = (File.ReadByte() & 0xF0) >> 4;
 
             File.Skip(8);
             newPlayer.InvestedPoint = new List<int>();
