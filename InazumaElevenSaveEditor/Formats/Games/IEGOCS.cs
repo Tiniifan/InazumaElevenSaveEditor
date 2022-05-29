@@ -227,12 +227,7 @@ namespace InazumaElevenSaveEditor.Formats.Games
             newPlayer.InvestedPoint = new List<int>();
             for (int i = 0; i < 8; i++)
             {
-                int investedPoint = File.ReadUInt16();
-                // Negative Number Detected
-                if (investedPoint > 4095)
-                {
-                    investedPoint = Convert.ToInt32(Convert.ToInt16(investedPoint.ToString("X4"), 16));
-                }
+                int investedPoint = File.ReadInt16();
                 newPlayer.InvestedPoint.Add(investedPoint);
             }
 
