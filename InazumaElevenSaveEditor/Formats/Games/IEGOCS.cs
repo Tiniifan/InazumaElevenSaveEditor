@@ -203,36 +203,17 @@ namespace InazumaElevenSaveEditor.Formats.Games
             }
 
             File.Skip(10);
-            bool invoke = false;
-            bool armed = false;
             int canInvokeArmed = File.ReadByte();
-            if (canInvokeArmed < 3)
-            {
-                invoke = false;
-                armed = false;
-            }
-            else if (canInvokeArmed > 8 & canInvokeArmed < 11)
-            {
-                invoke = true;
-                armed = false;
-            }
-            else if (canInvokeArmed > 23 & canInvokeArmed < 27)
-            {
-                invoke = true;
-                armed = true;
-            }
-            newPlayer.Style = Convert.ToInt32(File.ReadByte().ToString("X2").Substring(0, 1), 16);
+            bool invoke = (canInvokeArmed & 8) != 0;
+            bool armed = (canInvokeArmed & 16) != 0;
+
+            newPlayer.Style = (File.ReadByte() & 0xF0) >> 4;
 
             File.Skip(8);
             newPlayer.InvestedPoint = new List<int>();
             for (int i = 0; i < 8; i++)
             {
-                int investedPoint = File.ReadUInt16();
-                // Negative Number Detected
-                if (investedPoint > 4095)
-                {
-                    investedPoint = Convert.ToInt32(Convert.ToInt16(investedPoint.ToString("X4"), 16));
-                }
+                int investedPoint = File.ReadInt16();
                 newPlayer.InvestedPoint.Add(investedPoint);
             }
 
@@ -254,14 +235,7 @@ namespace InazumaElevenSaveEditor.Formats.Games
                 }
                 else
                 {
-                    if (i == 0)
-                        newEquipment = Equipments[0x00000000];
-                    else if (i == 1)
-                        newEquipment = Equipments[0x00000001];
-                    else if (i == 2)
-                        newEquipment = Equipments[0x00000002];
-                    else if (i == 3)
-                        newEquipment = Equipments[0x00000003];
+                    newEquipment = Equipments[(uint)i];
                 }
                 newPlayer.Equipments.Add(newEquipment);
             }
