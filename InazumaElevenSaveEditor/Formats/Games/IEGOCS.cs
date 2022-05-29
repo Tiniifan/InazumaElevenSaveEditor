@@ -254,14 +254,7 @@ namespace InazumaElevenSaveEditor.Formats.Games
                 }
                 else
                 {
-                    if (i == 0)
-                        newEquipment = Equipments[0x00000000];
-                    else if (i == 1)
-                        newEquipment = Equipments[0x00000001];
-                    else if (i == 2)
-                        newEquipment = Equipments[0x00000002];
-                    else if (i == 3)
-                        newEquipment = Equipments[0x00000003];
+                    newEquipment = Equipments[(uint)i];
                 }
                 newPlayer.Equipments.Add(newEquipment);
             }
