@@ -187,8 +187,8 @@ namespace NoFarmForMeOpenSource
                 moveBox8.Items.Clear();
                 for (int t = 0; t < player.MixiMax.AuraPlayer.Moves.Count; t++)
                 {
-                    moveBox7.Items.Add(game.Moves[player.MixiMax.AuraPlayer.UInt32Moves[t]].Name);
-                    moveBox8.Items.Add(game.Moves[player.MixiMax.AuraPlayer.UInt32Moves[t]].Name);
+                    moveBox7.Items.Add(player.MixiMax.AuraPlayer.Moves[t].Name);
+                    moveBox8.Items.Add(player.MixiMax.AuraPlayer.Moves[t].Name);
                 }
                 if (player.MixiMax.BestMatch != null)
                 {
