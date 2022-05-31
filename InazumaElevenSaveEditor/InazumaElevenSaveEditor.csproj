@@ -40,6 +40,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -80,6 +81,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="TeamWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TeamWindow.Designer.cs">
+      <DependentUpon>TeamWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Tools\Crc32.cs" />
     <Compile Include="Tools\DataReader.cs" />
     <Compile Include="Tools\DataWriter.cs" />
@@ -101,6 +108,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="TeamWindow.resx">
+      <DependentUpon>TeamWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Welcome.resx">
       <DependentUpon>Welcome.cs</DependentUpon>
     </EmbeddedResource>
@@ -110,6 +120,171 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\MovedPlayerRectangleBox.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Common\InazumaElevenGo\Formations\F-Gahl.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Common\InazumaElevenGo\Formations\FormationTemplate.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Common\InazumaElevenGo\Formations\F-Instinct du tigre.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Common\InazumaElevenGo\Formations\F-Route de l%27oasis.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Common\InazumaElevenGo\Formations\F-Coup d%27Etat.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Common\InazumaElevenGo\Formations\F-Coquille de fer.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Common\InazumaElevenGo\Formations\F-Grâce de nageoire.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Common\InazumaElevenGo\Formations\F-Aile perdu.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Common\InazumaElevenGo\Formations\F-Parasite.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Common\InazumaElevenGo\Formations\F-Orbius.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Common\InazumaElevenGo\Formations\F-Trou noir.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Common\InazumaElevenGo\Formations\F-Big Bang.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Common\InazumaElevenGo\Formations\F-Supernova.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Common\InazumaElevenGo\Formations\F-Galaxy.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Common\InazumaElevenGo\Formations\F-Raimon.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Common\InazumaElevenGo\Formations\F-Broadsword.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Common\InazumaElevenGo\Formations\F-Basic.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Common\InazumaElevenGo\Formations\F-Stratosphere.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Common\InazumaElevenGo\Formations\F-Omnipresence.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Common\InazumaElevenGo\Formations\F-Neo Death Zone.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Common\InazumaElevenGo\Formations\F-Lobster Claw.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Common\InazumaElevenGo\Formations\F-Moonlight.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Common\InazumaElevenGo\Formations\F-Avalanche.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Common\InazumaElevenGo\Formations\F-Tiger Strike.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Common\InazumaElevenGo\Formations\F-Phantom.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Common\InazumaElevenGo\Formations\F-Neo-Cloud.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Common\InazumaElevenGo\Formations\F-Divinity.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Common\InazumaElevenGo\Formations\F-One Thousand.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Common\InazumaElevenGo\Formations\F-Blue Leaves.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Common\InazumaElevenGo\Formations\F-Youthful Spirit.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Common\InazumaElevenGo\Formations\F-Shining Light.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Common\InazumaElevenGo\Formations\F-Ancient Power.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Common\InazumaElevenGo\Formations\F-Zero.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Common\InazumaElevenGo\Formations\F-Albatross.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Common\InazumaElevenGo\Formations\F-Legacy.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Common\InazumaElevenGo\Formations\F-Resistance.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Common\InazumaElevenGo\Formations\F-Defence Formation.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Common\InazumaElevenGo\Formations\F-Alpha.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Common\InazumaElevenGo\Formations\F-Antlers.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Common\InazumaElevenGo\Formations\F-Beta.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Common\InazumaElevenGo\Formations\F-Gamma.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Common\InazumaElevenGo\Formations\F-Terracotta.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Common\InazumaElevenGo\Formations\F-Zanark.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Common\InazumaElevenGo\Formations\F-Perfection.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Common\InazumaElevenGo\Formations\F-Zan.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Common\InazumaElevenGo\Formations\F-Gihl.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Common\InazumaElevenGo\Formations\F-Ragnah.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Common\InazumaElevenGo\Formations\F-Full Moon.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Common\InazumaElevenGo\Formations\F-New Moon.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Common\InazumaElevenGo\Formations\F-Predator.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Common\InazumaElevenGo\Formations\F-Flower of Chaos.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Common\InazumaElevenGo\Formations\F-Etincelle.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Common\InazumaElevenGo\Formations\F-Ame ardente.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Common\InazumaElevenGo\Formations\F-Mer Profonde.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Common\InazumaElevenGo\Formations\F-Temoête de sable.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

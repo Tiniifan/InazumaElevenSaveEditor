@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace InazumaElevenSaveEditor.Logic
 {
@@ -24,7 +25,9 @@ namespace InazumaElevenSaveEditor.Logic
 
         public List<GroupPlayRecords> PlayRecords;
 
-        public Dictionary<string, Item> Inventory;
+        public Dictionary<UInt32, Item> Inventory = new Dictionary<UInt32, Item>();
+
+        public List<Team> Teams;
 
         public Save()
         {

@@ -168,6 +168,7 @@ namespace NoFarmForMeOpenSource
             this.label48 = new System.Windows.Forms.Label();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.movedPlayerPictureBox = new System.Windows.Forms.PictureBox();
             this.playerPictureBox1 = new System.Windows.Forms.PictureBox();
             this.playerPictureBox16 = new System.Windows.Forms.PictureBox();
             this.playerPictureBox8 = new System.Windows.Forms.PictureBox();
@@ -193,7 +194,7 @@ namespace NoFarmForMeOpenSource
             this.streetpassButton = new System.Windows.Forms.Button();
             this.inventoryButton = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.movedPlayerPictureBox = new System.Windows.Forms.PictureBox();
+            this.teamButton = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -223,6 +224,7 @@ namespace NoFarmForMeOpenSource
             this.tabPage6.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.movedPlayerPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.playerPictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.playerPictureBox16)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.playerPictureBox8)).BeginInit();
@@ -240,7 +242,6 @@ namespace NoFarmForMeOpenSource
             ((System.ComponentModel.ISupportInitialize)(this.playerPictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.playerPictureBox9)).BeginInit();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.movedPlayerPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -1924,6 +1925,16 @@ namespace NoFarmForMeOpenSource
             this.tabPage3.Text = "Save Reserve";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // movedPlayerPictureBox
+            // 
+            this.movedPlayerPictureBox.Location = new System.Drawing.Point(10, 182);
+            this.movedPlayerPictureBox.Name = "movedPlayerPictureBox";
+            this.movedPlayerPictureBox.Size = new System.Drawing.Size(195, 20);
+            this.movedPlayerPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.movedPlayerPictureBox.TabIndex = 20;
+            this.movedPlayerPictureBox.TabStop = false;
+            this.movedPlayerPictureBox.Visible = false;
+            // 
             // playerPictureBox1
             // 
             this.playerPictureBox1.Location = new System.Drawing.Point(10, 6);
@@ -2196,6 +2207,7 @@ namespace NoFarmForMeOpenSource
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.teamButton);
             this.panel1.Controls.Add(this.saveInformationButton);
             this.panel1.Controls.Add(this.playRecordsButton);
             this.panel1.Controls.Add(this.streetpassButton);
@@ -2208,7 +2220,7 @@ namespace NoFarmForMeOpenSource
             // saveInformationButton
             // 
             this.saveInformationButton.Enabled = false;
-            this.saveInformationButton.Location = new System.Drawing.Point(5, 7);
+            this.saveInformationButton.Location = new System.Drawing.Point(110, 7);
             this.saveInformationButton.Name = "saveInformationButton";
             this.saveInformationButton.Size = new System.Drawing.Size(99, 25);
             this.saveInformationButton.TabIndex = 3;
@@ -2218,7 +2230,7 @@ namespace NoFarmForMeOpenSource
             // playRecordsButton
             // 
             this.playRecordsButton.Enabled = false;
-            this.playRecordsButton.Location = new System.Drawing.Point(110, 7);
+            this.playRecordsButton.Location = new System.Drawing.Point(215, 7);
             this.playRecordsButton.Name = "playRecordsButton";
             this.playRecordsButton.Size = new System.Drawing.Size(99, 25);
             this.playRecordsButton.TabIndex = 2;
@@ -2228,7 +2240,7 @@ namespace NoFarmForMeOpenSource
             // streetpassButton
             // 
             this.streetpassButton.Enabled = false;
-            this.streetpassButton.Location = new System.Drawing.Point(317, 7);
+            this.streetpassButton.Location = new System.Drawing.Point(5, 38);
             this.streetpassButton.Name = "streetpassButton";
             this.streetpassButton.Size = new System.Drawing.Size(99, 25);
             this.streetpassButton.TabIndex = 1;
@@ -2239,7 +2251,7 @@ namespace NoFarmForMeOpenSource
             // inventoryButton
             // 
             this.inventoryButton.Enabled = false;
-            this.inventoryButton.Location = new System.Drawing.Point(213, 7);
+            this.inventoryButton.Location = new System.Drawing.Point(318, 7);
             this.inventoryButton.Name = "inventoryButton";
             this.inventoryButton.Size = new System.Drawing.Size(99, 25);
             this.inventoryButton.TabIndex = 0;
@@ -2250,15 +2262,16 @@ namespace NoFarmForMeOpenSource
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // movedPlayerPictureBox
+            // teamButton
             // 
-            this.movedPlayerPictureBox.Location = new System.Drawing.Point(10, 182);
-            this.movedPlayerPictureBox.Name = "movedPlayerPictureBox";
-            this.movedPlayerPictureBox.Size = new System.Drawing.Size(195, 20);
-            this.movedPlayerPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.movedPlayerPictureBox.TabIndex = 20;
-            this.movedPlayerPictureBox.TabStop = false;
-            this.movedPlayerPictureBox.Visible = false;
+            this.teamButton.Enabled = false;
+            this.teamButton.Location = new System.Drawing.Point(5, 7);
+            this.teamButton.Name = "teamButton";
+            this.teamButton.Size = new System.Drawing.Size(99, 25);
+            this.teamButton.TabIndex = 4;
+            this.teamButton.Text = "Tactics";
+            this.teamButton.UseVisualStyleBackColor = true;
+            this.teamButton.Click += new System.EventHandler(this.TeamButton_Click);
             // 
             // Welcome
             // 
@@ -2306,6 +2319,7 @@ namespace NoFarmForMeOpenSource
             this.tabPage6.PerformLayout();
             this.tabControl2.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.movedPlayerPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.playerPictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.playerPictureBox16)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.playerPictureBox8)).EndInit();
@@ -2323,7 +2337,6 @@ namespace NoFarmForMeOpenSource
             ((System.ComponentModel.ISupportInitialize)(this.playerPictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.playerPictureBox9)).EndInit();
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.movedPlayerPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2496,5 +2509,6 @@ namespace NoFarmForMeOpenSource
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem1;
         public System.Windows.Forms.PictureBox movedPlayerPictureBox;
+        public System.Windows.Forms.Button teamButton;
     }
 }

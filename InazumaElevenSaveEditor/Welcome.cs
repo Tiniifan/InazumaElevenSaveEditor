@@ -13,6 +13,7 @@ using InazumaElevenSaveEditor.Tools;
 using InazumaElevenSaveEditor.Formats;
 using InazumaElevenSaveEditor.Common;
 using InazumaElevenSaveEditor.Formats.Saves;
+using InazumaElevenSaveEditor;
 
 namespace NoFarmForMeOpenSource
 {
@@ -346,8 +347,9 @@ namespace NoFarmForMeOpenSource
             inventoryButton.Enabled = true;
             // streetpassButton.Enabled = true;
             // streetpassButton.Visible = true;
-            playRecordsButton.Enabled = true;
+            teamButton.Enabled = true;
             saveInformationButton.Enabled = true;
+            playRecordsButton.Enabled = true;
             saveToolStripMenuItem.Enabled = true;
             tabControl1.Enabled = false;
 
@@ -910,6 +912,12 @@ namespace NoFarmForMeOpenSource
             PrintPlayer(game.GetPlayer(currentPlayer));
             PageComboBox_SelectedIndexChanged(sender, e);
             tabPage1.Focus();
+        }
+
+        private void TeamButton_Click(object sender, EventArgs e)
+        {
+            TeamWindow teamWindow = new TeamWindow(game);
+            teamWindow.Show();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace InazumaElevenSaveEditor.Logic
 {
@@ -16,7 +17,11 @@ namespace InazumaElevenSaveEditor.Logic
 
         public Item Coach;
 
-        public List<Player> Players;
+        public Dictionary<UInt32, Player> Players = new Dictionary<UInt32, Player>();
+
+        public List<int> PlayersFormationIndex = new List<int>();
+
+        public List<int> PlayersKitNumber = new List<int>();
 
         public Team()
         {
@@ -31,6 +36,18 @@ namespace InazumaElevenSaveEditor.Logic
             Kit = _Kit;
             Formation = _Formation;
             Coach = _Coach;
+        }
+
+        public Team(string _Name, Item _Emblem, Item _Kit, Item _Formation, Item _Coach, Dictionary<UInt32, Player> _Players, List<int> _PlayersFormationIndex, List<int> _PlayersKitNumber)
+        {
+            Name = _Name;
+            Emblem = _Emblem;
+            Kit = _Kit;
+            Formation = _Formation;
+            Coach = _Coach;
+            Players = _Players;
+            PlayersFormationIndex = _PlayersFormationIndex;
+            PlayersKitNumber = _PlayersKitNumber;
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Drawing;
 using System.Windows.Forms;
 using InazumaElevenSaveEditor.Tools;
@@ -38,14 +39,14 @@ namespace InazumaElevenSaveEditor.Formats.Games
 
         private IList<BestMatch> BestMatchs = Common.InazumaElevenGo.BestMatchs.Cs;
 
-        public CS() 
-        { 
+        public CS()
+        {
 
         }
 
-        public CS(DataReader file) 
-        { 
-            File = file; 
+        public CS(DataReader file)
+        {
+            File = file;
         }
 
         public void Open()
@@ -55,11 +56,34 @@ namespace InazumaElevenSaveEditor.Formats.Games
             Moves = Common.InazumaElevenGo.Moves.Cs;
             Avatars = Common.InazumaElevenGo.Avatars.Cs;
             Items = Common.InazumaElevenGo.Items.Cs;
-            SaveInfo = new Save();
 
-            // Load Equipments
             IDictionary<uint, Equipment> AllEquipments = Common.InazumaElevenGo.Equipments.Cs;
             Equipments = new Dictionary<UInt32, Equipment>();
+            IDictionary<uint, Player> Auras = Common.InazumaElevenGo.Auras.Cs;
+            AuraInSave = new Dictionary<UInt32, Player>();
+
+            SaveInfo = new Save();
+
+            // First Item Category - 512 maximum items
+            File.Seek(0x14F4);
+            for (int i = 0; i < 512; i++)
+            {
+                UInt32 itemPositionID = File.Reverse(File.ReadUInt32());
+
+                if (itemPositionID == 0x0)
+                {
+                    break;
+                }
+                else
+                {
+                    Item newItem = Items[File.Reverse(File.ReadUInt32())];
+                    newItem.Quantity = File.ReadByte();
+                    SaveInfo.Inventory.Add(itemPositionID, newItem);
+                    File.Skip(3);
+                }
+            }
+
+            // Second Item Category - 336 maximum items
             File.Seek(0x2D00);
             for (int i = 0; i < 336; i++)
             {
@@ -72,24 +96,24 @@ namespace InazumaElevenSaveEditor.Formats.Games
                 else
                 {
                     UInt32 itemID = File.Reverse(File.ReadUInt32());
+
+                    Item newItem = Items[itemID];
+                    newItem.Quantity = File.ReadByte();
+
+                    // Fills The Equipment List
                     if (AllEquipments.ContainsKey(itemID))
                     {
                         Equipment newEquipment = AllEquipments[itemID];
                         newEquipment.ID = itemID;
                         Equipments.Add(itemPositionID, newEquipment);
                     }
-                    File.Skip(8);
+
+                    SaveInfo.Inventory.Add(itemPositionID, newItem);
+                    File.Skip(7);
                 }
             }
-            for (int i = 0; i < 4; i++)
-            {
-                Equipment emptyEquiment = AllEquipments[(uint)i];
-                emptyEquiment.ID = 0x00000000;
-                Equipments.Add((uint)i, emptyEquiment);
-            }
-            // Load Auras
-            IDictionary<uint, Player> Auras = Common.InazumaElevenGo.Auras.Cs;
-            AuraInSave = new Dictionary<UInt32, Player>();
+
+            // Third Item Category - 800 Maximum Items
             File.Seek(0x420C);
             for (int i = 0; i < 800; i++)
             {
@@ -101,8 +125,9 @@ namespace InazumaElevenSaveEditor.Formats.Games
                 }
                 else
                 {
-                    
                     UInt32 itemID = File.Reverse(File.ReadUInt32());
+
+                    // Fills The Aura List
                     if (Auras.ContainsKey(itemID))
                     {
                         Player newAura = Auras[itemID];
@@ -114,7 +139,17 @@ namespace InazumaElevenSaveEditor.Formats.Games
                         }
                         AuraInSave.Add(itemPositionID, newAura);
                     }
+
+                    SaveInfo.Inventory.Add(itemPositionID, Items[itemID]);
                 }
+            }
+
+            // Add Empty Equipment
+            for (int i = 0; i < 4; i++)
+            {
+                Equipment emptyEquiment = AllEquipments[(uint)i];
+                emptyEquiment.ID = 0x00000000;
+                Equipments.Add((uint)i, emptyEquiment);
             }
 
             // Get Player List
@@ -138,7 +173,7 @@ namespace InazumaElevenSaveEditor.Formats.Games
             }
 
             // Link MixiMax
-            foreach(KeyValuePair<UInt32, Player> player in PlayersInSave)
+            foreach (KeyValuePair<UInt32, Player> player in PlayersInSave)
             {
                 if (player.Value.MixiMax != null)
                 {
@@ -158,11 +193,13 @@ namespace InazumaElevenSaveEditor.Formats.Games
                         if (isBestMatch != null)
                         {
                             player.Value.MixiMax = new MixiMax(PlayersInSave[playerAura], (mixiMaxMove1, mixiMaxMove2), isBestMatch);
-                        } else
+                        }
+                        else
                         {
                             player.Value.MixiMax = new MixiMax(PlayersInSave[playerAura], (mixiMaxMove1, mixiMaxMove2));
                         }
-                    } else
+                    }
+                    else
                     {
                         BestMatch isBestMatch = IsBestMatch(player.Value.ID, AuraInSave[playerAura].ID);
                         MixiMax newMixiMax;
@@ -186,7 +223,7 @@ namespace InazumaElevenSaveEditor.Formats.Games
             UInt32 playerID = File.Reverse(File.ReadUInt32());
             Player newPlayer = new Player(Players[playerID]);
             newPlayer.ID = playerID;
-            newPlayer.PositionInFile = File.BaseStream.Position-8;
+            newPlayer.PositionInFile = File.BaseStream.Position - 8;
 
             File.Skip(10);
             newPlayer.Level = File.ReadByte();
@@ -262,6 +299,69 @@ namespace InazumaElevenSaveEditor.Formats.Games
             File.Skip(100);
 
             return newPlayer;
+        }
+
+        public void OpenTactics()
+        {
+            SaveInfo.Teams = new List<Team>();
+
+            // Chrono Storm Team
+            SaveInfo.Teams.Add(LoadTeam(0x1C0C4, 0x1C494, 0x1C4E0));
+
+            // Custom Teams
+            uint teamInfo = 0x1C0F4;
+            uint teamName = 0x1C304;
+            uint teamPlayers = 0x1CA60;
+            for (int i = 0; i < 10; i++)
+            {
+                SaveInfo.Teams.Add(LoadTeam(teamInfo, teamName, teamPlayers));
+                teamInfo += 0x30;
+                teamName += 0x28;
+                teamPlayers += 0x40;
+            }
+        }
+
+        private Team LoadTeam(uint teamInfo, uint teamName, uint teamPlayers)
+        {
+            File.Seek(teamInfo);
+
+            Dictionary<UInt32, Player> players = new Dictionary<UInt32, Player>();
+            List<int> playersFormationIndex = new List<int>();
+            List<int> playersKitNumber = new List<int>();
+
+            Item coach = SaveInfo.Inventory[File.Reverse(File.ReadUInt32())];
+            Item formation = SaveInfo.Inventory[File.Reverse(File.ReadUInt32())];
+            Item kit = SaveInfo.Inventory[File.Reverse(File.ReadUInt32())];
+            Item emblem = SaveInfo.Inventory[File.Reverse(File.ReadUInt32())];
+
+            for (int i = 0; i < 16; i++)
+            {
+                playersFormationIndex.Add(File.ReadByte());
+            }
+            for (int i = 0; i < 16; i++)
+            {
+                playersKitNumber.Add(File.ReadByte());
+            }
+
+            File.Seek(teamName);
+            string name = Encoding.UTF8.GetString(File.GetSection((uint)File.BaseStream.Position, 12).TakeWhile((x, index) => x != 0x0 && index < 12).ToArray());
+
+            File.Seek(teamPlayers);
+            for (int i = 0; i < 16; i++)
+            {
+                UInt32 playerPositionID = File.Reverse(File.ReadUInt32());
+
+                if (playerPositionID != 0)
+                {
+                    players.Add(playerPositionID, PlayersInSave[playerPositionID]);
+                }
+                else
+                {
+                    players.Add((uint)(playerPositionID+i), null);
+                }
+            }
+
+            return new Team(name, emblem, kit, formation, coach, players, playersFormationIndex, playersKitNumber);
         }
 
         private BestMatch IsBestMatch(UInt32 playerID, UInt32 auraID)
