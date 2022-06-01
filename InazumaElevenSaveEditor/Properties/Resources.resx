@@ -118,8 +118,8 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="F-Aile perdu" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Common\InazumaElevenGo\Formations\F-Aile perdu.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  <data name="F-Lost Wing" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Common\InazumaElevenGo\Formations\F-Lost Wing.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
   <data name="F-Albatross" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Common\InazumaElevenGo\Formations\F-Albatross.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
@@ -127,8 +127,8 @@
   <data name="F-Alpha" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Common\InazumaElevenGo\Formations\F-Alpha.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
-  <data name="F-Ame ardente" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Common\InazumaElevenGo\Formations\F-Ame ardente.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  <data name="F-Burning Soul" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Common\InazumaElevenGo\Formations\F-Burning Soul.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
   <data name="F-Ancient Power" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Common\InazumaElevenGo\Formations\F-Ancient Power.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
@@ -154,8 +154,8 @@
   <data name="F-Broadsword" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Common\InazumaElevenGo\Formations\F-Broadsword.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
-  <data name="F-Coquille de fer" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Common\InazumaElevenGo\Formations\F-Coquille de fer.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  <data name="F-Iron Shell" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Common\InazumaElevenGo\Formations\F-Iron Shell.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
   <data name="F-Coup d'Etat" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Common\InazumaElevenGo\Formations\F-Coup d'Etat.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
@@ -165,9 +165,6 @@
   </data>
   <data name="F-Divinity" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Common\InazumaElevenGo\Formations\F-Divinity.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
-  <data name="F-Etincelle" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Common\InazumaElevenGo\Formations\F-Etincelle.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
   <data name="F-Flower of Chaos" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Common\InazumaElevenGo\Formations\F-Flower of Chaos.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
@@ -187,20 +184,23 @@
   <data name="F-Gihl" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Common\InazumaElevenGo\Formations\F-Gihl.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;iso-8859-1</value>
   </data>
-  <data name="F-Grâce de nageoire" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Common\InazumaElevenGo\Formations\F-Grâce de nageoire.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  <data name="F-Grace Fin" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Common\InazumaElevenGo\Formations\F-Grace Fin.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
-  <data name="F-Instinct du tigre" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Common\InazumaElevenGo\Formations\F-Instinct du tigre.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  <data name="F-Pakichi Smell" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Common\InazumaElevenGo\Formations\F-Pakichi Smell.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
   <data name="F-Legacy" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Common\InazumaElevenGo\Formations\F-Legacy.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
+  <data name="F-Lightning" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Common\InazumaElevenGo\Formations\F-Lightning.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
   <data name="F-Lobster Claw" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Common\InazumaElevenGo\Formations\F-Lobster Claw.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
-  <data name="F-Mer Profonde" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Common\InazumaElevenGo\Formations\F-Mer Profonde.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  <data name="F-Ocean Dive" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Common\InazumaElevenGo\Formations\F-Ocean Dive.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
   <data name="F-Moonlight" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Common\InazumaElevenGo\Formations\F-Moonlight.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
@@ -223,8 +223,8 @@
   <data name="F-Orbius" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Common\InazumaElevenGo\Formations\F-Orbius.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
-  <data name="F-Parasite" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Common\InazumaElevenGo\Formations\F-Parasite.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  <data name="F-Hunters" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Common\InazumaElevenGo\Formations\F-Hunters.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
   <data name="F-Perfection" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Common\InazumaElevenGo\Formations\F-Perfection.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
@@ -244,8 +244,8 @@
   <data name="F-Resistance" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Common\InazumaElevenGo\Formations\F-Resistance.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
-  <data name="F-Route de l'oasis" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Common\InazumaElevenGo\Formations\F-Route de l'oasis.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  <data name="F-Oasis Route" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Common\InazumaElevenGo\Formations\F-Oasis Route.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
   <data name="F-Shining Light" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Common\InazumaElevenGo\Formations\F-Shining Light.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
@@ -256,17 +256,14 @@
   <data name="F-Supernova" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Common\InazumaElevenGo\Formations\F-Supernova.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
-  <data name="F-Temoête de sable" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Common\InazumaElevenGo\Formations\F-Temoête de sable.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
   <data name="F-Terracotta" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Common\InazumaElevenGo\Formations\F-Terracotta.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
   <data name="F-Tiger Strike" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Common\InazumaElevenGo\Formations\F-Tiger Strike.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
-  <data name="F-Trou noir" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Common\InazumaElevenGo\Formations\F-Trou noir.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  <data name="F-Black Hole" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Common\InazumaElevenGo\Formations\F-Black Hole.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
   <data name="F-Youthful Spirit" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Common\InazumaElevenGo\Formations\F-Youthful Spirit.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
@@ -288,5 +285,8 @@
   </data>
   <data name="PlayerRectangleBox" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\PlayerRectangleBox.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="F-Sandstorm" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Common\InazumaElevenGo\Formations\F-Sandstorm.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
 </root>

@@ -64,39 +64,6 @@ namespace InazumaElevenSaveEditor.Properties {
         ///   Recherche une chaîne localisée semblable à form_start &lt;- {
         ///	name = &quot;form_start&quot;,
         ///	data = [
-        ///		[11, &quot;FW&quot;, 0,65, 0,23],
-        ///		[10, &quot;FW&quot;, 0,20, 0,18],
-        ///		[9, &quot;FW&quot;, -0,20, 0,18],
-        ///		[8, &quot;FW&quot;, -0,65, 0,23],
-        ///		[7, &quot;MF&quot;, 0,30, 0,35],
-        ///		[6, &quot;MF&quot;, -0,30, 0,35],
-        ///		[5, &quot;MF&quot;, 0,30, 0,53],
-        ///		[4, &quot;MF&quot;, -0,30, 0,53],
-        ///		[3, &quot;DF&quot;, 0,30, 0,70],
-        ///		[2, &quot;DF&quot;, -0,30, 0,70],
-        ///		[1, &quot;GK&quot;, 0,00, 0,90],
-        ///	],
-        ///};
-        ///
-        ///form_def &lt;- {
-        ///	name = &quot;form_def&quot;,
-        ///	data = [
-        ///		[11, &quot;FW&quot;, 0,65, -0,08],
-        ///		[10, &quot;FW&quot;, 0,25, -0,33],
-        ///		[9, &quot;FW&quot;, -0,25, -0,33],
-        ///		[8, &quot;FW&quot;, -0,65, -0,08],
-        ///		[7, &quot;MF&quot;, 0,30, 0,15 [le reste de la chaîne a été tronqué]&quot;;.
-        /// </summary>
-        internal static string F_Aile_perdu {
-            get {
-                return ResourceManager.GetString("F-Aile perdu", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à form_start &lt;- {
-        ///	name = &quot;form_start&quot;,
-        ///	data = [
         ///		[11, &quot;FW&quot;, 0,00, 0,10],
         ///		[10, &quot;FW&quot;, 0,00, 0,25],
         ///		[9, &quot;MF&quot;, 0,50, 0,45],
@@ -157,40 +124,6 @@ namespace InazumaElevenSaveEditor.Properties {
         internal static string F_Alpha {
             get {
                 return ResourceManager.GetString("F-Alpha", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à form_start &lt;- {
-        ///	name = &quot;form_start&quot;,
-        ///	data = [
-        ///		[11, &quot;FW&quot;, 0,50, 0,18],
-        ///		[10, &quot;FW&quot;, 0,00, 0,18],
-        ///		[9, &quot;FW&quot;, -0,50, 0,18],
-        ///		[8, &quot;MF&quot;, 0,60, 0,38],
-        ///		[7, &quot;MF&quot;, 0,00, 0,45],
-        ///		[6, &quot;MF&quot;, -0,60, 0,38],
-        ///		[5, &quot;DF&quot;, 0,70, 0,58],
-        ///		[4, &quot;DF&quot;, 0,25, 0,65],
-        ///		[3, &quot;DF&quot;, -0,25, 0,65],
-        ///		[2, &quot;DF&quot;, -0,70, 0,58],
-        ///		[1, &quot;GK&quot;, 0,00, 0,90],
-        ///	],
-        ///};
-        ///
-        ///form_def &lt;- {
-        ///	name = &quot;form_def&quot;,
-        ///	data = [
-        ///		[11, &quot;FW&quot;, 0,60, -0,15],
-        ///		[10, &quot;FW&quot;, 0,00, 0,03],
-        ///		[9, &quot;FW&quot;, -0,60, -0,15],
-        ///		[8, &quot;MF&quot;, 0,60, 0,28],
-        ///		[7, &quot;MF&quot;, 0,00, 0,43],
-        ///	 [le reste de la chaîne a été tronqué]&quot;;.
-        /// </summary>
-        internal static string F_Ame_ardente {
-            get {
-                return ResourceManager.GetString("F-Ame ardente", resourceCulture);
             }
         }
         
@@ -400,6 +333,40 @@ namespace InazumaElevenSaveEditor.Properties {
         ///   Recherche une chaîne localisée semblable à form_start &lt;- {
         ///	name = &quot;form_start&quot;,
         ///	data = [
+        ///		[11, &quot;FW&quot;, 0,75, 0,10],
+        ///		[10, &quot;FW&quot;, 0,00, 0,20],
+        ///		[9, &quot;FW&quot;, -0,75, 0,10],
+        ///		[8, &quot;MF&quot;, 0,50, 0,28],
+        ///		[7, &quot;MF&quot;, -0,50, 0,28],
+        ///		[6, &quot;DF&quot;, 0,30, 0,48],
+        ///		[5, &quot;DF&quot;, -0,30, 0,48],
+        ///		[4, &quot;DF&quot;, 0,55, 0,65],
+        ///		[3, &quot;DF&quot;, 0,00, 0,65],
+        ///		[2, &quot;DF&quot;, -0,55, 0,65],
+        ///		[1, &quot;GK&quot;, 0,00, 0,90],
+        ///	],
+        ///};
+        ///
+        ///form_def &lt;- {
+        ///	name = &quot;form_def&quot;,
+        ///	data = [
+        ///		[11, &quot;FW&quot;, 0,75, 0,05],
+        ///		[10, &quot;FW&quot;, 0,00, -0,23],
+        ///		[9, &quot;FW&quot;, -0,75, 0,05],
+        ///		[8, &quot;MF&quot;, 0,50, 0,28],
+        ///		[7, &quot;MF&quot;, -0,50, 0,28],
+        ///	 [le reste de la chaîne a été tronqué]&quot;;.
+        /// </summary>
+        internal static string F_Black_Hole {
+            get {
+                return ResourceManager.GetString("F-Black Hole", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à form_start &lt;- {
+        ///	name = &quot;form_start&quot;,
+        ///	data = [
         ///		[11, &quot;FW&quot;, 0,40, 0,13],
         ///		[10, &quot;FW&quot;, -0,40, 0,13],
         ///		[9, &quot;MF&quot;, 0,70, 0,30],
@@ -466,16 +433,16 @@ namespace InazumaElevenSaveEditor.Properties {
         ///   Recherche une chaîne localisée semblable à form_start &lt;- {
         ///	name = &quot;form_start&quot;,
         ///	data = [
-        ///		[11, &quot;FW&quot;, 0,70, 0,18],
-        ///		[10, &quot;FW&quot;, -0,70, 0,18],
-        ///		[9, &quot;FW&quot;, -0,25, 0,18],
-        ///		[8, &quot;FW&quot;, 0,25, 0,18],
-        ///		[7, &quot;MF&quot;, 0,00, 0,40],
-        ///		[6, &quot;DF&quot;, 0,80, 0,63],
-        ///		[5, &quot;DF&quot;, 0,40, 0,63],
-        ///		[4, &quot;DF&quot;, 0,00, 0,63],
-        ///		[3, &quot;DF&quot;, -0,40, 0,63],
-        ///		[2, &quot;DF&quot;, -0,80, 0,63],
+        ///		[11, &quot;FW&quot;, 0,50, 0,18],
+        ///		[10, &quot;FW&quot;, 0,00, 0,18],
+        ///		[9, &quot;FW&quot;, -0,50, 0,18],
+        ///		[8, &quot;MF&quot;, 0,60, 0,38],
+        ///		[7, &quot;MF&quot;, 0,00, 0,45],
+        ///		[6, &quot;MF&quot;, -0,60, 0,38],
+        ///		[5, &quot;DF&quot;, 0,70, 0,58],
+        ///		[4, &quot;DF&quot;, 0,25, 0,65],
+        ///		[3, &quot;DF&quot;, -0,25, 0,65],
+        ///		[2, &quot;DF&quot;, -0,70, 0,58],
         ///		[1, &quot;GK&quot;, 0,00, 0,90],
         ///	],
         ///};
@@ -483,16 +450,16 @@ namespace InazumaElevenSaveEditor.Properties {
         ///form_def &lt;- {
         ///	name = &quot;form_def&quot;,
         ///	data = [
-        ///		[11, &quot;FW&quot;, 0,70, 0,18],
-        ///		[10, &quot;FW&quot;, -0,70, 0,18],
-        ///		[9, &quot;FW&quot;, -0,25, 0,18],
-        ///		[8, &quot;FW&quot;, 0,25, 0,18],
-        ///		[7, &quot;MF&quot;, 0,00, 0,40],
-        ///		 [le reste de la chaîne a été tronqué]&quot;;.
+        ///		[11, &quot;FW&quot;, 0,60, -0,15],
+        ///		[10, &quot;FW&quot;, 0,00, 0,03],
+        ///		[9, &quot;FW&quot;, -0,60, -0,15],
+        ///		[8, &quot;MF&quot;, 0,60, 0,28],
+        ///		[7, &quot;MF&quot;, 0,00, 0,43],
+        ///	 [le reste de la chaîne a été tronqué]&quot;;.
         /// </summary>
-        internal static string F_Coquille_de_fer {
+        internal static string F_Burning_Soul {
             get {
-                return ResourceManager.GetString("F-Coquille de fer", resourceCulture);
+                return ResourceManager.GetString("F-Burning Soul", resourceCulture);
             }
         }
         
@@ -594,40 +561,6 @@ namespace InazumaElevenSaveEditor.Properties {
         internal static string F_Divinity {
             get {
                 return ResourceManager.GetString("F-Divinity", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à form_start &lt;- {
-        ///	name = &quot;form_start&quot;,
-        ///	data = [
-        ///		[11, &quot;FW&quot;, 0,30, 0,13],
-        ///		[10, &quot;FW&quot;, -0,30, 0,13],
-        ///		[9, &quot;MF&quot;, 0,00, 0,48],
-        ///		[8, &quot;MF&quot;, 0,00, 0,28],
-        ///		[7, &quot;MF&quot;, 0,55, 0,33],
-        ///		[6, &quot;MF&quot;, -0,55, 0,33],
-        ///		[5, &quot;DF&quot;, 0,70, 0,60],
-        ///		[4, &quot;DF&quot;, 0,20, 0,65],
-        ///		[3, &quot;DF&quot;, -0,20, 0,65],
-        ///		[2, &quot;DF&quot;, -0,70, 0,60],
-        ///		[1, &quot;GK&quot;, 0,00, 0,90],
-        ///	],
-        ///};
-        ///
-        ///form_def &lt;- {
-        ///	name = &quot;form_def&quot;,
-        ///	data = [
-        ///		[11, &quot;FW&quot;, 0,35, -0,20],
-        ///		[10, &quot;FW&quot;, -0,35, -0,20],
-        ///		[9, &quot;MF&quot;, 0,00, 0,48],
-        ///		[8, &quot;MF&quot;, 0,00, -0,08],
-        ///		[7, &quot;MF&quot;, 0,45, 0,28],
-        /// [le reste de la chaîne a été tronqué]&quot;;.
-        /// </summary>
-        internal static string F_Etincelle {
-            get {
-                return ResourceManager.GetString("F-Etincelle", resourceCulture);
             }
         }
         
@@ -863,9 +796,9 @@ namespace InazumaElevenSaveEditor.Properties {
         ///		[7, &quot;MF&quot;, 0,00, 0,28],
         /// [le reste de la chaîne a été tronqué]&quot;;.
         /// </summary>
-        internal static string F_Grâce_de_nageoire {
+        internal static string F_Grace_Fin {
             get {
-                return ResourceManager.GetString("F-Grâce de nageoire", resourceCulture);
+                return ResourceManager.GetString("F-Grace Fin", resourceCulture);
             }
         }
         
@@ -873,16 +806,16 @@ namespace InazumaElevenSaveEditor.Properties {
         ///   Recherche une chaîne localisée semblable à form_start &lt;- {
         ///	name = &quot;form_start&quot;,
         ///	data = [
-        ///		[11, &quot;FW&quot;, 0,00, 0,18],
-        ///		[10, &quot;MF&quot;, 0,30, 0,23],
-        ///		[9, &quot;MF&quot;, -0,30, 0,23],
-        ///		[8, &quot;MF&quot;, 0,80, 0,33],
-        ///		[7, &quot;MF&quot;, 0,30, 0,43],
-        ///		[6, &quot;MF&quot;, -0,30, 0,43],
-        ///		[5, &quot;MF&quot;, -0,80, 0,33],
-        ///		[4, &quot;DF&quot;, 0,40, 0,63],
-        ///		[3, &quot;DF&quot;, 0,00, 0,65],
-        ///		[2, &quot;DF&quot;, -0,40, 0,63],
+        ///		[11, &quot;FW&quot;, 0,00, 0,35],
+        ///		[10, &quot;FW&quot;, 0,00, 0,18],
+        ///		[9, &quot;MF&quot;, 0,40, 0,30],
+        ///		[8, &quot;MF&quot;, -0,40, 0,30],
+        ///		[7, &quot;MF&quot;, 0,80, 0,40],
+        ///		[6, &quot;MF&quot;, 0,40, 0,50],
+        ///		[5, &quot;MF&quot;, -0,40, 0,50],
+        ///		[4, &quot;MF&quot;, -0,80, 0,40],
+        ///		[3, &quot;DF&quot;, 0,00, 0,55],
+        ///		[2, &quot;DF&quot;, 0,00, 0,73],
         ///		[1, &quot;GK&quot;, 0,00, 0,90],
         ///	],
         ///};
@@ -890,16 +823,50 @@ namespace InazumaElevenSaveEditor.Properties {
         ///form_def &lt;- {
         ///	name = &quot;form_def&quot;,
         ///	data = [
-        ///		[11, &quot;FW&quot;, 0,00, -0,25],
-        ///		[10, &quot;MF&quot;, 0,30, 0,08],
-        ///		[9, &quot;MF&quot;, -0,30, 0,08],
-        ///		[8, &quot;MF&quot;, 0,80, 0,33],
-        ///		[7, &quot;MF&quot;, 0,30, 0,43],
+        ///		[11, &quot;FW&quot;, 0,00, 0,03],
+        ///		[10, &quot;FW&quot;, 0,00, -0,25],
+        ///		[9, &quot;MF&quot;, 0,35, 0,20],
+        ///		[8, &quot;MF&quot;, -0,35, 0,20],
+        ///		[7, &quot;MF&quot;, 0,80, 0,33],
+        ///		[ [le reste de la chaîne a été tronqué]&quot;;.
+        /// </summary>
+        internal static string F_Hunters {
+            get {
+                return ResourceManager.GetString("F-Hunters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à form_start &lt;- {
+        ///	name = &quot;form_start&quot;,
+        ///	data = [
+        ///		[11, &quot;FW&quot;, 0,70, 0,18],
+        ///		[10, &quot;FW&quot;, -0,70, 0,18],
+        ///		[9, &quot;FW&quot;, -0,25, 0,18],
+        ///		[8, &quot;FW&quot;, 0,25, 0,18],
+        ///		[7, &quot;MF&quot;, 0,00, 0,40],
+        ///		[6, &quot;DF&quot;, 0,80, 0,63],
+        ///		[5, &quot;DF&quot;, 0,40, 0,63],
+        ///		[4, &quot;DF&quot;, 0,00, 0,63],
+        ///		[3, &quot;DF&quot;, -0,40, 0,63],
+        ///		[2, &quot;DF&quot;, -0,80, 0,63],
+        ///		[1, &quot;GK&quot;, 0,00, 0,90],
+        ///	],
+        ///};
+        ///
+        ///form_def &lt;- {
+        ///	name = &quot;form_def&quot;,
+        ///	data = [
+        ///		[11, &quot;FW&quot;, 0,70, 0,18],
+        ///		[10, &quot;FW&quot;, -0,70, 0,18],
+        ///		[9, &quot;FW&quot;, -0,25, 0,18],
+        ///		[8, &quot;FW&quot;, 0,25, 0,18],
+        ///		[7, &quot;MF&quot;, 0,00, 0,40],
         ///		 [le reste de la chaîne a été tronqué]&quot;;.
         /// </summary>
-        internal static string F_Instinct_du_tigre {
+        internal static string F_Iron_Shell {
             get {
-                return ResourceManager.GetString("F-Instinct du tigre", resourceCulture);
+                return ResourceManager.GetString("F-Iron Shell", resourceCulture);
             }
         }
         
@@ -941,6 +908,40 @@ namespace InazumaElevenSaveEditor.Properties {
         ///   Recherche une chaîne localisée semblable à form_start &lt;- {
         ///	name = &quot;form_start&quot;,
         ///	data = [
+        ///		[11, &quot;FW&quot;, 0,30, 0,13],
+        ///		[10, &quot;FW&quot;, -0,30, 0,13],
+        ///		[9, &quot;MF&quot;, 0,00, 0,48],
+        ///		[8, &quot;MF&quot;, 0,00, 0,28],
+        ///		[7, &quot;MF&quot;, 0,55, 0,33],
+        ///		[6, &quot;MF&quot;, -0,55, 0,33],
+        ///		[5, &quot;DF&quot;, 0,70, 0,60],
+        ///		[4, &quot;DF&quot;, 0,20, 0,65],
+        ///		[3, &quot;DF&quot;, -0,20, 0,65],
+        ///		[2, &quot;DF&quot;, -0,70, 0,60],
+        ///		[1, &quot;GK&quot;, 0,00, 0,90],
+        ///	],
+        ///};
+        ///
+        ///form_def &lt;- {
+        ///	name = &quot;form_def&quot;,
+        ///	data = [
+        ///		[11, &quot;FW&quot;, 0,35, -0,20],
+        ///		[10, &quot;FW&quot;, -0,35, -0,20],
+        ///		[9, &quot;MF&quot;, 0,00, 0,48],
+        ///		[8, &quot;MF&quot;, 0,00, -0,08],
+        ///		[7, &quot;MF&quot;, 0,45, 0,28],
+        /// [le reste de la chaîne a été tronqué]&quot;;.
+        /// </summary>
+        internal static string F_Lightning {
+            get {
+                return ResourceManager.GetString("F-Lightning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à form_start &lt;- {
+        ///	name = &quot;form_start&quot;,
+        ///	data = [
         ///		[11, &quot;FW&quot;, 0,40, 0,15],
         ///		[10, &quot;FW&quot;, -0,40, 0,15],
         ///		[9, &quot;MF&quot;, 0,70, 0,30],
@@ -975,16 +976,16 @@ namespace InazumaElevenSaveEditor.Properties {
         ///   Recherche une chaîne localisée semblable à form_start &lt;- {
         ///	name = &quot;form_start&quot;,
         ///	data = [
-        ///		[11, &quot;FW&quot;, 0,55, 0,10],
-        ///		[10, &quot;FW&quot;, -0,55, 0,10],
-        ///		[9, &quot;MF&quot;, 0,25, 0,25],
-        ///		[8, &quot;MF&quot;, 0,45, 0,45],
-        ///		[7, &quot;MF&quot;, -0,45, 0,45],
-        ///		[6, &quot;MF&quot;, -0,25, 0,25],
-        ///		[5, &quot;DF&quot;, 0,75, 0,58],
-        ///		[4, &quot;DF&quot;, 0,30, 0,65],
-        ///		[3, &quot;DF&quot;, -0,30, 0,65],
-        ///		[2, &quot;DF&quot;, -0,75, 0,58],
+        ///		[11, &quot;FW&quot;, 0,65, 0,23],
+        ///		[10, &quot;FW&quot;, 0,20, 0,18],
+        ///		[9, &quot;FW&quot;, -0,20, 0,18],
+        ///		[8, &quot;FW&quot;, -0,65, 0,23],
+        ///		[7, &quot;MF&quot;, 0,30, 0,35],
+        ///		[6, &quot;MF&quot;, -0,30, 0,35],
+        ///		[5, &quot;MF&quot;, 0,30, 0,53],
+        ///		[4, &quot;MF&quot;, -0,30, 0,53],
+        ///		[3, &quot;DF&quot;, 0,30, 0,70],
+        ///		[2, &quot;DF&quot;, -0,30, 0,70],
         ///		[1, &quot;GK&quot;, 0,00, 0,90],
         ///	],
         ///};
@@ -992,15 +993,15 @@ namespace InazumaElevenSaveEditor.Properties {
         ///form_def &lt;- {
         ///	name = &quot;form_def&quot;,
         ///	data = [
-        ///		[11, &quot;FW&quot;, 0,55, -0,13],
-        ///		[10, &quot;FW&quot;, -0,55, -0,13],
-        ///		[9, &quot;MF&quot;, 0,25, 0,18],
-        ///		[8, &quot;MF&quot;, 0,45, 0,40],
-        ///		[7, &quot;MF&quot;, -0,45, 0,40], [le reste de la chaîne a été tronqué]&quot;;.
+        ///		[11, &quot;FW&quot;, 0,65, -0,08],
+        ///		[10, &quot;FW&quot;, 0,25, -0,33],
+        ///		[9, &quot;FW&quot;, -0,25, -0,33],
+        ///		[8, &quot;FW&quot;, -0,65, -0,08],
+        ///		[7, &quot;MF&quot;, 0,30, 0,15 [le reste de la chaîne a été tronqué]&quot;;.
         /// </summary>
-        internal static string F_Mer_Profonde {
+        internal static string F_Lost_Wing {
             get {
-                return ResourceManager.GetString("F-Mer Profonde", resourceCulture);
+                return ResourceManager.GetString("F-Lost Wing", resourceCulture);
             }
         }
         
@@ -1141,6 +1142,73 @@ namespace InazumaElevenSaveEditor.Properties {
         ///   Recherche une chaîne localisée semblable à form_start &lt;- {
         ///	name = &quot;form_start&quot;,
         ///	data = [
+        ///		[11, &quot;FW&quot;, 0,50, 0,10],
+        ///		[10, &quot;FW&quot;, 0,00, 0,18],
+        ///		[9, &quot;FW&quot;, -0,50, 0,10],
+        ///		[8, &quot;MF&quot;, 0,70, 0,30],
+        ///		[7, &quot;MF&quot;, 0,00, 0,38],
+        ///		[6, &quot;MF&quot;, -0,70, 0,30],
+        ///		[5, &quot;DF&quot;, 0,80, 0,58],
+        ///		[4, &quot;DF&quot;, 0,30, 0,58],
+        ///		[3, &quot;DF&quot;, -0,30, 0,58],
+        ///		[2, &quot;DF&quot;, -0,80, 0,58],
+        ///		[1, &quot;GK&quot;, 0,00, 0,90],
+        ///	],
+        ///};
+        ///
+        ///form_def &lt;- {
+        ///	name = &quot;form_def&quot;,
+        ///	data = [
+        ///		[11, &quot;FW&quot;, 0,60, -0,30],
+        ///		[10, &quot;FW&quot;, 0,00, -0,15],
+        ///		[9, &quot;FW&quot;, -0,60, -0,30],
+        ///		[8, &quot;MF&quot;, 0,70, 0,05],
+        ///		[7, &quot;MF&quot;, 0,00, 0,25],
+        /// [le reste de la chaîne a été tronqué]&quot;;.
+        /// </summary>
+        internal static string F_Oasis_Route {
+            get {
+                return ResourceManager.GetString("F-Oasis Route", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à form_start &lt;- {
+        ///	name = &quot;form_start&quot;,
+        ///	data = [
+        ///		[11, &quot;FW&quot;, 0,55, 0,10],
+        ///		[10, &quot;FW&quot;, -0,55, 0,10],
+        ///		[9, &quot;MF&quot;, 0,25, 0,25],
+        ///		[8, &quot;MF&quot;, 0,45, 0,45],
+        ///		[7, &quot;MF&quot;, -0,45, 0,45],
+        ///		[6, &quot;MF&quot;, -0,25, 0,25],
+        ///		[5, &quot;DF&quot;, 0,75, 0,58],
+        ///		[4, &quot;DF&quot;, 0,30, 0,65],
+        ///		[3, &quot;DF&quot;, -0,30, 0,65],
+        ///		[2, &quot;DF&quot;, -0,75, 0,58],
+        ///		[1, &quot;GK&quot;, 0,00, 0,90],
+        ///	],
+        ///};
+        ///
+        ///form_def &lt;- {
+        ///	name = &quot;form_def&quot;,
+        ///	data = [
+        ///		[11, &quot;FW&quot;, 0,55, -0,13],
+        ///		[10, &quot;FW&quot;, -0,55, -0,13],
+        ///		[9, &quot;MF&quot;, 0,25, 0,18],
+        ///		[8, &quot;MF&quot;, 0,45, 0,40],
+        ///		[7, &quot;MF&quot;, -0,45, 0,40], [le reste de la chaîne a été tronqué]&quot;;.
+        /// </summary>
+        internal static string F_Ocean_Dive {
+            get {
+                return ResourceManager.GetString("F-Ocean Dive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à form_start &lt;- {
+        ///	name = &quot;form_start&quot;,
+        ///	data = [
         ///		[11, &quot;FW&quot;, 0,70, 0,20],
         ///		[10, &quot;FW&quot;, -0,70, 0,20],
         ///		[9, &quot;FW&quot;, 0,00, 0,15],
@@ -1241,16 +1309,16 @@ namespace InazumaElevenSaveEditor.Properties {
         ///   Recherche une chaîne localisée semblable à form_start &lt;- {
         ///	name = &quot;form_start&quot;,
         ///	data = [
-        ///		[11, &quot;FW&quot;, 0,00, 0,35],
-        ///		[10, &quot;FW&quot;, 0,00, 0,18],
-        ///		[9, &quot;MF&quot;, 0,40, 0,30],
-        ///		[8, &quot;MF&quot;, -0,40, 0,30],
-        ///		[7, &quot;MF&quot;, 0,80, 0,40],
-        ///		[6, &quot;MF&quot;, 0,40, 0,50],
-        ///		[5, &quot;MF&quot;, -0,40, 0,50],
-        ///		[4, &quot;MF&quot;, -0,80, 0,40],
-        ///		[3, &quot;DF&quot;, 0,00, 0,55],
-        ///		[2, &quot;DF&quot;, 0,00, 0,73],
+        ///		[11, &quot;FW&quot;, 0,00, 0,18],
+        ///		[10, &quot;MF&quot;, 0,30, 0,23],
+        ///		[9, &quot;MF&quot;, -0,30, 0,23],
+        ///		[8, &quot;MF&quot;, 0,80, 0,33],
+        ///		[7, &quot;MF&quot;, 0,30, 0,43],
+        ///		[6, &quot;MF&quot;, -0,30, 0,43],
+        ///		[5, &quot;MF&quot;, -0,80, 0,33],
+        ///		[4, &quot;DF&quot;, 0,40, 0,63],
+        ///		[3, &quot;DF&quot;, 0,00, 0,65],
+        ///		[2, &quot;DF&quot;, -0,40, 0,63],
         ///		[1, &quot;GK&quot;, 0,00, 0,90],
         ///	],
         ///};
@@ -1258,16 +1326,16 @@ namespace InazumaElevenSaveEditor.Properties {
         ///form_def &lt;- {
         ///	name = &quot;form_def&quot;,
         ///	data = [
-        ///		[11, &quot;FW&quot;, 0,00, 0,03],
-        ///		[10, &quot;FW&quot;, 0,00, -0,25],
-        ///		[9, &quot;MF&quot;, 0,35, 0,20],
-        ///		[8, &quot;MF&quot;, -0,35, 0,20],
-        ///		[7, &quot;MF&quot;, 0,80, 0,33],
-        ///		[ [le reste de la chaîne a été tronqué]&quot;;.
+        ///		[11, &quot;FW&quot;, 0,00, -0,25],
+        ///		[10, &quot;MF&quot;, 0,30, 0,08],
+        ///		[9, &quot;MF&quot;, -0,30, 0,08],
+        ///		[8, &quot;MF&quot;, 0,80, 0,33],
+        ///		[7, &quot;MF&quot;, 0,30, 0,43],
+        ///		 [le reste de la chaîne a été tronqué]&quot;;.
         /// </summary>
-        internal static string F_Parasite {
+        internal static string F_Pakichi_Smell {
             get {
-                return ResourceManager.GetString("F-Parasite", resourceCulture);
+                return ResourceManager.GetString("F-Pakichi Smell", resourceCulture);
             }
         }
         
@@ -1476,16 +1544,16 @@ namespace InazumaElevenSaveEditor.Properties {
         ///   Recherche une chaîne localisée semblable à form_start &lt;- {
         ///	name = &quot;form_start&quot;,
         ///	data = [
-        ///		[11, &quot;FW&quot;, 0,50, 0,10],
-        ///		[10, &quot;FW&quot;, 0,00, 0,18],
-        ///		[9, &quot;FW&quot;, -0,50, 0,10],
-        ///		[8, &quot;MF&quot;, 0,70, 0,30],
-        ///		[7, &quot;MF&quot;, 0,00, 0,38],
-        ///		[6, &quot;MF&quot;, -0,70, 0,30],
-        ///		[5, &quot;DF&quot;, 0,80, 0,58],
-        ///		[4, &quot;DF&quot;, 0,30, 0,58],
-        ///		[3, &quot;DF&quot;, -0,30, 0,58],
-        ///		[2, &quot;DF&quot;, -0,80, 0,58],
+        ///		[11, &quot;FW&quot;, 0,30, 0,10],
+        ///		[10, &quot;FW&quot;, -0,30, 0,10],
+        ///		[9, &quot;MF&quot;, 0,75, 0,25],
+        ///		[8, &quot;MF&quot;, 0,30, 0,35],
+        ///		[7, &quot;MF&quot;, -0,30, 0,35],
+        ///		[6, &quot;MF&quot;, -0,75, 0,25],
+        ///		[5, &quot;DF&quot;, 0,75, 0,60],
+        ///		[4, &quot;DF&quot;, 0,30, 0,60],
+        ///		[3, &quot;DF&quot;, -0,30, 0,60],
+        ///		[2, &quot;DF&quot;, -0,75, 0,60],
         ///		[1, &quot;GK&quot;, 0,00, 0,90],
         ///	],
         ///};
@@ -1493,16 +1561,15 @@ namespace InazumaElevenSaveEditor.Properties {
         ///form_def &lt;- {
         ///	name = &quot;form_def&quot;,
         ///	data = [
-        ///		[11, &quot;FW&quot;, 0,60, -0,30],
-        ///		[10, &quot;FW&quot;, 0,00, -0,15],
-        ///		[9, &quot;FW&quot;, -0,60, -0,30],
-        ///		[8, &quot;MF&quot;, 0,70, 0,05],
-        ///		[7, &quot;MF&quot;, 0,00, 0,25],
-        /// [le reste de la chaîne a été tronqué]&quot;;.
+        ///		[11, &quot;FW&quot;, 0,30, -0,15],
+        ///		[10, &quot;FW&quot;, -0,30, -0,15],
+        ///		[9, &quot;MF&quot;, 0,75, 0,18],
+        ///		[8, &quot;MF&quot;, 0,30, 0,35],
+        ///		[7, &quot;MF&quot;, -0,30, 0,35], [le reste de la chaîne a été tronqué]&quot;;.
         /// </summary>
-        internal static string F_Route_de_l_oasis {
+        internal static string F_Sandstorm {
             get {
-                return ResourceManager.GetString("F-Route de l\'oasis", resourceCulture);
+                return ResourceManager.GetString("F-Sandstorm", resourceCulture);
             }
         }
         
@@ -1611,39 +1678,6 @@ namespace InazumaElevenSaveEditor.Properties {
         ///   Recherche une chaîne localisée semblable à form_start &lt;- {
         ///	name = &quot;form_start&quot;,
         ///	data = [
-        ///		[11, &quot;FW&quot;, 0,30, 0,10],
-        ///		[10, &quot;FW&quot;, -0,30, 0,10],
-        ///		[9, &quot;MF&quot;, 0,75, 0,25],
-        ///		[8, &quot;MF&quot;, 0,30, 0,35],
-        ///		[7, &quot;MF&quot;, -0,30, 0,35],
-        ///		[6, &quot;MF&quot;, -0,75, 0,25],
-        ///		[5, &quot;DF&quot;, 0,75, 0,60],
-        ///		[4, &quot;DF&quot;, 0,30, 0,60],
-        ///		[3, &quot;DF&quot;, -0,30, 0,60],
-        ///		[2, &quot;DF&quot;, -0,75, 0,60],
-        ///		[1, &quot;GK&quot;, 0,00, 0,90],
-        ///	],
-        ///};
-        ///
-        ///form_def &lt;- {
-        ///	name = &quot;form_def&quot;,
-        ///	data = [
-        ///		[11, &quot;FW&quot;, 0,30, -0,15],
-        ///		[10, &quot;FW&quot;, -0,30, -0,15],
-        ///		[9, &quot;MF&quot;, 0,75, 0,18],
-        ///		[8, &quot;MF&quot;, 0,30, 0,35],
-        ///		[7, &quot;MF&quot;, -0,30, 0,35], [le reste de la chaîne a été tronqué]&quot;;.
-        /// </summary>
-        internal static string F_Temoête_de_sable {
-            get {
-                return ResourceManager.GetString("F-Temoête de sable", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à form_start &lt;- {
-        ///	name = &quot;form_start&quot;,
-        ///	data = [
         ///		[11, &quot;FW&quot;, 0,00, 0,13],
         ///		[10, &quot;MF&quot;, 0,75, 0,30],
         ///		[9, &quot;MF&quot;, 0,00, 0,30],
@@ -1704,40 +1738,6 @@ namespace InazumaElevenSaveEditor.Properties {
         internal static string F_Tiger_Strike {
             get {
                 return ResourceManager.GetString("F-Tiger Strike", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à form_start &lt;- {
-        ///	name = &quot;form_start&quot;,
-        ///	data = [
-        ///		[11, &quot;FW&quot;, 0,75, 0,10],
-        ///		[10, &quot;FW&quot;, 0,00, 0,20],
-        ///		[9, &quot;FW&quot;, -0,75, 0,10],
-        ///		[8, &quot;MF&quot;, 0,50, 0,28],
-        ///		[7, &quot;MF&quot;, -0,50, 0,28],
-        ///		[6, &quot;DF&quot;, 0,30, 0,48],
-        ///		[5, &quot;DF&quot;, -0,30, 0,48],
-        ///		[4, &quot;DF&quot;, 0,55, 0,65],
-        ///		[3, &quot;DF&quot;, 0,00, 0,65],
-        ///		[2, &quot;DF&quot;, -0,55, 0,65],
-        ///		[1, &quot;GK&quot;, 0,00, 0,90],
-        ///	],
-        ///};
-        ///
-        ///form_def &lt;- {
-        ///	name = &quot;form_def&quot;,
-        ///	data = [
-        ///		[11, &quot;FW&quot;, 0,75, 0,05],
-        ///		[10, &quot;FW&quot;, 0,00, -0,23],
-        ///		[9, &quot;FW&quot;, -0,75, 0,05],
-        ///		[8, &quot;MF&quot;, 0,50, 0,28],
-        ///		[7, &quot;MF&quot;, -0,50, 0,28],
-        ///	 [le reste de la chaîne a été tronqué]&quot;;.
-        /// </summary>
-        internal static string F_Trou_noir {
-            get {
-                return ResourceManager.GetString("F-Trou noir", resourceCulture);
             }
         }
         
