@@ -87,6 +87,7 @@
     <Compile Include="TeamWindow.Designer.cs">
       <DependentUpon>TeamWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Tools\Collections.cs" />
     <Compile Include="Tools\Crc32.cs" />
     <Compile Include="Tools\DataReader.cs" />
     <Compile Include="Tools\DataWriter.cs" />

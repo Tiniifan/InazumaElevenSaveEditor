@@ -205,7 +205,7 @@ namespace InazumaElevenSaveEditor.Formats.Games
                         MixiMax newMixiMax;
                         if (isBestMatch != null)
                         {
-                            newMixiMax = new MixiMax(PlayersInSave[playerAura], (mixiMaxMove1, mixiMaxMove2), isBestMatch);
+                            newMixiMax = new MixiMax(AuraInSave[playerAura], (mixiMaxMove1, mixiMaxMove2), isBestMatch);
                         }
                         else
                         {
@@ -364,26 +364,30 @@ namespace InazumaElevenSaveEditor.Formats.Games
             return new Team(name, emblem, kit, formation, coach, players, playersFormationIndex, playersKitNumber);
         }
 
-        private BestMatch IsBestMatch(UInt32 playerID, UInt32 auraID)
+        private BestMatch IsBestMatch(UInt32 tryPlayerID, UInt32 tryAuraID)
         {
-            foreach (BestMatch miximax in BestMatchs)
+            List<BestMatch> compatibleBestMatchs = BestMatchs.Where(x => x.PlayerID == tryPlayerID).ToList();
+
+            if (compatibleBestMatchs.Count != -1)
             {
-                if (miximax.IsBestMatch(playerID, auraID))
+                BestMatch bestMatch = compatibleBestMatchs.FirstOrDefault(x => x.PlayerID == tryPlayerID && x.AuraID == tryAuraID);
+
+                // Player who can perform a miximax with everyone
+                if (bestMatch == null)
                 {
-                    return miximax;
+                    bestMatch = compatibleBestMatchs.FirstOrDefault(x => x.PlayerID == tryPlayerID && x.AuraID == 0x0);
                 }
-                break;
+
+                return bestMatch;
+            } else
+            {
+                return null;
             }
-            return null;
         }
 
         public Player GetPlayer(int index)
         {
             return PlayersInSave[PlayersInSaveSort[index]];
-        }
-
-        public void GetStat(Player player, Control form)
-        {
         }
 
         public string ConvertPlayerToString(Player player, bool clipboard)
@@ -401,9 +405,157 @@ namespace InazumaElevenSaveEditor.Formats.Games
             return new Player();
         }
 
-        public void NewStat(Player player, NumericUpDown upStat)
+        public (int, int, string, bool) Training(Player player, int newStat, int statIndex)
         {
+            // (int, int, string, bool) = (numericUpDown.Minimum, numericUpDown.Maximum, numericUpDownName, numericUpDownEnabled)
 
+            if (player.InvestedFreedom.Sum() < player.Freedom)
+            {
+                player.InvestedFreedom[statIndex] = newStat;
+                player.InvestedPoint[statIndex] = newStat;
+                return (0, player.Freedom+1, "investedNumericUpDown" + (statIndex+3), true);
+            }
+            else
+            {
+                int statRemoveIndex = 0;
+
+                if (player.Position.Name == "Forward")
+                {
+                    switch (statIndex)
+                    {
+                        case 0: // Kick
+                            statRemoveIndex = 2;
+                            break;
+                        case 1: // Dribble
+                            statRemoveIndex = 3;
+                            break;
+                        case 2: // Technique
+                            statRemoveIndex = 0;
+                            break;
+                        case 3: // Block
+                            statRemoveIndex = 1;
+                            break;
+                        case 4: // Speed
+                            statRemoveIndex = 5;
+                            break;
+                        case 5: // Stamina
+                            statRemoveIndex = 4;
+                            break;
+                        case 6: // Catch
+                            statRemoveIndex = 7;
+                            break;
+                        case 7: // Luck
+                            statRemoveIndex = 6;
+                            break;
+
+                    }
+                }
+                else if (player.Position.Name == "Midfielder")
+                {
+                    switch (statIndex)
+                    {
+                        case 0: // Kick
+                            statRemoveIndex = 6;
+                            break;
+                        case 1: // Dribble
+                            statRemoveIndex = 2;
+                            break;
+                        case 2: // Technique
+                            statRemoveIndex = 1;
+                            break;
+                        case 3: // Block
+                            statRemoveIndex = 7;
+                            break;
+                        case 4: // Speed
+                            statRemoveIndex = 5;
+                            break;
+                        case 5: // Stamina
+                            statRemoveIndex = 4;
+                            break;
+                        case 6: // Catch
+                            statRemoveIndex = 0;
+                            break;
+                        case 7: // Luck
+                            statRemoveIndex = 3;
+                            break;
+
+                    }
+                }
+                else if (player.Position.Name == "Defender")
+                {
+                    switch (statIndex)
+                    {
+                        case 0: // Kick
+                            statRemoveIndex = 6;
+                            break;
+                        case 1: // Dribble
+                            statRemoveIndex = 7;
+                            break;
+                        case 2: // Technique
+                            statRemoveIndex = 3;
+                            break;
+                        case 3: // Block
+                            statRemoveIndex = 2;
+                            break;
+                        case 4: // Speed
+                            statRemoveIndex = 5;
+                            break;
+                        case 5: // Stamina
+                            statRemoveIndex = 4;
+                            break;
+                        case 6: // Catch
+                            statRemoveIndex = 0;
+                            break;
+                        case 7: // Luck
+                            statRemoveIndex = 1;
+                            break;
+
+                    }
+                }
+                else
+                {
+                    switch (statIndex)
+                    {
+                        case 0: // Kick
+                            statRemoveIndex = 7;
+                            break;
+                        case 1: // Dribble
+                            statRemoveIndex = 3;
+                            break;
+                        case 2: // Technique
+                            statRemoveIndex = 6;
+                            break;
+                        case 3: // Block
+                            statRemoveIndex = 1;
+                            break;
+                        case 4: // Speed
+                            statRemoveIndex = 5;
+                            break;
+                        case 5: // Stamina
+                            statRemoveIndex = 4;
+                            break;
+                        case 6: // Catch
+                            statRemoveIndex = 2;
+                            break;
+                        case 7: // Luck
+                            statRemoveIndex = 0;
+                            break;
+                    }
+                }
+
+                if (newStat > player.InvestedPoint[statIndex])
+                {
+                    player.InvestedPoint[statRemoveIndex] -= 1;
+                }
+                else
+                {
+                    player.InvestedPoint[statRemoveIndex] += 1;
+                }
+
+                player.InvestedPoint[statIndex] = newStat;
+
+                return (player.InvestedFreedom[statIndex], player.InvestedFreedom[statIndex] + player.Stat[statRemoveIndex + 2] - 1, "investedNumericUpDown"+(statRemoveIndex+3), false);
+            }
         }
     }
 }

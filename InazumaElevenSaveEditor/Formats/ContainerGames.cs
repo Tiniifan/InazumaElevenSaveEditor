@@ -40,6 +40,6 @@ namespace InazumaElevenSaveEditor.Formats
 
         Player ReadPlayer(Player player);
 
-        void NewStat(Player player, NumericUpDown upStat);
+        (int, int, string, bool) Training(Player player, int newStat, int statIndex);
     }
 }

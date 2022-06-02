@@ -97,9 +97,6 @@ namespace NoFarmForMeOpenSource
             this.moveLabel7 = new System.Windows.Forms.Label();
             this.label46 = new System.Windows.Forms.Label();
             this.invokeBox = new System.Windows.Forms.CheckBox();
-            this.label45 = new System.Windows.Forms.Label();
-            this.miximaxCheckBox = new System.Windows.Forms.CheckBox();
-            this.miximaxFaceBox = new System.Windows.Forms.PictureBox();
             this.moveCheckBox6 = new System.Windows.Forms.CheckBox();
             this.moveCheckBox5 = new System.Windows.Forms.CheckBox();
             this.moveCheckBox4 = new System.Windows.Forms.CheckBox();
@@ -134,20 +131,20 @@ namespace NoFarmForMeOpenSource
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.label62 = new System.Windows.Forms.Label();
             this.label54 = new System.Windows.Forms.Label();
-            this.statEquipmentBox8 = new System.Windows.Forms.TextBox();
-            this.statEquipmentBox6 = new System.Windows.Forms.TextBox();
-            this.statEquipmentBox5 = new System.Windows.Forms.TextBox();
-            this.statEquipmentBox3 = new System.Windows.Forms.TextBox();
             this.statEquipmentBox7 = new System.Windows.Forms.TextBox();
+            this.statEquipmentBox5 = new System.Windows.Forms.TextBox();
+            this.statEquipmentBox9 = new System.Windows.Forms.TextBox();
+            this.statEquipmentBox6 = new System.Windows.Forms.TextBox();
             this.statEquipmentBox4 = new System.Windows.Forms.TextBox();
+            this.statEquipmentBox3 = new System.Windows.Forms.TextBox();
             this.statEquipmentBox2 = new System.Windows.Forms.TextBox();
             this.statEquipmentBox1 = new System.Windows.Forms.TextBox();
-            this.statBox19 = new System.Windows.Forms.TextBox();
-            this.statBox17 = new System.Windows.Forms.TextBox();
-            this.statBox16 = new System.Windows.Forms.TextBox();
-            this.statBox14 = new System.Windows.Forms.TextBox();
             this.statBox18 = new System.Windows.Forms.TextBox();
+            this.statBox16 = new System.Windows.Forms.TextBox();
+            this.statBox20 = new System.Windows.Forms.TextBox();
+            this.statBox17 = new System.Windows.Forms.TextBox();
             this.statBox15 = new System.Windows.Forms.TextBox();
+            this.statBox14 = new System.Windows.Forms.TextBox();
             this.statBox13 = new System.Windows.Forms.TextBox();
             this.statBox12 = new System.Windows.Forms.TextBox();
             this.label51 = new System.Windows.Forms.Label();
@@ -189,12 +186,18 @@ namespace NoFarmForMeOpenSource
             this.nextButton = new System.Windows.Forms.Button();
             this.pageComboBox = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.teamButton = new System.Windows.Forms.Button();
             this.saveInformationButton = new System.Windows.Forms.Button();
             this.playRecordsButton = new System.Windows.Forms.Button();
             this.streetpassButton = new System.Windows.Forms.Button();
             this.inventoryButton = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.teamButton = new System.Windows.Forms.Button();
+            this.statEquipmentBox8 = new System.Windows.Forms.TextBox();
+            this.statBox19 = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.statEquipmentBox10 = new System.Windows.Forms.TextBox();
+            this.statBox21 = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -213,7 +216,6 @@ namespace NoFarmForMeOpenSource
             ((System.ComponentModel.ISupportInitialize)(this.miximaxAvatarNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.moveNumericUpDown8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.moveNumericUpDown7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.miximaxFaceBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.avatarNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.moveNumericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.moveNumericUpDown2)).BeginInit();
@@ -250,7 +252,7 @@ namespace NoFarmForMeOpenSource
             this.fileToolStripMenuItem1});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(850, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(852, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -388,16 +390,18 @@ namespace NoFarmForMeOpenSource
             this.styleBox.Name = "styleBox";
             this.styleBox.Size = new System.Drawing.Size(121, 21);
             this.styleBox.TabIndex = 243;
+            this.styleBox.SelectedIndexChanged += new System.EventHandler(this.StyleBox_SelectedIndexChanged);
             // 
             // resetButton
             // 
             this.resetButton.Enabled = false;
-            this.resetButton.Location = new System.Drawing.Point(238, 108);
+            this.resetButton.Location = new System.Drawing.Point(238, 117);
             this.resetButton.Name = "resetButton";
             this.resetButton.Size = new System.Drawing.Size(103, 20);
             this.resetButton.TabIndex = 242;
             this.resetButton.Text = "Reset";
             this.resetButton.UseVisualStyleBackColor = true;
+            this.resetButton.Click += new System.EventHandler(this.ResetButton_Click);
             // 
             // genderBox
             // 
@@ -453,7 +457,7 @@ namespace NoFarmForMeOpenSource
             // 
             this.freedomBox.BackColor = System.Drawing.SystemColors.ControlLight;
             this.freedomBox.Enabled = false;
-            this.freedomBox.Location = new System.Drawing.Point(160, 316);
+            this.freedomBox.Location = new System.Drawing.Point(160, 325);
             this.freedomBox.Name = "freedomBox";
             this.freedomBox.ReadOnly = true;
             this.freedomBox.Size = new System.Drawing.Size(48, 20);
@@ -463,7 +467,7 @@ namespace NoFarmForMeOpenSource
             // 
             this.statBox10.BackColor = System.Drawing.SystemColors.ControlLight;
             this.statBox10.Enabled = false;
-            this.statBox10.Location = new System.Drawing.Point(131, 290);
+            this.statBox10.Location = new System.Drawing.Point(131, 299);
             this.statBox10.Name = "statBox10";
             this.statBox10.ReadOnly = true;
             this.statBox10.Size = new System.Drawing.Size(48, 20);
@@ -473,7 +477,7 @@ namespace NoFarmForMeOpenSource
             // 
             this.statBox8.BackColor = System.Drawing.SystemColors.ControlLight;
             this.statBox8.Enabled = false;
-            this.statBox8.Location = new System.Drawing.Point(131, 264);
+            this.statBox8.Location = new System.Drawing.Point(131, 273);
             this.statBox8.Name = "statBox8";
             this.statBox8.ReadOnly = true;
             this.statBox8.Size = new System.Drawing.Size(48, 20);
@@ -483,7 +487,7 @@ namespace NoFarmForMeOpenSource
             // 
             this.statBox7.BackColor = System.Drawing.SystemColors.ControlLight;
             this.statBox7.Enabled = false;
-            this.statBox7.Location = new System.Drawing.Point(131, 238);
+            this.statBox7.Location = new System.Drawing.Point(131, 247);
             this.statBox7.Name = "statBox7";
             this.statBox7.ReadOnly = true;
             this.statBox7.Size = new System.Drawing.Size(48, 20);
@@ -493,7 +497,7 @@ namespace NoFarmForMeOpenSource
             // 
             this.statBox5.BackColor = System.Drawing.SystemColors.ControlLight;
             this.statBox5.Enabled = false;
-            this.statBox5.Location = new System.Drawing.Point(131, 212);
+            this.statBox5.Location = new System.Drawing.Point(131, 221);
             this.statBox5.Name = "statBox5";
             this.statBox5.ReadOnly = true;
             this.statBox5.Size = new System.Drawing.Size(48, 20);
@@ -503,7 +507,7 @@ namespace NoFarmForMeOpenSource
             // 
             this.statBox9.BackColor = System.Drawing.SystemColors.ControlLight;
             this.statBox9.Enabled = false;
-            this.statBox9.Location = new System.Drawing.Point(131, 185);
+            this.statBox9.Location = new System.Drawing.Point(131, 194);
             this.statBox9.Name = "statBox9";
             this.statBox9.ReadOnly = true;
             this.statBox9.Size = new System.Drawing.Size(48, 20);
@@ -513,7 +517,7 @@ namespace NoFarmForMeOpenSource
             // 
             this.statBox6.BackColor = System.Drawing.SystemColors.ControlLight;
             this.statBox6.Enabled = false;
-            this.statBox6.Location = new System.Drawing.Point(131, 158);
+            this.statBox6.Location = new System.Drawing.Point(131, 167);
             this.statBox6.Name = "statBox6";
             this.statBox6.ReadOnly = true;
             this.statBox6.Size = new System.Drawing.Size(48, 20);
@@ -523,7 +527,7 @@ namespace NoFarmForMeOpenSource
             // 
             this.statBox4.BackColor = System.Drawing.SystemColors.ControlLight;
             this.statBox4.Enabled = false;
-            this.statBox4.Location = new System.Drawing.Point(131, 134);
+            this.statBox4.Location = new System.Drawing.Point(131, 143);
             this.statBox4.Name = "statBox4";
             this.statBox4.ReadOnly = true;
             this.statBox4.Size = new System.Drawing.Size(48, 20);
@@ -533,7 +537,7 @@ namespace NoFarmForMeOpenSource
             // 
             this.statBox3.BackColor = System.Drawing.SystemColors.ControlLight;
             this.statBox3.Enabled = false;
-            this.statBox3.Location = new System.Drawing.Point(131, 108);
+            this.statBox3.Location = new System.Drawing.Point(131, 117);
             this.statBox3.Name = "statBox3";
             this.statBox3.ReadOnly = true;
             this.statBox3.Size = new System.Drawing.Size(48, 20);
@@ -601,7 +605,7 @@ namespace NoFarmForMeOpenSource
             // investedNumericUpDown9
             // 
             this.investedNumericUpDown9.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.investedNumericUpDown9.Location = new System.Drawing.Point(185, 186);
+            this.investedNumericUpDown9.Location = new System.Drawing.Point(185, 195);
             this.investedNumericUpDown9.Maximum = new decimal(new int[] {
             65535,
             0,
@@ -615,11 +619,12 @@ namespace NoFarmForMeOpenSource
             this.investedNumericUpDown9.Name = "investedNumericUpDown9";
             this.investedNumericUpDown9.Size = new System.Drawing.Size(48, 20);
             this.investedNumericUpDown9.TabIndex = 204;
+            this.investedNumericUpDown9.ValueChanged += new System.EventHandler(this.InvestedNumericUpDown9_ValueChanged);
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(62, 267);
+            this.label7.Location = new System.Drawing.Point(62, 276);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(45, 13);
             this.label7.TabIndex = 215;
@@ -628,7 +633,7 @@ namespace NoFarmForMeOpenSource
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(62, 293);
+            this.label8.Location = new System.Drawing.Point(62, 302);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(31, 13);
             this.label8.TabIndex = 216;
@@ -637,7 +642,7 @@ namespace NoFarmForMeOpenSource
             // investedNumericUpDown8
             // 
             this.investedNumericUpDown8.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.investedNumericUpDown8.Location = new System.Drawing.Point(185, 264);
+            this.investedNumericUpDown8.Location = new System.Drawing.Point(185, 273);
             this.investedNumericUpDown8.Maximum = new decimal(new int[] {
             65535,
             0,
@@ -651,11 +656,12 @@ namespace NoFarmForMeOpenSource
             this.investedNumericUpDown8.Name = "investedNumericUpDown8";
             this.investedNumericUpDown8.Size = new System.Drawing.Size(48, 20);
             this.investedNumericUpDown8.TabIndex = 205;
+            this.investedNumericUpDown8.ValueChanged += new System.EventHandler(this.InvestedNumericUpDown8_ValueChanged);
             // 
             // investedNumericUpDown10
             // 
             this.investedNumericUpDown10.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.investedNumericUpDown10.Location = new System.Drawing.Point(185, 291);
+            this.investedNumericUpDown10.Location = new System.Drawing.Point(185, 300);
             this.investedNumericUpDown10.Maximum = new decimal(new int[] {
             65535,
             0,
@@ -669,11 +675,12 @@ namespace NoFarmForMeOpenSource
             this.investedNumericUpDown10.Name = "investedNumericUpDown10";
             this.investedNumericUpDown10.Size = new System.Drawing.Size(48, 20);
             this.investedNumericUpDown10.TabIndex = 203;
+            this.investedNumericUpDown10.ValueChanged += new System.EventHandler(this.InvestedNumericUpDown10_ValueChanged);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(62, 241);
+            this.label6.Location = new System.Drawing.Point(62, 250);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(38, 13);
             this.label6.TabIndex = 214;
@@ -682,7 +689,7 @@ namespace NoFarmForMeOpenSource
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(82, 319);
+            this.label9.Location = new System.Drawing.Point(82, 328);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(72, 13);
             this.label9.TabIndex = 217;
@@ -691,7 +698,7 @@ namespace NoFarmForMeOpenSource
             // investedNumericUpDown7
             // 
             this.investedNumericUpDown7.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.investedNumericUpDown7.Location = new System.Drawing.Point(185, 238);
+            this.investedNumericUpDown7.Location = new System.Drawing.Point(185, 247);
             this.investedNumericUpDown7.Maximum = new decimal(new int[] {
             65535,
             0,
@@ -705,11 +712,12 @@ namespace NoFarmForMeOpenSource
             this.investedNumericUpDown7.Name = "investedNumericUpDown7";
             this.investedNumericUpDown7.Size = new System.Drawing.Size(48, 20);
             this.investedNumericUpDown7.TabIndex = 206;
+            this.investedNumericUpDown7.ValueChanged += new System.EventHandler(this.InvestedNumericUpDown7_ValueChanged);
             // 
             // investedNumericUpDown6
             // 
             this.investedNumericUpDown6.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.investedNumericUpDown6.Location = new System.Drawing.Point(185, 160);
+            this.investedNumericUpDown6.Location = new System.Drawing.Point(185, 169);
             this.investedNumericUpDown6.Maximum = new decimal(new int[] {
             65535,
             0,
@@ -723,11 +731,12 @@ namespace NoFarmForMeOpenSource
             this.investedNumericUpDown6.Name = "investedNumericUpDown6";
             this.investedNumericUpDown6.Size = new System.Drawing.Size(48, 20);
             this.investedNumericUpDown6.TabIndex = 202;
+            this.investedNumericUpDown6.ValueChanged += new System.EventHandler(this.InvestedNumericUpDown6_ValueChanged);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(62, 214);
+            this.label5.Location = new System.Drawing.Point(62, 223);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(58, 13);
             this.label5.TabIndex = 213;
@@ -736,7 +745,7 @@ namespace NoFarmForMeOpenSource
             // investedNumericUpDown5
             // 
             this.investedNumericUpDown5.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.investedNumericUpDown5.Location = new System.Drawing.Point(185, 212);
+            this.investedNumericUpDown5.Location = new System.Drawing.Point(185, 221);
             this.investedNumericUpDown5.Maximum = new decimal(new int[] {
             65535,
             0,
@@ -750,11 +759,12 @@ namespace NoFarmForMeOpenSource
             this.investedNumericUpDown5.Name = "investedNumericUpDown5";
             this.investedNumericUpDown5.Size = new System.Drawing.Size(48, 20);
             this.investedNumericUpDown5.TabIndex = 201;
+            this.investedNumericUpDown5.ValueChanged += new System.EventHandler(this.InvestedNumericUpDown5_ValueChanged);
             // 
             // investedNumericUpDown4
             // 
             this.investedNumericUpDown4.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.investedNumericUpDown4.Location = new System.Drawing.Point(185, 134);
+            this.investedNumericUpDown4.Location = new System.Drawing.Point(185, 143);
             this.investedNumericUpDown4.Maximum = new decimal(new int[] {
             65535,
             0,
@@ -768,11 +778,12 @@ namespace NoFarmForMeOpenSource
             this.investedNumericUpDown4.Name = "investedNumericUpDown4";
             this.investedNumericUpDown4.Size = new System.Drawing.Size(48, 20);
             this.investedNumericUpDown4.TabIndex = 200;
+            this.investedNumericUpDown4.ValueChanged += new System.EventHandler(this.InvestedNumericUpDown4_ValueChanged);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(62, 188);
+            this.label4.Location = new System.Drawing.Point(62, 197);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(35, 13);
             this.label4.TabIndex = 212;
@@ -781,7 +792,7 @@ namespace NoFarmForMeOpenSource
             // investedNumericUpDown3
             // 
             this.investedNumericUpDown3.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.investedNumericUpDown3.Location = new System.Drawing.Point(185, 108);
+            this.investedNumericUpDown3.Location = new System.Drawing.Point(185, 117);
             this.investedNumericUpDown3.Maximum = new decimal(new int[] {
             65535,
             0,
@@ -795,11 +806,12 @@ namespace NoFarmForMeOpenSource
             this.investedNumericUpDown3.Name = "investedNumericUpDown3";
             this.investedNumericUpDown3.Size = new System.Drawing.Size(48, 20);
             this.investedNumericUpDown3.TabIndex = 199;
+            this.investedNumericUpDown3.ValueChanged += new System.EventHandler(this.InvestedNumericUpDown3_ValueChanged);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(62, 161);
+            this.label3.Location = new System.Drawing.Point(62, 170);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(34, 13);
             this.label3.TabIndex = 211;
@@ -817,7 +829,7 @@ namespace NoFarmForMeOpenSource
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(62, 137);
+            this.label2.Location = new System.Drawing.Point(62, 146);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(40, 13);
             this.label2.TabIndex = 210;
@@ -826,7 +838,7 @@ namespace NoFarmForMeOpenSource
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(62, 112);
+            this.label1.Location = new System.Drawing.Point(62, 121);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(28, 13);
             this.label1.TabIndex = 209;
@@ -836,7 +848,7 @@ namespace NoFarmForMeOpenSource
             // 
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(157, 92);
+            this.label21.Location = new System.Drawing.Point(157, 101);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(75, 13);
             this.label21.TabIndex = 225;
@@ -854,6 +866,7 @@ namespace NoFarmForMeOpenSource
             this.levelNumericUpDown.Name = "levelNumericUpDown";
             this.levelNumericUpDown.Size = new System.Drawing.Size(38, 20);
             this.levelNumericUpDown.TabIndex = 224;
+            this.levelNumericUpDown.ValueChanged += new System.EventHandler(this.LevelNumericUpDown_ValueChanged);
             // 
             // label15
             // 
@@ -882,8 +895,9 @@ namespace NoFarmForMeOpenSource
             this.tabControl3.Location = new System.Drawing.Point(6, 4);
             this.tabControl3.Name = "tabControl3";
             this.tabControl3.SelectedIndex = 0;
-            this.tabControl3.Size = new System.Drawing.Size(388, 354);
+            this.tabControl3.Size = new System.Drawing.Size(388, 357);
             this.tabControl3.TabIndex = 199;
+            this.tabControl3.SelectedIndexChanged += new System.EventHandler(this.tabControl3_SelectedIndexChanged);
             // 
             // tabPage5
             // 
@@ -898,9 +912,6 @@ namespace NoFarmForMeOpenSource
             this.tabPage5.Controls.Add(this.moveLabel7);
             this.tabPage5.Controls.Add(this.label46);
             this.tabPage5.Controls.Add(this.invokeBox);
-            this.tabPage5.Controls.Add(this.label45);
-            this.tabPage5.Controls.Add(this.miximaxCheckBox);
-            this.tabPage5.Controls.Add(this.miximaxFaceBox);
             this.tabPage5.Controls.Add(this.moveCheckBox6);
             this.tabPage5.Controls.Add(this.moveCheckBox5);
             this.tabPage5.Controls.Add(this.moveCheckBox4);
@@ -935,7 +946,7 @@ namespace NoFarmForMeOpenSource
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(380, 328);
+            this.tabPage5.Size = new System.Drawing.Size(380, 331);
             this.tabPage5.TabIndex = 0;
             this.tabPage5.Text = "Special Moves";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -961,6 +972,7 @@ namespace NoFarmForMeOpenSource
             this.miximaxAvatarNameBox.Name = "miximaxAvatarNameBox";
             this.miximaxAvatarNameBox.Size = new System.Drawing.Size(185, 21);
             this.miximaxAvatarNameBox.TabIndex = 261;
+            this.miximaxAvatarNameBox.SelectedIndexChanged += new System.EventHandler(this.MiximaxAvatarNameBox_SelectedIndexChanged);
             // 
             // miximaxAvatarNumericUpDown
             // 
@@ -980,6 +992,7 @@ namespace NoFarmForMeOpenSource
             0,
             0,
             0});
+            this.miximaxAvatarNumericUpDown.ValueChanged += new System.EventHandler(this.MiximaxAvatarNumericUpDown_ValueChanged);
             // 
             // moveBox8
             // 
@@ -991,6 +1004,7 @@ namespace NoFarmForMeOpenSource
             this.moveBox8.Name = "moveBox8";
             this.moveBox8.Size = new System.Drawing.Size(185, 21);
             this.moveBox8.TabIndex = 251;
+            this.moveBox8.SelectedIndexChanged += new System.EventHandler(this.MoveBox8_SelectedIndexChanged);
             // 
             // moveBox7
             // 
@@ -1002,6 +1016,7 @@ namespace NoFarmForMeOpenSource
             this.moveBox7.Name = "moveBox7";
             this.moveBox7.Size = new System.Drawing.Size(185, 21);
             this.moveBox7.TabIndex = 252;
+            this.moveBox7.SelectedIndexChanged += new System.EventHandler(this.MoveBox7_SelectedIndexChanged);
             // 
             // moveLabel8
             // 
@@ -1036,6 +1051,7 @@ namespace NoFarmForMeOpenSource
             0,
             0,
             0});
+            this.moveNumericUpDown8.ValueChanged += new System.EventHandler(this.MoveNumericUpDown8_ValueChanged);
             // 
             // moveNumericUpDown7
             // 
@@ -1060,6 +1076,7 @@ namespace NoFarmForMeOpenSource
             0,
             0,
             0});
+            this.moveNumericUpDown7.ValueChanged += new System.EventHandler(this.MoveNumericUpDown7_ValueChanged);
             // 
             // moveLabel7
             // 
@@ -1090,101 +1107,78 @@ namespace NoFarmForMeOpenSource
             this.invokeBox.Size = new System.Drawing.Size(15, 14);
             this.invokeBox.TabIndex = 246;
             this.invokeBox.UseVisualStyleBackColor = false;
-            // 
-            // label45
-            // 
-            this.label45.AutoSize = true;
-            this.label45.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label45.Location = new System.Drawing.Point(54, 11);
-            this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(23, 13);
-            this.label45.TabIndex = 248;
-            this.label45.Text = "Mix";
-            // 
-            // miximaxCheckBox
-            // 
-            this.miximaxCheckBox.AutoSize = true;
-            this.miximaxCheckBox.BackColor = System.Drawing.Color.White;
-            this.miximaxCheckBox.Enabled = false;
-            this.miximaxCheckBox.Location = new System.Drawing.Point(59, 30);
-            this.miximaxCheckBox.Name = "miximaxCheckBox";
-            this.miximaxCheckBox.Size = new System.Drawing.Size(15, 14);
-            this.miximaxCheckBox.TabIndex = 250;
-            this.miximaxCheckBox.UseVisualStyleBackColor = false;
-            // 
-            // miximaxFaceBox
-            // 
-            this.miximaxFaceBox.BackColor = System.Drawing.Color.Transparent;
-            this.miximaxFaceBox.Location = new System.Drawing.Point(53, 25);
-            this.miximaxFaceBox.Name = "miximaxFaceBox";
-            this.miximaxFaceBox.Size = new System.Drawing.Size(25, 21);
-            this.miximaxFaceBox.TabIndex = 249;
-            this.miximaxFaceBox.TabStop = false;
+            this.invokeBox.CheckedChanged += new System.EventHandler(this.InvokeBox_CheckedChanged);
             // 
             // moveCheckBox6
             // 
             this.moveCheckBox6.AutoSize = true;
-            this.moveCheckBox6.Location = new System.Drawing.Point(315, 215);
+            this.moveCheckBox6.Location = new System.Drawing.Point(315, 209);
             this.moveCheckBox6.Name = "moveCheckBox6";
             this.moveCheckBox6.Size = new System.Drawing.Size(60, 17);
             this.moveCheckBox6.TabIndex = 245;
             this.moveCheckBox6.Text = "Unlock";
             this.moveCheckBox6.UseVisualStyleBackColor = true;
+            this.moveCheckBox6.CheckedChanged += new System.EventHandler(this.MoveCheckBox6_CheckedChanged);
             // 
             // moveCheckBox5
             // 
             this.moveCheckBox5.AutoSize = true;
-            this.moveCheckBox5.Location = new System.Drawing.Point(315, 187);
+            this.moveCheckBox5.Location = new System.Drawing.Point(315, 181);
             this.moveCheckBox5.Name = "moveCheckBox5";
             this.moveCheckBox5.Size = new System.Drawing.Size(60, 17);
             this.moveCheckBox5.TabIndex = 244;
             this.moveCheckBox5.Text = "Unlock";
             this.moveCheckBox5.UseVisualStyleBackColor = true;
+            this.moveCheckBox5.CheckedChanged += new System.EventHandler(this.MoveCheckBox5_CheckedChanged);
             // 
             // moveCheckBox4
             // 
             this.moveCheckBox4.AutoSize = true;
-            this.moveCheckBox4.Location = new System.Drawing.Point(315, 159);
+            this.moveCheckBox4.Location = new System.Drawing.Point(315, 153);
             this.moveCheckBox4.Name = "moveCheckBox4";
             this.moveCheckBox4.Size = new System.Drawing.Size(60, 17);
             this.moveCheckBox4.TabIndex = 243;
             this.moveCheckBox4.Text = "Unlock";
             this.moveCheckBox4.UseVisualStyleBackColor = true;
+            this.moveCheckBox4.CheckedChanged += new System.EventHandler(this.MoveCheckBox4_CheckedChanged);
             // 
             // moveCheckBox3
             // 
             this.moveCheckBox3.AutoSize = true;
-            this.moveCheckBox3.Location = new System.Drawing.Point(315, 131);
+            this.moveCheckBox3.Location = new System.Drawing.Point(315, 125);
             this.moveCheckBox3.Name = "moveCheckBox3";
             this.moveCheckBox3.Size = new System.Drawing.Size(60, 17);
             this.moveCheckBox3.TabIndex = 242;
             this.moveCheckBox3.Text = "Unlock";
             this.moveCheckBox3.UseVisualStyleBackColor = true;
+            this.moveCheckBox3.CheckedChanged += new System.EventHandler(this.MoveCheckBox3_CheckedChanged);
             // 
             // moveCheckBox2
             // 
             this.moveCheckBox2.AutoSize = true;
-            this.moveCheckBox2.Location = new System.Drawing.Point(315, 103);
+            this.moveCheckBox2.Location = new System.Drawing.Point(315, 97);
             this.moveCheckBox2.Name = "moveCheckBox2";
             this.moveCheckBox2.Size = new System.Drawing.Size(60, 17);
             this.moveCheckBox2.TabIndex = 241;
             this.moveCheckBox2.Text = "Unlock";
             this.moveCheckBox2.UseVisualStyleBackColor = true;
+            this.moveCheckBox2.CheckedChanged += new System.EventHandler(this.MoveCheckBox2_CheckedChanged);
             // 
             // moveCheckBox1
             // 
             this.moveCheckBox1.AutoSize = true;
-            this.moveCheckBox1.Location = new System.Drawing.Point(314, 75);
+            this.moveCheckBox1.Location = new System.Drawing.Point(314, 69);
             this.moveCheckBox1.Name = "moveCheckBox1";
             this.moveCheckBox1.Size = new System.Drawing.Size(60, 17);
             this.moveCheckBox1.TabIndex = 240;
             this.moveCheckBox1.Text = "Unlock";
             this.moveCheckBox1.UseVisualStyleBackColor = true;
+            this.moveCheckBox1.CheckedChanged += new System.EventHandler(this.MoveCheckBox1_CheckedChanged);
             // 
             // moveLabel1
             // 
             this.moveLabel1.AutoSize = true;
-            this.moveLabel1.Location = new System.Drawing.Point(6, 74);
+            this.moveLabel1.Location = new System.Drawing.Point(6, 68);
             this.moveLabel1.Name = "moveLabel1";
             this.moveLabel1.Size = new System.Drawing.Size(43, 13);
             this.moveLabel1.TabIndex = 239;
@@ -1195,20 +1189,22 @@ namespace NoFarmForMeOpenSource
             this.moveBox3.BackColor = System.Drawing.SystemColors.ControlLight;
             this.moveBox3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.moveBox3.FormattingEnabled = true;
-            this.moveBox3.Location = new System.Drawing.Point(80, 129);
+            this.moveBox3.Location = new System.Drawing.Point(80, 123);
             this.moveBox3.Name = "moveBox3";
             this.moveBox3.Size = new System.Drawing.Size(185, 21);
             this.moveBox3.TabIndex = 238;
+            this.moveBox3.SelectedIndexChanged += new System.EventHandler(this.MoveBox3_SelectedIndexChanged);
             // 
             // moveBox6
             // 
             this.moveBox6.BackColor = System.Drawing.SystemColors.ControlLight;
             this.moveBox6.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.moveBox6.FormattingEnabled = true;
-            this.moveBox6.Location = new System.Drawing.Point(80, 213);
+            this.moveBox6.Location = new System.Drawing.Point(80, 207);
             this.moveBox6.Name = "moveBox6";
             this.moveBox6.Size = new System.Drawing.Size(185, 21);
             this.moveBox6.TabIndex = 215;
+            this.moveBox6.SelectedIndexChanged += new System.EventHandler(this.MoveBox6_SelectedIndexChanged);
             // 
             // label17
             // 
@@ -1225,20 +1221,22 @@ namespace NoFarmForMeOpenSource
             this.moveBox5.BackColor = System.Drawing.SystemColors.ControlLight;
             this.moveBox5.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.moveBox5.FormattingEnabled = true;
-            this.moveBox5.Location = new System.Drawing.Point(80, 185);
+            this.moveBox5.Location = new System.Drawing.Point(80, 179);
             this.moveBox5.Name = "moveBox5";
             this.moveBox5.Size = new System.Drawing.Size(185, 21);
             this.moveBox5.TabIndex = 217;
+            this.moveBox5.SelectedIndexChanged += new System.EventHandler(this.MoveBox5_SelectedIndexChanged);
             // 
             // moveBox4
             // 
             this.moveBox4.BackColor = System.Drawing.SystemColors.ControlLight;
             this.moveBox4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.moveBox4.FormattingEnabled = true;
-            this.moveBox4.Location = new System.Drawing.Point(80, 157);
+            this.moveBox4.Location = new System.Drawing.Point(80, 151);
             this.moveBox4.Name = "moveBox4";
             this.moveBox4.Size = new System.Drawing.Size(185, 21);
             this.moveBox4.TabIndex = 216;
+            this.moveBox4.SelectedIndexChanged += new System.EventHandler(this.MoveBox4_SelectedIndexChanged);
             // 
             // label22
             // 
@@ -1259,6 +1257,7 @@ namespace NoFarmForMeOpenSource
             this.armedBox.Size = new System.Drawing.Size(15, 14);
             this.armedBox.TabIndex = 222;
             this.armedBox.UseVisualStyleBackColor = false;
+            this.armedBox.CheckedChanged += new System.EventHandler(this.ArmedBox_CheckedChanged);
             // 
             // avatarNameBox
             // 
@@ -1269,6 +1268,7 @@ namespace NoFarmForMeOpenSource
             this.avatarNameBox.Name = "avatarNameBox";
             this.avatarNameBox.Size = new System.Drawing.Size(138, 21);
             this.avatarNameBox.TabIndex = 221;
+            this.avatarNameBox.SelectedIndexChanged += new System.EventHandler(this.AvatarNameBox_SelectedIndexChanged);
             // 
             // avatarNumericUpDown
             // 
@@ -1287,6 +1287,7 @@ namespace NoFarmForMeOpenSource
             0,
             0,
             0});
+            this.avatarNumericUpDown.ValueChanged += new System.EventHandler(this.AvatarNumericUpDown_ValueChanged);
             // 
             // label20
             // 
@@ -1301,7 +1302,7 @@ namespace NoFarmForMeOpenSource
             // moveNumericUpDown1
             // 
             this.moveNumericUpDown1.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.moveNumericUpDown1.Location = new System.Drawing.Point(271, 74);
+            this.moveNumericUpDown1.Location = new System.Drawing.Point(271, 68);
             this.moveNumericUpDown1.Maximum = new decimal(new int[] {
             6,
             0,
@@ -1320,11 +1321,12 @@ namespace NoFarmForMeOpenSource
             0,
             0,
             0});
+            this.moveNumericUpDown1.ValueChanged += new System.EventHandler(this.MoveNumericUpDown1_ValueChanged);
             // 
             // moveNumericUpDown2
             // 
             this.moveNumericUpDown2.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.moveNumericUpDown2.Location = new System.Drawing.Point(271, 102);
+            this.moveNumericUpDown2.Location = new System.Drawing.Point(271, 96);
             this.moveNumericUpDown2.Maximum = new decimal(new int[] {
             6,
             0,
@@ -1343,12 +1345,13 @@ namespace NoFarmForMeOpenSource
             0,
             0,
             0});
+            this.moveNumericUpDown2.ValueChanged += new System.EventHandler(this.MoveNumericUpDown2_ValueChanged);
             // 
             // label18
             // 
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(277, 58);
+            this.label18.Location = new System.Drawing.Point(277, 52);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(22, 13);
             this.label18.TabIndex = 227;
@@ -1357,7 +1360,7 @@ namespace NoFarmForMeOpenSource
             // moveNumericUpDown3
             // 
             this.moveNumericUpDown3.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.moveNumericUpDown3.Location = new System.Drawing.Point(271, 130);
+            this.moveNumericUpDown3.Location = new System.Drawing.Point(271, 124);
             this.moveNumericUpDown3.Maximum = new decimal(new int[] {
             6,
             0,
@@ -1376,11 +1379,12 @@ namespace NoFarmForMeOpenSource
             0,
             0,
             0});
+            this.moveNumericUpDown3.ValueChanged += new System.EventHandler(this.MoveNumericUpDown3_ValueChanged);
             // 
             // moveLabel4
             // 
             this.moveLabel4.AutoSize = true;
-            this.moveLabel4.Location = new System.Drawing.Point(6, 155);
+            this.moveLabel4.Location = new System.Drawing.Point(6, 149);
             this.moveLabel4.Name = "moveLabel4";
             this.moveLabel4.Size = new System.Drawing.Size(43, 13);
             this.moveLabel4.TabIndex = 220;
@@ -1389,7 +1393,7 @@ namespace NoFarmForMeOpenSource
             // moveLabel3
             // 
             this.moveLabel3.AutoSize = true;
-            this.moveLabel3.Location = new System.Drawing.Point(6, 128);
+            this.moveLabel3.Location = new System.Drawing.Point(6, 122);
             this.moveLabel3.Name = "moveLabel3";
             this.moveLabel3.Size = new System.Drawing.Size(43, 13);
             this.moveLabel3.TabIndex = 219;
@@ -1398,7 +1402,7 @@ namespace NoFarmForMeOpenSource
             // moveLabel6
             // 
             this.moveLabel6.AutoSize = true;
-            this.moveLabel6.Location = new System.Drawing.Point(6, 210);
+            this.moveLabel6.Location = new System.Drawing.Point(6, 204);
             this.moveLabel6.Name = "moveLabel6";
             this.moveLabel6.Size = new System.Drawing.Size(43, 13);
             this.moveLabel6.TabIndex = 226;
@@ -1407,7 +1411,7 @@ namespace NoFarmForMeOpenSource
             // moveNumericUpDown4
             // 
             this.moveNumericUpDown4.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.moveNumericUpDown4.Location = new System.Drawing.Point(271, 158);
+            this.moveNumericUpDown4.Location = new System.Drawing.Point(271, 152);
             this.moveNumericUpDown4.Maximum = new decimal(new int[] {
             6,
             0,
@@ -1426,31 +1430,34 @@ namespace NoFarmForMeOpenSource
             0,
             0,
             0});
+            this.moveNumericUpDown4.ValueChanged += new System.EventHandler(this.MoveNumericUpDown4_ValueChanged);
             // 
             // moveBox1
             // 
             this.moveBox1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.moveBox1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.moveBox1.FormattingEnabled = true;
-            this.moveBox1.Location = new System.Drawing.Point(80, 73);
+            this.moveBox1.Location = new System.Drawing.Point(80, 67);
             this.moveBox1.Name = "moveBox1";
             this.moveBox1.Size = new System.Drawing.Size(185, 21);
             this.moveBox1.TabIndex = 223;
+            this.moveBox1.SelectedIndexChanged += new System.EventHandler(this.MoveBox1_SelectedIndexChanged);
             // 
             // moveBox2
             // 
             this.moveBox2.BackColor = System.Drawing.SystemColors.ControlLight;
             this.moveBox2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.moveBox2.FormattingEnabled = true;
-            this.moveBox2.Location = new System.Drawing.Point(80, 101);
+            this.moveBox2.Location = new System.Drawing.Point(80, 95);
             this.moveBox2.Name = "moveBox2";
             this.moveBox2.Size = new System.Drawing.Size(185, 21);
             this.moveBox2.TabIndex = 225;
+            this.moveBox2.SelectedIndexChanged += new System.EventHandler(this.MoveBox2_SelectedIndexChanged);
             // 
             // moveNumericUpDown6
             // 
             this.moveNumericUpDown6.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.moveNumericUpDown6.Location = new System.Drawing.Point(271, 214);
+            this.moveNumericUpDown6.Location = new System.Drawing.Point(271, 208);
             this.moveNumericUpDown6.Maximum = new decimal(new int[] {
             6,
             0,
@@ -1469,11 +1476,12 @@ namespace NoFarmForMeOpenSource
             0,
             0,
             0});
+            this.moveNumericUpDown6.ValueChanged += new System.EventHandler(this.MoveNumericUpDown6_ValueChanged);
             // 
             // moveNumericUpDown5
             // 
             this.moveNumericUpDown5.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.moveNumericUpDown5.Location = new System.Drawing.Point(271, 186);
+            this.moveNumericUpDown5.Location = new System.Drawing.Point(271, 180);
             this.moveNumericUpDown5.Maximum = new decimal(new int[] {
             6,
             0,
@@ -1492,11 +1500,12 @@ namespace NoFarmForMeOpenSource
             0,
             0,
             0});
+            this.moveNumericUpDown5.ValueChanged += new System.EventHandler(this.MoveNumericUpDown5_ValueChanged);
             // 
             // moveLabel2
             // 
             this.moveLabel2.AutoSize = true;
-            this.moveLabel2.Location = new System.Drawing.Point(6, 101);
+            this.moveLabel2.Location = new System.Drawing.Point(6, 95);
             this.moveLabel2.Name = "moveLabel2";
             this.moveLabel2.Size = new System.Drawing.Size(43, 13);
             this.moveLabel2.TabIndex = 218;
@@ -1505,7 +1514,7 @@ namespace NoFarmForMeOpenSource
             // moveLabel5
             // 
             this.moveLabel5.AutoSize = true;
-            this.moveLabel5.Location = new System.Drawing.Point(6, 182);
+            this.moveLabel5.Location = new System.Drawing.Point(6, 176);
             this.moveLabel5.Name = "moveLabel5";
             this.moveLabel5.Size = new System.Drawing.Size(43, 13);
             this.moveLabel5.TabIndex = 224;
@@ -1513,22 +1522,28 @@ namespace NoFarmForMeOpenSource
             // 
             // tabPage6
             // 
+            this.tabPage6.Controls.Add(this.label12);
+            this.tabPage6.Controls.Add(this.statEquipmentBox10);
+            this.tabPage6.Controls.Add(this.statBox21);
+            this.tabPage6.Controls.Add(this.statEquipmentBox8);
+            this.tabPage6.Controls.Add(this.statBox19);
+            this.tabPage6.Controls.Add(this.label11);
             this.tabPage6.Controls.Add(this.label62);
             this.tabPage6.Controls.Add(this.label54);
-            this.tabPage6.Controls.Add(this.statEquipmentBox8);
-            this.tabPage6.Controls.Add(this.statEquipmentBox6);
-            this.tabPage6.Controls.Add(this.statEquipmentBox5);
-            this.tabPage6.Controls.Add(this.statEquipmentBox3);
             this.tabPage6.Controls.Add(this.statEquipmentBox7);
+            this.tabPage6.Controls.Add(this.statEquipmentBox5);
+            this.tabPage6.Controls.Add(this.statEquipmentBox9);
+            this.tabPage6.Controls.Add(this.statEquipmentBox6);
             this.tabPage6.Controls.Add(this.statEquipmentBox4);
+            this.tabPage6.Controls.Add(this.statEquipmentBox3);
             this.tabPage6.Controls.Add(this.statEquipmentBox2);
             this.tabPage6.Controls.Add(this.statEquipmentBox1);
-            this.tabPage6.Controls.Add(this.statBox19);
-            this.tabPage6.Controls.Add(this.statBox17);
-            this.tabPage6.Controls.Add(this.statBox16);
-            this.tabPage6.Controls.Add(this.statBox14);
             this.tabPage6.Controls.Add(this.statBox18);
+            this.tabPage6.Controls.Add(this.statBox16);
+            this.tabPage6.Controls.Add(this.statBox20);
+            this.tabPage6.Controls.Add(this.statBox17);
             this.tabPage6.Controls.Add(this.statBox15);
+            this.tabPage6.Controls.Add(this.statBox14);
             this.tabPage6.Controls.Add(this.statBox13);
             this.tabPage6.Controls.Add(this.statBox12);
             this.tabPage6.Controls.Add(this.label51);
@@ -1550,7 +1565,7 @@ namespace NoFarmForMeOpenSource
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(380, 328);
+            this.tabPage6.Size = new System.Drawing.Size(380, 331);
             this.tabPage6.TabIndex = 1;
             this.tabPage6.Text = "Equipments";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -1559,7 +1574,7 @@ namespace NoFarmForMeOpenSource
             // 
             this.label62.AutoSize = true;
             this.label62.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label62.Location = new System.Drawing.Point(240, 84);
+            this.label62.Location = new System.Drawing.Point(234, 74);
             this.label62.Name = "label62";
             this.label62.Size = new System.Drawing.Size(37, 13);
             this.label62.TabIndex = 213;
@@ -1568,77 +1583,77 @@ namespace NoFarmForMeOpenSource
             // label54
             // 
             this.label54.AutoSize = true;
-            this.label54.Location = new System.Drawing.Point(181, 84);
+            this.label54.Location = new System.Drawing.Point(166, 74);
             this.label54.Name = "label54";
             this.label54.Size = new System.Drawing.Size(44, 13);
             this.label54.TabIndex = 212;
             this.label54.Text = "Statistic";
             // 
-            // statEquipmentBox8
+            // statEquipmentBox7
             // 
-            this.statEquipmentBox8.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.statEquipmentBox8.Enabled = false;
-            this.statEquipmentBox8.Location = new System.Drawing.Point(234, 284);
-            this.statEquipmentBox8.Name = "statEquipmentBox8";
-            this.statEquipmentBox8.ReadOnly = true;
-            this.statEquipmentBox8.Size = new System.Drawing.Size(48, 20);
-            this.statEquipmentBox8.TabIndex = 211;
-            // 
-            // statEquipmentBox6
-            // 
-            this.statEquipmentBox6.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.statEquipmentBox6.Enabled = false;
-            this.statEquipmentBox6.Location = new System.Drawing.Point(234, 258);
-            this.statEquipmentBox6.Name = "statEquipmentBox6";
-            this.statEquipmentBox6.ReadOnly = true;
-            this.statEquipmentBox6.Size = new System.Drawing.Size(48, 20);
-            this.statEquipmentBox6.TabIndex = 210;
+            this.statEquipmentBox7.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.statEquipmentBox7.Enabled = false;
+            this.statEquipmentBox7.Location = new System.Drawing.Point(228, 253);
+            this.statEquipmentBox7.Name = "statEquipmentBox7";
+            this.statEquipmentBox7.ReadOnly = true;
+            this.statEquipmentBox7.Size = new System.Drawing.Size(48, 20);
+            this.statEquipmentBox7.TabIndex = 211;
             // 
             // statEquipmentBox5
             // 
             this.statEquipmentBox5.BackColor = System.Drawing.SystemColors.ControlLight;
             this.statEquipmentBox5.Enabled = false;
-            this.statEquipmentBox5.Location = new System.Drawing.Point(234, 232);
+            this.statEquipmentBox5.Location = new System.Drawing.Point(228, 230);
             this.statEquipmentBox5.Name = "statEquipmentBox5";
             this.statEquipmentBox5.ReadOnly = true;
             this.statEquipmentBox5.Size = new System.Drawing.Size(48, 20);
-            this.statEquipmentBox5.TabIndex = 209;
+            this.statEquipmentBox5.TabIndex = 210;
             // 
-            // statEquipmentBox3
+            // statEquipmentBox9
             // 
-            this.statEquipmentBox3.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.statEquipmentBox3.Enabled = false;
-            this.statEquipmentBox3.Location = new System.Drawing.Point(234, 206);
-            this.statEquipmentBox3.Name = "statEquipmentBox3";
-            this.statEquipmentBox3.ReadOnly = true;
-            this.statEquipmentBox3.Size = new System.Drawing.Size(48, 20);
-            this.statEquipmentBox3.TabIndex = 208;
+            this.statEquipmentBox9.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.statEquipmentBox9.Enabled = false;
+            this.statEquipmentBox9.Location = new System.Drawing.Point(228, 207);
+            this.statEquipmentBox9.Name = "statEquipmentBox9";
+            this.statEquipmentBox9.ReadOnly = true;
+            this.statEquipmentBox9.Size = new System.Drawing.Size(48, 20);
+            this.statEquipmentBox9.TabIndex = 209;
             // 
-            // statEquipmentBox7
+            // statEquipmentBox6
             // 
-            this.statEquipmentBox7.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.statEquipmentBox7.Enabled = false;
-            this.statEquipmentBox7.Location = new System.Drawing.Point(234, 179);
-            this.statEquipmentBox7.Name = "statEquipmentBox7";
-            this.statEquipmentBox7.ReadOnly = true;
-            this.statEquipmentBox7.Size = new System.Drawing.Size(48, 20);
-            this.statEquipmentBox7.TabIndex = 207;
+            this.statEquipmentBox6.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.statEquipmentBox6.Enabled = false;
+            this.statEquipmentBox6.Location = new System.Drawing.Point(228, 184);
+            this.statEquipmentBox6.Name = "statEquipmentBox6";
+            this.statEquipmentBox6.ReadOnly = true;
+            this.statEquipmentBox6.Size = new System.Drawing.Size(48, 20);
+            this.statEquipmentBox6.TabIndex = 208;
             // 
             // statEquipmentBox4
             // 
             this.statEquipmentBox4.BackColor = System.Drawing.SystemColors.ControlLight;
             this.statEquipmentBox4.Enabled = false;
-            this.statEquipmentBox4.Location = new System.Drawing.Point(234, 152);
+            this.statEquipmentBox4.Location = new System.Drawing.Point(228, 161);
             this.statEquipmentBox4.Name = "statEquipmentBox4";
             this.statEquipmentBox4.ReadOnly = true;
             this.statEquipmentBox4.Size = new System.Drawing.Size(48, 20);
-            this.statEquipmentBox4.TabIndex = 206;
+            this.statEquipmentBox4.TabIndex = 207;
+            // 
+            // statEquipmentBox3
+            // 
+            this.statEquipmentBox3.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.statEquipmentBox3.Enabled = false;
+            this.statEquipmentBox3.Location = new System.Drawing.Point(228, 137);
+            this.statEquipmentBox3.Name = "statEquipmentBox3";
+            this.statEquipmentBox3.ReadOnly = true;
+            this.statEquipmentBox3.Size = new System.Drawing.Size(48, 20);
+            this.statEquipmentBox3.TabIndex = 206;
             // 
             // statEquipmentBox2
             // 
             this.statEquipmentBox2.BackColor = System.Drawing.SystemColors.ControlLight;
             this.statEquipmentBox2.Enabled = false;
-            this.statEquipmentBox2.Location = new System.Drawing.Point(234, 128);
+            this.statEquipmentBox2.Location = new System.Drawing.Point(228, 115);
             this.statEquipmentBox2.Name = "statEquipmentBox2";
             this.statEquipmentBox2.ReadOnly = true;
             this.statEquipmentBox2.Size = new System.Drawing.Size(48, 20);
@@ -1648,77 +1663,77 @@ namespace NoFarmForMeOpenSource
             // 
             this.statEquipmentBox1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.statEquipmentBox1.Enabled = false;
-            this.statEquipmentBox1.Location = new System.Drawing.Point(234, 102);
+            this.statEquipmentBox1.Location = new System.Drawing.Point(228, 92);
             this.statEquipmentBox1.Name = "statEquipmentBox1";
             this.statEquipmentBox1.ReadOnly = true;
             this.statEquipmentBox1.Size = new System.Drawing.Size(48, 20);
             this.statEquipmentBox1.TabIndex = 204;
             // 
-            // statBox19
+            // statBox18
             // 
-            this.statBox19.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.statBox19.Enabled = false;
-            this.statBox19.Location = new System.Drawing.Point(180, 284);
-            this.statBox19.Name = "statBox19";
-            this.statBox19.ReadOnly = true;
-            this.statBox19.Size = new System.Drawing.Size(48, 20);
-            this.statBox19.TabIndex = 203;
-            // 
-            // statBox17
-            // 
-            this.statBox17.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.statBox17.Enabled = false;
-            this.statBox17.Location = new System.Drawing.Point(180, 258);
-            this.statBox17.Name = "statBox17";
-            this.statBox17.ReadOnly = true;
-            this.statBox17.Size = new System.Drawing.Size(48, 20);
-            this.statBox17.TabIndex = 202;
+            this.statBox18.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.statBox18.Enabled = false;
+            this.statBox18.Location = new System.Drawing.Point(165, 253);
+            this.statBox18.Name = "statBox18";
+            this.statBox18.ReadOnly = true;
+            this.statBox18.Size = new System.Drawing.Size(48, 20);
+            this.statBox18.TabIndex = 203;
             // 
             // statBox16
             // 
             this.statBox16.BackColor = System.Drawing.SystemColors.ControlLight;
             this.statBox16.Enabled = false;
-            this.statBox16.Location = new System.Drawing.Point(180, 232);
+            this.statBox16.Location = new System.Drawing.Point(165, 230);
             this.statBox16.Name = "statBox16";
             this.statBox16.ReadOnly = true;
             this.statBox16.Size = new System.Drawing.Size(48, 20);
-            this.statBox16.TabIndex = 201;
+            this.statBox16.TabIndex = 202;
             // 
-            // statBox14
+            // statBox20
             // 
-            this.statBox14.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.statBox14.Enabled = false;
-            this.statBox14.Location = new System.Drawing.Point(180, 206);
-            this.statBox14.Name = "statBox14";
-            this.statBox14.ReadOnly = true;
-            this.statBox14.Size = new System.Drawing.Size(48, 20);
-            this.statBox14.TabIndex = 200;
+            this.statBox20.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.statBox20.Enabled = false;
+            this.statBox20.Location = new System.Drawing.Point(165, 207);
+            this.statBox20.Name = "statBox20";
+            this.statBox20.ReadOnly = true;
+            this.statBox20.Size = new System.Drawing.Size(48, 20);
+            this.statBox20.TabIndex = 201;
             // 
-            // statBox18
+            // statBox17
             // 
-            this.statBox18.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.statBox18.Enabled = false;
-            this.statBox18.Location = new System.Drawing.Point(180, 179);
-            this.statBox18.Name = "statBox18";
-            this.statBox18.ReadOnly = true;
-            this.statBox18.Size = new System.Drawing.Size(48, 20);
-            this.statBox18.TabIndex = 199;
+            this.statBox17.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.statBox17.Enabled = false;
+            this.statBox17.Location = new System.Drawing.Point(165, 184);
+            this.statBox17.Name = "statBox17";
+            this.statBox17.ReadOnly = true;
+            this.statBox17.Size = new System.Drawing.Size(48, 20);
+            this.statBox17.TabIndex = 200;
             // 
             // statBox15
             // 
             this.statBox15.BackColor = System.Drawing.SystemColors.ControlLight;
             this.statBox15.Enabled = false;
-            this.statBox15.Location = new System.Drawing.Point(180, 152);
+            this.statBox15.Location = new System.Drawing.Point(165, 161);
             this.statBox15.Name = "statBox15";
             this.statBox15.ReadOnly = true;
             this.statBox15.Size = new System.Drawing.Size(48, 20);
-            this.statBox15.TabIndex = 198;
+            this.statBox15.TabIndex = 199;
+            // 
+            // statBox14
+            // 
+            this.statBox14.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.statBox14.Enabled = false;
+            this.statBox14.Location = new System.Drawing.Point(165, 138);
+            this.statBox14.Name = "statBox14";
+            this.statBox14.ReadOnly = true;
+            this.statBox14.Size = new System.Drawing.Size(48, 20);
+            this.statBox14.TabIndex = 198;
             // 
             // statBox13
             // 
             this.statBox13.BackColor = System.Drawing.SystemColors.ControlLight;
             this.statBox13.Enabled = false;
-            this.statBox13.Location = new System.Drawing.Point(180, 128);
+            this.statBox13.Location = new System.Drawing.Point(165, 115);
             this.statBox13.Name = "statBox13";
             this.statBox13.ReadOnly = true;
             this.statBox13.Size = new System.Drawing.Size(48, 20);
@@ -1728,7 +1743,7 @@ namespace NoFarmForMeOpenSource
             // 
             this.statBox12.BackColor = System.Drawing.SystemColors.ControlLight;
             this.statBox12.Enabled = false;
-            this.statBox12.Location = new System.Drawing.Point(180, 102);
+            this.statBox12.Location = new System.Drawing.Point(165, 92);
             this.statBox12.Name = "statBox12";
             this.statBox12.ReadOnly = true;
             this.statBox12.Size = new System.Drawing.Size(48, 20);
@@ -1737,74 +1752,74 @@ namespace NoFarmForMeOpenSource
             // label51
             // 
             this.label51.AutoSize = true;
-            this.label51.Location = new System.Drawing.Point(119, 258);
+            this.label51.Location = new System.Drawing.Point(101, 233);
             this.label51.Name = "label51";
-            this.label51.Size = new System.Drawing.Size(45, 13);
+            this.label51.Size = new System.Drawing.Size(58, 13);
             this.label51.TabIndex = 193;
-            this.label51.Text = "Stamina";
+            this.label51.Text = "Technique";
             // 
             // label52
             // 
             this.label52.AutoSize = true;
-            this.label52.Location = new System.Drawing.Point(119, 284);
+            this.label52.Location = new System.Drawing.Point(101, 256);
             this.label52.Name = "label52";
-            this.label52.Size = new System.Drawing.Size(31, 13);
+            this.label52.Size = new System.Drawing.Size(38, 13);
             this.label52.TabIndex = 194;
-            this.label52.Text = "Luck";
+            this.label52.Text = "Speed";
             // 
             // label53
             // 
             this.label53.AutoSize = true;
-            this.label53.Location = new System.Drawing.Point(119, 232);
+            this.label53.Location = new System.Drawing.Point(101, 210);
             this.label53.Name = "label53";
-            this.label53.Size = new System.Drawing.Size(38, 13);
+            this.label53.Size = new System.Drawing.Size(35, 13);
             this.label53.TabIndex = 192;
-            this.label53.Text = "Speed";
+            this.label53.Text = "Catch";
             // 
             // label57
             // 
             this.label57.AutoSize = true;
-            this.label57.Location = new System.Drawing.Point(119, 206);
+            this.label57.Location = new System.Drawing.Point(101, 187);
             this.label57.Name = "label57";
-            this.label57.Size = new System.Drawing.Size(58, 13);
+            this.label57.Size = new System.Drawing.Size(34, 13);
             this.label57.TabIndex = 191;
-            this.label57.Text = "Technique";
+            this.label57.Text = "Block";
             // 
             // label58
             // 
             this.label58.AutoSize = true;
-            this.label58.Location = new System.Drawing.Point(119, 180);
+            this.label58.Location = new System.Drawing.Point(101, 164);
             this.label58.Name = "label58";
-            this.label58.Size = new System.Drawing.Size(35, 13);
+            this.label58.Size = new System.Drawing.Size(40, 13);
             this.label58.TabIndex = 190;
-            this.label58.Text = "Catch";
+            this.label58.Text = "Dribble";
             // 
             // label59
             // 
             this.label59.AutoSize = true;
-            this.label59.Location = new System.Drawing.Point(119, 154);
+            this.label59.Location = new System.Drawing.Point(101, 140);
             this.label59.Name = "label59";
-            this.label59.Size = new System.Drawing.Size(34, 13);
+            this.label59.Size = new System.Drawing.Size(28, 13);
             this.label59.TabIndex = 189;
-            this.label59.Text = "Block";
+            this.label59.Text = "Kick";
             // 
             // label60
             // 
             this.label60.AutoSize = true;
-            this.label60.Location = new System.Drawing.Point(119, 128);
+            this.label60.Location = new System.Drawing.Point(101, 118);
             this.label60.Name = "label60";
-            this.label60.Size = new System.Drawing.Size(40, 13);
+            this.label60.Size = new System.Drawing.Size(21, 13);
             this.label60.TabIndex = 188;
-            this.label60.Text = "Dribble";
+            this.label60.Text = "TP";
             // 
             // label61
             // 
             this.label61.AutoSize = true;
-            this.label61.Location = new System.Drawing.Point(119, 102);
+            this.label61.Location = new System.Drawing.Point(101, 95);
             this.label61.Name = "label61";
-            this.label61.Size = new System.Drawing.Size(28, 13);
+            this.label61.Size = new System.Drawing.Size(20, 13);
             this.label61.TabIndex = 187;
-            this.label61.Text = "Kick";
+            this.label61.Text = "FP";
             // 
             // braceletBox
             // 
@@ -1816,6 +1831,7 @@ namespace NoFarmForMeOpenSource
             this.braceletBox.Name = "braceletBox";
             this.braceletBox.Size = new System.Drawing.Size(127, 21);
             this.braceletBox.TabIndex = 180;
+            this.braceletBox.SelectedIndexChanged += new System.EventHandler(this.BraceletBox_SelectedIndexChanged);
             // 
             // label56
             // 
@@ -1836,6 +1852,7 @@ namespace NoFarmForMeOpenSource
             this.pendantBox.Name = "pendantBox";
             this.pendantBox.Size = new System.Drawing.Size(127, 21);
             this.pendantBox.TabIndex = 181;
+            this.pendantBox.SelectedIndexChanged += new System.EventHandler(this.PendantBox_SelectedIndexChanged);
             // 
             // bootsBox
             // 
@@ -1847,6 +1864,7 @@ namespace NoFarmForMeOpenSource
             this.bootsBox.Name = "bootsBox";
             this.bootsBox.Size = new System.Drawing.Size(127, 21);
             this.bootsBox.TabIndex = 179;
+            this.bootsBox.SelectedIndexChanged += new System.EventHandler(this.BootsBox_SelectedIndexChanged);
             // 
             // label55
             // 
@@ -1867,6 +1885,7 @@ namespace NoFarmForMeOpenSource
             this.glovesBox.Name = "glovesBox";
             this.glovesBox.Size = new System.Drawing.Size(127, 21);
             this.glovesBox.TabIndex = 182;
+            this.glovesBox.SelectedIndexChanged += new System.EventHandler(this.GlovesBox_SelectedIndexChanged);
             // 
             // label44
             // 
@@ -1949,9 +1968,6 @@ namespace NoFarmForMeOpenSource
             // 
             // playerPictureBox16
             // 
-            this.playerPictureBox16.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.playerPictureBox16.Location = new System.Drawing.Point(206, 153);
             this.playerPictureBox16.Name = "playerPictureBox16";
             this.playerPictureBox16.Size = new System.Drawing.Size(195, 20);
@@ -1964,9 +1980,6 @@ namespace NoFarmForMeOpenSource
             // 
             // playerPictureBox8
             // 
-            this.playerPictureBox8.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.playerPictureBox8.Location = new System.Drawing.Point(10, 153);
             this.playerPictureBox8.Name = "playerPictureBox8";
             this.playerPictureBox8.Size = new System.Drawing.Size(195, 20);
@@ -1979,9 +1992,6 @@ namespace NoFarmForMeOpenSource
             // 
             // playerPictureBox15
             // 
-            this.playerPictureBox15.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.playerPictureBox15.Location = new System.Drawing.Point(206, 132);
             this.playerPictureBox15.Name = "playerPictureBox15";
             this.playerPictureBox15.Size = new System.Drawing.Size(195, 20);
@@ -1994,9 +2004,6 @@ namespace NoFarmForMeOpenSource
             // 
             // playerPictureBox7
             // 
-            this.playerPictureBox7.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.playerPictureBox7.Location = new System.Drawing.Point(10, 132);
             this.playerPictureBox7.Name = "playerPictureBox7";
             this.playerPictureBox7.Size = new System.Drawing.Size(195, 20);
@@ -2009,9 +2016,6 @@ namespace NoFarmForMeOpenSource
             // 
             // playerPictureBox14
             // 
-            this.playerPictureBox14.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.playerPictureBox14.Location = new System.Drawing.Point(206, 111);
             this.playerPictureBox14.Name = "playerPictureBox14";
             this.playerPictureBox14.Size = new System.Drawing.Size(195, 20);
@@ -2024,9 +2028,6 @@ namespace NoFarmForMeOpenSource
             // 
             // playerPictureBox6
             // 
-            this.playerPictureBox6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.playerPictureBox6.Location = new System.Drawing.Point(10, 111);
             this.playerPictureBox6.Name = "playerPictureBox6";
             this.playerPictureBox6.Size = new System.Drawing.Size(195, 20);
@@ -2039,9 +2040,6 @@ namespace NoFarmForMeOpenSource
             // 
             // playerPictureBox13
             // 
-            this.playerPictureBox13.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.playerPictureBox13.Location = new System.Drawing.Point(206, 90);
             this.playerPictureBox13.Name = "playerPictureBox13";
             this.playerPictureBox13.Size = new System.Drawing.Size(195, 20);
@@ -2054,9 +2052,6 @@ namespace NoFarmForMeOpenSource
             // 
             // playerPictureBox5
             // 
-            this.playerPictureBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.playerPictureBox5.Location = new System.Drawing.Point(10, 90);
             this.playerPictureBox5.Name = "playerPictureBox5";
             this.playerPictureBox5.Size = new System.Drawing.Size(195, 20);
@@ -2069,9 +2064,6 @@ namespace NoFarmForMeOpenSource
             // 
             // playerPictureBox12
             // 
-            this.playerPictureBox12.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.playerPictureBox12.Location = new System.Drawing.Point(206, 69);
             this.playerPictureBox12.Name = "playerPictureBox12";
             this.playerPictureBox12.Size = new System.Drawing.Size(195, 20);
@@ -2084,9 +2076,6 @@ namespace NoFarmForMeOpenSource
             // 
             // playerPictureBox4
             // 
-            this.playerPictureBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.playerPictureBox4.Location = new System.Drawing.Point(10, 69);
             this.playerPictureBox4.Name = "playerPictureBox4";
             this.playerPictureBox4.Size = new System.Drawing.Size(195, 20);
@@ -2099,9 +2088,6 @@ namespace NoFarmForMeOpenSource
             // 
             // playerPictureBox11
             // 
-            this.playerPictureBox11.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.playerPictureBox11.Location = new System.Drawing.Point(206, 48);
             this.playerPictureBox11.Name = "playerPictureBox11";
             this.playerPictureBox11.Size = new System.Drawing.Size(195, 20);
@@ -2114,9 +2100,6 @@ namespace NoFarmForMeOpenSource
             // 
             // playerPictureBox3
             // 
-            this.playerPictureBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.playerPictureBox3.Location = new System.Drawing.Point(10, 48);
             this.playerPictureBox3.Name = "playerPictureBox3";
             this.playerPictureBox3.Size = new System.Drawing.Size(195, 20);
@@ -2129,9 +2112,6 @@ namespace NoFarmForMeOpenSource
             // 
             // playerPictureBox10
             // 
-            this.playerPictureBox10.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.playerPictureBox10.Location = new System.Drawing.Point(206, 27);
             this.playerPictureBox10.Name = "playerPictureBox10";
             this.playerPictureBox10.Size = new System.Drawing.Size(195, 20);
@@ -2144,9 +2124,6 @@ namespace NoFarmForMeOpenSource
             // 
             // playerPictureBox2
             // 
-            this.playerPictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.playerPictureBox2.Location = new System.Drawing.Point(10, 27);
             this.playerPictureBox2.Name = "playerPictureBox2";
             this.playerPictureBox2.Size = new System.Drawing.Size(195, 20);
@@ -2159,9 +2136,6 @@ namespace NoFarmForMeOpenSource
             // 
             // playerPictureBox9
             // 
-            this.playerPictureBox9.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.playerPictureBox9.Location = new System.Drawing.Point(206, 6);
             this.playerPictureBox9.Name = "playerPictureBox9";
             this.playerPictureBox9.Size = new System.Drawing.Size(195, 20);
@@ -2174,6 +2148,8 @@ namespace NoFarmForMeOpenSource
             // 
             // previousButton
             // 
+            this.previousButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.previousButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.previousButton.Location = new System.Drawing.Point(47, 180);
             this.previousButton.Name = "previousButton";
@@ -2185,6 +2161,8 @@ namespace NoFarmForMeOpenSource
             // 
             // nextButton
             // 
+            this.nextButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.nextButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.nextButton.Location = new System.Drawing.Point(289, 180);
             this.nextButton.Name = "nextButton";
@@ -2196,10 +2174,12 @@ namespace NoFarmForMeOpenSource
             // 
             // pageComboBox
             // 
+            this.pageComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pageComboBox.BackColor = System.Drawing.SystemColors.ControlLight;
             this.pageComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.pageComboBox.FormattingEnabled = true;
-            this.pageComboBox.Location = new System.Drawing.Point(128, 182);
+            this.pageComboBox.Location = new System.Drawing.Point(128, 180);
             this.pageComboBox.Name = "pageComboBox";
             this.pageComboBox.Size = new System.Drawing.Size(155, 21);
             this.pageComboBox.TabIndex = 1;
@@ -2214,11 +2194,27 @@ namespace NoFarmForMeOpenSource
             this.panel1.Controls.Add(this.inventoryButton);
             this.panel1.Location = new System.Drawing.Point(419, 288);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(427, 129);
+            this.panel1.Size = new System.Drawing.Size(427, 128);
             this.panel1.TabIndex = 10;
+            this.panel1.Visible = false;
+            // 
+            // teamButton
+            // 
+            this.teamButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.teamButton.Enabled = false;
+            this.teamButton.Location = new System.Drawing.Point(5, 7);
+            this.teamButton.Name = "teamButton";
+            this.teamButton.Size = new System.Drawing.Size(99, 25);
+            this.teamButton.TabIndex = 4;
+            this.teamButton.Text = "Tactics";
+            this.teamButton.UseVisualStyleBackColor = true;
+            this.teamButton.Click += new System.EventHandler(this.TeamButton_Click);
             // 
             // saveInformationButton
             // 
+            this.saveInformationButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.saveInformationButton.Enabled = false;
             this.saveInformationButton.Location = new System.Drawing.Point(110, 7);
             this.saveInformationButton.Name = "saveInformationButton";
@@ -2229,6 +2225,8 @@ namespace NoFarmForMeOpenSource
             // 
             // playRecordsButton
             // 
+            this.playRecordsButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.playRecordsButton.Enabled = false;
             this.playRecordsButton.Location = new System.Drawing.Point(215, 7);
             this.playRecordsButton.Name = "playRecordsButton";
@@ -2239,6 +2237,8 @@ namespace NoFarmForMeOpenSource
             // 
             // streetpassButton
             // 
+            this.streetpassButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.streetpassButton.Enabled = false;
             this.streetpassButton.Location = new System.Drawing.Point(5, 38);
             this.streetpassButton.Name = "streetpassButton";
@@ -2250,6 +2250,8 @@ namespace NoFarmForMeOpenSource
             // 
             // inventoryButton
             // 
+            this.inventoryButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.inventoryButton.Enabled = false;
             this.inventoryButton.Location = new System.Drawing.Point(318, 7);
             this.inventoryButton.Name = "inventoryButton";
@@ -2262,30 +2264,77 @@ namespace NoFarmForMeOpenSource
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // teamButton
+            // statEquipmentBox8
             // 
-            this.teamButton.Enabled = false;
-            this.teamButton.Location = new System.Drawing.Point(5, 7);
-            this.teamButton.Name = "teamButton";
-            this.teamButton.Size = new System.Drawing.Size(99, 25);
-            this.teamButton.TabIndex = 4;
-            this.teamButton.Text = "Tactics";
-            this.teamButton.UseVisualStyleBackColor = true;
-            this.teamButton.Click += new System.EventHandler(this.TeamButton_Click);
+            this.statEquipmentBox8.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.statEquipmentBox8.Enabled = false;
+            this.statEquipmentBox8.Location = new System.Drawing.Point(228, 276);
+            this.statEquipmentBox8.Name = "statEquipmentBox8";
+            this.statEquipmentBox8.ReadOnly = true;
+            this.statEquipmentBox8.Size = new System.Drawing.Size(48, 20);
+            this.statEquipmentBox8.TabIndex = 216;
+            // 
+            // statBox19
+            // 
+            this.statBox19.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.statBox19.Enabled = false;
+            this.statBox19.Location = new System.Drawing.Point(165, 276);
+            this.statBox19.Name = "statBox19";
+            this.statBox19.ReadOnly = true;
+            this.statBox19.Size = new System.Drawing.Size(48, 20);
+            this.statBox19.TabIndex = 215;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(101, 279);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(45, 13);
+            this.label11.TabIndex = 214;
+            this.label11.Text = "Stamina";
+            // 
+            // statEquipmentBox10
+            // 
+            this.statEquipmentBox10.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.statEquipmentBox10.Enabled = false;
+            this.statEquipmentBox10.Location = new System.Drawing.Point(228, 299);
+            this.statEquipmentBox10.Name = "statEquipmentBox10";
+            this.statEquipmentBox10.ReadOnly = true;
+            this.statEquipmentBox10.Size = new System.Drawing.Size(48, 20);
+            this.statEquipmentBox10.TabIndex = 219;
+            // 
+            // statBox21
+            // 
+            this.statBox21.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.statBox21.Enabled = false;
+            this.statBox21.Location = new System.Drawing.Point(165, 299);
+            this.statBox21.Name = "statBox21";
+            this.statBox21.ReadOnly = true;
+            this.statBox21.Size = new System.Drawing.Size(48, 20);
+            this.statBox21.TabIndex = 218;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(101, 299);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(31, 13);
+            this.label12.TabIndex = 220;
+            this.label12.Text = "Luck";
             // 
             // Welcome
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(850, 421);
+            this.ClientSize = new System.Drawing.Size(852, 424);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.tabControl2);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.MaximumSize = new System.Drawing.Size(866, 460);
+            this.MaximumSize = new System.Drawing.Size(868, 463);
             this.Name = "Welcome";
-            this.Text = "Welcome";
+            this.Text = "Inazuma Eleven Save Editor";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
@@ -2307,7 +2356,6 @@ namespace NoFarmForMeOpenSource
             ((System.ComponentModel.ISupportInitialize)(this.miximaxAvatarNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.moveNumericUpDown8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.moveNumericUpDown7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.miximaxFaceBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.avatarNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.moveNumericUpDown1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.moveNumericUpDown2)).EndInit();
@@ -2411,9 +2459,6 @@ namespace NoFarmForMeOpenSource
         public System.Windows.Forms.Label moveLabel7;
         public System.Windows.Forms.Label label46;
         public System.Windows.Forms.CheckBox invokeBox;
-        public System.Windows.Forms.Label label45;
-        public System.Windows.Forms.CheckBox miximaxCheckBox;
-        public System.Windows.Forms.PictureBox miximaxFaceBox;
         public System.Windows.Forms.CheckBox moveCheckBox6;
         public System.Windows.Forms.CheckBox moveCheckBox5;
         public System.Windows.Forms.CheckBox moveCheckBox4;
@@ -2448,20 +2493,20 @@ namespace NoFarmForMeOpenSource
         public System.Windows.Forms.TabPage tabPage6;
         public System.Windows.Forms.Label label62;
         public System.Windows.Forms.Label label54;
-        public System.Windows.Forms.TextBox statEquipmentBox8;
-        public System.Windows.Forms.TextBox statEquipmentBox6;
-        public System.Windows.Forms.TextBox statEquipmentBox5;
-        public System.Windows.Forms.TextBox statEquipmentBox3;
         public System.Windows.Forms.TextBox statEquipmentBox7;
+        public System.Windows.Forms.TextBox statEquipmentBox5;
+        public System.Windows.Forms.TextBox statEquipmentBox9;
+        public System.Windows.Forms.TextBox statEquipmentBox6;
         public System.Windows.Forms.TextBox statEquipmentBox4;
+        public System.Windows.Forms.TextBox statEquipmentBox3;
         public System.Windows.Forms.TextBox statEquipmentBox2;
         public System.Windows.Forms.TextBox statEquipmentBox1;
-        public System.Windows.Forms.TextBox statBox19;
-        public System.Windows.Forms.TextBox statBox17;
-        public System.Windows.Forms.TextBox statBox16;
-        public System.Windows.Forms.TextBox statBox14;
         public System.Windows.Forms.TextBox statBox18;
+        public System.Windows.Forms.TextBox statBox16;
+        public System.Windows.Forms.TextBox statBox20;
+        public System.Windows.Forms.TextBox statBox17;
         public System.Windows.Forms.TextBox statBox15;
+        public System.Windows.Forms.TextBox statBox14;
         public System.Windows.Forms.TextBox statBox13;
         public System.Windows.Forms.TextBox statBox12;
         public System.Windows.Forms.Label label51;
@@ -2510,5 +2555,11 @@ namespace NoFarmForMeOpenSource
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem1;
         public System.Windows.Forms.PictureBox movedPlayerPictureBox;
         public System.Windows.Forms.Button teamButton;
+        public System.Windows.Forms.Label label12;
+        public System.Windows.Forms.TextBox statEquipmentBox10;
+        public System.Windows.Forms.TextBox statBox21;
+        public System.Windows.Forms.TextBox statEquipmentBox8;
+        public System.Windows.Forms.TextBox statBox19;
+        public System.Windows.Forms.Label label11;
     }
 }
