@@ -15,7 +15,7 @@ namespace InazumaElevenSaveEditor.Common.InazumaElevenGo
 
         public static IDictionary<UInt32, Move> Cs = new Dictionary<UInt32, Move>
         {
-            {0x00000000, new Move(" ", null, null, 0, 0, 0, 0, 0, null, null)},
+            {0x00000000, new Move(" ", null, null, 0, 0, 0, 0, 1, null, null)},
             {0x0B0DAEB4, new Move("Fire Tornado", Element.Fire(), Position.Shot(), 90, 45, 45, 20, 4, EvolutionSpeed.Medium(4, "cs"), null)},
             {0xB15CA72D, new Move("Eternal Blizzard", Element.Wind(), Position.Shot(), 110, 45, 45, 10, 5, EvolutionSpeed.Fast(5, "cs"), null)},
             {0x276CA05A, new Move("Zephyr Shot", Element.Wind(), Position.Shot(), 60, 35, 30, 20, 5, EvolutionSpeed.Slow(5, "cs"), null)},
@@ -62,7 +62,7 @@ namespace InazumaElevenSaveEditor.Common.InazumaElevenGo
             {0xBDD2DDF8, new Move("Grand Slam", Element.Fire(), Position.Dribble(), 50, 24, 20, 5, 4, EvolutionSpeed.Slow(4, "cs"), null)},
             {0x2CCF6268, new Move("Future Eye", Element.Wood(), Position.Dribble(), 50, 24, 20, 5, 4, EvolutionSpeed.Medium(4, "cs"), null)},
             {0xBAFF651F, new Move("Dragster", Element.Wind(), Position.Dribble(), 100, 32, 45, 10, 4, EvolutionSpeed.Fast(4, "cs"), null)},
-            {0x5F76A27F, new Move("Presto Turn", Element.Wood(), Position.Dribble(), 100, 36, 60, 30, 4, EvolutionSpeed.Medium(4, "cs"), null)},
+            {0x5F76A27F, new Move("Hey Presto", Element.Wood(), Position.Dribble(), 100, 36, 60, 30, 5, EvolutionSpeed.Medium(5, "cs"), null)},
             {0xC946A508, new Move("Easy Breasy", Element.Wind(), Position.Dribble(), 70, 28, 30, 5, 5, EvolutionSpeed.Medium(5, "cs"), null)},
             {0x7317AC91, new Move("Frosticle", Element.Wind(), Position.Dribble(), 130, 40, 75, 35, 5, EvolutionSpeed.Fast(5, "cs"), null)},
             {0xE527ABE6, new Move("Boomerang Bluff", Element.Earth(), Position.Dribble(), 70, 28, 30, 5, 4, EvolutionSpeed.Fast(4, "cs"), null)},
@@ -289,7 +289,7 @@ namespace InazumaElevenSaveEditor.Common.InazumaElevenGo
             {0x24D27017, new Move("Resistance +30", null, null, 0, 0, 0, 0, 1, null, null)},
             {0xB2E27760, new Move("Demon Dribbler", null, null, 0, 0, 0, 0, 1, null, null)},
             {0x117713FE, new Move("Power Block", null, null, 0, 0, 0, 0, 1, null, null)},
-            {0x87471489, new Move("Fiery Assault!", null, null, 0, 0, 0, 0, 1, null, null)},
+            {0x87471489, new Move("Rhino", null, null, 0, 0, 0, 0, 1, null, null)},
             {0x3D161D10, new Move("Perfect Cross", null, null, 0, 0, 0, 0, 1, null, null)},
             {0xAB261A67, new Move("Fast Cross", null, null, 0, 0, 0, 0, 1, null, null)},
             {0x3A3BA5F7, new Move("Pumped Up", null, null, 0, 0, 0, 0, 1, null, null)},
@@ -305,8 +305,8 @@ namespace InazumaElevenSaveEditor.Common.InazumaElevenGo
             {0xF96888DC, new Move("Wide range!", null, null, 0, 0, 0, 0, 1, null, null)},
             {0x6F588FAB, new Move("Fiery Player", null, null, 0, 0, 0, 0, 1, null, null)},
             {0x8AD148CB, new Move("Tiranny!", null, null, 0, 0, 0, 0, 1, null, null)},
-            {0x1CE14FBC, new Move("Second Wind!", null, null, 150, 0, 0, 0, 1, null, null)},
-            {0xA6B04625, new Move("Blood Sweat and Tears!", null, null, 150, 0, 0, 0, 1, null, null)},
+            {0x1CE14FBC, new Move("Blood Sweat and Tears!", null, null, 0, 0, 0, 0, 1, null, null)},
+            {0xA6B04625, new Move("Second Wind!", null, null, 0, 0, 0, 0, 1, null, null)},
             {0x30804152, new Move("Spirit Haunter!", null, null, 0, 0, 0, 0, 1, null, null)},
             {0x931525CC, new Move("Spirit Economy!", null, null, 0, 0, 0, 0, 1, null, null)},
             {0x052522BB, new Move("Spirit Big Moves!", null, null, 0, 0, 0, 0, 1, null, null)},
