@@ -405,7 +405,7 @@ namespace NoFarmForMeOpenSource
             teamButton.Enabled = true;
             // saveInformationButton.Enabled = true;
             // playRecordsButton.Enabled = true;
-            saveToolStripMenuItem.Enabled = true;
+            saveToolStripMenuItem1.Enabled = true;
             tabControl1.Enabled = false;
 
         }
