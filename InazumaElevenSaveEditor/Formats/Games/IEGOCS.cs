@@ -218,6 +218,127 @@ namespace InazumaElevenSaveEditor.Formats.Games
             }
         }
 
+        public void Save(OpenFileDialog initialDirectory)
+        {
+            byte[] saveData = File.GetSection(0, (int)File.Length);
+            DataWriter dataWriter = new DataWriter(saveData);
+
+            // Save Player Order
+            dataWriter.Seek(0x1C4E0);
+            for (int i = 0; i < 336; i++)
+            {
+                if (i < PlayersInSaveSort.Count)
+                {
+                    dataWriter.WriteUInt32(PlayersInSaveSort[i]);
+                }
+                else
+                {
+                    // dataWriter.Write(0x00000000);
+                }
+            }
+
+            // Save Each Player from Save
+            foreach (KeyValuePair<UInt32, Player> player in PlayersInSave)
+            {
+                dataWriter.Seek((uint)player.Value.PositionInFile);
+
+                dataWriter.WriteUInt32(player.Key);
+                dataWriter.WriteUInt32(player.Value.ID);
+
+                dataWriter.Skip(10);
+                dataWriter.WriteByte(player.Value.Level);
+
+                // Save MixiMax Information
+                dataWriter.Skip(1);
+                if (player.Value.MixiMax != null)
+                {
+                    UInt32 miximaxPositionID = 0;
+
+                    if (player.Value.MixiMax.AuraData == true)
+                    {
+                        miximaxPositionID = AuraInSave.FirstOrDefault(x => x.Value == player.Value.MixiMax.AuraPlayer).Key;
+                    } else
+                    {
+                        miximaxPositionID = PlayersInSave.FirstOrDefault(x => x.Value == player.Value.MixiMax.AuraPlayer).Key;
+                    }
+
+                    dataWriter.WriteUInt32(miximaxPositionID);
+                } 
+                else
+                {
+                    dataWriter.WriteUInt32(0x0);
+                }
+
+                // Determines the Invoker value and saves it
+                dataWriter.Skip(10);
+                int canInvokeArmed = Convert.ToInt32(player.Value.Invoke) * 8 + Convert.ToInt32(player.Value.Armed) * 16;
+                if (player.Value.MixiMax != null && player.Value.MixiMax.AuraData == true) canInvokeArmed += 1;
+                var playerIsAura = PlayersInSave.FirstOrDefault(x => x.Value.MixiMax != null && x.Value.MixiMax.AuraPlayer == player.Value);
+                if (playerIsAura.Key != 0x0) canInvokeArmed += 2;
+                dataWriter.WriteByte(canInvokeArmed);
+
+                dataWriter.WriteByte(player.Value.Style * 16);
+
+                // Save Stat
+                dataWriter.Skip(8);
+                for (int i = 0; i < 8; i++)
+                {
+                    dataWriter.WriteInt16(player.Value.InvestedPoint[i]);
+                }
+
+                // Save Fighting Spirit
+                dataWriter.WriteUInt32(Avatars.FirstOrDefault(x => x.Value == player.Value.Avatar).Key);
+                dataWriter.WriteByte(player.Value.Avatar.Level);
+
+                // Save Equipments
+                dataWriter.Skip(3);
+                for (int i = 0; i < 4; i++)
+                {
+                    var equipmentKeyValue = Equipments.FirstOrDefault(x => x.Value == player.Value.Equipments[i]);
+                    if (equipmentKeyValue.Key < 0x3)
+                    {
+                        dataWriter.WriteUInt32(0x00);
+                    }
+                    else
+                    {
+                        dataWriter.WriteUInt32(equipmentKeyValue.Key);
+                    }
+                }
+
+                // Save Moves
+                dataWriter.Skip(4);
+                for (int i = 0; i < 6; i++)
+                {
+                    var moveKeyValue = Moves.FirstOrDefault(x => x.Value == player.Value.Moves[i]);
+                    dataWriter.WriteUInt32(moveKeyValue.Key);
+                    dataWriter.WriteByte(player.Value.Moves[i].Level);
+                    dataWriter.WriteByte(player.Value.Moves[i].TimeLevel);
+                    dataWriter.WriteByte(Convert.ToInt32(player.Value.Moves[i].Unlock));
+                    dataWriter.Skip(5);
+                }
+            }
+
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.FileName = initialDirectory.FileName;
+            saveFileDialog.Title = "Save IEGOCS save file";
+            saveFileDialog.Filter = "IE files|*.ie|IE files decrypted|*.ie";
+            saveFileDialog.InitialDirectory = initialDirectory.InitialDirectory;
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string saveFileName = saveFileDialog.FileName;
+
+                if (saveFileDialog.FilterIndex == 1)
+                {
+                    saveData = Level5.Encrypt(saveData);
+                }
+
+                System.IO.File.WriteAllBytes(saveFileName, saveData);
+                MessageBox.Show("Saved");
+            }
+
+            dataWriter.Dispose();
+        }
+
         private Player LoadPlayer()
         {
             UInt32 playerID = File.Reverse(File.ReadUInt32());
@@ -290,7 +411,7 @@ namespace InazumaElevenSaveEditor.Formats.Games
                 }
 
                 newMove.Level = File.ReadByte();
-                File.Skip(1);
+                newMove.TimeLevel = File.ReadByte();
                 newMove.Unlock = Convert.ToBoolean(File.ReadByte());
                 newPlayer.Moves.Add(newMove);
                 File.Skip(5);
@@ -393,11 +514,6 @@ namespace InazumaElevenSaveEditor.Formats.Games
         public string ConvertPlayerToString(Player player, bool clipboard)
         {
             return "";
-        }
-
-        public void Save(OpenFileDialog initialDirectory)
-        {
-
         }
 
         public Player ReadPlayer(Player player)

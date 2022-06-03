@@ -16,8 +16,40 @@ namespace InazumaElevenSaveEditor.Tools
 
         public override void Write(byte[] data)
         {
-            data = Reverse(data);
             BaseStream.Write(data, 0, data.Length);
+        }
+
+        public void WriteByte(int number)
+        {
+            BaseStream.WriteByte(Convert.ToByte(number));
+        }
+
+        public void WriteInt16(int number)
+        {
+            byte[] data = BitConverter.GetBytes(number);
+
+            for (int i = 0; i < 2; i++)
+            {
+                WriteByte(data[i]);
+            }
+        }
+
+        public void WriteUInt16(int number)
+        {
+            byte[] data = BitConverter.GetBytes(number);
+            Array.Reverse(data);
+
+            for (int i = 0; i < 2; i++)
+            {
+                WriteByte(data[i]);
+            }
+        }
+
+        public void WriteUInt32(uint number)
+        {
+            byte[] data = BitConverter.GetBytes(number);
+            Array.Reverse(data);
+            Write(data, 0, data.Length);
         }
 
         public void Skip(uint Size)
@@ -33,13 +65,6 @@ namespace InazumaElevenSaveEditor.Tools
         public void PrintPosition()
         {
             Console.WriteLine(BaseStream.Position.ToString("X"));
-        }
-
-        public byte[] Reverse(byte[] b)
-        {
-            if (BitConverter.IsLittleEndian && BigEndian)
-                Array.Reverse(b);
-            return b;
         }
     }
 }

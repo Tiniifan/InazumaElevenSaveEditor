@@ -32,6 +32,7 @@ namespace NoFarmForMeOpenSource
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -129,6 +130,12 @@ namespace NoFarmForMeOpenSource
             this.moveLabel2 = new System.Windows.Forms.Label();
             this.moveLabel5 = new System.Windows.Forms.Label();
             this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.label12 = new System.Windows.Forms.Label();
+            this.statEquipmentBox10 = new System.Windows.Forms.TextBox();
+            this.statBox21 = new System.Windows.Forms.TextBox();
+            this.statEquipmentBox8 = new System.Windows.Forms.TextBox();
+            this.statBox19 = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.label62 = new System.Windows.Forms.Label();
             this.label54 = new System.Windows.Forms.Label();
             this.statEquipmentBox7 = new System.Windows.Forms.TextBox();
@@ -192,12 +199,7 @@ namespace NoFarmForMeOpenSource
             this.streetpassButton = new System.Windows.Forms.Button();
             this.inventoryButton = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.statEquipmentBox8 = new System.Windows.Forms.TextBox();
-            this.statBox19 = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.statEquipmentBox10 = new System.Windows.Forms.TextBox();
-            this.statBox21 = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -259,7 +261,8 @@ namespace NoFarmForMeOpenSource
             // fileToolStripMenuItem1
             // 
             this.fileToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.openToolStripMenuItem1});
+            this.openToolStripMenuItem1,
+            this.saveToolStripMenuItem1});
             this.fileToolStripMenuItem1.Name = "fileToolStripMenuItem1";
             this.fileToolStripMenuItem1.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem1.Text = "File";
@@ -267,9 +270,17 @@ namespace NoFarmForMeOpenSource
             // openToolStripMenuItem1
             // 
             this.openToolStripMenuItem1.Name = "openToolStripMenuItem1";
-            this.openToolStripMenuItem1.Size = new System.Drawing.Size(103, 22);
+            this.openToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.openToolStripMenuItem1.Text = "Open";
             this.openToolStripMenuItem1.Click += new System.EventHandler(this.OpenToolStripMenuItem1_Click);
+            // 
+            // saveToolStripMenuItem1
+            // 
+            this.saveToolStripMenuItem1.Enabled = false;
+            this.saveToolStripMenuItem1.Name = "saveToolStripMenuItem1";
+            this.saveToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.saveToolStripMenuItem1.Text = "Save";
+            this.saveToolStripMenuItem1.Click += new System.EventHandler(this.SaveToolStripMenuItem1_Click);
             // 
             // fileToolStripMenuItem
             // 
@@ -897,7 +908,7 @@ namespace NoFarmForMeOpenSource
             this.tabControl3.SelectedIndex = 0;
             this.tabControl3.Size = new System.Drawing.Size(388, 357);
             this.tabControl3.TabIndex = 199;
-            this.tabControl3.SelectedIndexChanged += new System.EventHandler(this.tabControl3_SelectedIndexChanged);
+            this.tabControl3.SelectedIndexChanged += new System.EventHandler(this.TabControl3_SelectedIndexChanged);
             // 
             // tabPage5
             // 
@@ -1570,6 +1581,64 @@ namespace NoFarmForMeOpenSource
             this.tabPage6.Text = "Equipments";
             this.tabPage6.UseVisualStyleBackColor = true;
             // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(101, 299);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(31, 13);
+            this.label12.TabIndex = 220;
+            this.label12.Text = "Luck";
+            // 
+            // statEquipmentBox10
+            // 
+            this.statEquipmentBox10.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.statEquipmentBox10.Enabled = false;
+            this.statEquipmentBox10.Location = new System.Drawing.Point(228, 299);
+            this.statEquipmentBox10.Name = "statEquipmentBox10";
+            this.statEquipmentBox10.ReadOnly = true;
+            this.statEquipmentBox10.Size = new System.Drawing.Size(48, 20);
+            this.statEquipmentBox10.TabIndex = 219;
+            // 
+            // statBox21
+            // 
+            this.statBox21.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.statBox21.Enabled = false;
+            this.statBox21.Location = new System.Drawing.Point(165, 299);
+            this.statBox21.Name = "statBox21";
+            this.statBox21.ReadOnly = true;
+            this.statBox21.Size = new System.Drawing.Size(48, 20);
+            this.statBox21.TabIndex = 218;
+            // 
+            // statEquipmentBox8
+            // 
+            this.statEquipmentBox8.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.statEquipmentBox8.Enabled = false;
+            this.statEquipmentBox8.Location = new System.Drawing.Point(228, 276);
+            this.statEquipmentBox8.Name = "statEquipmentBox8";
+            this.statEquipmentBox8.ReadOnly = true;
+            this.statEquipmentBox8.Size = new System.Drawing.Size(48, 20);
+            this.statEquipmentBox8.TabIndex = 216;
+            // 
+            // statBox19
+            // 
+            this.statBox19.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.statBox19.Enabled = false;
+            this.statBox19.Location = new System.Drawing.Point(165, 276);
+            this.statBox19.Name = "statBox19";
+            this.statBox19.ReadOnly = true;
+            this.statBox19.Size = new System.Drawing.Size(48, 20);
+            this.statBox19.TabIndex = 215;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(101, 279);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(45, 13);
+            this.label11.TabIndex = 214;
+            this.label11.Text = "Stamina";
+            // 
             // label62
             // 
             this.label62.AutoSize = true;
@@ -2196,7 +2265,6 @@ namespace NoFarmForMeOpenSource
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(427, 128);
             this.panel1.TabIndex = 10;
-            this.panel1.Visible = false;
             // 
             // teamButton
             // 
@@ -2263,64 +2331,6 @@ namespace NoFarmForMeOpenSource
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // statEquipmentBox8
-            // 
-            this.statEquipmentBox8.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.statEquipmentBox8.Enabled = false;
-            this.statEquipmentBox8.Location = new System.Drawing.Point(228, 276);
-            this.statEquipmentBox8.Name = "statEquipmentBox8";
-            this.statEquipmentBox8.ReadOnly = true;
-            this.statEquipmentBox8.Size = new System.Drawing.Size(48, 20);
-            this.statEquipmentBox8.TabIndex = 216;
-            // 
-            // statBox19
-            // 
-            this.statBox19.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.statBox19.Enabled = false;
-            this.statBox19.Location = new System.Drawing.Point(165, 276);
-            this.statBox19.Name = "statBox19";
-            this.statBox19.ReadOnly = true;
-            this.statBox19.Size = new System.Drawing.Size(48, 20);
-            this.statBox19.TabIndex = 215;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(101, 279);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(45, 13);
-            this.label11.TabIndex = 214;
-            this.label11.Text = "Stamina";
-            // 
-            // statEquipmentBox10
-            // 
-            this.statEquipmentBox10.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.statEquipmentBox10.Enabled = false;
-            this.statEquipmentBox10.Location = new System.Drawing.Point(228, 299);
-            this.statEquipmentBox10.Name = "statEquipmentBox10";
-            this.statEquipmentBox10.ReadOnly = true;
-            this.statEquipmentBox10.Size = new System.Drawing.Size(48, 20);
-            this.statEquipmentBox10.TabIndex = 219;
-            // 
-            // statBox21
-            // 
-            this.statBox21.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.statBox21.Enabled = false;
-            this.statBox21.Location = new System.Drawing.Point(165, 299);
-            this.statBox21.Name = "statBox21";
-            this.statBox21.ReadOnly = true;
-            this.statBox21.Size = new System.Drawing.Size(48, 20);
-            this.statBox21.TabIndex = 218;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(101, 299);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(31, 13);
-            this.label12.TabIndex = 220;
-            this.label12.Text = "Luck";
             // 
             // Welcome
             // 
@@ -2561,5 +2571,7 @@ namespace NoFarmForMeOpenSource
         public System.Windows.Forms.TextBox statEquipmentBox8;
         public System.Windows.Forms.TextBox statBox19;
         public System.Windows.Forms.Label label11;
+        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem1;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }

@@ -154,7 +154,7 @@ namespace NoFarmForMeOpenSource
                 CheckBox moveCheckBox = this.Controls.Find("moveCheckBox" + (i + 1), true).First() as CheckBox;
                 moveBox.SelectedIndex = moveBox.Items.IndexOf(player.Moves[i].Name);
                 moveBox.Enabled = player.Moves[i].Unlock;
-                moveNumericUpDown.Maximum = player.Moves[i].Level;
+                moveNumericUpDown.Maximum = player.Moves[i].EvolutionCount;
                 moveNumericUpDown.Value = player.Moves[i].Level;
                 moveNumericUpDown.Enabled = player.Moves[i].Unlock;
                 moveCheckBox.Checked = player.Moves[i].Unlock;
@@ -191,15 +191,15 @@ namespace NoFarmForMeOpenSource
                     if (player.MixiMax.MixiMaxMoveNumber[i] == 6)
                     {
                         moveBox.SelectedIndex = moveBox.Items.Count - 1;
-                        moveNumericUpDown.Value = 1;
                         moveNumericUpDown.Maximum = 1;
+                        moveNumericUpDown.Value = 1;
                         moveNumericUpDown.Enabled = false;
                     }
                     else
                     {
                         moveBox.SelectedIndex = player.MixiMax.MixiMaxMoveNumber[i];
-                        moveNumericUpDown.Value = player.MixiMax.AuraPlayer.Moves[player.MixiMax.MixiMaxMoveNumber[i]].Level;
                         moveNumericUpDown.Maximum = player.MixiMax.AuraPlayer.Moves[player.MixiMax.MixiMaxMoveNumber[i]].EvolutionCount;
+                        moveNumericUpDown.Value = player.MixiMax.AuraPlayer.Moves[player.MixiMax.MixiMaxMoveNumber[i]].Level;
                         moveNumericUpDown.Enabled = true;
                     }
 
@@ -399,12 +399,12 @@ namespace NoFarmForMeOpenSource
             // game.CurrentPlayer = -1;
             // managePlayerToolStripMenuItem.Enabled = true;
             // searchSortPlayerToolStripMenuItem.Enabled = true;
-            inventoryButton.Enabled = true;
+            // inventoryButton.Enabled = true;
             // streetpassButton.Enabled = true;
             // streetpassButton.Visible = true;
             teamButton.Enabled = true;
-            saveInformationButton.Enabled = true;
-            playRecordsButton.Enabled = true;
+            // saveInformationButton.Enabled = true;
+            // playRecordsButton.Enabled = true;
             saveToolStripMenuItem.Enabled = true;
             tabControl1.Enabled = false;
 
@@ -420,6 +420,13 @@ namespace NoFarmForMeOpenSource
             {
                 LoadFile(openFileDialog1.FileName);
             }
+        }
+
+        private void SaveToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (game == null) return;
+
+            game.Save(openFileDialog1);
         }
 
         private void TeamButton_Click(object sender, EventArgs e)
@@ -963,10 +970,17 @@ namespace NoFarmForMeOpenSource
             // Get New Player Moves
             for (int i = 0; i < newPlayer.Value.UInt32Moves.Count; i++)
             {
-                Move newTechnique = game.Moves[newPlayer.Value.UInt32Moves[i]];
-                newTechnique.Level = 1;
-                newTechnique.Unlock = true;
-                selectedPlayer.Moves[i] = newTechnique;
+                Move newMove = game.Moves[newPlayer.Value.UInt32Moves[i]];
+                newMove.Level = 1;
+                newMove.TimeLevel = newMove.EvolutionSpeed.TimeLevel[0];
+                if (selectedPlayer.Level < 99)
+                {
+                    newMove.Unlock = false;
+                } else
+                {
+                    newMove.Unlock = true;
+                }
+                selectedPlayer.Moves[i] = newMove;
             }
 
             // Reset Invested Point + Print Current Page
@@ -1124,6 +1138,7 @@ namespace NoFarmForMeOpenSource
 
             Move newMove = game.Moves.FirstOrDefault(x => x.Value.Name == moveBox1.Text).Value;
             newMove.Level = 1;
+            newMove.TimeLevel = newMove.EvolutionSpeed.TimeLevel[0];
             newMove.Unlock = true;
             player.Moves[0] = newMove;
 
@@ -1138,6 +1153,7 @@ namespace NoFarmForMeOpenSource
 
             Move newMove = game.Moves.FirstOrDefault(x => x.Value.Name == moveBox2.Text).Value;
             newMove.Level = 1;
+            newMove.TimeLevel = newMove.EvolutionSpeed.TimeLevel[0];
             newMove.Unlock = true;
             player.Moves[1] = newMove;
 
@@ -1152,6 +1168,7 @@ namespace NoFarmForMeOpenSource
 
             Move newMove = game.Moves.FirstOrDefault(x => x.Value.Name == moveBox3.Text).Value;
             newMove.Level = 1;
+            newMove.TimeLevel = newMove.EvolutionSpeed.TimeLevel[0];
             newMove.Unlock = true;
             player.Moves[2] = newMove;
 
@@ -1166,6 +1183,7 @@ namespace NoFarmForMeOpenSource
 
             Move newMove = game.Moves.FirstOrDefault(x => x.Value.Name == moveBox4.Text).Value;
             newMove.Level = 1;
+            newMove.TimeLevel = newMove.EvolutionSpeed.TimeLevel[0];
             newMove.Unlock = true;
             player.Moves[3] = newMove;
 
@@ -1180,6 +1198,7 @@ namespace NoFarmForMeOpenSource
 
             Move newMove = game.Moves.FirstOrDefault(x => x.Value.Name == moveBox5.Text).Value;
             newMove.Level = 1;
+            newMove.TimeLevel = newMove.EvolutionSpeed.TimeLevel[0];
             newMove.Unlock = true;
             player.Moves[4] = newMove;
 
@@ -1194,6 +1213,7 @@ namespace NoFarmForMeOpenSource
 
             Move newMove = game.Moves.FirstOrDefault(x => x.Value.Name == moveBox6.Text).Value;
             newMove.Level = 1;
+            newMove.TimeLevel = newMove.EvolutionSpeed.TimeLevel[0];
             newMove.Unlock = true;
             player.Moves[5] = newMove;
 
@@ -1204,42 +1224,54 @@ namespace NoFarmForMeOpenSource
         {
             if (!moveNumericUpDown1.Focused) return;
 
-            game.GetPlayer(currentPlayer).Moves[0].Level = Convert.ToInt32(moveNumericUpDown1.Value);
+            Player player = game.GetPlayer(currentPlayer);
+            player.Moves[0].Level = Convert.ToInt32(moveNumericUpDown1.Value);
+            player.Moves[0].TimeLevel = player.Moves[0].EvolutionSpeed.TimeLevel[Convert.ToInt32(moveNumericUpDown1.Value)];
         }
 
         private void MoveNumericUpDown2_ValueChanged(object sender, EventArgs e)
         {
             if (!moveNumericUpDown2.Focused) return;
 
-            game.GetPlayer(currentPlayer).Moves[1].Level = Convert.ToInt32(moveNumericUpDown2.Value);
+            Player player = game.GetPlayer(currentPlayer);
+            player.Moves[1].Level = Convert.ToInt32(moveNumericUpDown2.Value);
+            player.Moves[1].TimeLevel = player.Moves[1].EvolutionSpeed.TimeLevel[Convert.ToInt32(moveNumericUpDown2.Value)];
         }
 
         private void MoveNumericUpDown3_ValueChanged(object sender, EventArgs e)
         {
             if (!moveNumericUpDown3.Focused) return;
 
-            game.GetPlayer(currentPlayer).Moves[2].Level = Convert.ToInt32(moveNumericUpDown3.Value);
+            Player player = game.GetPlayer(currentPlayer);
+            player.Moves[2].Level = Convert.ToInt32(moveNumericUpDown3.Value);
+            player.Moves[2].TimeLevel = player.Moves[2].EvolutionSpeed.TimeLevel[Convert.ToInt32(moveNumericUpDown3.Value)];
         }
 
         private void MoveNumericUpDown4_ValueChanged(object sender, EventArgs e)
         {
             if (!moveNumericUpDown4.Focused) return;
 
-            game.GetPlayer(currentPlayer).Moves[3].Level = Convert.ToInt32(moveNumericUpDown4.Value);
+            Player player = game.GetPlayer(currentPlayer);
+            player.Moves[3].Level = Convert.ToInt32(moveNumericUpDown4.Value);
+            player.Moves[3].TimeLevel = player.Moves[3].EvolutionSpeed.TimeLevel[Convert.ToInt32(moveNumericUpDown4.Value)];
         }
 
         private void MoveNumericUpDown5_ValueChanged(object sender, EventArgs e)
         {
             if (!moveNumericUpDown5.Focused) return;
 
-            game.GetPlayer(currentPlayer).Moves[4].Level = Convert.ToInt32(moveNumericUpDown5.Value);
+            Player player = game.GetPlayer(currentPlayer);
+            player.Moves[4].Level = Convert.ToInt32(moveNumericUpDown5.Value);
+            player.Moves[4].TimeLevel = player.Moves[4].EvolutionSpeed.TimeLevel[Convert.ToInt32(moveNumericUpDown5.Value)];
         }
 
         private void MoveNumericUpDown6_ValueChanged(object sender, EventArgs e)
         {
             if (!moveNumericUpDown6.Focused) return;
 
-            game.GetPlayer(currentPlayer).Moves[5].Level = Convert.ToInt32(moveNumericUpDown6.Value);
+            Player player = game.GetPlayer(currentPlayer);
+            player.Moves[5].Level = Convert.ToInt32(moveNumericUpDown6.Value);
+            player.Moves[5].TimeLevel = player.Moves[5].EvolutionSpeed.TimeLevel[Convert.ToInt32(moveNumericUpDown6.Value)];
         }
 
         private void MoveCheckBox1_CheckedChanged(object sender, EventArgs e)
@@ -1356,14 +1388,18 @@ namespace NoFarmForMeOpenSource
         {
             if (!moveNumericUpDown7.Focused) return;
 
-            game.GetPlayer(currentPlayer).MixiMax.AuraPlayer.Moves[moveBox7.SelectedIndex].Level = Convert.ToInt32(moveNumericUpDown7.Value);
+            Player player = game.GetPlayer(currentPlayer).MixiMax.AuraPlayer;
+            player.Moves[moveBox7.SelectedIndex].Level = Convert.ToInt32(moveNumericUpDown7.Value);
+            player.Moves[moveBox7.SelectedIndex].TimeLevel = player.Moves[moveBox7.SelectedIndex].EvolutionSpeed.TimeLevel[Convert.ToInt32(moveNumericUpDown7.Value)];
         }
 
         private void MoveNumericUpDown8_ValueChanged(object sender, EventArgs e)
         {
             if (!moveNumericUpDown8.Focused) return;
 
-            game.GetPlayer(currentPlayer).MixiMax.AuraPlayer.Moves[moveBox8.SelectedIndex].Level = Convert.ToInt32(moveNumericUpDown8.Value);
+            Player player = game.GetPlayer(currentPlayer).MixiMax.AuraPlayer;
+            player.Moves[moveBox8.SelectedIndex].Level = Convert.ToInt32(moveNumericUpDown8.Value);
+            player.Moves[moveBox8.SelectedIndex].TimeLevel = player.Moves[moveBox8.SelectedIndex].EvolutionSpeed.TimeLevel[Convert.ToInt32(moveNumericUpDown8.Value)];
         }
 
         private void MiximaxAvatarNameBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -1384,7 +1420,7 @@ namespace NoFarmForMeOpenSource
             game.GetPlayer(currentPlayer).MixiMax.AuraPlayer.Avatar.Level = Convert.ToInt32(avatarNumericUpDown.Value);
         }
 
-        private void tabControl3_SelectedIndexChanged(object sender, EventArgs e)
+        private void TabControl3_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (tabControl3.SelectedIndex == 1)
             {

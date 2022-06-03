@@ -20,6 +20,8 @@ namespace InazumaElevenSaveEditor.Logic
 
         public int EvolutionCount;
 
+        public int TimeLevel;
+
         public EvolutionSpeed EvolutionSpeed;
 
         public UltimateEvolution UltimateEvolution;
@@ -81,6 +83,9 @@ namespace InazumaElevenSaveEditor.Logic
                 }
 
                 EvolutionSpeed.TimeLevel.Insert(0, 0);
+            } else
+            {
+                EvolutionSpeed = new EvolutionSpeed("Skill", new List<int> { 0 }, new List<int> { 0 });
             }
         }
 
@@ -124,23 +129,23 @@ namespace InazumaElevenSaveEditor.Logic
         {
             if (evolutionCount == 3)
             {
-                return new EvolutionSpeed("Slow", new List<int> { 5, 12 }, new List<int> { 15, 33 });
+                return new EvolutionSpeed("Slow", new List<int> { 5, 12 }, new List<int> { 15, 33, 0 });
             }
             else if (evolutionCount == 4)
             {
-                return new EvolutionSpeed("Slow", new List<int> { }, new List<int> { 20, 30, 35 });
+                return new EvolutionSpeed("Slow", new List<int> { }, new List<int> { 20, 30, 35, 0 });
             }
             else if (evolutionCount == 5 & game == "ie")
             {
-                return new EvolutionSpeed("Slow", new List<int> { 4, 10, 14, 18 }, new List<int> { 20, 45, 70, 100 });
+                return new EvolutionSpeed("Slow", new List<int> { 4, 10, 14, 18 }, new List<int> { 20, 45, 70, 100, 0 });
             }
             else if (evolutionCount == 5 & game == "go")
             {
-                return new EvolutionSpeed("Slow", new List<int> { }, new List<int> { 20, 30, 35, 40 });
+                return new EvolutionSpeed("Slow", new List<int> { }, new List<int> { 20, 30, 35, 40, 0 });
             }
             else // evolutionCount == 6
             {
-                return new EvolutionSpeed("Slow", new List<int> { }, new List<int> { 15, 20, 20, 25 });
+                return new EvolutionSpeed("Slow", new List<int> { }, new List<int> { 15, 20, 20, 25, 0 });
             }
         }
 
@@ -148,23 +153,23 @@ namespace InazumaElevenSaveEditor.Logic
         {
             if (evolutionCount == 3)
             {
-                return new EvolutionSpeed("Medium", new List<int> { 3, 10 }, new List<int> { 9, 27 });
+                return new EvolutionSpeed("Medium", new List<int> { 3, 10 }, new List<int> { 9, 27, 0 });
             }
             else if (evolutionCount == 4)
             {
-                return new EvolutionSpeed("Medium", new List<int> { }, new List<int> { 15, 20, 30 });
+                return new EvolutionSpeed("Medium", new List<int> { }, new List<int> { 15, 20, 30, 0 });
             }
             else if (evolutionCount == 5 & game == "ie")
             {
-                return new EvolutionSpeed("Medium", new List<int> { 3, 8, 12, 16 }, new List<int> { 20, 40, 60, 90 });
+                return new EvolutionSpeed("Medium", new List<int> { 3, 8, 12, 16 }, new List<int> { 20, 40, 60, 90, 0 });
             }
             else if (evolutionCount == 5 & game == "go")
             {
-                return new EvolutionSpeed("Medium", new List<int> { }, new List<int> { 15, 20, 30, 40 });
+                return new EvolutionSpeed("Medium", new List<int> { }, new List<int> { 15, 20, 30, 40, 0 });
             }
             else // evolutionCount == 6
             {
-                return new EvolutionSpeed("Medium", new List<int> { }, new List<int> { 10, 15, 20, 25 });
+                return new EvolutionSpeed("Medium", new List<int> { }, new List<int> { 10, 15, 20, 25, 0 });
             }
         }
 
@@ -172,29 +177,29 @@ namespace InazumaElevenSaveEditor.Logic
         {
             if (evolutionCount == 3)
             {
-                return new EvolutionSpeed("Fast", new List<int> { 2, 8 }, new List<int> { 6, 21 });
+                return new EvolutionSpeed("Fast", new List<int> { 2, 8 }, new List<int> { 6, 21, 0 });
             }
             else if (evolutionCount == 4)
             {
-                return new EvolutionSpeed("Fast", new List<int> { }, new List<int> { 10, 15, 25 });
+                return new EvolutionSpeed("Fast", new List<int> { }, new List<int> { 10, 15, 25, 0 });
             }
             else if (evolutionCount == 5 & game == "ie")
             {
-                return new EvolutionSpeed("Fast", new List<int> { 2, 6, 10, 14 }, new List<int> { 15, 35, 55, 80 });
+                return new EvolutionSpeed("Fast", new List<int> { 2, 6, 10, 14 }, new List<int> { 15, 35, 55, 80, 0 });
             }
             else if (evolutionCount == 5 & game == "go")
             {
-                return new EvolutionSpeed("Fast", new List<int> { }, new List<int> { 10, 15, 25, 40 });
+                return new EvolutionSpeed("Fast", new List<int> { }, new List<int> { 10, 15, 25, 40, 0 });
             }
             else // evolutionCount == 6
             {
-                return new EvolutionSpeed("Fast", new List<int> { }, new List<int> { 10, 10, 15, 20 });
+                return new EvolutionSpeed("Fast", new List<int> { }, new List<int> { 10, 10, 15, 20, 0 });
             }
         }
 
         public static EvolutionSpeed Turbo()
         {
-            return new EvolutionSpeed("Turbo", new List<int> { }, new List<int> { 5, 10, 10, 15 });
+            return new EvolutionSpeed("Turbo", new List<int> { }, new List<int> { 5, 10, 10, 15, 0 });
         }
     }
 
