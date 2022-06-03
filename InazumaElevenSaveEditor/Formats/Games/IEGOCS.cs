@@ -245,7 +245,8 @@ namespace InazumaElevenSaveEditor.Formats.Games
                 dataWriter.WriteUInt32(player.Key);
                 dataWriter.WriteUInt32(player.Value.ID);
 
-                dataWriter.Skip(10);
+                dataWriter.Skip(8);
+                dataWriter.WriteInt16(player.Value.Freedom);
                 dataWriter.WriteByte(player.Value.Level);
 
                 // Save MixiMax Information
@@ -263,14 +264,27 @@ namespace InazumaElevenSaveEditor.Formats.Games
                     }
 
                     dataWriter.WriteUInt32(miximaxPositionID);
+
+                    // Moves Obtained
+                    dataWriter.Skip(8);
+                    for (int i = 0; i < 2; i++)
+                    {
+                        if (player.Value.MixiMax.MixiMaxMoveNumber[i] > player.Value.MixiMax.AuraPlayer.Moves.Count)
+                        {
+                            dataWriter.WriteByte(6);
+                        } else
+                        {
+                            dataWriter.WriteByte(player.Value.MixiMax.MixiMaxMoveNumber[i]);
+                        }
+                    }
                 } 
                 else
                 {
                     dataWriter.WriteUInt32(0x0);
+                    dataWriter.Skip(10);
                 }
 
                 // Determines the Invoker value and saves it
-                dataWriter.Skip(10);
                 int canInvokeArmed = Convert.ToInt32(player.Value.Invoke) * 8 + Convert.ToInt32(player.Value.Armed) * 16;
                 if (player.Value.MixiMax != null && player.Value.MixiMax.AuraData == true) canInvokeArmed += 1;
                 var playerIsAura = PlayersInSave.FirstOrDefault(x => x.Value.MixiMax != null && x.Value.MixiMax.AuraPlayer == player.Value);
@@ -319,7 +333,7 @@ namespace InazumaElevenSaveEditor.Formats.Games
             }
 
             SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.FileName = initialDirectory.FileName;
+            saveFileDialog.FileName = Path.GetFileName(initialDirectory.FileName);
             saveFileDialog.Title = "Save IEGOCS save file";
             saveFileDialog.Filter = "IE files|*.ie|IE files decrypted|*.ie";
             saveFileDialog.InitialDirectory = initialDirectory.InitialDirectory;
