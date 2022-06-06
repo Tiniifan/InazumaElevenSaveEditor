@@ -32,8 +32,8 @@ Offset | Name | DataType | Description
 0x40 | Fighting Spirit Level | Short |
 0x44 | Boots Index ID | UInt32 |
 0x48 | Bracelet Index ID | UInt32 |
-0x50 | Gloves Index ID | UInt32 |
-0x44 | Boots Index ID | UInt32 |
+0x50 | Pendant Index ID | UInt32 |
+0x54 | Gloves Index ID | UInt32 |
 0x58 | Move 1 | UInt32 |
 0x5C | Move 1 Level | Short |
 0x5D | Move 1 Usage | Short |
