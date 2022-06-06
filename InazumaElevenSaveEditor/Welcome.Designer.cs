@@ -33,6 +33,10 @@ namespace NoFarmForMeOpenSource
             this.fileToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.managePlayerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.recruitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dismissToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -200,6 +204,10 @@ namespace NoFarmForMeOpenSource
             this.inventoryButton = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.scoreNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.participationNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -246,12 +254,15 @@ namespace NoFarmForMeOpenSource
             ((System.ComponentModel.ISupportInitialize)(this.playerPictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.playerPictureBox9)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.scoreNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.participationNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem1});
+            this.fileToolStripMenuItem1,
+            this.toolToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(852, 24);
@@ -270,7 +281,7 @@ namespace NoFarmForMeOpenSource
             // openToolStripMenuItem1
             // 
             this.openToolStripMenuItem1.Name = "openToolStripMenuItem1";
-            this.openToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.openToolStripMenuItem1.Size = new System.Drawing.Size(103, 22);
             this.openToolStripMenuItem1.Text = "Open";
             this.openToolStripMenuItem1.Click += new System.EventHandler(this.OpenToolStripMenuItem1_Click);
             // 
@@ -278,9 +289,41 @@ namespace NoFarmForMeOpenSource
             // 
             this.saveToolStripMenuItem1.Enabled = false;
             this.saveToolStripMenuItem1.Name = "saveToolStripMenuItem1";
-            this.saveToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.saveToolStripMenuItem1.Size = new System.Drawing.Size(103, 22);
             this.saveToolStripMenuItem1.Text = "Save";
             this.saveToolStripMenuItem1.Click += new System.EventHandler(this.SaveToolStripMenuItem1_Click);
+            // 
+            // toolToolStripMenuItem
+            // 
+            this.toolToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.managePlayerToolStripMenuItem});
+            this.toolToolStripMenuItem.Name = "toolToolStripMenuItem";
+            this.toolToolStripMenuItem.Size = new System.Drawing.Size(41, 20);
+            this.toolToolStripMenuItem.Text = "Tool";
+            // 
+            // managePlayerToolStripMenuItem
+            // 
+            this.managePlayerToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.recruitToolStripMenuItem,
+            this.dismissToolStripMenuItem});
+            this.managePlayerToolStripMenuItem.Enabled = false;
+            this.managePlayerToolStripMenuItem.Name = "managePlayerToolStripMenuItem";
+            this.managePlayerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.managePlayerToolStripMenuItem.Text = "Manage Player";
+            // 
+            // recruitToolStripMenuItem
+            // 
+            this.recruitToolStripMenuItem.Name = "recruitToolStripMenuItem";
+            this.recruitToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
+            this.recruitToolStripMenuItem.Text = "Recruit";
+            this.recruitToolStripMenuItem.Click += new System.EventHandler(this.RecruitToolStripMenuItem_Click);
+            // 
+            // dismissToolStripMenuItem
+            // 
+            this.dismissToolStripMenuItem.Name = "dismissToolStripMenuItem";
+            this.dismissToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
+            this.dismissToolStripMenuItem.Text = "Dismiss";
+            this.dismissToolStripMenuItem.Click += new System.EventHandler(this.DismissToolStripMenuItem_Click);
             // 
             // fileToolStripMenuItem
             // 
@@ -329,11 +372,15 @@ namespace NoFarmForMeOpenSource
             this.tabControl1.Location = new System.Drawing.Point(12, 27);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(405, 390);
+            this.tabControl1.Size = new System.Drawing.Size(405, 401);
             this.tabControl1.TabIndex = 8;
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.label23);
+            this.tabPage1.Controls.Add(this.participationNumericUpDown);
+            this.tabPage1.Controls.Add(this.label13);
+            this.tabPage1.Controls.Add(this.scoreNumericUpDown);
             this.tabPage1.Controls.Add(this.styleBox);
             this.tabPage1.Controls.Add(this.resetButton);
             this.tabPage1.Controls.Add(this.genderBox);
@@ -380,7 +427,7 @@ namespace NoFarmForMeOpenSource
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(397, 364);
+            this.tabPage1.Size = new System.Drawing.Size(397, 375);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Informations";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -406,7 +453,7 @@ namespace NoFarmForMeOpenSource
             // resetButton
             // 
             this.resetButton.Enabled = false;
-            this.resetButton.Location = new System.Drawing.Point(238, 117);
+            this.resetButton.Location = new System.Drawing.Point(238, 140);
             this.resetButton.Name = "resetButton";
             this.resetButton.Size = new System.Drawing.Size(103, 20);
             this.resetButton.TabIndex = 242;
@@ -468,7 +515,7 @@ namespace NoFarmForMeOpenSource
             // 
             this.freedomBox.BackColor = System.Drawing.SystemColors.ControlLight;
             this.freedomBox.Enabled = false;
-            this.freedomBox.Location = new System.Drawing.Point(160, 325);
+            this.freedomBox.Location = new System.Drawing.Point(160, 348);
             this.freedomBox.Name = "freedomBox";
             this.freedomBox.ReadOnly = true;
             this.freedomBox.Size = new System.Drawing.Size(48, 20);
@@ -478,7 +525,7 @@ namespace NoFarmForMeOpenSource
             // 
             this.statBox10.BackColor = System.Drawing.SystemColors.ControlLight;
             this.statBox10.Enabled = false;
-            this.statBox10.Location = new System.Drawing.Point(131, 299);
+            this.statBox10.Location = new System.Drawing.Point(131, 322);
             this.statBox10.Name = "statBox10";
             this.statBox10.ReadOnly = true;
             this.statBox10.Size = new System.Drawing.Size(48, 20);
@@ -488,7 +535,7 @@ namespace NoFarmForMeOpenSource
             // 
             this.statBox8.BackColor = System.Drawing.SystemColors.ControlLight;
             this.statBox8.Enabled = false;
-            this.statBox8.Location = new System.Drawing.Point(131, 273);
+            this.statBox8.Location = new System.Drawing.Point(131, 296);
             this.statBox8.Name = "statBox8";
             this.statBox8.ReadOnly = true;
             this.statBox8.Size = new System.Drawing.Size(48, 20);
@@ -498,7 +545,7 @@ namespace NoFarmForMeOpenSource
             // 
             this.statBox7.BackColor = System.Drawing.SystemColors.ControlLight;
             this.statBox7.Enabled = false;
-            this.statBox7.Location = new System.Drawing.Point(131, 247);
+            this.statBox7.Location = new System.Drawing.Point(131, 270);
             this.statBox7.Name = "statBox7";
             this.statBox7.ReadOnly = true;
             this.statBox7.Size = new System.Drawing.Size(48, 20);
@@ -508,7 +555,7 @@ namespace NoFarmForMeOpenSource
             // 
             this.statBox5.BackColor = System.Drawing.SystemColors.ControlLight;
             this.statBox5.Enabled = false;
-            this.statBox5.Location = new System.Drawing.Point(131, 221);
+            this.statBox5.Location = new System.Drawing.Point(131, 244);
             this.statBox5.Name = "statBox5";
             this.statBox5.ReadOnly = true;
             this.statBox5.Size = new System.Drawing.Size(48, 20);
@@ -518,7 +565,7 @@ namespace NoFarmForMeOpenSource
             // 
             this.statBox9.BackColor = System.Drawing.SystemColors.ControlLight;
             this.statBox9.Enabled = false;
-            this.statBox9.Location = new System.Drawing.Point(131, 194);
+            this.statBox9.Location = new System.Drawing.Point(131, 217);
             this.statBox9.Name = "statBox9";
             this.statBox9.ReadOnly = true;
             this.statBox9.Size = new System.Drawing.Size(48, 20);
@@ -528,7 +575,7 @@ namespace NoFarmForMeOpenSource
             // 
             this.statBox6.BackColor = System.Drawing.SystemColors.ControlLight;
             this.statBox6.Enabled = false;
-            this.statBox6.Location = new System.Drawing.Point(131, 167);
+            this.statBox6.Location = new System.Drawing.Point(131, 190);
             this.statBox6.Name = "statBox6";
             this.statBox6.ReadOnly = true;
             this.statBox6.Size = new System.Drawing.Size(48, 20);
@@ -538,7 +585,7 @@ namespace NoFarmForMeOpenSource
             // 
             this.statBox4.BackColor = System.Drawing.SystemColors.ControlLight;
             this.statBox4.Enabled = false;
-            this.statBox4.Location = new System.Drawing.Point(131, 143);
+            this.statBox4.Location = new System.Drawing.Point(131, 166);
             this.statBox4.Name = "statBox4";
             this.statBox4.ReadOnly = true;
             this.statBox4.Size = new System.Drawing.Size(48, 20);
@@ -548,7 +595,7 @@ namespace NoFarmForMeOpenSource
             // 
             this.statBox3.BackColor = System.Drawing.SystemColors.ControlLight;
             this.statBox3.Enabled = false;
-            this.statBox3.Location = new System.Drawing.Point(131, 117);
+            this.statBox3.Location = new System.Drawing.Point(131, 140);
             this.statBox3.Name = "statBox3";
             this.statBox3.ReadOnly = true;
             this.statBox3.Size = new System.Drawing.Size(48, 20);
@@ -591,6 +638,7 @@ namespace NoFarmForMeOpenSource
             this.nameBox.Location = new System.Drawing.Point(51, 12);
             this.nameBox.Name = "nameBox";
             this.nameBox.Size = new System.Drawing.Size(237, 21);
+            this.nameBox.Sorted = true;
             this.nameBox.TabIndex = 208;
             this.nameBox.SelectedIndexChanged += new System.EventHandler(this.NameBox_SelectedIndexChanged);
             // 
@@ -616,7 +664,7 @@ namespace NoFarmForMeOpenSource
             // investedNumericUpDown9
             // 
             this.investedNumericUpDown9.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.investedNumericUpDown9.Location = new System.Drawing.Point(185, 195);
+            this.investedNumericUpDown9.Location = new System.Drawing.Point(185, 218);
             this.investedNumericUpDown9.Maximum = new decimal(new int[] {
             65535,
             0,
@@ -635,7 +683,7 @@ namespace NoFarmForMeOpenSource
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(62, 276);
+            this.label7.Location = new System.Drawing.Point(62, 299);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(45, 13);
             this.label7.TabIndex = 215;
@@ -644,7 +692,7 @@ namespace NoFarmForMeOpenSource
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(62, 302);
+            this.label8.Location = new System.Drawing.Point(62, 325);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(31, 13);
             this.label8.TabIndex = 216;
@@ -653,7 +701,7 @@ namespace NoFarmForMeOpenSource
             // investedNumericUpDown8
             // 
             this.investedNumericUpDown8.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.investedNumericUpDown8.Location = new System.Drawing.Point(185, 273);
+            this.investedNumericUpDown8.Location = new System.Drawing.Point(185, 296);
             this.investedNumericUpDown8.Maximum = new decimal(new int[] {
             65535,
             0,
@@ -672,7 +720,7 @@ namespace NoFarmForMeOpenSource
             // investedNumericUpDown10
             // 
             this.investedNumericUpDown10.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.investedNumericUpDown10.Location = new System.Drawing.Point(185, 300);
+            this.investedNumericUpDown10.Location = new System.Drawing.Point(185, 323);
             this.investedNumericUpDown10.Maximum = new decimal(new int[] {
             65535,
             0,
@@ -691,7 +739,7 @@ namespace NoFarmForMeOpenSource
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(62, 250);
+            this.label6.Location = new System.Drawing.Point(62, 273);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(38, 13);
             this.label6.TabIndex = 214;
@@ -700,7 +748,7 @@ namespace NoFarmForMeOpenSource
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(82, 328);
+            this.label9.Location = new System.Drawing.Point(82, 351);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(72, 13);
             this.label9.TabIndex = 217;
@@ -709,7 +757,7 @@ namespace NoFarmForMeOpenSource
             // investedNumericUpDown7
             // 
             this.investedNumericUpDown7.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.investedNumericUpDown7.Location = new System.Drawing.Point(185, 247);
+            this.investedNumericUpDown7.Location = new System.Drawing.Point(185, 270);
             this.investedNumericUpDown7.Maximum = new decimal(new int[] {
             65535,
             0,
@@ -728,7 +776,7 @@ namespace NoFarmForMeOpenSource
             // investedNumericUpDown6
             // 
             this.investedNumericUpDown6.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.investedNumericUpDown6.Location = new System.Drawing.Point(185, 169);
+            this.investedNumericUpDown6.Location = new System.Drawing.Point(185, 192);
             this.investedNumericUpDown6.Maximum = new decimal(new int[] {
             65535,
             0,
@@ -747,7 +795,7 @@ namespace NoFarmForMeOpenSource
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(62, 223);
+            this.label5.Location = new System.Drawing.Point(62, 246);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(58, 13);
             this.label5.TabIndex = 213;
@@ -756,7 +804,7 @@ namespace NoFarmForMeOpenSource
             // investedNumericUpDown5
             // 
             this.investedNumericUpDown5.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.investedNumericUpDown5.Location = new System.Drawing.Point(185, 221);
+            this.investedNumericUpDown5.Location = new System.Drawing.Point(185, 244);
             this.investedNumericUpDown5.Maximum = new decimal(new int[] {
             65535,
             0,
@@ -775,7 +823,7 @@ namespace NoFarmForMeOpenSource
             // investedNumericUpDown4
             // 
             this.investedNumericUpDown4.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.investedNumericUpDown4.Location = new System.Drawing.Point(185, 143);
+            this.investedNumericUpDown4.Location = new System.Drawing.Point(185, 166);
             this.investedNumericUpDown4.Maximum = new decimal(new int[] {
             65535,
             0,
@@ -794,7 +842,7 @@ namespace NoFarmForMeOpenSource
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(62, 197);
+            this.label4.Location = new System.Drawing.Point(62, 220);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(35, 13);
             this.label4.TabIndex = 212;
@@ -803,7 +851,7 @@ namespace NoFarmForMeOpenSource
             // investedNumericUpDown3
             // 
             this.investedNumericUpDown3.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.investedNumericUpDown3.Location = new System.Drawing.Point(185, 117);
+            this.investedNumericUpDown3.Location = new System.Drawing.Point(185, 140);
             this.investedNumericUpDown3.Maximum = new decimal(new int[] {
             65535,
             0,
@@ -822,7 +870,7 @@ namespace NoFarmForMeOpenSource
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(62, 170);
+            this.label3.Location = new System.Drawing.Point(62, 193);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(34, 13);
             this.label3.TabIndex = 211;
@@ -840,7 +888,7 @@ namespace NoFarmForMeOpenSource
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(62, 146);
+            this.label2.Location = new System.Drawing.Point(62, 169);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(40, 13);
             this.label2.TabIndex = 210;
@@ -849,7 +897,7 @@ namespace NoFarmForMeOpenSource
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(62, 121);
+            this.label1.Location = new System.Drawing.Point(62, 144);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(28, 13);
             this.label1.TabIndex = 209;
@@ -859,7 +907,7 @@ namespace NoFarmForMeOpenSource
             // 
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(157, 101);
+            this.label21.Location = new System.Drawing.Point(157, 124);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(75, 13);
             this.label21.TabIndex = 225;
@@ -982,6 +1030,7 @@ namespace NoFarmForMeOpenSource
             this.miximaxAvatarNameBox.Location = new System.Drawing.Point(107, 299);
             this.miximaxAvatarNameBox.Name = "miximaxAvatarNameBox";
             this.miximaxAvatarNameBox.Size = new System.Drawing.Size(185, 21);
+            this.miximaxAvatarNameBox.Sorted = true;
             this.miximaxAvatarNameBox.TabIndex = 261;
             this.miximaxAvatarNameBox.SelectedIndexChanged += new System.EventHandler(this.MiximaxAvatarNameBox_SelectedIndexChanged);
             // 
@@ -1203,6 +1252,7 @@ namespace NoFarmForMeOpenSource
             this.moveBox3.Location = new System.Drawing.Point(80, 123);
             this.moveBox3.Name = "moveBox3";
             this.moveBox3.Size = new System.Drawing.Size(185, 21);
+            this.moveBox3.Sorted = true;
             this.moveBox3.TabIndex = 238;
             this.moveBox3.SelectedIndexChanged += new System.EventHandler(this.MoveBox3_SelectedIndexChanged);
             // 
@@ -1214,6 +1264,7 @@ namespace NoFarmForMeOpenSource
             this.moveBox6.Location = new System.Drawing.Point(80, 207);
             this.moveBox6.Name = "moveBox6";
             this.moveBox6.Size = new System.Drawing.Size(185, 21);
+            this.moveBox6.Sorted = true;
             this.moveBox6.TabIndex = 215;
             this.moveBox6.SelectedIndexChanged += new System.EventHandler(this.MoveBox6_SelectedIndexChanged);
             // 
@@ -1235,6 +1286,7 @@ namespace NoFarmForMeOpenSource
             this.moveBox5.Location = new System.Drawing.Point(80, 179);
             this.moveBox5.Name = "moveBox5";
             this.moveBox5.Size = new System.Drawing.Size(185, 21);
+            this.moveBox5.Sorted = true;
             this.moveBox5.TabIndex = 217;
             this.moveBox5.SelectedIndexChanged += new System.EventHandler(this.MoveBox5_SelectedIndexChanged);
             // 
@@ -1246,6 +1298,7 @@ namespace NoFarmForMeOpenSource
             this.moveBox4.Location = new System.Drawing.Point(80, 151);
             this.moveBox4.Name = "moveBox4";
             this.moveBox4.Size = new System.Drawing.Size(185, 21);
+            this.moveBox4.Sorted = true;
             this.moveBox4.TabIndex = 216;
             this.moveBox4.SelectedIndexChanged += new System.EventHandler(this.MoveBox4_SelectedIndexChanged);
             // 
@@ -1278,6 +1331,7 @@ namespace NoFarmForMeOpenSource
             this.avatarNameBox.Location = new System.Drawing.Point(80, 27);
             this.avatarNameBox.Name = "avatarNameBox";
             this.avatarNameBox.Size = new System.Drawing.Size(138, 21);
+            this.avatarNameBox.Sorted = true;
             this.avatarNameBox.TabIndex = 221;
             this.avatarNameBox.SelectedIndexChanged += new System.EventHandler(this.AvatarNameBox_SelectedIndexChanged);
             // 
@@ -1451,6 +1505,7 @@ namespace NoFarmForMeOpenSource
             this.moveBox1.Location = new System.Drawing.Point(80, 67);
             this.moveBox1.Name = "moveBox1";
             this.moveBox1.Size = new System.Drawing.Size(185, 21);
+            this.moveBox1.Sorted = true;
             this.moveBox1.TabIndex = 223;
             this.moveBox1.SelectedIndexChanged += new System.EventHandler(this.MoveBox1_SelectedIndexChanged);
             // 
@@ -1462,6 +1517,7 @@ namespace NoFarmForMeOpenSource
             this.moveBox2.Location = new System.Drawing.Point(80, 95);
             this.moveBox2.Name = "moveBox2";
             this.moveBox2.Size = new System.Drawing.Size(185, 21);
+            this.moveBox2.Sorted = true;
             this.moveBox2.TabIndex = 225;
             this.moveBox2.SelectedIndexChanged += new System.EventHandler(this.MoveBox2_SelectedIndexChanged);
             // 
@@ -1899,6 +1955,7 @@ namespace NoFarmForMeOpenSource
             this.braceletBox.Location = new System.Drawing.Point(246, 13);
             this.braceletBox.Name = "braceletBox";
             this.braceletBox.Size = new System.Drawing.Size(127, 21);
+            this.braceletBox.Sorted = true;
             this.braceletBox.TabIndex = 180;
             this.braceletBox.SelectedIndexChanged += new System.EventHandler(this.BraceletBox_SelectedIndexChanged);
             // 
@@ -1920,6 +1977,7 @@ namespace NoFarmForMeOpenSource
             this.pendantBox.Location = new System.Drawing.Point(60, 40);
             this.pendantBox.Name = "pendantBox";
             this.pendantBox.Size = new System.Drawing.Size(127, 21);
+            this.pendantBox.Sorted = true;
             this.pendantBox.TabIndex = 181;
             this.pendantBox.SelectedIndexChanged += new System.EventHandler(this.PendantBox_SelectedIndexChanged);
             // 
@@ -1932,6 +1990,7 @@ namespace NoFarmForMeOpenSource
             this.bootsBox.Location = new System.Drawing.Point(60, 13);
             this.bootsBox.Name = "bootsBox";
             this.bootsBox.Size = new System.Drawing.Size(127, 21);
+            this.bootsBox.Sorted = true;
             this.bootsBox.TabIndex = 179;
             this.bootsBox.SelectedIndexChanged += new System.EventHandler(this.BootsBox_SelectedIndexChanged);
             // 
@@ -1953,6 +2012,7 @@ namespace NoFarmForMeOpenSource
             this.glovesBox.Location = new System.Drawing.Point(246, 40);
             this.glovesBox.Name = "glovesBox";
             this.glovesBox.Size = new System.Drawing.Size(127, 21);
+            this.glovesBox.Sorted = true;
             this.glovesBox.TabIndex = 182;
             this.glovesBox.SelectedIndexChanged += new System.EventHandler(this.GlovesBox_SelectedIndexChanged);
             // 
@@ -2263,7 +2323,7 @@ namespace NoFarmForMeOpenSource
             this.panel1.Controls.Add(this.inventoryButton);
             this.panel1.Location = new System.Drawing.Point(419, 288);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(427, 128);
+            this.panel1.Size = new System.Drawing.Size(427, 139);
             this.panel1.TabIndex = 10;
             // 
             // teamButton
@@ -2271,7 +2331,7 @@ namespace NoFarmForMeOpenSource
             this.teamButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.teamButton.Enabled = false;
-            this.teamButton.Location = new System.Drawing.Point(5, 7);
+            this.teamButton.Location = new System.Drawing.Point(5, 18);
             this.teamButton.Name = "teamButton";
             this.teamButton.Size = new System.Drawing.Size(99, 25);
             this.teamButton.TabIndex = 4;
@@ -2284,7 +2344,7 @@ namespace NoFarmForMeOpenSource
             this.saveInformationButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.saveInformationButton.Enabled = false;
-            this.saveInformationButton.Location = new System.Drawing.Point(110, 7);
+            this.saveInformationButton.Location = new System.Drawing.Point(110, 18);
             this.saveInformationButton.Name = "saveInformationButton";
             this.saveInformationButton.Size = new System.Drawing.Size(99, 25);
             this.saveInformationButton.TabIndex = 3;
@@ -2296,7 +2356,7 @@ namespace NoFarmForMeOpenSource
             this.playRecordsButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.playRecordsButton.Enabled = false;
-            this.playRecordsButton.Location = new System.Drawing.Point(215, 7);
+            this.playRecordsButton.Location = new System.Drawing.Point(215, 18);
             this.playRecordsButton.Name = "playRecordsButton";
             this.playRecordsButton.Size = new System.Drawing.Size(99, 25);
             this.playRecordsButton.TabIndex = 2;
@@ -2308,7 +2368,7 @@ namespace NoFarmForMeOpenSource
             this.streetpassButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.streetpassButton.Enabled = false;
-            this.streetpassButton.Location = new System.Drawing.Point(5, 38);
+            this.streetpassButton.Location = new System.Drawing.Point(5, 49);
             this.streetpassButton.Name = "streetpassButton";
             this.streetpassButton.Size = new System.Drawing.Size(99, 25);
             this.streetpassButton.TabIndex = 1;
@@ -2321,7 +2381,7 @@ namespace NoFarmForMeOpenSource
             this.inventoryButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.inventoryButton.Enabled = false;
-            this.inventoryButton.Location = new System.Drawing.Point(318, 7);
+            this.inventoryButton.Location = new System.Drawing.Point(318, 18);
             this.inventoryButton.Name = "inventoryButton";
             this.inventoryButton.Size = new System.Drawing.Size(99, 25);
             this.inventoryButton.TabIndex = 0;
@@ -2332,17 +2392,63 @@ namespace NoFarmForMeOpenSource
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // scoreNumericUpDown
+            // 
+            this.scoreNumericUpDown.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.scoreNumericUpDown.Location = new System.Drawing.Point(111, 98);
+            this.scoreNumericUpDown.Maximum = new decimal(new int[] {
+            65535,
+            0,
+            0,
+            0});
+            this.scoreNumericUpDown.Name = "scoreNumericUpDown";
+            this.scoreNumericUpDown.Size = new System.Drawing.Size(54, 20);
+            this.scoreNumericUpDown.TabIndex = 244;
+            this.scoreNumericUpDown.ValueChanged += new System.EventHandler(this.ScoreNumericUpDown_ValueChanged);
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(70, 100);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(35, 13);
+            this.label13.TabIndex = 245;
+            this.label13.Text = "Score";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(189, 100);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(65, 13);
+            this.label23.TabIndex = 247;
+            this.label23.Text = "Participation";
+            // 
+            // participationNumericUpDown
+            // 
+            this.participationNumericUpDown.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.participationNumericUpDown.Location = new System.Drawing.Point(260, 98);
+            this.participationNumericUpDown.Maximum = new decimal(new int[] {
+            65535,
+            0,
+            0,
+            0});
+            this.participationNumericUpDown.Name = "participationNumericUpDown";
+            this.participationNumericUpDown.Size = new System.Drawing.Size(54, 20);
+            this.participationNumericUpDown.TabIndex = 246;
+            this.participationNumericUpDown.ValueChanged += new System.EventHandler(this.ParticipationNumericUpDown_ValueChanged);
+            // 
             // Welcome
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(852, 424);
+            this.ClientSize = new System.Drawing.Size(852, 433);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.tabControl2);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.MaximumSize = new System.Drawing.Size(868, 463);
+            this.MaximumSize = new System.Drawing.Size(868, 472);
             this.Name = "Welcome";
             this.Text = "Inazuma Eleven Save Editor";
             this.menuStrip1.ResumeLayout(false);
@@ -2395,6 +2501,8 @@ namespace NoFarmForMeOpenSource
             ((System.ComponentModel.ISupportInitialize)(this.playerPictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.playerPictureBox9)).EndInit();
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.scoreNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.participationNumericUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2573,5 +2681,13 @@ namespace NoFarmForMeOpenSource
         public System.Windows.Forms.Label label11;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.ToolStripMenuItem toolToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem managePlayerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem recruitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dismissToolStripMenuItem;
+        public System.Windows.Forms.Label label23;
+        public System.Windows.Forms.NumericUpDown participationNumericUpDown;
+        public System.Windows.Forms.Label label13;
+        public System.Windows.Forms.NumericUpDown scoreNumericUpDown;
     }
 }

@@ -15,3 +15,4 @@ C:\Users\Mathieu\source\repos\InazumaElevenSaveEditor\InazumaElevenSaveEditor\ob
 C:\Users\Mathieu\source\repos\InazumaElevenSaveEditor\InazumaElevenSaveEditor\obj\Release\InazumaElevenSaveEditor.exe
 C:\Users\Mathieu\source\repos\InazumaElevenSaveEditor\InazumaElevenSaveEditor\obj\Release\InazumaElevenSaveEditor.pdb
 C:\Users\Mathieu\source\repos\InazumaElevenSaveEditor\InazumaElevenSaveEditor\obj\Release\InazumaElevenSaveEditor.TeamWindow.resources
+C:\Users\Mathieu\source\repos\InazumaElevenSaveEditor\InazumaElevenSaveEditor\obj\Release\InazumaElevenSaveEditor.MessageComboBox.resources

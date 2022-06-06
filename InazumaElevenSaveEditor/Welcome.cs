@@ -49,7 +49,7 @@ namespace NoFarmForMeOpenSource
             pendantBox.Items.Clear();
 
             foreach (KeyValuePair<UInt32, Player> entry in game.Players) { nameBox.Items.Add(entry.Value.Name); }
-            // inviteNameBox.Items.AddRange(nameBox.Items.Cast<Object>().ToArray());
+            nameBox.Items.Remove("");
             foreach (KeyValuePair<UInt32, Avatar> entry in game.Avatars) { avatarNameBox.Items.Add(entry.Value.Name); }
             foreach (KeyValuePair<UInt32, Move> entry in game.Moves) { moveBox1.Items.Add(entry.Value.Name); }
             moveBox2.Items.AddRange(moveBox1.Items.Cast<Object>().ToArray());
@@ -77,7 +77,7 @@ namespace NoFarmForMeOpenSource
             pageComboBox.Items.Add("Main Players");
             for (int page = 1; page < maximum ; page++)
             {
-                pageComboBox.Items.Add("Reserves " + (page+1) +  "/" + maximum);
+                pageComboBox.Items.Add("Reserves " + page +  "/" + (maximum-1));
             }
         }
 
@@ -109,6 +109,8 @@ namespace NoFarmForMeOpenSource
             genderBox.Text = player.Gender.ToString();
             levelNumericUpDown.Value = player.Level;
             styleBox.SelectedIndex = player.Style;
+            scoreNumericUpDown.Value = player.Score;
+            participationNumericUpDown.Value = player.Participation;
 
             // Print Player Stat Level 99 and Freedom
             for (int i = 0; i < player.Stat.Count; i++)
@@ -397,7 +399,7 @@ namespace NoFarmForMeOpenSource
             InitializeRessource();
 
             // game.CurrentPlayer = -1;
-            // managePlayerToolStripMenuItem.Enabled = true;
+            managePlayerToolStripMenuItem.Enabled = true;
             // searchSortPlayerToolStripMenuItem.Enabled = true;
             // inventoryButton.Enabled = true;
             // streetpassButton.Enabled = true;
@@ -468,145 +470,257 @@ namespace NoFarmForMeOpenSource
         private void PlayerPictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Left) return;
-            if (pageComboBox.SelectedIndex * 16 + 0 >= game.PlayersInSave.Count) return;
 
             currentPlayer = pageComboBox.SelectedIndex * 16 + 0;
-            PrintPlayer(game.GetPlayer(currentPlayer));
+
+            if (currentPlayer >= game.PlayersInSave.Count)
+            {
+                RecruitToolStripMenuItem_Click(sender, e);
+            }
+            else
+            {
+                PrintPlayer(game.GetPlayer(currentPlayer));
+            }
         }
 
         private void PlayerPictureBox2_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Left) return;
-            if (pageComboBox.SelectedIndex * 16 + 1 >= game.PlayersInSave.Count) return;
 
             currentPlayer = pageComboBox.SelectedIndex * 16 + 1;
-            PrintPlayer(game.GetPlayer(currentPlayer));
+
+            if (currentPlayer >= game.PlayersInSave.Count)
+            {
+                RecruitToolStripMenuItem_Click(sender, e);
+            }
+            else
+            {
+                PrintPlayer(game.GetPlayer(currentPlayer));
+            }
         }
 
         private void PlayerPictureBox3_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Left) return;
-            if (pageComboBox.SelectedIndex * 16 + 2 >= game.PlayersInSave.Count) return;
 
             currentPlayer = pageComboBox.SelectedIndex * 16 + 2;
-            PrintPlayer(game.GetPlayer(currentPlayer));
+
+            if (currentPlayer >= game.PlayersInSave.Count)
+            {
+                RecruitToolStripMenuItem_Click(sender, e);
+            }
+            else
+            {
+                PrintPlayer(game.GetPlayer(currentPlayer));
+            }
         }
 
         private void PlayerPictureBox4_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Left) return;
-            if (pageComboBox.SelectedIndex * 16 + 3 >= game.PlayersInSave.Count) return;
 
             currentPlayer = pageComboBox.SelectedIndex * 16 + 3;
-            PrintPlayer(game.GetPlayer(currentPlayer));
+
+            if (currentPlayer >= game.PlayersInSave.Count)
+            {
+                RecruitToolStripMenuItem_Click(sender, e);
+            }
+            else
+            {
+                PrintPlayer(game.GetPlayer(currentPlayer));
+            }
         }
 
         private void PlayerPictureBox5_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Left) return;
-            if (pageComboBox.SelectedIndex * 16 + 4 >= game.PlayersInSave.Count) return;
 
             currentPlayer = pageComboBox.SelectedIndex * 16 + 4;
-            PrintPlayer(game.GetPlayer(currentPlayer));
+
+            if (currentPlayer >= game.PlayersInSave.Count)
+            {
+                RecruitToolStripMenuItem_Click(sender, e);
+            }
+            else
+            {
+                PrintPlayer(game.GetPlayer(currentPlayer));
+            }
         }
 
         private void PlayerPictureBox6_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Left) return;
-            if (pageComboBox.SelectedIndex * 16 + 5 >= game.PlayersInSave.Count) return;
 
             currentPlayer = pageComboBox.SelectedIndex * 16 + 5;
-            PrintPlayer(game.GetPlayer(currentPlayer));
+
+            if (currentPlayer >= game.PlayersInSave.Count)
+            {
+                RecruitToolStripMenuItem_Click(sender, e);
+            }
+            else
+            {
+                PrintPlayer(game.GetPlayer(currentPlayer));
+            }
         }
 
         private void PlayerPictureBox7_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Left) return;
-            if (pageComboBox.SelectedIndex * 16 + 6 >= game.PlayersInSave.Count) return;
 
             currentPlayer = pageComboBox.SelectedIndex * 16 + 6;
-            PrintPlayer(game.GetPlayer(currentPlayer));
+
+            if (currentPlayer >= game.PlayersInSave.Count)
+            {
+                RecruitToolStripMenuItem_Click(sender, e);
+            }
+            else
+            {
+                PrintPlayer(game.GetPlayer(currentPlayer));
+            }
         }
 
         private void PlayerPictureBox8_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Left) return;
-            if (pageComboBox.SelectedIndex * 16 + 7 >= game.PlayersInSave.Count) return;
 
             currentPlayer = pageComboBox.SelectedIndex * 16 + 7;
-            PrintPlayer(game.GetPlayer(currentPlayer));
+
+            if (currentPlayer >= game.PlayersInSave.Count)
+            {
+                RecruitToolStripMenuItem_Click(sender, e);
+            }
+            else
+            {
+                PrintPlayer(game.GetPlayer(currentPlayer));
+            }
         }
 
         private void PlayerPictureBox9_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Left) return;
-            if (pageComboBox.SelectedIndex * 16 + 8 >= game.PlayersInSave.Count) return;
 
             currentPlayer = pageComboBox.SelectedIndex * 16 + 8;
-            PrintPlayer(game.GetPlayer(currentPlayer));
+
+            if (currentPlayer >= game.PlayersInSave.Count)
+            {
+                RecruitToolStripMenuItem_Click(sender, e);
+            }
+            else
+            {
+                PrintPlayer(game.GetPlayer(currentPlayer));
+            }
         }
 
         private void PlayerPictureBox10_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Left) return;
-            if (pageComboBox.SelectedIndex * 16 + 9 >= game.PlayersInSave.Count) return;
 
             currentPlayer = pageComboBox.SelectedIndex * 16 + 9;
-            PrintPlayer(game.GetPlayer(currentPlayer));
+
+            if (currentPlayer >= game.PlayersInSave.Count)
+            {
+                RecruitToolStripMenuItem_Click(sender, e);
+            }
+            else
+            {
+                PrintPlayer(game.GetPlayer(currentPlayer));
+            }
         }
 
         private void PlayerPictureBox11_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Left) return;
-            if (pageComboBox.SelectedIndex * 16 + 10 >= game.PlayersInSave.Count) return;
 
             currentPlayer = pageComboBox.SelectedIndex * 16 + 10;
-            PrintPlayer(game.GetPlayer(currentPlayer));
+
+            if (currentPlayer >= game.PlayersInSave.Count)
+            {
+                RecruitToolStripMenuItem_Click(sender, e);
+            }
+            else
+            {
+                PrintPlayer(game.GetPlayer(currentPlayer));
+            }
         }
 
         private void PlayerPictureBox12_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Left) return;
-            if (pageComboBox.SelectedIndex * 16 + 11 >= game.PlayersInSave.Count) return;
 
             currentPlayer = pageComboBox.SelectedIndex * 16 + 11;
-            PrintPlayer(game.GetPlayer(currentPlayer));
+
+            if (currentPlayer >= game.PlayersInSave.Count)
+            {
+                RecruitToolStripMenuItem_Click(sender, e);
+            }
+            else
+            {
+                PrintPlayer(game.GetPlayer(currentPlayer));
+            }
         }
 
         private void PlayerPictureBox13_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Left) return;
-            if (pageComboBox.SelectedIndex * 16 + 12 >= game.PlayersInSave.Count) return;
 
             currentPlayer = pageComboBox.SelectedIndex * 16 + 12;
-            PrintPlayer(game.GetPlayer(currentPlayer));
+
+            if (currentPlayer >= game.PlayersInSave.Count)
+            {
+                RecruitToolStripMenuItem_Click(sender, e);
+            }
+            else
+            {
+                PrintPlayer(game.GetPlayer(currentPlayer));
+            }
         }
 
         private void PlayerPictureBox14_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Left) return;
-            if (pageComboBox.SelectedIndex * 16 + 13 >= game.PlayersInSave.Count) return;
 
             currentPlayer = pageComboBox.SelectedIndex * 16 + 13;
-            PrintPlayer(game.GetPlayer(currentPlayer));
+
+            if (currentPlayer >= game.PlayersInSave.Count)
+            {
+                RecruitToolStripMenuItem_Click(sender, e);
+            }
+            else
+            {
+                PrintPlayer(game.GetPlayer(currentPlayer));
+            }
         }
 
         private void PlayerPictureBox15_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Left) return;
-            if (pageComboBox.SelectedIndex * 16 + 14 >= game.PlayersInSave.Count) return;
 
             currentPlayer = pageComboBox.SelectedIndex * 16 + 14;
-            PrintPlayer(game.GetPlayer(currentPlayer));
+
+            if (currentPlayer >= game.PlayersInSave.Count)
+            {
+                RecruitToolStripMenuItem_Click(sender, e);
+            }
+            else
+            {
+                PrintPlayer(game.GetPlayer(currentPlayer));
+            }
         }
 
         private void PlayerPictureBox16_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Left) return;
-            if (pageComboBox.SelectedIndex * 16 + 15 >= game.PlayersInSave.Count) return;
 
             currentPlayer = pageComboBox.SelectedIndex * 16 + 15;
-            PrintPlayer(game.GetPlayer(currentPlayer));
+
+            if (currentPlayer >= game.PlayersInSave.Count)
+            {
+                RecruitToolStripMenuItem_Click(sender, e);
+            }
+            else
+            {
+                PrintPlayer(game.GetPlayer(currentPlayer));
+            }
         }
 
         private void PlayerPictureBox1_MouseMove(object sender, MouseEventArgs e)
@@ -960,6 +1074,8 @@ namespace NoFarmForMeOpenSource
             selectedPlayer.Element = newPlayer.Value.Element;
             selectedPlayer.Position = newPlayer.Value.Position;
             selectedPlayer.Gender = newPlayer.Value.Gender;;
+            selectedPlayer.Participation = 1;
+            selectedPlayer.Score = 1;
 
             // Get New Player Stats
             for (int i = 0; i < selectedPlayer.Stat.Count; i++)
@@ -1303,7 +1419,7 @@ namespace NoFarmForMeOpenSource
 
         private void MoveCheckBox4_CheckedChanged(object sender, EventArgs e)
         {
-            if (!moveCheckBox1.Focused) return;
+            if (!moveCheckBox4.Focused) return;
 
             game.GetPlayer(currentPlayer).Moves[3].Unlock = moveCheckBox4.Checked;
             moveBox4.Enabled = moveCheckBox4.Checked;
@@ -1490,6 +1606,110 @@ namespace NoFarmForMeOpenSource
             }
 
             PrintPlayerFullStat(player);
+        }
+
+        private void RecruitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (game.PlayersInSave.Count < 336)
+            {
+                ComboBox customNameBox = nameBox;
+                // customNameBox.Items.Remove("");
+
+                MessageComboBox inviteWindow = new MessageComboBox("Invite Player", "Select the player you want to invite", "Invite", customNameBox);
+                DialogResult dialogResult = inviteWindow.ShowDialog();
+                if (dialogResult == DialogResult.Yes && inviteWindow.nameBox.SelectedIndex != -1)
+                {
+                    var playerListIndex = game.PlayersInSaveSort.Select(x => Convert.ToInt32(x / 0xFFFFFF)).ToList();
+                    playerListIndex.Sort();
+                    int missingIndex = Enumerable.Range(0, 336).Except(playerListIndex).First();
+
+                    var playerKeyValuePair = game.Players.FirstOrDefault(x => x.Value.Name == inviteWindow.nameBox.Text.ToString());
+                    Player newPlayer = new Player(playerKeyValuePair.Value);
+                    newPlayer.ID = playerKeyValuePair.Key;
+                    newPlayer.Style = 0;
+                    newPlayer.Level = 1;
+                    newPlayer.InvestedPoint = new List<int>(new int[8]);
+                    newPlayer.Avatar = game.Avatars[0x0];
+                    newPlayer.Invoke = false;
+                    newPlayer.Armed = false;
+                    newPlayer.Moves = new List<Move>();
+                    for (int i = 0; i < 4; i++)
+                    {
+                        newPlayer.Moves.Add(game.Moves[playerKeyValuePair.Value.UInt32Moves[i]]);
+                    }
+                    newPlayer.Moves.Add(game.Moves[0x00]);
+                    newPlayer.Moves.Add(game.Moves[0x00]);
+                    newPlayer.Equipments = new List<Equipment>();
+                    newPlayer.Equipments.Add(game.Equipments[0x0]);
+                    newPlayer.Equipments.Add(game.Equipments[0x1]);
+                    newPlayer.Equipments.Add(game.Equipments[0x2]);
+                    newPlayer.Equipments.Add(game.Equipments[0x3]);
+                    UInt32 newIndex = (uint)missingIndex * 0x1000000 + (uint)(missingIndex + 1) * 0x100;
+                    game.PlayersInSaveSort.Add(newIndex);
+                    newPlayer.PositionInFile = 23324 + 260 * game.PlayersInSaveSort.Count;
+                    game.PlayersInSave.Add(newIndex, newPlayer);
+
+                    CreatePage(Convert.ToInt32(Math.Ceiling((double)game.PlayersInSave.Count / 16.0)));
+                    pageComboBox.SelectedIndex = pageComboBox.Items.Count - 1;
+                    currentPlayer = game.PlayersInSave.Count - 1;
+                    PrintPlayer(newPlayer);
+                    MessageBox.Show(inviteWindow.nameBox.Text + " has joined you");
+                }
+            } else
+            {
+                Console.WriteLine("Maximum player reached");
+            }
+        }
+
+        private void DismissToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ComboBox customNameBox = new ComboBox();
+            for (int i = 0; i < game.PlayersInSaveSort.Count; i++)
+            {
+                customNameBox.Items.Add(game.GetPlayer(i).Name);
+            }
+            customNameBox.Sorted = false;
+
+            MessageComboBox inviteWindow = new MessageComboBox("Dismiss Player", "Select the player you want to dismiss", "Dismiss", customNameBox);
+            DialogResult dialogResult = inviteWindow.ShowDialog();
+
+            if (dialogResult == DialogResult.Yes && inviteWindow.nameBox.SelectedIndex != -1)
+            {
+                UInt32 playerIndex = game.PlayersInSaveSort[inviteWindow.nameBox.SelectedIndex];
+
+                // Remove Mixi Max Aura Linked
+                foreach (KeyValuePair<UInt32, Player> player in game.PlayersInSave)
+                {
+                    if (player.Value.MixiMax != null && player.Value.MixiMax.AuraPlayer == game.PlayersInSave[playerIndex])
+                    {
+                        player.Value.MixiMax = null;
+                    }
+                }
+
+                game.PlayersInSaveSort.Remove(playerIndex);
+                game.PlayersInSave.Remove(playerIndex);
+
+                CreatePage(Convert.ToInt32(Math.Ceiling((double)game.PlayersInSave.Count / 16.0)));
+                pageComboBox.SelectedIndex = 0;
+                currentPlayer = -1;
+                tabControl1.Enabled = false;
+
+                MessageBox.Show(inviteWindow.nameBox.Text + " left the team");
+            }
+        }
+
+        private void ScoreNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            if (!scoreNumericUpDown.Focused) return;
+
+            game.GetPlayer(currentPlayer).Score = Convert.ToInt32(scoreNumericUpDown.Value);
+        }
+
+        private void ParticipationNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            if (!participationNumericUpDown.Focused) return;
+
+            game.GetPlayer(currentPlayer).Participation = Convert.ToInt32(participationNumericUpDown.Value);
         }
     }
 }

@@ -47,6 +47,10 @@ namespace InazumaElevenSaveEditor.Logic
 
         public bool IsTrained;
 
+        public int Score;
+
+        public int Participation;
+
         public Player()
         {
 

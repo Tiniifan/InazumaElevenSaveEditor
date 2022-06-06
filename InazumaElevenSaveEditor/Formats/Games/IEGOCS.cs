@@ -233,102 +233,119 @@ namespace InazumaElevenSaveEditor.Formats.Games
                 }
                 else
                 {
-                    // dataWriter.Write(0x00000000);
+                    dataWriter.WriteUInt32(0x00000000);
                 }
             }
 
             // Save Each Player from Save
-            foreach (KeyValuePair<UInt32, Player> player in PlayersInSave)
+            var playerInSaveOrdered = PlayersInSave.OrderBy(x => x.Key).ToDictionary(x => x.Key, x => x.Value);
+            dataWriter.Seek(0x5B1C);
+            for (int playerLoop = 0; playerLoop < 336; playerLoop++)
             {
-                dataWriter.Seek((uint)player.Value.PositionInFile);
-
-                dataWriter.WriteUInt32(player.Key);
-                dataWriter.WriteUInt32(player.Value.ID);
-
-                dataWriter.Skip(8);
-                dataWriter.WriteInt16(player.Value.Freedom);
-                dataWriter.WriteByte(player.Value.Level);
-
-                // Save MixiMax Information
-                dataWriter.Skip(1);
-                if (player.Value.MixiMax != null)
+                if (playerLoop < PlayersInSave.Count)
                 {
-                    UInt32 miximaxPositionID = 0;
+                    var player = PlayersInSave.FirstOrDefault(x => x.Key == PlayersInSaveSort[playerLoop]);
 
-                    if (player.Value.MixiMax.AuraData == true)
-                    {
-                        miximaxPositionID = AuraInSave.FirstOrDefault(x => x.Value == player.Value.MixiMax.AuraPlayer).Key;
-                    } else
-                    {
-                        miximaxPositionID = PlayersInSave.FirstOrDefault(x => x.Value == player.Value.MixiMax.AuraPlayer).Key;
-                    }
+                    dataWriter.WriteUInt32(player.Key);
+                    dataWriter.WriteUInt32(player.Value.ID);
 
-                    dataWriter.WriteUInt32(miximaxPositionID);
+                    dataWriter.Skip(4);
+                    dataWriter.WriteInt16(player.Value.Stat[0]);
+                    dataWriter.WriteInt16(player.Value.Stat[1]);
+                    dataWriter.WriteInt16(player.Value.Freedom);
+                    dataWriter.WriteByte(player.Value.Level);
 
-                    // Moves Obtained
-                    dataWriter.Skip(8);
-                    for (int i = 0; i < 2; i++)
+                    // Save MixiMax Information
+                    dataWriter.Skip(1);
+                    if (player.Value.MixiMax != null)
                     {
-                        if (player.Value.MixiMax.MixiMaxMoveNumber[i] > player.Value.MixiMax.AuraPlayer.Moves.Count)
+                        UInt32 miximaxPositionID = 0;
+
+                        if (player.Value.MixiMax.AuraData == true)
                         {
-                            dataWriter.WriteByte(6);
-                        } else
-                        {
-                            dataWriter.WriteByte(player.Value.MixiMax.MixiMaxMoveNumber[i]);
+                            miximaxPositionID = AuraInSave.FirstOrDefault(x => x.Value == player.Value.MixiMax.AuraPlayer).Key;
                         }
-                    }
-                } 
-                else
-                {
-                    dataWriter.WriteUInt32(0x0);
-                    dataWriter.Skip(10);
-                }
+                        else
+                        {
+                            miximaxPositionID = PlayersInSave.FirstOrDefault(x => x.Value == player.Value.MixiMax.AuraPlayer).Key;
+                        }
 
-                // Determines the Invoker value and saves it
-                int canInvokeArmed = Convert.ToInt32(player.Value.Invoke) * 8 + Convert.ToInt32(player.Value.Armed) * 16;
-                if (player.Value.MixiMax != null && player.Value.MixiMax.AuraData == true) canInvokeArmed += 1;
-                var playerIsAura = PlayersInSave.FirstOrDefault(x => x.Value.MixiMax != null && x.Value.MixiMax.AuraPlayer == player.Value);
-                if (playerIsAura.Key != 0x0) canInvokeArmed += 2;
-                dataWriter.WriteByte(canInvokeArmed);
+                        dataWriter.WriteUInt32(miximaxPositionID);
 
-                dataWriter.WriteByte(player.Value.Style * 16);
-
-                // Save Stat
-                dataWriter.Skip(8);
-                for (int i = 0; i < 8; i++)
-                {
-                    dataWriter.WriteInt16(player.Value.InvestedPoint[i]);
-                }
-
-                // Save Fighting Spirit
-                dataWriter.WriteUInt32(Avatars.FirstOrDefault(x => x.Value == player.Value.Avatar).Key);
-                dataWriter.WriteByte(player.Value.Avatar.Level);
-
-                // Save Equipments
-                dataWriter.Skip(3);
-                for (int i = 0; i < 4; i++)
-                {
-                    var equipmentKeyValue = Equipments.FirstOrDefault(x => x.Value == player.Value.Equipments[i]);
-                    if (equipmentKeyValue.Key < 0x3)
-                    {
-                        dataWriter.WriteUInt32(0x00);
+                        // Moves Obtained
+                        dataWriter.Skip(8);
+                        for (int i = 0; i < 2; i++)
+                        {
+                            if (player.Value.MixiMax.MixiMaxMoveNumber[i] > player.Value.MixiMax.AuraPlayer.Moves.Count)
+                            {
+                                dataWriter.WriteByte(6);
+                            }
+                            else
+                            {
+                                dataWriter.WriteByte(player.Value.MixiMax.MixiMaxMoveNumber[i]);
+                            }
+                        }
                     }
                     else
                     {
-                        dataWriter.WriteUInt32(equipmentKeyValue.Key);
+                        dataWriter.WriteUInt32(0x0);
+                        dataWriter.Skip(10);
                     }
-                }
 
-                // Save Moves
-                dataWriter.Skip(4);
-                for (int i = 0; i < 6; i++)
+                    // Determines the Invoker value and saves it
+                    int canInvokeArmed = Convert.ToInt32(player.Value.Invoke) * 8 + Convert.ToInt32(player.Value.Armed) * 16;
+                    if (player.Value.MixiMax != null && player.Value.MixiMax.AuraData == true) canInvokeArmed += 1;
+                    var playerIsAura = PlayersInSave.FirstOrDefault(x => x.Value.MixiMax != null && x.Value.MixiMax.AuraPlayer == player.Value);
+                    if (playerIsAura.Key != 0x0) canInvokeArmed += 2;
+                    dataWriter.WriteByte(canInvokeArmed);
+
+                    dataWriter.WriteByte(player.Value.Style * 16);
+                    dataWriter.WriteInt16(player.Value.Participation);
+                    dataWriter.WriteInt16(player.Value.Score);
+
+                    // Save Stat
+                    dataWriter.Skip(4);
+                    for (int i = 0; i < 8; i++)
+                    {
+                        dataWriter.WriteInt16(player.Value.InvestedPoint[i]);
+                    }
+
+                    // Save Fighting Spirit
+                    dataWriter.WriteUInt32(Avatars.FirstOrDefault(x => x.Value == player.Value.Avatar).Key);
+                    dataWriter.WriteByte(player.Value.Avatar.Level);
+
+                    // Save Equipments
+                    dataWriter.Skip(3);
+                    for (int i = 0; i < 4; i++)
+                    {
+                        var equipmentKeyValue = Equipments.FirstOrDefault(x => x.Value == player.Value.Equipments[i]);
+                        if (equipmentKeyValue.Key < 0x3)
+                        {
+                            dataWriter.WriteUInt32(0x00);
+                        }
+                        else
+                        {
+                            dataWriter.WriteUInt32(equipmentKeyValue.Key);
+                        }
+                    }
+
+                    // Save Moves
+                    dataWriter.Skip(4);
+                    for (int i = 0; i < 6; i++)
+                    {
+                        var moveKeyValue = Moves.FirstOrDefault(x => x.Value == player.Value.Moves[i]);
+                        dataWriter.WriteUInt32(moveKeyValue.Key);
+                        dataWriter.WriteByte(player.Value.Moves[i].Level);
+                        dataWriter.WriteByte(player.Value.Moves[i].TimeLevel);
+                        dataWriter.WriteByte(Convert.ToInt32(player.Value.Moves[i].Unlock));
+                        dataWriter.Skip(5);
+                    }
+
+                    dataWriter.Skip(100);
+                }
+                else
                 {
-                    var moveKeyValue = Moves.FirstOrDefault(x => x.Value == player.Value.Moves[i]);
-                    dataWriter.WriteUInt32(moveKeyValue.Key);
-                    dataWriter.WriteByte(player.Value.Moves[i].Level);
-                    dataWriter.WriteByte(player.Value.Moves[i].TimeLevel);
-                    dataWriter.WriteByte(Convert.ToInt32(player.Value.Moves[i].Unlock));
-                    dataWriter.Skip(5);
+                    dataWriter.Write(new byte[260]);
                 }
             }
 
@@ -360,7 +377,11 @@ namespace InazumaElevenSaveEditor.Formats.Games
             newPlayer.ID = playerID;
             newPlayer.PositionInFile = File.BaseStream.Position - 8;
 
-            File.Skip(10);
+            File.Skip(4);
+            newPlayer.Stat[0] = File.ReadInt16();
+            newPlayer.Stat[1] = File.ReadInt16();
+
+            File.Skip(2);
             newPlayer.Level = File.ReadByte();
             if (newPlayer.Level > 99)
             {
@@ -380,8 +401,10 @@ namespace InazumaElevenSaveEditor.Formats.Games
             bool armed = (canInvokeArmed & 16) != 0;
 
             newPlayer.Style = (File.ReadByte() & 0xF0) >> 4;
+            newPlayer.Participation = File.ReadUInt16();
+            newPlayer.Score = File.ReadUInt16();
 
-            File.Skip(8);
+            File.Skip(4);
             newPlayer.InvestedPoint = new List<int>();
             for (int i = 0; i < 8; i++)
             {
