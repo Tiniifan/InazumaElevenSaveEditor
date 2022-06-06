@@ -1,6 +1,5 @@
-# Inazuma Eleven Go Chrono Stone Save Explained
+# Inazuma Eleven Go Chrono Stone Important Adress
 
-Important Address
 Offset | Name
 --- | ---
 0x3C | Save Name 
