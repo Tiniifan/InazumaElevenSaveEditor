@@ -23,7 +23,7 @@ namespace InazumaElevenSaveEditor.Logic
 
         public bool UnlockAllData;
 
-        public List<GroupPlayRecords> PlayRecords;
+        public Dictionary<int, List<PlayRecord>> PlayRecords;
 
         public Dictionary<UInt32, Item> Inventory = new Dictionary<UInt32, Item>();
 

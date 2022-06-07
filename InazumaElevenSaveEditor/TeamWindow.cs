@@ -42,7 +42,10 @@ namespace InazumaElevenSaveEditor
             {
                 if (entry.Value.SubCategory == 16)
                 {
-                    formationBox.Items.Add(entry.Value.Name);
+                    if (entry.Value.Name.StartsWith("B-") == false)
+                    {
+                        formationBox.Items.Add(entry.Value.Name);
+                    }
                 }
                 else if (entry.Value.SubCategory == 17)
                 {
@@ -227,6 +230,7 @@ namespace InazumaElevenSaveEditor
                 }
 
                 chart1.Series["player" + i].Label = playerIndexComboBox.Text;
+                chart1.Series["player" + i].Points.Clear();
                 chart1.Series["player" + i].Points.AddXY(Convert.ToDecimal(playerInformation[2]), Convert.ToDecimal(playerInformation[3]));
             }
 
@@ -266,14 +270,14 @@ namespace InazumaElevenSaveEditor
                 this.Size = new Size(596, 356);
             }
         }
-    }
 
-    public static class Extended
-    {
-        public static double SumIf<T>(this IEnumerable<T> source, Func<T, bool> predicate, Func<T, double> valueSelector)
+        private void FormationBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            return source.Where(predicate)
-                         .Sum(valueSelector);
+            if (!formationBox.Focused) return;
+
+            Game.SaveInfo.Teams[teamListBox.SelectedIndex].Formation = Game.SaveInfo.Inventory.FirstOrDefault(x => x.Value.Name == formationBox.Text).Value;
+            FormationTextContent = Properties.Resources.ResourceManager.GetObject(formationBox.Text).ToString().Split('\n').ToList();
+            StrategyComboBox_SelectedIndexChanged(sender, e);
         }
     }
 }

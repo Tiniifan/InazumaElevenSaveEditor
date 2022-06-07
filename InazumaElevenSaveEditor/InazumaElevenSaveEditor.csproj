@@ -54,6 +54,7 @@
     <Compile Include="Common\InazumaElevenGo\Equipments\Equipments.cs" />
     <Compile Include="Common\InazumaElevenGo\Items\Items.cs" />
     <Compile Include="Common\InazumaElevenGo\Moves\Moves.cs" />
+    <Compile Include="Common\InazumaElevenGo\Play Records\PlayRecords.cs" />
     <Compile Include="Common\InazumaElevenGo\Players\Auras.cs" />
     <Compile Include="Common\InazumaElevenGo\Players\Players.cs" />
     <Compile Include="Formats\ContainerFormats.cs" />
@@ -68,12 +69,18 @@
     <Compile Include="Logic\Item.cs" />
     <Compile Include="Logic\MixiMax.cs" />
     <Compile Include="Logic\Player.cs" />
-    <Compile Include="Logic\PlayRecords.cs" />
+    <Compile Include="Logic\PlayRecord.cs" />
     <Compile Include="Logic\Position.cs" />
     <Compile Include="Logic\Save.cs" />
     <Compile Include="Logic\Streetpass.cs" />
     <Compile Include="Logic\Team.cs" />
     <Compile Include="Logic\Move.cs" />
+    <Compile Include="PlayRecordsWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PlayRecordsWindow.Designer.cs">
+      <DependentUpon>PlayRecordsWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -86,6 +93,12 @@
     </Compile>
     <Compile Include="MessageComboBox.Designer.cs">
       <DependentUpon>MessageComboBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SaveInfoWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SaveInfoWindow.Designer.cs">
+      <DependentUpon>SaveInfoWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="TeamWindow.cs">
       <SubType>Form</SubType>
@@ -111,6 +124,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="PlayRecordsWindow.resx">
+      <DependentUpon>PlayRecordsWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
@@ -118,6 +134,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MessageComboBox.resx">
       <DependentUpon>MessageComboBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SaveInfoWindow.resx">
+      <DependentUpon>SaveInfoWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TeamWindow.resx">
       <DependentUpon>TeamWindow.cs</DependentUpon>
@@ -297,5 +316,6 @@
   <ItemGroup>
     <None Include="Common\InazumaElevenGo\Formations\F-Sandstorm.txt" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

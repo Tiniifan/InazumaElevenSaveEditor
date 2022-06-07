@@ -52,6 +52,12 @@ namespace InazumaElevenSaveEditor.Tools
             Write(data, 0, data.Length);
         }
 
+        public void WriteByteArray(byte[] data)
+        {
+            foreach (var num in data)
+                WriteByte(num);
+        }
+
         public void Skip(uint Size)
         {
             BaseStream.Seek(Size, SeekOrigin.Current);

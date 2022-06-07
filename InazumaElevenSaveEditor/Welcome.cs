@@ -398,15 +398,12 @@ namespace NoFarmForMeOpenSource
 
             InitializeRessource();
 
-            // game.CurrentPlayer = -1;
+            currentPlayer = -1;
             managePlayerToolStripMenuItem.Enabled = true;
-            // searchSortPlayerToolStripMenuItem.Enabled = true;
-            // inventoryButton.Enabled = true;
-            // streetpassButton.Enabled = true;
-            // streetpassButton.Visible = true;
-            teamButton.Enabled = true;
-            // saveInformationButton.Enabled = true;
-            // playRecordsButton.Enabled = true;
+            inventoryButton.Enabled = true;
+            // teamButton.Enabled = true;
+            saveInformationButton.Enabled = true;
+            playRecordsButton.Enabled = true;
             saveToolStripMenuItem1.Enabled = true;
             tabControl1.Enabled = false;
 
@@ -1710,6 +1707,18 @@ namespace NoFarmForMeOpenSource
             if (!participationNumericUpDown.Focused) return;
 
             game.GetPlayer(currentPlayer).Participation = Convert.ToInt32(participationNumericUpDown.Value);
+        }
+
+        private void SaveInformationButton_Click(object sender, EventArgs e)
+        {
+            SaveInfoWindow saveInfoWindow = new SaveInfoWindow(game);
+            saveInfoWindow.ShowDialog();
+        }
+
+        private void PlayRecordsButton_Click(object sender, EventArgs e)
+        {
+            PlayRecordsWindow playRecordsWindow = new PlayRecordsWindow(game);
+            playRecordsWindow.ShowDialog();
         }
     }
 }

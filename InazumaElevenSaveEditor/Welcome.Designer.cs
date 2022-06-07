@@ -2350,6 +2350,7 @@ namespace NoFarmForMeOpenSource
             this.saveInformationButton.TabIndex = 3;
             this.saveInformationButton.Text = "Save Information";
             this.saveInformationButton.UseVisualStyleBackColor = true;
+            this.saveInformationButton.Click += new System.EventHandler(this.SaveInformationButton_Click);
             // 
             // playRecordsButton
             // 
@@ -2362,6 +2363,7 @@ namespace NoFarmForMeOpenSource
             this.playRecordsButton.TabIndex = 2;
             this.playRecordsButton.Text = "Play Records";
             this.playRecordsButton.UseVisualStyleBackColor = true;
+            this.playRecordsButton.Click += new System.EventHandler(this.PlayRecordsButton_Click);
             // 
             // streetpassButton
             // 

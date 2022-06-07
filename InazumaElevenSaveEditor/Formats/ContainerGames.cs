@@ -36,6 +36,10 @@ namespace InazumaElevenSaveEditor.Formats
 
         void OpenTactics();
 
+        void OpenSaveInfo();
+
+        void OpenPlayRecords();
+
         void Save(OpenFileDialog initialDirectory);
 
         Player ReadPlayer(Player player);

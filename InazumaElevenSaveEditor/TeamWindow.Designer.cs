@@ -29,39 +29,39 @@ namespace InazumaElevenSaveEditor
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea9 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.LegendItem legendItem17 = new System.Windows.Forms.DataVisualization.Charting.LegendItem();
-            System.Windows.Forms.DataVisualization.Charting.LegendItem legendItem18 = new System.Windows.Forms.DataVisualization.Charting.LegendItem();
-            System.Windows.Forms.DataVisualization.Charting.LegendItem legendItem19 = new System.Windows.Forms.DataVisualization.Charting.LegendItem();
-            System.Windows.Forms.DataVisualization.Charting.LegendItem legendItem20 = new System.Windows.Forms.DataVisualization.Charting.LegendItem();
-            System.Windows.Forms.DataVisualization.Charting.Series series69 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series70 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series71 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series72 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series73 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series74 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series75 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series76 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series77 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series78 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series79 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series80 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series81 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series82 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series83 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series84 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title5 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea10 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.CustomLabel customLabel33 = new System.Windows.Forms.DataVisualization.Charting.CustomLabel();
-            System.Windows.Forms.DataVisualization.Charting.CustomLabel customLabel34 = new System.Windows.Forms.DataVisualization.Charting.CustomLabel();
-            System.Windows.Forms.DataVisualization.Charting.CustomLabel customLabel35 = new System.Windows.Forms.DataVisualization.Charting.CustomLabel();
-            System.Windows.Forms.DataVisualization.Charting.CustomLabel customLabel36 = new System.Windows.Forms.DataVisualization.Charting.CustomLabel();
-            System.Windows.Forms.DataVisualization.Charting.CustomLabel customLabel37 = new System.Windows.Forms.DataVisualization.Charting.CustomLabel();
-            System.Windows.Forms.DataVisualization.Charting.CustomLabel customLabel38 = new System.Windows.Forms.DataVisualization.Charting.CustomLabel();
-            System.Windows.Forms.DataVisualization.Charting.CustomLabel customLabel39 = new System.Windows.Forms.DataVisualization.Charting.CustomLabel();
-            System.Windows.Forms.DataVisualization.Charting.CustomLabel customLabel40 = new System.Windows.Forms.DataVisualization.Charting.CustomLabel();
-            System.Windows.Forms.DataVisualization.Charting.Series series85 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.CustomLabel customLabel9 = new System.Windows.Forms.DataVisualization.Charting.CustomLabel();
+            System.Windows.Forms.DataVisualization.Charting.CustomLabel customLabel10 = new System.Windows.Forms.DataVisualization.Charting.CustomLabel();
+            System.Windows.Forms.DataVisualization.Charting.CustomLabel customLabel11 = new System.Windows.Forms.DataVisualization.Charting.CustomLabel();
+            System.Windows.Forms.DataVisualization.Charting.CustomLabel customLabel12 = new System.Windows.Forms.DataVisualization.Charting.CustomLabel();
+            System.Windows.Forms.DataVisualization.Charting.CustomLabel customLabel13 = new System.Windows.Forms.DataVisualization.Charting.CustomLabel();
+            System.Windows.Forms.DataVisualization.Charting.CustomLabel customLabel14 = new System.Windows.Forms.DataVisualization.Charting.CustomLabel();
+            System.Windows.Forms.DataVisualization.Charting.CustomLabel customLabel15 = new System.Windows.Forms.DataVisualization.Charting.CustomLabel();
+            System.Windows.Forms.DataVisualization.Charting.CustomLabel customLabel16 = new System.Windows.Forms.DataVisualization.Charting.CustomLabel();
+            System.Windows.Forms.DataVisualization.Charting.Series series18 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.LegendItem legendItem5 = new System.Windows.Forms.DataVisualization.Charting.LegendItem();
+            System.Windows.Forms.DataVisualization.Charting.LegendItem legendItem6 = new System.Windows.Forms.DataVisualization.Charting.LegendItem();
+            System.Windows.Forms.DataVisualization.Charting.LegendItem legendItem7 = new System.Windows.Forms.DataVisualization.Charting.LegendItem();
+            System.Windows.Forms.DataVisualization.Charting.LegendItem legendItem8 = new System.Windows.Forms.DataVisualization.Charting.LegendItem();
+            System.Windows.Forms.DataVisualization.Charting.Series series19 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series20 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series21 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series22 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series23 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series24 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series25 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series26 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series27 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series28 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series29 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series30 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series31 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series32 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series33 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series34 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.teamListBox = new System.Windows.Forms.ListBox();
             this.label9 = new System.Windows.Forms.Label();
             this.teamTextBox = new System.Windows.Forms.TextBox();
@@ -76,10 +76,6 @@ namespace InazumaElevenSaveEditor
             this.label12 = new System.Windows.Forms.Label();
             this.kitBox = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.nextButton = new System.Windows.Forms.Button();
-            this.previousButton = new System.Windows.Forms.Button();
-            this.strategyComboBox = new System.Windows.Forms.ComboBox();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.playerNumericUpDown16 = new System.Windows.Forms.NumericUpDown();
@@ -134,8 +130,28 @@ namespace InazumaElevenSaveEditor
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.nextButton = new System.Windows.Forms.Button();
+            this.previousButton = new System.Windows.Forms.Button();
+            this.strategyComboBox = new System.Windows.Forms.ComboBox();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.playerIndexComboBox16 = new System.Windows.Forms.ComboBox();
             this.playerIndexComboBox8 = new System.Windows.Forms.ComboBox();
             this.playerIndexComboBox15 = new System.Windows.Forms.ComboBox();
@@ -152,25 +168,8 @@ namespace InazumaElevenSaveEditor
             this.playerIndexComboBox2 = new System.Windows.Forms.ComboBox();
             this.playerIndexComboBox9 = new System.Windows.Forms.ComboBox();
             this.playerIndexComboBox1 = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.teamNumericUpDown)).BeginInit();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.playerNumericUpDown16)).BeginInit();
@@ -194,8 +193,9 @@ namespace InazumaElevenSaveEditor
             this.tabPage1.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.tabPage4.SuspendLayout();
-            this.tabPage5.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            this.tabPage5.SuspendLayout();
             this.SuspendLayout();
             // 
             // teamListBox
@@ -302,6 +302,7 @@ namespace InazumaElevenSaveEditor
             this.formationBox.Name = "formationBox";
             this.formationBox.Size = new System.Drawing.Size(151, 21);
             this.formationBox.TabIndex = 164;
+            this.formationBox.SelectedIndexChanged += new System.EventHandler(this.FormationBox_SelectedIndexChanged);
             // 
             // label12
             // 
@@ -333,247 +334,6 @@ namespace InazumaElevenSaveEditor
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(620, 390);
             this.panel1.TabIndex = 168;
-            // 
-            // nextButton
-            // 
-            this.nextButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.nextButton.Location = new System.Drawing.Point(345, 284);
-            this.nextButton.Name = "nextButton";
-            this.nextButton.Size = new System.Drawing.Size(82, 21);
-            this.nextButton.TabIndex = 17;
-            this.nextButton.Text = ">";
-            this.nextButton.UseVisualStyleBackColor = true;
-            // 
-            // previousButton
-            // 
-            this.previousButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.previousButton.Location = new System.Drawing.Point(1, 284);
-            this.previousButton.Name = "previousButton";
-            this.previousButton.Size = new System.Drawing.Size(82, 21);
-            this.previousButton.TabIndex = 18;
-            this.previousButton.TabStop = false;
-            this.previousButton.Text = "<";
-            this.previousButton.UseVisualStyleBackColor = true;
-            // 
-            // strategyComboBox
-            // 
-            this.strategyComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.strategyComboBox.FormattingEnabled = true;
-            this.strategyComboBox.Items.AddRange(new object[] {
-            "Start",
-            "Defense",
-            "Attack",
-            "Corner Kick (Defense Left)",
-            "Corner Kick (Defense Right)",
-            "Corner Kick (Attack Left)",
-            "Corner Kick Attack Right)",
-            "Goal Kick (Opponent)",
-            "Goal Kick (Team)",
-            "Preparation Screen"});
-            this.strategyComboBox.Location = new System.Drawing.Point(89, 285);
-            this.strategyComboBox.MinimumSize = new System.Drawing.Size(207, 0);
-            this.strategyComboBox.Name = "strategyComboBox";
-            this.strategyComboBox.Size = new System.Drawing.Size(250, 21);
-            this.strategyComboBox.TabIndex = 19;
-            this.strategyComboBox.SelectedIndexChanged += new System.EventHandler(this.StrategyComboBox_SelectedIndexChanged);
-            // 
-            // chart1
-            // 
-            this.chart1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea9.AxisX.IsLabelAutoFit = false;
-            chartArea9.AxisX.LabelStyle.Enabled = false;
-            chartArea9.AxisX.LabelStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            chartArea9.AxisX.Maximum = 1D;
-            chartArea9.AxisX.Minimum = -1D;
-            chartArea9.AxisY.IsLabelAutoFit = false;
-            chartArea9.AxisY.IsReversed = true;
-            chartArea9.AxisY.LabelStyle.Enabled = false;
-            chartArea9.AxisY.MajorGrid.Enabled = false;
-            chartArea9.AxisY.Maximum = 1D;
-            chartArea9.AxisY.Minimum = -1D;
-            chartArea9.BackColor = System.Drawing.Color.White;
-            chartArea9.BackImageAlignment = System.Windows.Forms.DataVisualization.Charting.ChartImageAlignmentStyle.Center;
-            chartArea9.BackImageWrapMode = System.Windows.Forms.DataVisualization.Charting.ChartImageWrapMode.Scaled;
-            chartArea9.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea9);
-            this.chart1.Enabled = false;
-            legend5.BackColor = System.Drawing.Color.White;
-            legendItem17.ImageStyle = System.Windows.Forms.DataVisualization.Charting.LegendImageStyle.Marker;
-            legendItem17.MarkerColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            legendItem17.MarkerSize = 20;
-            legendItem17.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Square;
-            legendItem17.Name = "Goalkeeper";
-            legendItem18.ImageStyle = System.Windows.Forms.DataVisualization.Charting.LegendImageStyle.Marker;
-            legendItem18.MarkerColor = System.Drawing.Color.Lime;
-            legendItem18.MarkerSize = 20;
-            legendItem18.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Square;
-            legendItem18.Name = "Defender";
-            legendItem19.ImageStyle = System.Windows.Forms.DataVisualization.Charting.LegendImageStyle.Marker;
-            legendItem19.MarkerColor = System.Drawing.Color.Blue;
-            legendItem19.MarkerSize = 20;
-            legendItem19.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Square;
-            legendItem19.Name = "Midfielder";
-            legendItem20.ImageStyle = System.Windows.Forms.DataVisualization.Charting.LegendImageStyle.Marker;
-            legendItem20.MarkerColor = System.Drawing.Color.Red;
-            legendItem20.MarkerSize = 20;
-            legendItem20.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Square;
-            legendItem20.Name = "Forward";
-            legend5.CustomItems.Add(legendItem17);
-            legend5.CustomItems.Add(legendItem18);
-            legend5.CustomItems.Add(legendItem19);
-            legend5.CustomItems.Add(legendItem20);
-            legend5.Enabled = false;
-            legend5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            legend5.IsTextAutoFit = false;
-            legend5.Name = "Legend1";
-            this.chart1.Legends.Add(legend5);
-            this.chart1.Location = new System.Drawing.Point(3, 3);
-            this.chart1.Name = "chart1";
-            series69.ChartArea = "ChartArea1";
-            series69.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series69.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            series69.IsVisibleInLegend = false;
-            series69.Legend = "Legend1";
-            series69.MarkerSize = 0;
-            series69.Name = "player0";
-            series70.ChartArea = "ChartArea1";
-            series70.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series70.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            series70.IsVisibleInLegend = false;
-            series70.Legend = "Legend1";
-            series70.MarkerSize = 0;
-            series70.Name = "player1";
-            series71.ChartArea = "ChartArea1";
-            series71.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series71.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            series71.IsVisibleInLegend = false;
-            series71.Legend = "Legend1";
-            series71.MarkerSize = 0;
-            series71.Name = "player2";
-            series72.ChartArea = "ChartArea1";
-            series72.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series72.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            series72.IsVisibleInLegend = false;
-            series72.Legend = "Legend1";
-            series72.MarkerSize = 0;
-            series72.Name = "player3";
-            series73.ChartArea = "ChartArea1";
-            series73.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series73.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            series73.IsVisibleInLegend = false;
-            series73.Legend = "Legend1";
-            series73.MarkerSize = 0;
-            series73.Name = "player4";
-            series74.ChartArea = "ChartArea1";
-            series74.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series74.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            series74.IsVisibleInLegend = false;
-            series74.Legend = "Legend1";
-            series74.MarkerSize = 0;
-            series74.Name = "player5";
-            series75.ChartArea = "ChartArea1";
-            series75.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series75.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            series75.IsVisibleInLegend = false;
-            series75.Legend = "Legend1";
-            series75.MarkerSize = 0;
-            series75.Name = "player6";
-            series76.ChartArea = "ChartArea1";
-            series76.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series76.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            series76.IsVisibleInLegend = false;
-            series76.Legend = "Legend1";
-            series76.MarkerSize = 0;
-            series76.Name = "player7";
-            series77.ChartArea = "ChartArea1";
-            series77.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series77.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            series77.IsVisibleInLegend = false;
-            series77.Legend = "Legend1";
-            series77.MarkerSize = 0;
-            series77.Name = "player8";
-            series78.ChartArea = "ChartArea1";
-            series78.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series78.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            series78.IsVisibleInLegend = false;
-            series78.Legend = "Legend1";
-            series78.MarkerSize = 0;
-            series78.Name = "player9";
-            series79.ChartArea = "ChartArea1";
-            series79.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series79.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            series79.IsVisibleInLegend = false;
-            series79.Legend = "Legend1";
-            series79.MarkerSize = 0;
-            series79.Name = "player10";
-            series80.ChartArea = "ChartArea1";
-            series80.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series80.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            series80.IsVisibleInLegend = false;
-            series80.Legend = "Legend1";
-            series80.MarkerSize = 0;
-            series80.Name = "player11";
-            series81.ChartArea = "ChartArea1";
-            series81.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series81.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            series81.IsVisibleInLegend = false;
-            series81.Legend = "Legend1";
-            series81.MarkerSize = 0;
-            series81.Name = "player12";
-            series82.ChartArea = "ChartArea1";
-            series82.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series82.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            series82.IsVisibleInLegend = false;
-            series82.Legend = "Legend1";
-            series82.MarkerSize = 0;
-            series82.Name = "player13";
-            series83.ChartArea = "ChartArea1";
-            series83.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series83.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            series83.IsVisibleInLegend = false;
-            series83.Legend = "Legend1";
-            series83.MarkerSize = 0;
-            series83.Name = "player14";
-            series84.ChartArea = "ChartArea1";
-            series84.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series84.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            series84.IsVisibleInLegend = false;
-            series84.Legend = "Legend1";
-            series84.MarkerSize = 0;
-            series84.Name = "player15";
-            this.chart1.Series.Add(series69);
-            this.chart1.Series.Add(series70);
-            this.chart1.Series.Add(series71);
-            this.chart1.Series.Add(series72);
-            this.chart1.Series.Add(series73);
-            this.chart1.Series.Add(series74);
-            this.chart1.Series.Add(series75);
-            this.chart1.Series.Add(series76);
-            this.chart1.Series.Add(series77);
-            this.chart1.Series.Add(series78);
-            this.chart1.Series.Add(series79);
-            this.chart1.Series.Add(series80);
-            this.chart1.Series.Add(series81);
-            this.chart1.Series.Add(series82);
-            this.chart1.Series.Add(series83);
-            this.chart1.Series.Add(series84);
-            this.chart1.Size = new System.Drawing.Size(424, 275);
-            this.chart1.TabIndex = 0;
-            this.chart1.Text = "chart1";
-            title5.Alignment = System.Drawing.ContentAlignment.TopLeft;
-            title5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            title5.Name = "Title1";
-            title5.Position.Auto = false;
-            title5.Position.Height = 4.81714F;
-            title5.Position.Width = 85F;
-            title5.Position.X = 15F;
-            title5.Position.Y = 3F;
-            title5.Text = "Title";
-            title5.Visible = false;
-            this.chart1.Titles.Add(title5);
             // 
             // tabControl1
             // 
@@ -1099,42 +859,42 @@ namespace InazumaElevenSaveEditor
             this.chart2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            customLabel33.Text = "Kick";
-            customLabel34.Text = "Dribble";
-            customLabel35.Text = "Block";
-            customLabel36.Text = "Catch";
-            customLabel37.Text = "Technique";
-            customLabel38.Text = "Speed";
-            customLabel39.Text = "Stamina";
-            customLabel40.Text = "Luck";
-            chartArea10.AxisX.CustomLabels.Add(customLabel33);
-            chartArea10.AxisX.CustomLabels.Add(customLabel34);
-            chartArea10.AxisX.CustomLabels.Add(customLabel35);
-            chartArea10.AxisX.CustomLabels.Add(customLabel36);
-            chartArea10.AxisX.CustomLabels.Add(customLabel37);
-            chartArea10.AxisX.CustomLabels.Add(customLabel38);
-            chartArea10.AxisX.CustomLabels.Add(customLabel39);
-            chartArea10.AxisX.CustomLabels.Add(customLabel40);
-            chartArea10.AxisY.LabelStyle.Enabled = false;
-            chartArea10.AxisY.LineColor = System.Drawing.Color.Transparent;
-            chartArea10.AxisY.LineWidth = 0;
-            chartArea10.AxisY.MajorTickMark.Enabled = false;
-            chartArea10.Name = "ChartArea1";
-            chartArea10.Position.Auto = false;
-            chartArea10.Position.Height = 94F;
-            chartArea10.Position.Width = 76F;
-            chartArea10.Position.X = 24F;
-            chartArea10.Position.Y = 3F;
-            this.chart2.ChartAreas.Add(chartArea10);
+            customLabel9.Text = "Kick";
+            customLabel10.Text = "Dribble";
+            customLabel11.Text = "Block";
+            customLabel12.Text = "Catch";
+            customLabel13.Text = "Technique";
+            customLabel14.Text = "Speed";
+            customLabel15.Text = "Stamina";
+            customLabel16.Text = "Luck";
+            chartArea3.AxisX.CustomLabels.Add(customLabel9);
+            chartArea3.AxisX.CustomLabels.Add(customLabel10);
+            chartArea3.AxisX.CustomLabels.Add(customLabel11);
+            chartArea3.AxisX.CustomLabels.Add(customLabel12);
+            chartArea3.AxisX.CustomLabels.Add(customLabel13);
+            chartArea3.AxisX.CustomLabels.Add(customLabel14);
+            chartArea3.AxisX.CustomLabels.Add(customLabel15);
+            chartArea3.AxisX.CustomLabels.Add(customLabel16);
+            chartArea3.AxisY.LabelStyle.Enabled = false;
+            chartArea3.AxisY.LineColor = System.Drawing.Color.Transparent;
+            chartArea3.AxisY.LineWidth = 0;
+            chartArea3.AxisY.MajorTickMark.Enabled = false;
+            chartArea3.Name = "ChartArea1";
+            chartArea3.Position.Auto = false;
+            chartArea3.Position.Height = 94F;
+            chartArea3.Position.Width = 76F;
+            chartArea3.Position.X = 24F;
+            chartArea3.Position.Y = 3F;
+            this.chart2.ChartAreas.Add(chartArea3);
             this.chart2.Location = new System.Drawing.Point(6, 6);
             this.chart2.Name = "chart2";
-            series85.ChartArea = "ChartArea1";
-            series85.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Radar;
-            series85.Color = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(152)))), ((int)(((byte)(24)))));
-            series85.IsVisibleInLegend = false;
-            series85.Name = "Series1";
-            series85.YValuesPerPoint = 6;
-            this.chart2.Series.Add(series85);
+            series18.ChartArea = "ChartArea1";
+            series18.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Radar;
+            series18.Color = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(152)))), ((int)(((byte)(24)))));
+            series18.IsVisibleInLegend = false;
+            series18.Name = "Series1";
+            series18.YValuesPerPoint = 6;
+            this.chart2.Series.Add(series18);
             this.chart2.Size = new System.Drawing.Size(447, 343);
             this.chart2.TabIndex = 166;
             this.chart2.Text = "chart2";
@@ -1174,6 +934,261 @@ namespace InazumaElevenSaveEditor
             this.tabPage4.TabIndex = 0;
             this.tabPage4.Text = "View";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // panel2
+            // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.Controls.Add(this.chart1);
+            this.panel2.Controls.Add(this.nextButton);
+            this.panel2.Controls.Add(this.previousButton);
+            this.panel2.Controls.Add(this.strategyComboBox);
+            this.panel2.Location = new System.Drawing.Point(6, 6);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(430, 308);
+            this.panel2.TabIndex = 0;
+            // 
+            // chart1
+            // 
+            this.chart1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            chartArea4.AxisX.IsLabelAutoFit = false;
+            chartArea4.AxisX.LabelStyle.Enabled = false;
+            chartArea4.AxisX.LabelStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            chartArea4.AxisX.Maximum = 1D;
+            chartArea4.AxisX.Minimum = -1D;
+            chartArea4.AxisY.IsLabelAutoFit = false;
+            chartArea4.AxisY.IsReversed = true;
+            chartArea4.AxisY.LabelStyle.Enabled = false;
+            chartArea4.AxisY.MajorGrid.Enabled = false;
+            chartArea4.AxisY.Maximum = 1D;
+            chartArea4.AxisY.Minimum = -1D;
+            chartArea4.BackColor = System.Drawing.Color.White;
+            chartArea4.BackImageAlignment = System.Windows.Forms.DataVisualization.Charting.ChartImageAlignmentStyle.Center;
+            chartArea4.BackImageWrapMode = System.Windows.Forms.DataVisualization.Charting.ChartImageWrapMode.Scaled;
+            chartArea4.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea4);
+            this.chart1.Enabled = false;
+            legend2.BackColor = System.Drawing.Color.White;
+            legendItem5.ImageStyle = System.Windows.Forms.DataVisualization.Charting.LegendImageStyle.Marker;
+            legendItem5.MarkerColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            legendItem5.MarkerSize = 20;
+            legendItem5.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Square;
+            legendItem5.Name = "Goalkeeper";
+            legendItem6.ImageStyle = System.Windows.Forms.DataVisualization.Charting.LegendImageStyle.Marker;
+            legendItem6.MarkerColor = System.Drawing.Color.Lime;
+            legendItem6.MarkerSize = 20;
+            legendItem6.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Square;
+            legendItem6.Name = "Defender";
+            legendItem7.ImageStyle = System.Windows.Forms.DataVisualization.Charting.LegendImageStyle.Marker;
+            legendItem7.MarkerColor = System.Drawing.Color.Blue;
+            legendItem7.MarkerSize = 20;
+            legendItem7.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Square;
+            legendItem7.Name = "Midfielder";
+            legendItem8.ImageStyle = System.Windows.Forms.DataVisualization.Charting.LegendImageStyle.Marker;
+            legendItem8.MarkerColor = System.Drawing.Color.Red;
+            legendItem8.MarkerSize = 20;
+            legendItem8.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Square;
+            legendItem8.Name = "Forward";
+            legend2.CustomItems.Add(legendItem5);
+            legend2.CustomItems.Add(legendItem6);
+            legend2.CustomItems.Add(legendItem7);
+            legend2.CustomItems.Add(legendItem8);
+            legend2.Enabled = false;
+            legend2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            legend2.IsTextAutoFit = false;
+            legend2.Name = "Legend1";
+            this.chart1.Legends.Add(legend2);
+            this.chart1.Location = new System.Drawing.Point(3, 3);
+            this.chart1.Name = "chart1";
+            series19.ChartArea = "ChartArea1";
+            series19.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series19.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            series19.IsVisibleInLegend = false;
+            series19.Legend = "Legend1";
+            series19.MarkerSize = 0;
+            series19.Name = "player0";
+            series20.ChartArea = "ChartArea1";
+            series20.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series20.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            series20.IsVisibleInLegend = false;
+            series20.Legend = "Legend1";
+            series20.MarkerSize = 0;
+            series20.Name = "player1";
+            series21.ChartArea = "ChartArea1";
+            series21.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series21.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            series21.IsVisibleInLegend = false;
+            series21.Legend = "Legend1";
+            series21.MarkerSize = 0;
+            series21.Name = "player2";
+            series22.ChartArea = "ChartArea1";
+            series22.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series22.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            series22.IsVisibleInLegend = false;
+            series22.Legend = "Legend1";
+            series22.MarkerSize = 0;
+            series22.Name = "player3";
+            series23.ChartArea = "ChartArea1";
+            series23.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series23.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            series23.IsVisibleInLegend = false;
+            series23.Legend = "Legend1";
+            series23.MarkerSize = 0;
+            series23.Name = "player4";
+            series24.ChartArea = "ChartArea1";
+            series24.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series24.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            series24.IsVisibleInLegend = false;
+            series24.Legend = "Legend1";
+            series24.MarkerSize = 0;
+            series24.Name = "player5";
+            series25.ChartArea = "ChartArea1";
+            series25.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series25.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            series25.IsVisibleInLegend = false;
+            series25.Legend = "Legend1";
+            series25.MarkerSize = 0;
+            series25.Name = "player6";
+            series26.ChartArea = "ChartArea1";
+            series26.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series26.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            series26.IsVisibleInLegend = false;
+            series26.Legend = "Legend1";
+            series26.MarkerSize = 0;
+            series26.Name = "player7";
+            series27.ChartArea = "ChartArea1";
+            series27.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series27.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            series27.IsVisibleInLegend = false;
+            series27.Legend = "Legend1";
+            series27.MarkerSize = 0;
+            series27.Name = "player8";
+            series28.ChartArea = "ChartArea1";
+            series28.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series28.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            series28.IsVisibleInLegend = false;
+            series28.Legend = "Legend1";
+            series28.MarkerSize = 0;
+            series28.Name = "player9";
+            series29.ChartArea = "ChartArea1";
+            series29.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series29.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            series29.IsVisibleInLegend = false;
+            series29.Legend = "Legend1";
+            series29.MarkerSize = 0;
+            series29.Name = "player10";
+            series30.ChartArea = "ChartArea1";
+            series30.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series30.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            series30.IsVisibleInLegend = false;
+            series30.Legend = "Legend1";
+            series30.MarkerSize = 0;
+            series30.Name = "player11";
+            series31.ChartArea = "ChartArea1";
+            series31.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series31.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            series31.IsVisibleInLegend = false;
+            series31.Legend = "Legend1";
+            series31.MarkerSize = 0;
+            series31.Name = "player12";
+            series32.ChartArea = "ChartArea1";
+            series32.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series32.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            series32.IsVisibleInLegend = false;
+            series32.Legend = "Legend1";
+            series32.MarkerSize = 0;
+            series32.Name = "player13";
+            series33.ChartArea = "ChartArea1";
+            series33.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series33.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            series33.IsVisibleInLegend = false;
+            series33.Legend = "Legend1";
+            series33.MarkerSize = 0;
+            series33.Name = "player14";
+            series34.ChartArea = "ChartArea1";
+            series34.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series34.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            series34.IsVisibleInLegend = false;
+            series34.Legend = "Legend1";
+            series34.MarkerSize = 0;
+            series34.Name = "player15";
+            this.chart1.Series.Add(series19);
+            this.chart1.Series.Add(series20);
+            this.chart1.Series.Add(series21);
+            this.chart1.Series.Add(series22);
+            this.chart1.Series.Add(series23);
+            this.chart1.Series.Add(series24);
+            this.chart1.Series.Add(series25);
+            this.chart1.Series.Add(series26);
+            this.chart1.Series.Add(series27);
+            this.chart1.Series.Add(series28);
+            this.chart1.Series.Add(series29);
+            this.chart1.Series.Add(series30);
+            this.chart1.Series.Add(series31);
+            this.chart1.Series.Add(series32);
+            this.chart1.Series.Add(series33);
+            this.chart1.Series.Add(series34);
+            this.chart1.Size = new System.Drawing.Size(424, 275);
+            this.chart1.TabIndex = 0;
+            this.chart1.Text = "chart1";
+            title2.Alignment = System.Drawing.ContentAlignment.TopLeft;
+            title2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title2.Name = "Title1";
+            title2.Position.Auto = false;
+            title2.Position.Height = 4.81714F;
+            title2.Position.Width = 85F;
+            title2.Position.X = 15F;
+            title2.Position.Y = 3F;
+            title2.Text = "Title";
+            title2.Visible = false;
+            this.chart1.Titles.Add(title2);
+            // 
+            // nextButton
+            // 
+            this.nextButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.nextButton.Location = new System.Drawing.Point(345, 284);
+            this.nextButton.Name = "nextButton";
+            this.nextButton.Size = new System.Drawing.Size(82, 21);
+            this.nextButton.TabIndex = 17;
+            this.nextButton.Text = ">";
+            this.nextButton.UseVisualStyleBackColor = true;
+            // 
+            // previousButton
+            // 
+            this.previousButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.previousButton.Location = new System.Drawing.Point(1, 284);
+            this.previousButton.Name = "previousButton";
+            this.previousButton.Size = new System.Drawing.Size(82, 21);
+            this.previousButton.TabIndex = 18;
+            this.previousButton.TabStop = false;
+            this.previousButton.Text = "<";
+            this.previousButton.UseVisualStyleBackColor = true;
+            // 
+            // strategyComboBox
+            // 
+            this.strategyComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.strategyComboBox.FormattingEnabled = true;
+            this.strategyComboBox.Items.AddRange(new object[] {
+            "Start",
+            "Defense",
+            "Attack",
+            "Corner Kick (Defense Left)",
+            "Corner Kick (Defense Right)",
+            "Corner Kick (Attack Left)",
+            "Corner Kick Attack Right)",
+            "Goal Kick (Opponent)",
+            "Goal Kick (Team)",
+            "Preparation Screen"});
+            this.strategyComboBox.Location = new System.Drawing.Point(89, 285);
+            this.strategyComboBox.MinimumSize = new System.Drawing.Size(207, 0);
+            this.strategyComboBox.Name = "strategyComboBox";
+            this.strategyComboBox.Size = new System.Drawing.Size(250, 21);
+            this.strategyComboBox.TabIndex = 19;
+            this.strategyComboBox.SelectedIndexChanged += new System.EventHandler(this.StrategyComboBox_SelectedIndexChanged);
             // 
             // tabPage5
             // 
@@ -1217,19 +1232,149 @@ namespace InazumaElevenSaveEditor
             this.tabPage5.Text = "Players Position";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
-            // panel2
+            // label13
             // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel2.Controls.Add(this.chart1);
-            this.panel2.Controls.Add(this.nextButton);
-            this.panel2.Controls.Add(this.previousButton);
-            this.panel2.Controls.Add(this.strategyComboBox);
-            this.panel2.Location = new System.Drawing.Point(6, 6);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(430, 308);
-            this.panel2.TabIndex = 0;
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(192, 207);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(19, 13);
+            this.label13.TabIndex = 228;
+            this.label13.Text = "16";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(192, 177);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(19, 13);
+            this.label14.TabIndex = 227;
+            this.label14.Text = "15";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(192, 153);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(19, 13);
+            this.label15.TabIndex = 226;
+            this.label15.Text = "14";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(192, 126);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(19, 13);
+            this.label16.TabIndex = 225;
+            this.label16.Text = "13";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(192, 99);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(19, 13);
+            this.label19.TabIndex = 224;
+            this.label19.Text = "12";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(192, 72);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(19, 13);
+            this.label20.TabIndex = 223;
+            this.label20.Text = "11";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(192, 45);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(19, 13);
+            this.label21.TabIndex = 222;
+            this.label21.Text = "10";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(192, 19);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(13, 13);
+            this.label22.TabIndex = 221;
+            this.label22.Text = "9";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(7, 207);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(13, 13);
+            this.label8.TabIndex = 220;
+            this.label8.Text = "8";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(7, 177);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(13, 13);
+            this.label7.TabIndex = 219;
+            this.label7.Text = "7";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(7, 153);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(13, 13);
+            this.label6.TabIndex = 218;
+            this.label6.Text = "6";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(7, 126);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(13, 13);
+            this.label5.TabIndex = 217;
+            this.label5.Text = "5";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(7, 99);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(13, 13);
+            this.label4.TabIndex = 216;
+            this.label4.Text = "4";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(7, 72);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(13, 13);
+            this.label3.TabIndex = 215;
+            this.label3.Text = "3";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(7, 45);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(13, 13);
+            this.label2.TabIndex = 214;
+            this.label2.Text = "2";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(7, 19);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(13, 13);
+            this.label1.TabIndex = 213;
+            this.label1.Text = "1";
             // 
             // playerIndexComboBox16
             // 
@@ -1391,150 +1536,6 @@ namespace InazumaElevenSaveEditor
             this.playerIndexComboBox1.Size = new System.Drawing.Size(151, 21);
             this.playerIndexComboBox1.TabIndex = 197;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(7, 19);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(13, 13);
-            this.label1.TabIndex = 213;
-            this.label1.Text = "1";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(7, 45);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(13, 13);
-            this.label2.TabIndex = 214;
-            this.label2.Text = "2";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(7, 72);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(13, 13);
-            this.label3.TabIndex = 215;
-            this.label3.Text = "3";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(7, 99);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(13, 13);
-            this.label4.TabIndex = 216;
-            this.label4.Text = "4";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(7, 126);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(13, 13);
-            this.label5.TabIndex = 217;
-            this.label5.Text = "5";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(7, 153);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(13, 13);
-            this.label6.TabIndex = 218;
-            this.label6.Text = "6";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(7, 177);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(13, 13);
-            this.label7.TabIndex = 219;
-            this.label7.Text = "7";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(7, 207);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(13, 13);
-            this.label8.TabIndex = 220;
-            this.label8.Text = "8";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(192, 207);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(19, 13);
-            this.label13.TabIndex = 228;
-            this.label13.Text = "16";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(192, 177);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(19, 13);
-            this.label14.TabIndex = 227;
-            this.label14.Text = "15";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(192, 153);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(19, 13);
-            this.label15.TabIndex = 226;
-            this.label15.Text = "14";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(192, 126);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(19, 13);
-            this.label16.TabIndex = 225;
-            this.label16.Text = "13";
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(192, 99);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(19, 13);
-            this.label19.TabIndex = 224;
-            this.label19.Text = "12";
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(192, 72);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(19, 13);
-            this.label20.TabIndex = 223;
-            this.label20.Text = "11";
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(192, 45);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(19, 13);
-            this.label21.TabIndex = 222;
-            this.label21.Text = "10";
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(192, 19);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(13, 13);
-            this.label22.TabIndex = 221;
-            this.label22.Text = "9";
-            // 
             // TeamWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1548,7 +1549,6 @@ namespace InazumaElevenSaveEditor
             this.Load += new System.EventHandler(this.TeamWindow_Load);
             ((System.ComponentModel.ISupportInitialize)(this.teamNumericUpDown)).EndInit();
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
@@ -1574,9 +1574,10 @@ namespace InazumaElevenSaveEditor
             this.tabPage1.ResumeLayout(false);
             this.tabControl2.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
-            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
