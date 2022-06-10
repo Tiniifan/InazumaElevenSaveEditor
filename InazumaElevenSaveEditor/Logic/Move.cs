@@ -37,6 +37,20 @@ namespace InazumaElevenSaveEditor.Logic
 
         }
 
+        public Move(Move _Move)
+        {
+            Name = _Move.Name;
+            Element = _Move.Element;
+            Position = _Move.Position;
+            Power = _Move.Power;
+            TP = _Move.TP;
+            Difficulty = _Move.Difficulty;
+            Damage = _Move.Damage;
+            EvolutionCount = _Move.EvolutionCount;
+            EvolutionSpeed = _Move.EvolutionSpeed;
+            UltimateEvolution = _Move.UltimateEvolution;
+        }
+
         public Move(string _Name, Element _Element, Position _Position, int _Power, int _Tp, int _Difficulty, int _Damage, int _EvolutionCount, EvolutionSpeed _EvolutionSpeed, UltimateEvolution _UltimateEvolution)
         {
             Name = _Name;

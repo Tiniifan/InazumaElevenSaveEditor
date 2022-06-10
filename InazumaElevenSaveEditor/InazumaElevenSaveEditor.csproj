@@ -61,6 +61,12 @@
     <Compile Include="Formats\ContainerGames.cs" />
     <Compile Include="Formats\Games\IEGOCS.cs" />
     <Compile Include="Formats\Saves\IE.cs" />
+    <Compile Include="InventoryWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InventoryWindow.Designer.cs">
+      <DependentUpon>InventoryWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Logic\Avatar.cs" />
     <Compile Include="Logic\BestMatch.cs" />
     <Compile Include="Logic\Element.cs" />
@@ -124,6 +130,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="InventoryWindow.resx">
+      <DependentUpon>InventoryWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PlayRecordsWindow.resx">
       <DependentUpon>PlayRecordsWindow.cs</DependentUpon>
     </EmbeddedResource>

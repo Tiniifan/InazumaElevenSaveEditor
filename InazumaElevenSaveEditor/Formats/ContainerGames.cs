@@ -42,6 +42,8 @@ namespace InazumaElevenSaveEditor.Formats
 
         void Save(OpenFileDialog initialDirectory);
 
+        void UpdateResource();
+
         Player ReadPlayer(Player player);
 
         (int, int, string, bool) Training(Player player, int newStat, int statIndex);

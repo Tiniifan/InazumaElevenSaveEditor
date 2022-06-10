@@ -18,3 +18,4 @@ C:\Users\Mathieu\source\repos\InazumaElevenSaveEditor\InazumaElevenSaveEditor\ob
 C:\Users\Mathieu\source\repos\InazumaElevenSaveEditor\InazumaElevenSaveEditor\obj\Release\InazumaElevenSaveEditor.MessageComboBox.resources
 C:\Users\Mathieu\source\repos\InazumaElevenSaveEditor\InazumaElevenSaveEditor\obj\Release\InazumaElevenSaveEditor.PlayRecordsWindow.resources
 C:\Users\Mathieu\source\repos\InazumaElevenSaveEditor\InazumaElevenSaveEditor\obj\Release\InazumaElevenSaveEditor.SaveInfoWindow.resources
+C:\Users\Mathieu\source\repos\InazumaElevenSaveEditor\InazumaElevenSaveEditor\obj\Release\InazumaElevenSaveEditor.InventoryWindow.resources

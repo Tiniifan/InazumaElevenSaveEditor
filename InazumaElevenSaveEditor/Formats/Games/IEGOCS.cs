@@ -128,6 +128,9 @@ namespace InazumaElevenSaveEditor.Formats.Games
                 {
                     UInt32 itemID = File.Reverse(File.ReadUInt32());
 
+                    Item newItem = Items[itemID];
+                    newItem.Quantity = 1;
+
                     // Fills The Aura List
                     if (Auras.ContainsKey(itemID))
                     {
@@ -141,7 +144,7 @@ namespace InazumaElevenSaveEditor.Formats.Games
                         AuraInSave.Add(itemPositionID, newAura);
                     }
 
-                    SaveInfo.Inventory.Add(itemPositionID, Items[itemID]);
+                    SaveInfo.Inventory.Add(itemPositionID, newItem);
                 }
             }
 
@@ -371,6 +374,41 @@ namespace InazumaElevenSaveEditor.Formats.Games
                 }
             }
 
+            // Inventory
+            // First Item Category - 512 maximum items
+            dataWriter.Seek(0x14F4);
+            var firstItemCategory = SaveInfo.Inventory.Where(x => x.Value.Category == 1).ToDictionary(x => x.Key, x => x.Value);
+            foreach (KeyValuePair<UInt32, Item> item in firstItemCategory)
+            {
+                dataWriter.WriteUInt32(item.Key);
+                var newItem = Items.FirstOrDefault(x => x.Value.Name == item.Value.Name && x.Value.SubCategory == item.Value.SubCategory);
+                dataWriter.WriteUInt32(newItem.Key);
+                dataWriter.WriteByte(item.Value.Quantity);
+                dataWriter.Skip(3);
+            }
+
+            // Second Item Category - 336 maximum items
+            dataWriter.Seek(0x2D00);
+            var secondItemCategory = SaveInfo.Inventory.Where(x => x.Value.Category == 2).ToDictionary(x => x.Key, x => x.Value);
+            foreach (KeyValuePair<UInt32, Item> item in secondItemCategory)
+            {
+                dataWriter.WriteUInt32(item.Key);
+                var newItem = Items.FirstOrDefault(x => x.Value.Name == item.Value.Name && x.Value.SubCategory == item.Value.SubCategory);
+                dataWriter.WriteUInt32(newItem.Key);
+                dataWriter.WriteByte(item.Value.Quantity);
+                dataWriter.Skip(7);
+            }
+
+            // Third Item Category - 800 Maximum Items
+            dataWriter.Seek(0x420C);
+            var thirdItemCategory = SaveInfo.Inventory.Where(x => x.Value.Category == 3).ToDictionary(x => x.Key, x => x.Value);
+            foreach (KeyValuePair<UInt32, Item> item in thirdItemCategory)
+            {
+                dataWriter.WriteUInt32(item.Key);
+                var newItem = Items.FirstOrDefault(x => x.Value.Name == item.Value.Name && x.Value.SubCategory == item.Value.SubCategory);
+                dataWriter.WriteUInt32(newItem.Key);
+            }
+
             // Save Player Order
             dataWriter.Seek(0x1C4E0);
             for (int i = 0; i < 336; i++)
@@ -518,6 +556,38 @@ namespace InazumaElevenSaveEditor.Formats.Games
             dataWriter.Dispose();
         }
 
+        public void UpdateResource()
+        {
+            IDictionary<uint, Equipment> AllEquipments = Common.InazumaElevenGo.Equipments.Cs;
+            Equipments = new Dictionary<UInt32, Equipment>();
+            IDictionary<uint, Player> Auras = Common.InazumaElevenGo.Auras.Cs;
+            AuraInSave = new Dictionary<UInt32, Player>();
+
+            foreach (KeyValuePair<UInt32, Item> item in SaveInfo.Inventory)
+            {
+                if (AllEquipments.Values.Any(x => x.Name == item.Value.Name) == true)
+                {
+                    // Console.WriteLine(item.Key.ToString("X8") + " | " + item.Value.Name);
+                    var equipmentKeyValuePair = AllEquipments.FirstOrDefault(x => x.Value.Name == item.Value.Name);
+                    Equipment newEquipment = equipmentKeyValuePair.Value;
+                    newEquipment.ID = equipmentKeyValuePair.Key;
+                    Equipments.Add(item.Key, newEquipment);
+                }
+                else if (AllEquipments.Values.Any(x => x.Name == item.Value.Name) == true)
+                {
+                    var auraKeyValuePair = Auras.FirstOrDefault(x => x.Value.Name == item.Value.Name);
+                    Player newAura = auraKeyValuePair.Value;
+                    newAura.ID = auraKeyValuePair.Key;
+                    newAura.Moves = new List<Move>();
+                    foreach (UInt32 move in auraKeyValuePair.Value.UInt32Moves)
+                    {
+                        newAura.Moves.Add(Moves[move]);
+                    }
+                    AuraInSave.Add(item.Key, newAura);
+                }
+            }
+        }
+
         private Player LoadPlayer()
         {
             UInt32 playerID = File.Reverse(File.ReadUInt32());
@@ -592,7 +662,7 @@ namespace InazumaElevenSaveEditor.Formats.Games
                 Move newMove = Moves[0x00000000];
                 if (Moves.ContainsKey(moveID))
                 {
-                    newMove = Moves[moveID];
+                    newMove = new Move(Moves[moveID]);
                 }
 
                 newMove.Level = File.ReadByte();

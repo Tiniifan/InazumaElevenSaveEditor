@@ -160,6 +160,7 @@ namespace NoFarmForMeOpenSource
                 moveNumericUpDown.Value = player.Moves[i].Level;
                 moveNumericUpDown.Enabled = player.Moves[i].Unlock;
                 moveCheckBox.Checked = player.Moves[i].Unlock;
+                Console.WriteLine(player.Moves[i].Name + ": " + player.Moves[i].Unlock);
             }
 
             // Print Equipment
@@ -1719,6 +1720,12 @@ namespace NoFarmForMeOpenSource
         {
             PlayRecordsWindow playRecordsWindow = new PlayRecordsWindow(game);
             playRecordsWindow.ShowDialog();
+        }
+
+        private void InventoryButton_Click(object sender, EventArgs e)
+        {
+            InventoryWindow inventoryWindow = new InventoryWindow(game);
+            inventoryWindow.ShowDialog();
         }
     }
 }

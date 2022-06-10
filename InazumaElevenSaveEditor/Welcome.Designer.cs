@@ -45,6 +45,10 @@ namespace NoFarmForMeOpenSource
             this.joinDiscordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label23 = new System.Windows.Forms.Label();
+            this.participationNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.label13 = new System.Windows.Forms.Label();
+            this.scoreNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.styleBox = new System.Windows.Forms.ComboBox();
             this.resetButton = new System.Windows.Forms.Button();
             this.genderBox = new System.Windows.Forms.TextBox();
@@ -204,13 +208,11 @@ namespace NoFarmForMeOpenSource
             this.inventoryButton = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.scoreNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.participationNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.participationNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.scoreNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.investedNumericUpDown9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.investedNumericUpDown8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.investedNumericUpDown10)).BeginInit();
@@ -254,8 +256,6 @@ namespace NoFarmForMeOpenSource
             ((System.ComponentModel.ISupportInitialize)(this.playerPictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.playerPictureBox9)).BeginInit();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.scoreNumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.participationNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -308,7 +308,7 @@ namespace NoFarmForMeOpenSource
             this.dismissToolStripMenuItem});
             this.managePlayerToolStripMenuItem.Enabled = false;
             this.managePlayerToolStripMenuItem.Name = "managePlayerToolStripMenuItem";
-            this.managePlayerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.managePlayerToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.managePlayerToolStripMenuItem.Text = "Manage Player";
             // 
             // recruitToolStripMenuItem
@@ -431,6 +431,52 @@ namespace NoFarmForMeOpenSource
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Informations";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(189, 100);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(65, 13);
+            this.label23.TabIndex = 247;
+            this.label23.Text = "Participation";
+            // 
+            // participationNumericUpDown
+            // 
+            this.participationNumericUpDown.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.participationNumericUpDown.Location = new System.Drawing.Point(260, 98);
+            this.participationNumericUpDown.Maximum = new decimal(new int[] {
+            65535,
+            0,
+            0,
+            0});
+            this.participationNumericUpDown.Name = "participationNumericUpDown";
+            this.participationNumericUpDown.Size = new System.Drawing.Size(54, 20);
+            this.participationNumericUpDown.TabIndex = 246;
+            this.participationNumericUpDown.ValueChanged += new System.EventHandler(this.ParticipationNumericUpDown_ValueChanged);
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(70, 100);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(35, 13);
+            this.label13.TabIndex = 245;
+            this.label13.Text = "Score";
+            // 
+            // scoreNumericUpDown
+            // 
+            this.scoreNumericUpDown.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.scoreNumericUpDown.Location = new System.Drawing.Point(111, 98);
+            this.scoreNumericUpDown.Maximum = new decimal(new int[] {
+            65535,
+            0,
+            0,
+            0});
+            this.scoreNumericUpDown.Name = "scoreNumericUpDown";
+            this.scoreNumericUpDown.Size = new System.Drawing.Size(54, 20);
+            this.scoreNumericUpDown.TabIndex = 244;
+            this.scoreNumericUpDown.ValueChanged += new System.EventHandler(this.ScoreNumericUpDown_ValueChanged);
             // 
             // styleBox
             // 
@@ -942,7 +988,7 @@ namespace NoFarmForMeOpenSource
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(397, 364);
+            this.tabPage2.Size = new System.Drawing.Size(397, 375);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Moveset & Equipment";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -2389,56 +2435,11 @@ namespace NoFarmForMeOpenSource
             this.inventoryButton.TabIndex = 0;
             this.inventoryButton.Text = "Inventory";
             this.inventoryButton.UseVisualStyleBackColor = true;
+            this.inventoryButton.Click += new System.EventHandler(this.InventoryButton_Click);
             // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // scoreNumericUpDown
-            // 
-            this.scoreNumericUpDown.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.scoreNumericUpDown.Location = new System.Drawing.Point(111, 98);
-            this.scoreNumericUpDown.Maximum = new decimal(new int[] {
-            65535,
-            0,
-            0,
-            0});
-            this.scoreNumericUpDown.Name = "scoreNumericUpDown";
-            this.scoreNumericUpDown.Size = new System.Drawing.Size(54, 20);
-            this.scoreNumericUpDown.TabIndex = 244;
-            this.scoreNumericUpDown.ValueChanged += new System.EventHandler(this.ScoreNumericUpDown_ValueChanged);
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(70, 100);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(35, 13);
-            this.label13.TabIndex = 245;
-            this.label13.Text = "Score";
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(189, 100);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(65, 13);
-            this.label23.TabIndex = 247;
-            this.label23.Text = "Participation";
-            // 
-            // participationNumericUpDown
-            // 
-            this.participationNumericUpDown.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.participationNumericUpDown.Location = new System.Drawing.Point(260, 98);
-            this.participationNumericUpDown.Maximum = new decimal(new int[] {
-            65535,
-            0,
-            0,
-            0});
-            this.participationNumericUpDown.Name = "participationNumericUpDown";
-            this.participationNumericUpDown.Size = new System.Drawing.Size(54, 20);
-            this.participationNumericUpDown.TabIndex = 246;
-            this.participationNumericUpDown.ValueChanged += new System.EventHandler(this.ParticipationNumericUpDown_ValueChanged);
             // 
             // Welcome
             // 
@@ -2458,6 +2459,8 @@ namespace NoFarmForMeOpenSource
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.participationNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.scoreNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.investedNumericUpDown9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.investedNumericUpDown8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.investedNumericUpDown10)).EndInit();
@@ -2503,8 +2506,6 @@ namespace NoFarmForMeOpenSource
             ((System.ComponentModel.ISupportInitialize)(this.playerPictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.playerPictureBox9)).EndInit();
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.scoreNumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.participationNumericUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
