@@ -19,13 +19,7 @@ Inazuma Eleven Save Editor is a project to create an application that can read a
 
 **Screenshots**
 
-<h4> 
-    <a href="url"><img src="https://i.imgur.com/op1mGIg.png" height="211" width="390" ></a>
-    <a href="url"><img src="https://i.imgur.com/gknb5iZ.png" height="211" width="390" ></a>
-    <a href="url"><img src="https://i.imgur.com/xDc9tFk.png" height="211" width="390" ></a>
-    <a href="url"><img src="https://i.imgur.com/MyjoGAq.png" height="211" width="390" ></a>
-    <div style="clear: left;"/>
-</h4>
+![alt text](https://i.imgur.com/op1mGIg.png)
 
 Now, it's you turn to create your dream team!
 
