@@ -1,17 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+using System.Linq;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Collections.Generic;
 using InazumaElevenSaveEditor.Logic;
 using InazumaElevenSaveEditor.Tools;
 using InazumaElevenSaveEditor.Formats;
-using InazumaElevenSaveEditor.Common;
-using InazumaElevenSaveEditor.Formats.Saves;
 using System.Text.RegularExpressions;
 using System.Windows.Forms.DataVisualization.Charting;
 
@@ -19,10 +14,11 @@ namespace InazumaElevenSaveEditor
 {
     public partial class TeamWindow : Form
     {
-        public ContainerGames Game = null;
+        public IGame Game = null;
+
         private List<string> FormationTextContent = new List<string>();
 
-        public TeamWindow(ContainerGames _Game)
+        public TeamWindow(IGame _Game)
         {
             InitializeComponent();
             Game = _Game;

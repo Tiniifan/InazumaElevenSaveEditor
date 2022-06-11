@@ -14,11 +14,13 @@ using InazumaElevenSaveEditor.Common.InazumaElevenGo;
 
 namespace InazumaElevenSaveEditor.Formats.Games
 {
-    public class CS : ContainerGames
+    public class CS : IGame
     {
         public DataReader File { get; set; }
 
         public string GameNameCode => "IEGOCS";
+
+        public int MaximumPlayer => 336;
 
         public IDictionary<UInt32, Player> Players { get; set; }
 
@@ -48,6 +50,88 @@ namespace InazumaElevenSaveEditor.Formats.Games
         public CS(DataReader file)
         {
             File = file;
+        }
+
+        public Player GetPlayer(int index)
+        {
+            return PlayersInSave[PlayersInSaveSort[index]];
+        }
+
+        public void ChangePlayer(Player selectedPlayer, KeyValuePair<UInt32, Player> newPlayer)
+        {
+            selectedPlayer.Name = newPlayer.Value.Name;
+            selectedPlayer.ID = newPlayer.Key;
+            selectedPlayer.Freedom = newPlayer.Value.Freedom;
+            selectedPlayer.Element = newPlayer.Value.Element;
+            selectedPlayer.Position = newPlayer.Value.Position;
+            selectedPlayer.Gender = newPlayer.Value.Gender; ;
+            selectedPlayer.Participation = 1;
+            selectedPlayer.Score = 1;
+
+            // Get New Player Stats
+            for (int i = 0; i < selectedPlayer.Stat.Count; i++)
+            {
+                selectedPlayer.Stat[i] = newPlayer.Value.Stat[i];
+            }
+
+            // Get New Player Moves
+            for (int i = 0; i < newPlayer.Value.UInt32Moves.Count; i++)
+            {
+                Move newMove = Moves[newPlayer.Value.UInt32Moves[i]];
+                newMove.Level = 1;
+                newMove.TimeLevel = newMove.EvolutionSpeed.TimeLevel[0];
+                if (selectedPlayer.Level < 99)
+                {
+                    newMove.Unlock = false;
+                }
+                else
+                {
+                    newMove.Unlock = true;
+                }
+                selectedPlayer.Moves[i] = newMove;
+            }
+        }
+
+        public void RecruitPlayer(KeyValuePair<UInt32, Player> playerKeyValuePair)
+        {
+            int getPlayerIndex(UInt32 x)
+            {
+                UInt16 uint16 = Convert.ToUInt16(x / 0x10000);
+                uint16 = (UInt16)((uint16 & 0xFFU) << 8 | (uint16 & 0xFF00U) >> 8);
+                return Convert.ToInt32(uint16);
+            }
+
+            var playerListIndex = PlayersInSaveSort.Select(x => getPlayerIndex(x)).ToList();
+            playerListIndex.Sort();
+            int missingIndex = Enumerable.Range(0, MaximumPlayer).Except(playerListIndex).First();
+
+            Player newPlayer = new Player(playerKeyValuePair.Value);
+            newPlayer.ID = playerKeyValuePair.Key;
+            newPlayer.Style = 0;
+            newPlayer.Level = 1;
+            newPlayer.InvestedPoint = new List<int>(new int[8]);
+            newPlayer.Avatar = Avatars[0x0];
+            newPlayer.Invoke = false;
+            newPlayer.Armed = false;
+
+            newPlayer.Moves = new List<Move>();
+            for (int i = 0; i < 4; i++)
+            {
+                newPlayer.Moves.Add(Moves[playerKeyValuePair.Value.UInt32Moves[i]]);
+            }
+            newPlayer.Moves.Add(Moves[0x00]);
+            newPlayer.Moves.Add(Moves[0x00]);
+
+            newPlayer.Equipments = new List<Equipment>();
+            for (int i = 0; i < 4; i++)
+            {
+                newPlayer.Equipments.Add(Equipments[(uint)i]);
+            }
+
+            UInt32 newIndex = (uint)missingIndex * 0x1000000 + (uint)(missingIndex + 1) * 0x100;
+            PlayersInSaveSort.Add(newIndex);
+            newPlayer.PositionInFile = 23324 + 260 * PlayersInSaveSort.Count;
+            PlayersInSave.Add(newIndex, newPlayer);
         }
 
         public void Open()
@@ -519,7 +603,7 @@ namespace InazumaElevenSaveEditor.Formats.Games
                     dataWriter.Skip(4);
                     for (int i = 0; i < 6; i++)
                     {
-                        var moveKeyValue = Moves.FirstOrDefault(x => x.Value == player.Value.Moves[i]);
+                        var moveKeyValue = Moves.FirstOrDefault(x => x.Value.Name == player.Value.Moves[i].Name);
                         dataWriter.WriteUInt32(moveKeyValue.Key);
                         dataWriter.WriteByte(player.Value.Moves[i].Level);
                         dataWriter.WriteByte(player.Value.Moves[i].TimeLevel);
@@ -585,6 +669,14 @@ namespace InazumaElevenSaveEditor.Formats.Games
                     }
                     AuraInSave.Add(item.Key, newAura);
                 }
+            }
+
+            // Add Empty Equipment
+            for (int i = 0; i < 4; i++)
+            {
+                Equipment emptyEquiment = AllEquipments[(uint)i];
+                emptyEquiment.ID = 0x00000000;
+                Equipments.Add((uint)i, emptyEquiment);
             }
         }
 
@@ -739,21 +831,6 @@ namespace InazumaElevenSaveEditor.Formats.Games
             {
                 return null;
             }
-        }
-
-        public Player GetPlayer(int index)
-        {
-            return PlayersInSave[PlayersInSaveSort[index]];
-        }
-
-        public string ConvertPlayerToString(Player player, bool clipboard)
-        {
-            return "";
-        }
-
-        public Player ReadPlayer(Player player)
-        {
-            return new Player();
         }
 
         public (int, int, string, bool) Training(Player player, int newStat, int statIndex)

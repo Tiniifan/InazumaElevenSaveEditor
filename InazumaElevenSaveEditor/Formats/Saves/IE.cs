@@ -5,7 +5,7 @@ using InazumaElevenSaveEditor.Formats.Games;
 
 namespace InazumaElevenSaveEditor.Formats.Saves
 {
-    public class IE : SaveFormat
+    public class IE : IFormat
     {
         public string Name => "Inazuma Eleven";
 
@@ -19,7 +19,7 @@ namespace InazumaElevenSaveEditor.Formats.Saves
 
         public bool CanBeCompressed => true;
 
-        public ContainerGames Open(DataReader file)
+        public IGame Open(DataReader file)
         {
             file.Seek(4);
             ushort header = file.ReadUInt16();
@@ -44,7 +44,6 @@ namespace InazumaElevenSaveEditor.Formats.Saves
                     throw new FormatException("IEGO Galaxy save support isn't available");
                 default:
                     throw new FormatException("Save Game not supported");
-
             }
         }
     }

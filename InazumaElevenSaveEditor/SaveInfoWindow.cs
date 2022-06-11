@@ -6,9 +6,9 @@ namespace InazumaElevenSaveEditor
 {
     public partial class SaveInfoWindow : Form
     {
-        public ContainerGames Game = null;
+        public IGame Game = null;
 
-        public SaveInfoWindow(ContainerGames _Game)
+        public SaveInfoWindow(IGame _Game)
         {
             InitializeComponent();
             Game = _Game;

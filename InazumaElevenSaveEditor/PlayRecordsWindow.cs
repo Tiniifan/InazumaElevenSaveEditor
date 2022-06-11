@@ -8,9 +8,9 @@ namespace InazumaElevenSaveEditor
 {
     public partial class PlayRecordsWindow : Form
     {
-        public ContainerGames Game = null;
+        public IGame Game = null;
 
-        public PlayRecordsWindow(ContainerGames _Game)
+        public PlayRecordsWindow(IGame _Game)
         {
             InitializeComponent();
             Game = _Game;

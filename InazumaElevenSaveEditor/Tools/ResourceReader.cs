@@ -14,6 +14,7 @@ namespace InazumaElevenSaveEditor.Tools
 
         public ResourceReader()
         {
+
         }
 
         public ResourceReader(string file)
@@ -35,16 +36,6 @@ namespace InazumaElevenSaveEditor.Tools
                 throw new FileNotFoundException("Resource not found");
             }
             return executingAssembly.GetManifestResourceStream(resourcePath);
-        }
-
-        public string GetLine(int line)
-        {
-            return Content.Count >= line ? Content[line] : null;
-        }
-
-        public void AddLine(string content)
-        {
-            Content.Add(content);
         }
     }
 }

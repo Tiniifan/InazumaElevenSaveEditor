@@ -1,28 +1,27 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+using System.IO;
+using System.Linq;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO;
 using System.Windows.Forms;
+using InazumaElevenSaveEditor;
+using System.Collections.Generic;
 using InazumaElevenSaveEditor.Logic;
 using InazumaElevenSaveEditor.Tools;
 using InazumaElevenSaveEditor.Formats;
-using InazumaElevenSaveEditor.Common;
 using InazumaElevenSaveEditor.Formats.Saves;
-using InazumaElevenSaveEditor;
 
 namespace NoFarmForMeOpenSource
 {
     public partial class Welcome : Form
     {
-        public DataReader file = null;
-        public SaveFormat format = null;
-        public ContainerGames game = null;
-        public int currentPlayer = -1;
+        private DataReader FileData = null;
+
+        private IFormat Format = null;
+
+        private IGame Game = null;
+
+        private int SelectedPlayer = -1;
 
         public Welcome()
         {
@@ -31,10 +30,9 @@ namespace NoFarmForMeOpenSource
 
         private void InitializeRessource()
         {
-            this.Text = game.GameNameCode + " Save Editor";
+            this.Text = Game.GameNameCode + " Save Editor";
 
             nameBox.Items.Clear();
-            // inviteNameBox.Items.Clear();
             avatarNameBox.Items.Clear();
             moveBox1.Items.Clear();
             moveBox2.Items.Clear();
@@ -48,17 +46,17 @@ namespace NoFarmForMeOpenSource
             braceletBox.Items.Clear();
             pendantBox.Items.Clear();
 
-            foreach (KeyValuePair<UInt32, Player> entry in game.Players) { nameBox.Items.Add(entry.Value.Name); }
+            foreach (KeyValuePair<UInt32, Player> entry in Game.Players) { nameBox.Items.Add(entry.Value.Name); }
             nameBox.Items.Remove("");
-            foreach (KeyValuePair<UInt32, Avatar> entry in game.Avatars) { avatarNameBox.Items.Add(entry.Value.Name); }
-            foreach (KeyValuePair<UInt32, Move> entry in game.Moves) { moveBox1.Items.Add(entry.Value.Name); }
+            foreach (KeyValuePair<UInt32, Avatar> entry in Game.Avatars) { avatarNameBox.Items.Add(entry.Value.Name); }
+            foreach (KeyValuePair<UInt32, Move> entry in Game.Moves) { moveBox1.Items.Add(entry.Value.Name); }
             moveBox2.Items.AddRange(moveBox1.Items.Cast<Object>().ToArray());
             moveBox3.Items.AddRange(moveBox1.Items.Cast<Object>().ToArray());
             moveBox4.Items.AddRange(moveBox1.Items.Cast<Object>().ToArray());
             moveBox5.Items.AddRange(moveBox1.Items.Cast<Object>().ToArray());
             moveBox6.Items.AddRange(moveBox1.Items.Cast<Object>().ToArray());
             miximaxAvatarNameBox.Items.AddRange(avatarNameBox.Items.Cast<Object>().ToArray());
-            foreach (KeyValuePair<UInt32, Equipment> entry in game.Equipments)
+            foreach (KeyValuePair<UInt32, Equipment> entry in Game.Equipments)
             {
                 if (entry.Value.Type.Name == "Boots")
                     bootsBox.Items.Add(entry.Value.Name);
@@ -88,9 +86,9 @@ namespace NoFarmForMeOpenSource
                 int index = page * 16 + i;
                 PictureBox playerPictureBox = this.Controls.Find("playerPictureBox" + (i + 1), true).First() as PictureBox;
 
-                if (index < game.PlayersInSave.Count)
+                if (index < Game.PlayersInSave.Count)
                 {
-                    playerPictureBox.Image = Draw.DrawString(InazumaElevenSaveEditor.Properties.Resources.PlayerRectangleBox, game.GetPlayer(index).Name, 3, 2);
+                    playerPictureBox.Image = Draw.DrawString(InazumaElevenSaveEditor.Properties.Resources.PlayerRectangleBox, Game.GetPlayer(index).Name, 3, 2);
                 } else
                 {
                     playerPictureBox.Image = InazumaElevenSaveEditor.Properties.Resources.PlayerRectangleBox;
@@ -160,7 +158,6 @@ namespace NoFarmForMeOpenSource
                 moveNumericUpDown.Value = player.Moves[i].Level;
                 moveNumericUpDown.Enabled = player.Moves[i].Unlock;
                 moveCheckBox.Checked = player.Moves[i].Unlock;
-                Console.WriteLine(player.Moves[i].Name + ": " + player.Moves[i].Unlock);
             }
 
             // Print Equipment
@@ -182,8 +179,8 @@ namespace NoFarmForMeOpenSource
                 }
                 if (player.MixiMax.BestMatch != null)
                 {
-                    moveBox7.Items.Add(game.Moves[player.MixiMax.BestMatch.MixiMaxMove].Name);
-                    moveBox8.Items.Add(game.Moves[player.MixiMax.BestMatch.MixiMaxMove].Name);
+                    moveBox7.Items.Add(Game.Moves[player.MixiMax.BestMatch.MixiMaxMove].Name);
+                    moveBox8.Items.Add(Game.Moves[player.MixiMax.BestMatch.MixiMaxMove].Name);
                 }
                 for (int i = 0; i < 2; i++)
                 {
@@ -260,7 +257,7 @@ namespace NoFarmForMeOpenSource
 
         private void TrainPlayer(Player player, NumericUpDown investedNumericUpDownSelected, int startIndex)
         {
-            var trainingInformation = game.Training(player, Convert.ToInt32(investedNumericUpDownSelected.Value), startIndex);
+            var trainingInformation = Game.Training(player, Convert.ToInt32(investedNumericUpDownSelected.Value), startIndex);
 
             NumericUpDown downStatNumericUpDown = this.Controls.Find(trainingInformation.Item3, true).First() as NumericUpDown;
             investedNumericUpDownSelected.Minimum = trainingInformation.Item1;
@@ -271,9 +268,10 @@ namespace NoFarmForMeOpenSource
             for (int i = 0; i < player.Stat.Count; i++)
             {
                 TextBox statBox = this.Controls.Find("statBox" + (i + 1), true).First() as TextBox;
-                statBox.Text = game.PlayersInSave[game.PlayersInSaveSort[currentPlayer]].Stat[i].ToString();
+                statBox.Text = player.Stat[i].ToString();
             }
 
+            // Print Invested Point
             for (int i = 0; i < player.InvestedPoint.Count; i++)
             {
                 NumericUpDown investedNumericUpDown = this.Controls.Find("investedNumericUpDown" + (i + 3), true).First() as NumericUpDown;
@@ -320,7 +318,7 @@ namespace NoFarmForMeOpenSource
         private void MovePictureBox(PictureBox pictureBox, object sender, EventArgs e)
         {
             // Show or Hide current Picture Box
-            if (pageComboBox.SelectedIndex == currentPlayer / 16)
+            if (pageComboBox.SelectedIndex == SelectedPlayer / 16)
             {
                 pictureBox.Visible = false;
             }
@@ -330,7 +328,7 @@ namespace NoFarmForMeOpenSource
             }
 
             // Draw Moved Player Picture Box
-            movedPlayerPictureBox.Image = Draw.DrawString(InazumaElevenSaveEditor.Properties.Resources.MovedPlayerRectangleBox, game.GetPlayer(currentPlayer).Name, 3, 2);
+            movedPlayerPictureBox.Image = Draw.DrawString(InazumaElevenSaveEditor.Properties.Resources.MovedPlayerRectangleBox, Game.GetPlayer(SelectedPlayer).Name, 3, 2);
             movedPlayerPictureBox.Left = tabControl2.PointToClient(Cursor.Position).X;
             movedPlayerPictureBox.Top = tabControl2.PointToClient(Cursor.Position).Y;
             movedPlayerPictureBox.Visible = true;
@@ -362,12 +360,12 @@ namespace NoFarmForMeOpenSource
                 if (!control.Equals(movedPlayerPictureBox) && control is PictureBox && movedPlayerPictureBox.Bounds.IntersectsWith(control.Bounds))
                 {
                     int newIndex = pageComboBox.SelectedIndex * 16 + Convert.ToInt32(control.Name.Replace("playerPictureBox", "")) - 1;
-                    if (newIndex != currentPlayer && newIndex <= game.PlayersInSave.Count)
+                    if (newIndex != SelectedPlayer && newIndex <= Game.PlayersInSave.Count)
                     {
-                        UInt32 playerPositionID = game.PlayersInSaveSort[currentPlayer];
-                        UInt32 newPlayerPositionID = game.PlayersInSaveSort[newIndex];
-                        game.PlayersInSaveSort[currentPlayer] = newPlayerPositionID;
-                        game.PlayersInSaveSort[newIndex] = playerPositionID;
+                        UInt32 playerPositionID = Game.PlayersInSaveSort[SelectedPlayer];
+                        UInt32 newPlayerPositionID = Game.PlayersInSaveSort[newIndex];
+                        Game.PlayersInSaveSort[SelectedPlayer] = newPlayerPositionID;
+                        Game.PlayersInSaveSort[newIndex] = playerPositionID;
                         break;
                     }
                 }
@@ -376,33 +374,33 @@ namespace NoFarmForMeOpenSource
 
         private void LoadFile(string filePath)
         {
-            file = new DataReader(File.ReadAllBytes(filePath));
+            FileData = new DataReader(File.ReadAllBytes(filePath));
 
             switch (Path.GetExtension(filePath))
             {
                 case ".ie":
-                    format = new IE();
+                    Format = new IE();
                     break;
                 case ".ie4":
-                    format = new IE();
+                    Format = new IE();
                     break;
                 default:
                     MessageBox.Show("Format isn't supported");
                     return;
             }
 
-            game = format.Open(file);
-            game.Open();
+            Game = Format.Open(FileData);
+            Game.Open();
 
-            CreatePage(Convert.ToInt32(Math.Ceiling((double)game.PlayersInSave.Count / 16.0)));
+            CreatePage(Convert.ToInt32(Math.Ceiling((double)Game.PlayersInSave.Count / 16.0)));
             pageComboBox.SelectedIndex = 0;
 
             InitializeRessource();
 
-            currentPlayer = -1;
+            SelectedPlayer = -1;
             managePlayerToolStripMenuItem.Enabled = true;
             inventoryButton.Enabled = true;
-            // teamButton.Enabled = true;
+            teamButton.Enabled = true;
             saveInformationButton.Enabled = true;
             playRecordsButton.Enabled = true;
             saveToolStripMenuItem1.Enabled = true;
@@ -424,15 +422,38 @@ namespace NoFarmForMeOpenSource
 
         private void SaveToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            if (game == null) return;
+            if (Game == null) return;
 
-            game.Save(openFileDialog1);
+            Game.Save(openFileDialog1);
         }
 
         private void TeamButton_Click(object sender, EventArgs e)
         {
-            TeamWindow teamWindow = new TeamWindow(game);
+            MessageBox.Show("Be careful, the team editor doesn't have save function.\nYou can just look your teams");
+            TeamWindow teamWindow = new TeamWindow(Game);
             teamWindow.Show();
+        }
+
+        private void SaveInformationButton_Click(object sender, EventArgs e)
+        {
+            SaveInfoWindow saveInfoWindow = new SaveInfoWindow(Game);
+            saveInfoWindow.ShowDialog();
+        }
+
+        private void PlayRecordsButton_Click(object sender, EventArgs e)
+        {
+            PlayRecordsWindow playRecordsWindow = new PlayRecordsWindow(Game);
+            playRecordsWindow.ShowDialog();
+        }
+
+        private void InventoryButton_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Be careful you're trying to acces to untested content.\nEdit your inventory can cause unwanted action.\n\nDo you want to edit your Inventory?", "Inventory Access", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                InventoryWindow inventoryWindow = new InventoryWindow(Game);
+                inventoryWindow.ShowDialog();
+            }
         }
 
         private void PageComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -469,15 +490,15 @@ namespace NoFarmForMeOpenSource
         {
             if (e.Button != MouseButtons.Left) return;
 
-            currentPlayer = pageComboBox.SelectedIndex * 16 + 0;
+            SelectedPlayer = pageComboBox.SelectedIndex * 16 + 0;
 
-            if (currentPlayer >= game.PlayersInSave.Count)
+            if (SelectedPlayer >= Game.PlayersInSave.Count)
             {
                 RecruitToolStripMenuItem_Click(sender, e);
             }
             else
             {
-                PrintPlayer(game.GetPlayer(currentPlayer));
+                PrintPlayer(Game.GetPlayer(SelectedPlayer));
             }
         }
 
@@ -485,15 +506,15 @@ namespace NoFarmForMeOpenSource
         {
             if (e.Button != MouseButtons.Left) return;
 
-            currentPlayer = pageComboBox.SelectedIndex * 16 + 1;
+            SelectedPlayer = pageComboBox.SelectedIndex * 16 + 1;
 
-            if (currentPlayer >= game.PlayersInSave.Count)
+            if (SelectedPlayer >= Game.PlayersInSave.Count)
             {
                 RecruitToolStripMenuItem_Click(sender, e);
             }
             else
             {
-                PrintPlayer(game.GetPlayer(currentPlayer));
+                PrintPlayer(Game.GetPlayer(SelectedPlayer));
             }
         }
 
@@ -501,15 +522,15 @@ namespace NoFarmForMeOpenSource
         {
             if (e.Button != MouseButtons.Left) return;
 
-            currentPlayer = pageComboBox.SelectedIndex * 16 + 2;
+            SelectedPlayer = pageComboBox.SelectedIndex * 16 + 2;
 
-            if (currentPlayer >= game.PlayersInSave.Count)
+            if (SelectedPlayer >= Game.PlayersInSave.Count)
             {
                 RecruitToolStripMenuItem_Click(sender, e);
             }
             else
             {
-                PrintPlayer(game.GetPlayer(currentPlayer));
+                PrintPlayer(Game.GetPlayer(SelectedPlayer));
             }
         }
 
@@ -517,15 +538,15 @@ namespace NoFarmForMeOpenSource
         {
             if (e.Button != MouseButtons.Left) return;
 
-            currentPlayer = pageComboBox.SelectedIndex * 16 + 3;
+            SelectedPlayer = pageComboBox.SelectedIndex * 16 + 3;
 
-            if (currentPlayer >= game.PlayersInSave.Count)
+            if (SelectedPlayer >= Game.PlayersInSave.Count)
             {
                 RecruitToolStripMenuItem_Click(sender, e);
             }
             else
             {
-                PrintPlayer(game.GetPlayer(currentPlayer));
+                PrintPlayer(Game.GetPlayer(SelectedPlayer));
             }
         }
 
@@ -533,15 +554,15 @@ namespace NoFarmForMeOpenSource
         {
             if (e.Button != MouseButtons.Left) return;
 
-            currentPlayer = pageComboBox.SelectedIndex * 16 + 4;
+            SelectedPlayer = pageComboBox.SelectedIndex * 16 + 4;
 
-            if (currentPlayer >= game.PlayersInSave.Count)
+            if (SelectedPlayer >= Game.PlayersInSave.Count)
             {
                 RecruitToolStripMenuItem_Click(sender, e);
             }
             else
             {
-                PrintPlayer(game.GetPlayer(currentPlayer));
+                PrintPlayer(Game.GetPlayer(SelectedPlayer));
             }
         }
 
@@ -549,15 +570,15 @@ namespace NoFarmForMeOpenSource
         {
             if (e.Button != MouseButtons.Left) return;
 
-            currentPlayer = pageComboBox.SelectedIndex * 16 + 5;
+            SelectedPlayer = pageComboBox.SelectedIndex * 16 + 5;
 
-            if (currentPlayer >= game.PlayersInSave.Count)
+            if (SelectedPlayer >= Game.PlayersInSave.Count)
             {
                 RecruitToolStripMenuItem_Click(sender, e);
             }
             else
             {
-                PrintPlayer(game.GetPlayer(currentPlayer));
+                PrintPlayer(Game.GetPlayer(SelectedPlayer));
             }
         }
 
@@ -565,15 +586,15 @@ namespace NoFarmForMeOpenSource
         {
             if (e.Button != MouseButtons.Left) return;
 
-            currentPlayer = pageComboBox.SelectedIndex * 16 + 6;
+            SelectedPlayer = pageComboBox.SelectedIndex * 16 + 6;
 
-            if (currentPlayer >= game.PlayersInSave.Count)
+            if (SelectedPlayer >= Game.PlayersInSave.Count)
             {
                 RecruitToolStripMenuItem_Click(sender, e);
             }
             else
             {
-                PrintPlayer(game.GetPlayer(currentPlayer));
+                PrintPlayer(Game.GetPlayer(SelectedPlayer));
             }
         }
 
@@ -581,15 +602,15 @@ namespace NoFarmForMeOpenSource
         {
             if (e.Button != MouseButtons.Left) return;
 
-            currentPlayer = pageComboBox.SelectedIndex * 16 + 7;
+            SelectedPlayer = pageComboBox.SelectedIndex * 16 + 7;
 
-            if (currentPlayer >= game.PlayersInSave.Count)
+            if (SelectedPlayer >= Game.PlayersInSave.Count)
             {
                 RecruitToolStripMenuItem_Click(sender, e);
             }
             else
             {
-                PrintPlayer(game.GetPlayer(currentPlayer));
+                PrintPlayer(Game.GetPlayer(SelectedPlayer));
             }
         }
 
@@ -597,15 +618,15 @@ namespace NoFarmForMeOpenSource
         {
             if (e.Button != MouseButtons.Left) return;
 
-            currentPlayer = pageComboBox.SelectedIndex * 16 + 8;
+            SelectedPlayer = pageComboBox.SelectedIndex * 16 + 8;
 
-            if (currentPlayer >= game.PlayersInSave.Count)
+            if (SelectedPlayer >= Game.PlayersInSave.Count)
             {
                 RecruitToolStripMenuItem_Click(sender, e);
             }
             else
             {
-                PrintPlayer(game.GetPlayer(currentPlayer));
+                PrintPlayer(Game.GetPlayer(SelectedPlayer));
             }
         }
 
@@ -613,15 +634,15 @@ namespace NoFarmForMeOpenSource
         {
             if (e.Button != MouseButtons.Left) return;
 
-            currentPlayer = pageComboBox.SelectedIndex * 16 + 9;
+            SelectedPlayer = pageComboBox.SelectedIndex * 16 + 9;
 
-            if (currentPlayer >= game.PlayersInSave.Count)
+            if (SelectedPlayer >= Game.PlayersInSave.Count)
             {
                 RecruitToolStripMenuItem_Click(sender, e);
             }
             else
             {
-                PrintPlayer(game.GetPlayer(currentPlayer));
+                PrintPlayer(Game.GetPlayer(SelectedPlayer));
             }
         }
 
@@ -629,15 +650,15 @@ namespace NoFarmForMeOpenSource
         {
             if (e.Button != MouseButtons.Left) return;
 
-            currentPlayer = pageComboBox.SelectedIndex * 16 + 10;
+            SelectedPlayer = pageComboBox.SelectedIndex * 16 + 10;
 
-            if (currentPlayer >= game.PlayersInSave.Count)
+            if (SelectedPlayer >= Game.PlayersInSave.Count)
             {
                 RecruitToolStripMenuItem_Click(sender, e);
             }
             else
             {
-                PrintPlayer(game.GetPlayer(currentPlayer));
+                PrintPlayer(Game.GetPlayer(SelectedPlayer));
             }
         }
 
@@ -645,15 +666,15 @@ namespace NoFarmForMeOpenSource
         {
             if (e.Button != MouseButtons.Left) return;
 
-            currentPlayer = pageComboBox.SelectedIndex * 16 + 11;
+            SelectedPlayer = pageComboBox.SelectedIndex * 16 + 11;
 
-            if (currentPlayer >= game.PlayersInSave.Count)
+            if (SelectedPlayer >= Game.PlayersInSave.Count)
             {
                 RecruitToolStripMenuItem_Click(sender, e);
             }
             else
             {
-                PrintPlayer(game.GetPlayer(currentPlayer));
+                PrintPlayer(Game.GetPlayer(SelectedPlayer));
             }
         }
 
@@ -661,15 +682,15 @@ namespace NoFarmForMeOpenSource
         {
             if (e.Button != MouseButtons.Left) return;
 
-            currentPlayer = pageComboBox.SelectedIndex * 16 + 12;
+            SelectedPlayer = pageComboBox.SelectedIndex * 16 + 12;
 
-            if (currentPlayer >= game.PlayersInSave.Count)
+            if (SelectedPlayer >= Game.PlayersInSave.Count)
             {
                 RecruitToolStripMenuItem_Click(sender, e);
             }
             else
             {
-                PrintPlayer(game.GetPlayer(currentPlayer));
+                PrintPlayer(Game.GetPlayer(SelectedPlayer));
             }
         }
 
@@ -677,15 +698,15 @@ namespace NoFarmForMeOpenSource
         {
             if (e.Button != MouseButtons.Left) return;
 
-            currentPlayer = pageComboBox.SelectedIndex * 16 + 13;
+            SelectedPlayer = pageComboBox.SelectedIndex * 16 + 13;
 
-            if (currentPlayer >= game.PlayersInSave.Count)
+            if (SelectedPlayer >= Game.PlayersInSave.Count)
             {
                 RecruitToolStripMenuItem_Click(sender, e);
             }
             else
             {
-                PrintPlayer(game.GetPlayer(currentPlayer));
+                PrintPlayer(Game.GetPlayer(SelectedPlayer));
             }
         }
 
@@ -693,15 +714,15 @@ namespace NoFarmForMeOpenSource
         {
             if (e.Button != MouseButtons.Left) return;
 
-            currentPlayer = pageComboBox.SelectedIndex * 16 + 14;
+            SelectedPlayer = pageComboBox.SelectedIndex * 16 + 14;
 
-            if (currentPlayer >= game.PlayersInSave.Count)
+            if (SelectedPlayer >= Game.PlayersInSave.Count)
             {
                 RecruitToolStripMenuItem_Click(sender, e);
             }
             else
             {
-                PrintPlayer(game.GetPlayer(currentPlayer));
+                PrintPlayer(Game.GetPlayer(SelectedPlayer));
             }
         }
 
@@ -709,23 +730,23 @@ namespace NoFarmForMeOpenSource
         {
             if (e.Button != MouseButtons.Left) return;
 
-            currentPlayer = pageComboBox.SelectedIndex * 16 + 15;
+            SelectedPlayer = pageComboBox.SelectedIndex * 16 + 15;
 
-            if (currentPlayer >= game.PlayersInSave.Count)
+            if (SelectedPlayer >= Game.PlayersInSave.Count)
             {
                 RecruitToolStripMenuItem_Click(sender, e);
             }
             else
             {
-                PrintPlayer(game.GetPlayer(currentPlayer));
+                PrintPlayer(Game.GetPlayer(SelectedPlayer));
             }
         }
 
         private void PlayerPictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Right) return;
-            if (pageComboBox.SelectedIndex * 16 + 0 >= game.PlayersInSave.Count) return;
-            if (movedPlayerPictureBox.Visible == false) currentPlayer = pageComboBox.SelectedIndex * 16 + 0;
+            if (pageComboBox.SelectedIndex * 16 + 0 >= Game.PlayersInSave.Count) return;
+            if (movedPlayerPictureBox.Visible == false) SelectedPlayer = pageComboBox.SelectedIndex * 16 + 0;
 
             MovePictureBox(playerPictureBox1, sender, e);
         }
@@ -733,8 +754,8 @@ namespace NoFarmForMeOpenSource
         private void PlayerPictureBox2_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Right) return;
-            if (pageComboBox.SelectedIndex * 16 + 1 >= game.PlayersInSave.Count) return;
-            if (movedPlayerPictureBox.Visible == false) currentPlayer = pageComboBox.SelectedIndex * 16 + 1;
+            if (pageComboBox.SelectedIndex * 16 + 1 >= Game.PlayersInSave.Count) return;
+            if (movedPlayerPictureBox.Visible == false) SelectedPlayer = pageComboBox.SelectedIndex * 16 + 1;
 
             MovePictureBox(playerPictureBox2, sender, e);
         }
@@ -742,8 +763,8 @@ namespace NoFarmForMeOpenSource
         private void PlayerPictureBox3_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Right) return;
-            if (pageComboBox.SelectedIndex * 16 + 2 >= game.PlayersInSave.Count) return;
-            if (movedPlayerPictureBox.Visible == false) currentPlayer = pageComboBox.SelectedIndex * 16 + 2;
+            if (pageComboBox.SelectedIndex * 16 + 2 >= Game.PlayersInSave.Count) return;
+            if (movedPlayerPictureBox.Visible == false) SelectedPlayer = pageComboBox.SelectedIndex * 16 + 2;
 
             MovePictureBox(playerPictureBox3, sender, e);
         }
@@ -751,8 +772,8 @@ namespace NoFarmForMeOpenSource
         private void PlayerPictureBox4_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Right) return;
-            if (pageComboBox.SelectedIndex * 16 + 3 >= game.PlayersInSave.Count) return;
-            if (movedPlayerPictureBox.Visible == false) currentPlayer = pageComboBox.SelectedIndex * 16 + 3;
+            if (pageComboBox.SelectedIndex * 16 + 3 >= Game.PlayersInSave.Count) return;
+            if (movedPlayerPictureBox.Visible == false) SelectedPlayer = pageComboBox.SelectedIndex * 16 + 3;
 
             MovePictureBox(playerPictureBox4, sender, e);
         }
@@ -760,8 +781,8 @@ namespace NoFarmForMeOpenSource
         private void PlayerPictureBox5_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Right) return;
-            if (pageComboBox.SelectedIndex * 16 + 4 >= game.PlayersInSave.Count) return;
-            if (movedPlayerPictureBox.Visible == false) currentPlayer = pageComboBox.SelectedIndex * 16 + 4;
+            if (pageComboBox.SelectedIndex * 16 + 4 >= Game.PlayersInSave.Count) return;
+            if (movedPlayerPictureBox.Visible == false) SelectedPlayer = pageComboBox.SelectedIndex * 16 + 4;
 
             MovePictureBox(playerPictureBox5, sender, e);
         }
@@ -769,8 +790,8 @@ namespace NoFarmForMeOpenSource
         private void PlayerPictureBox6_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Right) return;
-            if (pageComboBox.SelectedIndex * 16 + 5 >= game.PlayersInSave.Count) return;
-            if (movedPlayerPictureBox.Visible == false) currentPlayer = pageComboBox.SelectedIndex * 16 + 5;
+            if (pageComboBox.SelectedIndex * 16 + 5 >= Game.PlayersInSave.Count) return;
+            if (movedPlayerPictureBox.Visible == false) SelectedPlayer = pageComboBox.SelectedIndex * 16 + 5;
 
             MovePictureBox(playerPictureBox6, sender, e);
         }
@@ -778,8 +799,8 @@ namespace NoFarmForMeOpenSource
         private void PlayerPictureBox7_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Right) return;
-            if (pageComboBox.SelectedIndex * 16 + 6 >= game.PlayersInSave.Count) return;
-            if (movedPlayerPictureBox.Visible == false) currentPlayer = pageComboBox.SelectedIndex * 16 + 6;
+            if (pageComboBox.SelectedIndex * 16 + 6 >= Game.PlayersInSave.Count) return;
+            if (movedPlayerPictureBox.Visible == false) SelectedPlayer = pageComboBox.SelectedIndex * 16 + 6;
 
             MovePictureBox(playerPictureBox7, sender, e);
         }
@@ -787,8 +808,8 @@ namespace NoFarmForMeOpenSource
         private void PlayerPictureBox8_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Right) return;
-            if (pageComboBox.SelectedIndex * 16 + 7 >= game.PlayersInSave.Count) return;
-            if (movedPlayerPictureBox.Visible == false) currentPlayer = pageComboBox.SelectedIndex * 16 + 7;
+            if (pageComboBox.SelectedIndex * 16 + 7 >= Game.PlayersInSave.Count) return;
+            if (movedPlayerPictureBox.Visible == false) SelectedPlayer = pageComboBox.SelectedIndex * 16 + 7;
 
             MovePictureBox(playerPictureBox8, sender, e);
         }
@@ -796,8 +817,8 @@ namespace NoFarmForMeOpenSource
         private void PlayerPictureBox9_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Right) return;
-            if (pageComboBox.SelectedIndex * 16 + 8 >= game.PlayersInSave.Count) return;
-            if (movedPlayerPictureBox.Visible == false) currentPlayer = pageComboBox.SelectedIndex * 16 + 8;
+            if (pageComboBox.SelectedIndex * 16 + 8 >= Game.PlayersInSave.Count) return;
+            if (movedPlayerPictureBox.Visible == false) SelectedPlayer = pageComboBox.SelectedIndex * 16 + 8;
 
             MovePictureBox(playerPictureBox9, sender, e);
         }
@@ -805,8 +826,8 @@ namespace NoFarmForMeOpenSource
         private void PlayerPictureBox10_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Right) return;
-            if (pageComboBox.SelectedIndex * 16 + 9 >= game.PlayersInSave.Count) return;
-            if (movedPlayerPictureBox.Visible == false) currentPlayer = pageComboBox.SelectedIndex * 16 + 9;
+            if (pageComboBox.SelectedIndex * 16 + 9 >= Game.PlayersInSave.Count) return;
+            if (movedPlayerPictureBox.Visible == false) SelectedPlayer = pageComboBox.SelectedIndex * 16 + 9;
 
             MovePictureBox(playerPictureBox10, sender, e);
         }
@@ -814,8 +835,8 @@ namespace NoFarmForMeOpenSource
         private void PlayerPictureBox11_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Right) return;
-            if (pageComboBox.SelectedIndex * 16 + 10 >= game.PlayersInSave.Count) return;
-            if (movedPlayerPictureBox.Visible == false) currentPlayer = pageComboBox.SelectedIndex * 16 + 10;
+            if (pageComboBox.SelectedIndex * 16 + 10 >= Game.PlayersInSave.Count) return;
+            if (movedPlayerPictureBox.Visible == false) SelectedPlayer = pageComboBox.SelectedIndex * 16 + 10;
 
             MovePictureBox(playerPictureBox11, sender, e);
         }
@@ -823,8 +844,8 @@ namespace NoFarmForMeOpenSource
         private void PlayerPictureBox12_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Right) return;
-            if (pageComboBox.SelectedIndex * 16 + 11 >= game.PlayersInSave.Count) return;
-            if (movedPlayerPictureBox.Visible == false) currentPlayer = pageComboBox.SelectedIndex * 16 + 11;
+            if (pageComboBox.SelectedIndex * 16 + 11 >= Game.PlayersInSave.Count) return;
+            if (movedPlayerPictureBox.Visible == false) SelectedPlayer = pageComboBox.SelectedIndex * 16 + 11;
 
             MovePictureBox(playerPictureBox12, sender, e);
         }
@@ -832,8 +853,8 @@ namespace NoFarmForMeOpenSource
         private void PlayerPictureBox13_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Right) return;
-            if (pageComboBox.SelectedIndex * 16 + 12 >= game.PlayersInSave.Count) return;
-            if (movedPlayerPictureBox.Visible == false) currentPlayer = pageComboBox.SelectedIndex * 16 + 12;
+            if (pageComboBox.SelectedIndex * 16 + 12 >= Game.PlayersInSave.Count) return;
+            if (movedPlayerPictureBox.Visible == false) SelectedPlayer = pageComboBox.SelectedIndex * 16 + 12;
 
             MovePictureBox(playerPictureBox13, sender, e);
         }
@@ -841,8 +862,8 @@ namespace NoFarmForMeOpenSource
         private void PlayerPictureBox14_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Right) return;
-            if (pageComboBox.SelectedIndex * 16 + 13 >= game.PlayersInSave.Count) return;
-            if (movedPlayerPictureBox.Visible == false) currentPlayer = pageComboBox.SelectedIndex * 16 + 13;
+            if (pageComboBox.SelectedIndex * 16 + 13 >= Game.PlayersInSave.Count) return;
+            if (movedPlayerPictureBox.Visible == false) SelectedPlayer = pageComboBox.SelectedIndex * 16 + 13;
 
             MovePictureBox(playerPictureBox14, sender, e);
         }
@@ -850,8 +871,8 @@ namespace NoFarmForMeOpenSource
         private void PlayerPictureBox15_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Right) return;
-            if (pageComboBox.SelectedIndex * 16 + 14 >= game.PlayersInSave.Count) return;
-            if (movedPlayerPictureBox.Visible == false) currentPlayer = pageComboBox.SelectedIndex * 16 + 14;
+            if (pageComboBox.SelectedIndex * 16 + 14 >= Game.PlayersInSave.Count) return;
+            if (movedPlayerPictureBox.Visible == false) SelectedPlayer = pageComboBox.SelectedIndex * 16 + 14;
 
             MovePictureBox(playerPictureBox15, sender, e);
         }
@@ -859,8 +880,8 @@ namespace NoFarmForMeOpenSource
         private void PlayerPictureBox16_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Right) return;
-            if (pageComboBox.SelectedIndex * 16 + 15 >= game.PlayersInSave.Count) return;
-            if (movedPlayerPictureBox.Visible == false) currentPlayer = pageComboBox.SelectedIndex * 16 + 1;
+            if (pageComboBox.SelectedIndex * 16 + 15 >= Game.PlayersInSave.Count) return;
+            if (movedPlayerPictureBox.Visible == false) SelectedPlayer = pageComboBox.SelectedIndex * 16 + 1;
 
             MovePictureBox(playerPictureBox16, sender, e);
         }
@@ -871,7 +892,7 @@ namespace NoFarmForMeOpenSource
 
             SwitchPlayer();
 
-            currentPlayer = -1;
+            SelectedPlayer = -1;
             tabControl1.Enabled = false;
             playerPictureBox1.Visible = true;
             movedPlayerPictureBox.Visible = false;
@@ -883,7 +904,7 @@ namespace NoFarmForMeOpenSource
             if (e.Button != MouseButtons.Right) return;
 
             SwitchPlayer();
-            currentPlayer = -1;
+            SelectedPlayer = -1;
             tabControl1.Enabled = false;
             playerPictureBox2.Visible = true;
             movedPlayerPictureBox.Visible = false;
@@ -895,7 +916,7 @@ namespace NoFarmForMeOpenSource
             if (e.Button != MouseButtons.Right) return;
 
             SwitchPlayer();
-            currentPlayer = -1;
+            SelectedPlayer = -1;
             tabControl1.Enabled = false;
             playerPictureBox3.Visible = true;
             movedPlayerPictureBox.Visible = false;
@@ -907,7 +928,7 @@ namespace NoFarmForMeOpenSource
             if (e.Button != MouseButtons.Right) return;
 
             SwitchPlayer();
-            currentPlayer = -1;
+            SelectedPlayer = -1;
             tabControl1.Enabled = false;
             playerPictureBox4.Visible = true;
             movedPlayerPictureBox.Visible = false;
@@ -919,7 +940,7 @@ namespace NoFarmForMeOpenSource
             if (e.Button != MouseButtons.Right) return;
 
             SwitchPlayer();
-            currentPlayer = -1;
+            SelectedPlayer = -1;
             tabControl1.Enabled = false;
             playerPictureBox5.Visible = true;
             movedPlayerPictureBox.Visible = false;
@@ -931,7 +952,7 @@ namespace NoFarmForMeOpenSource
             if (e.Button != MouseButtons.Right) return;
 
             SwitchPlayer();
-            currentPlayer = -1;
+            SelectedPlayer = -1;
             tabControl1.Enabled = false;
             playerPictureBox6.Visible = true;
             movedPlayerPictureBox.Visible = false;
@@ -943,7 +964,7 @@ namespace NoFarmForMeOpenSource
             if (e.Button != MouseButtons.Right) return;
 
             SwitchPlayer();
-            currentPlayer = -1;
+            SelectedPlayer = -1;
             tabControl1.Enabled = false;
             playerPictureBox7.Visible = true;
             movedPlayerPictureBox.Visible = false;
@@ -955,7 +976,7 @@ namespace NoFarmForMeOpenSource
             if (e.Button != MouseButtons.Right) return;
 
             SwitchPlayer();
-            currentPlayer = -1;
+            SelectedPlayer = -1;
             tabControl1.Enabled = false;
             playerPictureBox8.Visible = true;
             movedPlayerPictureBox.Visible = false;
@@ -967,7 +988,7 @@ namespace NoFarmForMeOpenSource
             if (e.Button != MouseButtons.Right) return;
 
             SwitchPlayer();
-            currentPlayer = -1;
+            SelectedPlayer = -1;
             tabControl1.Enabled = false;
             playerPictureBox9.Visible = true;
             movedPlayerPictureBox.Visible = false;
@@ -979,7 +1000,7 @@ namespace NoFarmForMeOpenSource
             if (e.Button != MouseButtons.Right) return;
 
             SwitchPlayer();
-            currentPlayer = -1;
+            SelectedPlayer = -1;
             tabControl1.Enabled = false;
             playerPictureBox10.Visible = true;
             movedPlayerPictureBox.Visible = false;
@@ -991,7 +1012,7 @@ namespace NoFarmForMeOpenSource
             if (e.Button != MouseButtons.Right) return;
 
             SwitchPlayer();
-            currentPlayer = -1;
+            SelectedPlayer = -1;
             tabControl1.Enabled = false;
             playerPictureBox11.Visible = true;
             movedPlayerPictureBox.Visible = false;
@@ -1003,7 +1024,7 @@ namespace NoFarmForMeOpenSource
             if (e.Button != MouseButtons.Right) return;
 
             SwitchPlayer();
-            currentPlayer = -1;
+            SelectedPlayer = -1;
             tabControl1.Enabled = false;
             playerPictureBox12.Visible = true;
             movedPlayerPictureBox.Visible = false;
@@ -1015,7 +1036,7 @@ namespace NoFarmForMeOpenSource
             if (e.Button != MouseButtons.Right) return;
 
             SwitchPlayer();
-            currentPlayer = -1;
+            SelectedPlayer = -1;
             tabControl1.Enabled = false;
             playerPictureBox13.Visible = true;
             movedPlayerPictureBox.Visible = false;
@@ -1027,7 +1048,7 @@ namespace NoFarmForMeOpenSource
             if (e.Button != MouseButtons.Right) return;
 
             SwitchPlayer();
-            currentPlayer = -1;
+            SelectedPlayer = -1;
             tabControl1.Enabled = false;
             playerPictureBox14.Visible = true;
             movedPlayerPictureBox.Visible = false;
@@ -1039,7 +1060,7 @@ namespace NoFarmForMeOpenSource
             if (e.Button != MouseButtons.Right) return;
 
             SwitchPlayer();
-            currentPlayer = -1;
+            SelectedPlayer = -1;
             tabControl1.Enabled = false;
             playerPictureBox15.Visible = true;
             movedPlayerPictureBox.Visible = false;
@@ -1051,7 +1072,7 @@ namespace NoFarmForMeOpenSource
             if (e.Button != MouseButtons.Right) return;
 
             SwitchPlayer();
-            currentPlayer = -1;
+            SelectedPlayer = -1;
             tabControl1.Enabled = false;
             playerPictureBox16.Visible = true;
             movedPlayerPictureBox.Visible = false;
@@ -1062,44 +1083,13 @@ namespace NoFarmForMeOpenSource
         {
             if (!nameBox.Focused) return;
 
-            Player selectedPlayer = game.GetPlayer(currentPlayer);
-
-            // Get New Player Informations
-            var newPlayer = game.Players.FirstOrDefault(x => x.Value.Name == nameBox.Items[nameBox.SelectedIndex].ToString());
-            selectedPlayer.Name = newPlayer.Value.Name;
-            selectedPlayer.ID = newPlayer.Key;
-            selectedPlayer.Freedom = newPlayer.Value.Freedom;
-            selectedPlayer.Element = newPlayer.Value.Element;
-            selectedPlayer.Position = newPlayer.Value.Position;
-            selectedPlayer.Gender = newPlayer.Value.Gender;;
-            selectedPlayer.Participation = 1;
-            selectedPlayer.Score = 1;
-
-            // Get New Player Stats
-            for (int i = 0; i < selectedPlayer.Stat.Count; i++)
-            {
-                selectedPlayer.Stat[i] = newPlayer.Value.Stat[i];
-            }
-
-            // Get New Player Moves
-            for (int i = 0; i < newPlayer.Value.UInt32Moves.Count; i++)
-            {
-                Move newMove = game.Moves[newPlayer.Value.UInt32Moves[i]];
-                newMove.Level = 1;
-                newMove.TimeLevel = newMove.EvolutionSpeed.TimeLevel[0];
-                if (selectedPlayer.Level < 99)
-                {
-                    newMove.Unlock = false;
-                } else
-                {
-                    newMove.Unlock = true;
-                }
-                selectedPlayer.Moves[i] = newMove;
-            }
+            // Update Player
+            Player selectedPlayer = Game.GetPlayer(SelectedPlayer);
+            Game.ChangePlayer(selectedPlayer, Game.Players.FirstOrDefault(x => x.Value.Name == nameBox.Items[nameBox.SelectedIndex].ToString()));
 
             // Reset Invested Point + Print Current Page
             ResetButton_Click(sender, e);
-            PrintPlayer(game.GetPlayer(currentPlayer));
+            PrintPlayer(Game.GetPlayer(SelectedPlayer));
             PageComboBox_SelectedIndexChanged(sender, e);
         }
 
@@ -1107,75 +1097,75 @@ namespace NoFarmForMeOpenSource
         {
             if (!levelNumericUpDown.Focused) return;
 
-            game.GetPlayer(currentPlayer).Level = Convert.ToInt32(levelNumericUpDown.Value);
+            Game.GetPlayer(SelectedPlayer).Level = Convert.ToInt32(levelNumericUpDown.Value);
         }
 
         private void StyleBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!styleBox.Focused) return;
 
-            game.GetPlayer(currentPlayer).Style = styleBox.SelectedIndex;
+            Game.GetPlayer(SelectedPlayer).Style = styleBox.SelectedIndex;
         }
 
         private void InvestedNumericUpDown3_ValueChanged(object sender, EventArgs e)
         {
             if (!investedNumericUpDown3.Focused) return;
 
-            TrainPlayer(game.GetPlayer(currentPlayer), investedNumericUpDown3, 0);
+            TrainPlayer(Game.GetPlayer(SelectedPlayer), investedNumericUpDown3, 0);
         }
 
         private void InvestedNumericUpDown4_ValueChanged(object sender, EventArgs e)
         {
             if (!investedNumericUpDown4.Focused) return;
 
-            TrainPlayer(game.GetPlayer(currentPlayer), investedNumericUpDown4, 1);
+            TrainPlayer(Game.GetPlayer(SelectedPlayer), investedNumericUpDown4, 1);
         }
 
         private void InvestedNumericUpDown6_ValueChanged(object sender, EventArgs e)
         {
             if (!investedNumericUpDown6.Focused) return;
 
-            TrainPlayer(game.GetPlayer(currentPlayer), investedNumericUpDown6, 3);
+            TrainPlayer(Game.GetPlayer(SelectedPlayer), investedNumericUpDown6, 3);
         }
 
         private void InvestedNumericUpDown9_ValueChanged(object sender, EventArgs e)
         {
             if (!investedNumericUpDown9.Focused) return;
 
-            TrainPlayer(game.GetPlayer(currentPlayer), investedNumericUpDown9, 6);
+            TrainPlayer(Game.GetPlayer(SelectedPlayer), investedNumericUpDown9, 6);
         }
 
         private void InvestedNumericUpDown5_ValueChanged(object sender, EventArgs e)
         {
             if (!investedNumericUpDown5.Focused) return;
 
-            TrainPlayer(game.GetPlayer(currentPlayer), investedNumericUpDown5, 2);
+            TrainPlayer(Game.GetPlayer(SelectedPlayer), investedNumericUpDown5, 2);
         }
 
         private void InvestedNumericUpDown7_ValueChanged(object sender, EventArgs e)
         {
             if (!investedNumericUpDown7.Focused) return;
 
-            TrainPlayer(game.GetPlayer(currentPlayer), investedNumericUpDown7, 4);
+            TrainPlayer(Game.GetPlayer(SelectedPlayer), investedNumericUpDown7, 4);
         }
 
         private void InvestedNumericUpDown8_ValueChanged(object sender, EventArgs e)
         {
             if (!investedNumericUpDown8.Focused) return;
 
-            TrainPlayer(game.GetPlayer(currentPlayer), investedNumericUpDown8, 5);
+            TrainPlayer(Game.GetPlayer(SelectedPlayer), investedNumericUpDown8, 5);
         }
 
         private void InvestedNumericUpDown10_ValueChanged(object sender, EventArgs e)
         {
             if (!investedNumericUpDown10.Focused) return;
 
-            TrainPlayer(game.GetPlayer(currentPlayer), investedNumericUpDown10, 7);
+            TrainPlayer(Game.GetPlayer(SelectedPlayer), investedNumericUpDown10, 7);
         }
 
         private void ResetButton_Click(object sender, EventArgs e)
         {
-            Player player = game.GetPlayer(currentPlayer);
+            Player player = Game.GetPlayer(SelectedPlayer);
 
             for (int i = 0; i < player.InvestedPoint.Count; i++)
             {
@@ -1199,10 +1189,10 @@ namespace NoFarmForMeOpenSource
         {
             if (!avatarNameBox.Focused) return;
 
-            Player player = game.GetPlayer(currentPlayer);
+            Player player = Game.GetPlayer(SelectedPlayer);
             Avatar oldAvatar = player.Avatar;
 
-            player.Avatar = game.Avatars.FirstOrDefault(x => x.Value.Name == avatarNameBox.Text).Value;
+            player.Avatar = Game.Avatars.FirstOrDefault(x => x.Value.Name == avatarNameBox.Text).Value;
             player.Avatar.Level = oldAvatar.Level;
             player.Invoke = true;
         }
@@ -1211,18 +1201,18 @@ namespace NoFarmForMeOpenSource
         {
             if (!avatarNumericUpDown.Focused) return;
 
-            game.GetPlayer(currentPlayer).Avatar.Level = Convert.ToInt32(avatarNumericUpDown.Value);
+            Game.GetPlayer(SelectedPlayer).Avatar.Level = Convert.ToInt32(avatarNumericUpDown.Value);
         }
 
         private void InvokeBox_CheckedChanged(object sender, EventArgs e)
         {
             if (!invokeBox.Focused) return;
 
-            Player player = game.GetPlayer(currentPlayer);
+            Player player = Game.GetPlayer(SelectedPlayer);
 
             if (invokeBox.Checked == false)
             {
-                Avatar newAvatar = game.Avatars[0x0];
+                Avatar newAvatar = Game.Avatars[0x0];
                 newAvatar.Level = 1;
                 player.Avatar = newAvatar;
                 player.Armed = false;
@@ -1241,16 +1231,16 @@ namespace NoFarmForMeOpenSource
         {
             if (!armedBox.Focused) return;
 
-            game.GetPlayer(currentPlayer).Armed = armedBox.Checked;
+            Game.GetPlayer(SelectedPlayer).Armed = armedBox.Checked;
         }
 
         private void MoveBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!moveBox1.Focused) return;
 
-            Player player = game.GetPlayer(currentPlayer);
+            Player player = Game.GetPlayer(SelectedPlayer);
 
-            Move newMove = game.Moves.FirstOrDefault(x => x.Value.Name == moveBox1.Text).Value;
+            Move newMove = Game.Moves.FirstOrDefault(x => x.Value.Name == moveBox1.Text).Value;
             newMove.Level = 1;
             newMove.TimeLevel = newMove.EvolutionSpeed.TimeLevel[0];
             newMove.Unlock = true;
@@ -1263,9 +1253,9 @@ namespace NoFarmForMeOpenSource
         {
             if (!moveBox2.Focused) return;
 
-            Player player = game.GetPlayer(currentPlayer);
+            Player player = Game.GetPlayer(SelectedPlayer);
 
-            Move newMove = game.Moves.FirstOrDefault(x => x.Value.Name == moveBox2.Text).Value;
+            Move newMove = Game.Moves.FirstOrDefault(x => x.Value.Name == moveBox2.Text).Value;
             newMove.Level = 1;
             newMove.TimeLevel = newMove.EvolutionSpeed.TimeLevel[0];
             newMove.Unlock = true;
@@ -1278,9 +1268,9 @@ namespace NoFarmForMeOpenSource
         {
             if (!moveBox3.Focused) return;
 
-            Player player = game.GetPlayer(currentPlayer);
+            Player player = Game.GetPlayer(SelectedPlayer);
 
-            Move newMove = game.Moves.FirstOrDefault(x => x.Value.Name == moveBox3.Text).Value;
+            Move newMove = Game.Moves.FirstOrDefault(x => x.Value.Name == moveBox3.Text).Value;
             newMove.Level = 1;
             newMove.TimeLevel = newMove.EvolutionSpeed.TimeLevel[0];
             newMove.Unlock = true;
@@ -1293,9 +1283,9 @@ namespace NoFarmForMeOpenSource
         {
             if (!moveBox4.Focused) return;
 
-            Player player = game.GetPlayer(currentPlayer);
+            Player player = Game.GetPlayer(SelectedPlayer);
 
-            Move newMove = game.Moves.FirstOrDefault(x => x.Value.Name == moveBox4.Text).Value;
+            Move newMove = Game.Moves.FirstOrDefault(x => x.Value.Name == moveBox4.Text).Value;
             newMove.Level = 1;
             newMove.TimeLevel = newMove.EvolutionSpeed.TimeLevel[0];
             newMove.Unlock = true;
@@ -1308,9 +1298,9 @@ namespace NoFarmForMeOpenSource
         {
             if (!moveBox5.Focused) return;
 
-            Player player = game.GetPlayer(currentPlayer);
+            Player player = Game.GetPlayer(SelectedPlayer);
 
-            Move newMove = game.Moves.FirstOrDefault(x => x.Value.Name == moveBox5.Text).Value;
+            Move newMove = Game.Moves.FirstOrDefault(x => x.Value.Name == moveBox5.Text).Value;
             newMove.Level = 1;
             newMove.TimeLevel = newMove.EvolutionSpeed.TimeLevel[0];
             newMove.Unlock = true;
@@ -1323,9 +1313,9 @@ namespace NoFarmForMeOpenSource
         {
             if (!moveBox6.Focused) return;
 
-            Player player = game.GetPlayer(currentPlayer);
+            Player player = Game.GetPlayer(SelectedPlayer);
 
-            Move newMove = game.Moves.FirstOrDefault(x => x.Value.Name == moveBox6.Text).Value;
+            Move newMove = Game.Moves.FirstOrDefault(x => x.Value.Name == moveBox6.Text).Value;
             newMove.Level = 1;
             newMove.TimeLevel = newMove.EvolutionSpeed.TimeLevel[0];
             newMove.Unlock = true;
@@ -1338,7 +1328,7 @@ namespace NoFarmForMeOpenSource
         {
             if (!moveNumericUpDown1.Focused) return;
 
-            Player player = game.GetPlayer(currentPlayer);
+            Player player = Game.GetPlayer(SelectedPlayer);
             player.Moves[0].Level = Convert.ToInt32(moveNumericUpDown1.Value);
             player.Moves[0].TimeLevel = player.Moves[0].EvolutionSpeed.TimeLevel[Convert.ToInt32(moveNumericUpDown1.Value)];
         }
@@ -1347,7 +1337,7 @@ namespace NoFarmForMeOpenSource
         {
             if (!moveNumericUpDown2.Focused) return;
 
-            Player player = game.GetPlayer(currentPlayer);
+            Player player = Game.GetPlayer(SelectedPlayer);
             player.Moves[1].Level = Convert.ToInt32(moveNumericUpDown2.Value);
             player.Moves[1].TimeLevel = player.Moves[1].EvolutionSpeed.TimeLevel[Convert.ToInt32(moveNumericUpDown2.Value)];
         }
@@ -1356,7 +1346,7 @@ namespace NoFarmForMeOpenSource
         {
             if (!moveNumericUpDown3.Focused) return;
 
-            Player player = game.GetPlayer(currentPlayer);
+            Player player = Game.GetPlayer(SelectedPlayer);
             player.Moves[2].Level = Convert.ToInt32(moveNumericUpDown3.Value);
             player.Moves[2].TimeLevel = player.Moves[2].EvolutionSpeed.TimeLevel[Convert.ToInt32(moveNumericUpDown3.Value)];
         }
@@ -1365,7 +1355,7 @@ namespace NoFarmForMeOpenSource
         {
             if (!moveNumericUpDown4.Focused) return;
 
-            Player player = game.GetPlayer(currentPlayer);
+            Player player = Game.GetPlayer(SelectedPlayer);
             player.Moves[3].Level = Convert.ToInt32(moveNumericUpDown4.Value);
             player.Moves[3].TimeLevel = player.Moves[3].EvolutionSpeed.TimeLevel[Convert.ToInt32(moveNumericUpDown4.Value)];
         }
@@ -1374,7 +1364,7 @@ namespace NoFarmForMeOpenSource
         {
             if (!moveNumericUpDown5.Focused) return;
 
-            Player player = game.GetPlayer(currentPlayer);
+            Player player = Game.GetPlayer(SelectedPlayer);
             player.Moves[4].Level = Convert.ToInt32(moveNumericUpDown5.Value);
             player.Moves[4].TimeLevel = player.Moves[4].EvolutionSpeed.TimeLevel[Convert.ToInt32(moveNumericUpDown5.Value)];
         }
@@ -1383,7 +1373,7 @@ namespace NoFarmForMeOpenSource
         {
             if (!moveNumericUpDown6.Focused) return;
 
-            Player player = game.GetPlayer(currentPlayer);
+            Player player = Game.GetPlayer(SelectedPlayer);
             player.Moves[5].Level = Convert.ToInt32(moveNumericUpDown6.Value);
             player.Moves[5].TimeLevel = player.Moves[5].EvolutionSpeed.TimeLevel[Convert.ToInt32(moveNumericUpDown6.Value)];
         }
@@ -1392,7 +1382,7 @@ namespace NoFarmForMeOpenSource
         {
             if (!moveCheckBox1.Focused) return;
 
-            game.GetPlayer(currentPlayer).Moves[0].Unlock = moveCheckBox1.Checked;
+            Game.GetPlayer(SelectedPlayer).Moves[0].Unlock = moveCheckBox1.Checked;
             moveBox1.Enabled = moveCheckBox1.Checked;
             moveNumericUpDown1.Enabled = moveCheckBox1.Checked;
         }
@@ -1401,7 +1391,7 @@ namespace NoFarmForMeOpenSource
         {
             if (!moveCheckBox2.Focused) return;
 
-            game.GetPlayer(currentPlayer).Moves[1].Unlock = moveCheckBox2.Checked;
+            Game.GetPlayer(SelectedPlayer).Moves[1].Unlock = moveCheckBox2.Checked;
             moveBox2.Enabled = moveCheckBox2.Checked;
             moveNumericUpDown2.Enabled = moveCheckBox2.Checked;
         }
@@ -1410,7 +1400,7 @@ namespace NoFarmForMeOpenSource
         {
             if (!moveCheckBox3.Focused) return;
 
-            game.GetPlayer(currentPlayer).Moves[2].Unlock = moveCheckBox3.Checked;
+            Game.GetPlayer(SelectedPlayer).Moves[2].Unlock = moveCheckBox3.Checked;
             moveBox3.Enabled = moveCheckBox3.Checked;
             moveNumericUpDown3.Enabled = moveCheckBox3.Checked;
         }
@@ -1419,7 +1409,7 @@ namespace NoFarmForMeOpenSource
         {
             if (!moveCheckBox4.Focused) return;
 
-            game.GetPlayer(currentPlayer).Moves[3].Unlock = moveCheckBox4.Checked;
+            Game.GetPlayer(SelectedPlayer).Moves[3].Unlock = moveCheckBox4.Checked;
             moveBox4.Enabled = moveCheckBox4.Checked;
             moveNumericUpDown4.Enabled = moveCheckBox4.Checked;
         }
@@ -1428,7 +1418,7 @@ namespace NoFarmForMeOpenSource
         {
             if (!moveCheckBox5.Focused) return;
 
-            game.GetPlayer(currentPlayer).Moves[4].Unlock = moveCheckBox5.Checked;
+            Game.GetPlayer(SelectedPlayer).Moves[4].Unlock = moveCheckBox5.Checked;
             moveBox5.Enabled = moveCheckBox5.Checked;
             moveNumericUpDown5.Enabled = moveCheckBox5.Checked;
         }
@@ -1437,7 +1427,7 @@ namespace NoFarmForMeOpenSource
         {
             if (!moveCheckBox6.Focused) return;
 
-            game.GetPlayer(currentPlayer).Moves[5].Unlock = moveCheckBox6.Checked;
+            Game.GetPlayer(SelectedPlayer).Moves[5].Unlock = moveCheckBox6.Checked;
             moveBox6.Enabled = moveCheckBox6.Checked;
             moveNumericUpDown6.Enabled = moveCheckBox6.Checked;
         }
@@ -1446,7 +1436,7 @@ namespace NoFarmForMeOpenSource
         {
             if (!moveBox7.Focused) return;
 
-            Player player = game.GetPlayer(currentPlayer);
+            Player player = Game.GetPlayer(SelectedPlayer);
 
             if (moveBox7.SelectedIndex != moveBox8.SelectedIndex)
             {
@@ -1474,7 +1464,7 @@ namespace NoFarmForMeOpenSource
         {
             if (!moveBox8.Focused) return;
 
-            Player player = game.GetPlayer(currentPlayer);
+            Player player = Game.GetPlayer(SelectedPlayer);
 
             if (moveBox8.SelectedIndex != moveBox7.SelectedIndex)
             {
@@ -1502,7 +1492,7 @@ namespace NoFarmForMeOpenSource
         {
             if (!moveNumericUpDown7.Focused) return;
 
-            Player player = game.GetPlayer(currentPlayer).MixiMax.AuraPlayer;
+            Player player = Game.GetPlayer(SelectedPlayer).MixiMax.AuraPlayer;
             player.Moves[moveBox7.SelectedIndex].Level = Convert.ToInt32(moveNumericUpDown7.Value);
             player.Moves[moveBox7.SelectedIndex].TimeLevel = player.Moves[moveBox7.SelectedIndex].EvolutionSpeed.TimeLevel[Convert.ToInt32(moveNumericUpDown7.Value)];
         }
@@ -1511,7 +1501,7 @@ namespace NoFarmForMeOpenSource
         {
             if (!moveNumericUpDown8.Focused) return;
 
-            Player player = game.GetPlayer(currentPlayer).MixiMax.AuraPlayer;
+            Player player = Game.GetPlayer(SelectedPlayer).MixiMax.AuraPlayer;
             player.Moves[moveBox8.SelectedIndex].Level = Convert.ToInt32(moveNumericUpDown8.Value);
             player.Moves[moveBox8.SelectedIndex].TimeLevel = player.Moves[moveBox8.SelectedIndex].EvolutionSpeed.TimeLevel[Convert.ToInt32(moveNumericUpDown8.Value)];
         }
@@ -1520,10 +1510,10 @@ namespace NoFarmForMeOpenSource
         {
             if (!miximaxAvatarNameBox.Focused) return;
 
-            Player player = game.GetPlayer(currentPlayer).MixiMax.AuraPlayer;
+            Player player = Game.GetPlayer(SelectedPlayer).MixiMax.AuraPlayer;
             Avatar oldAvatar = player.Avatar;
 
-            player.Avatar = game.Avatars.FirstOrDefault(x => x.Value.Name == miximaxAvatarNameBox.Text).Value;
+            player.Avatar = Game.Avatars.FirstOrDefault(x => x.Value.Name == miximaxAvatarNameBox.Text).Value;
             player.Avatar.Level = oldAvatar.Level;
         }
 
@@ -1531,14 +1521,14 @@ namespace NoFarmForMeOpenSource
         {
             if (!miximaxAvatarNumericUpDown.Focused) return;
 
-            game.GetPlayer(currentPlayer).MixiMax.AuraPlayer.Avatar.Level = Convert.ToInt32(avatarNumericUpDown.Value);
+            Game.GetPlayer(SelectedPlayer).MixiMax.AuraPlayer.Avatar.Level = Convert.ToInt32(avatarNumericUpDown.Value);
         }
 
         private void TabControl3_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (tabControl3.SelectedIndex == 1)
             {
-                PrintPlayerFullStat(game.GetPlayer(currentPlayer));
+                PrintPlayerFullStat(Game.GetPlayer(SelectedPlayer));
             }
         }
 
@@ -1546,8 +1536,8 @@ namespace NoFarmForMeOpenSource
         {
             if (!bootsBox.Focused) return;
 
-            Player player = game.GetPlayer(currentPlayer);
-            var newEquipment = game.Equipments.FirstOrDefault(x => x.Value.Name == bootsBox.Text);
+            Player player = Game.GetPlayer(SelectedPlayer);
+            var newEquipment = Game.Equipments.FirstOrDefault(x => x.Value.Name == bootsBox.Text);
 
             player.Equipments[0] = newEquipment.Value;
 
@@ -1558,12 +1548,12 @@ namespace NoFarmForMeOpenSource
         {
             if (!braceletBox.Focused) return;
 
-            Player player = game.GetPlayer(currentPlayer);
-            var newEquipment = game.Equipments.FirstOrDefault(x => x.Value.Name == braceletBox.Text);
+            Player player = Game.GetPlayer(SelectedPlayer);
+            var newEquipment = Game.Equipments.FirstOrDefault(x => x.Value.Name == braceletBox.Text);
             
             if (newEquipment.Key == 0x0)
             {
-                player.Equipments[1] = game.Equipments[0x1];
+                player.Equipments[1] = Game.Equipments[0x1];
             } else
             {
                 player.Equipments[1] = newEquipment.Value;
@@ -1574,12 +1564,12 @@ namespace NoFarmForMeOpenSource
 
         private void PendantBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Player player = game.GetPlayer(currentPlayer);
-            var newEquipment = game.Equipments.FirstOrDefault(x => x.Value.Name == pendantBox.Text);
+            Player player = Game.GetPlayer(SelectedPlayer);
+            var newEquipment = Game.Equipments.FirstOrDefault(x => x.Value.Name == pendantBox.Text);
 
             if (newEquipment.Key == 0x0)
             {
-                player.Equipments[2] = game.Equipments[0x2];
+                player.Equipments[2] = Game.Equipments[0x2];
             }
             else
             {
@@ -1591,12 +1581,12 @@ namespace NoFarmForMeOpenSource
 
         private void GlovesBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Player player = game.GetPlayer(currentPlayer);
-            var newEquipment = game.Equipments.FirstOrDefault(x => x.Value.Name == glovesBox.Text);
+            Player player = Game.GetPlayer(SelectedPlayer);
+            var newEquipment = Game.Equipments.FirstOrDefault(x => x.Value.Name == glovesBox.Text);
 
             if (newEquipment.Key == 0x0)
             {
-                player.Equipments[3] = game.Equipments[0x3];
+                player.Equipments[3] = Game.Equipments[0x3];
             }
             else
             {
@@ -1608,63 +1598,36 @@ namespace NoFarmForMeOpenSource
 
         private void RecruitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (game.PlayersInSave.Count < 336)
+            if (Game.PlayersInSave.Count < Game.MaximumPlayer)
             {
                 ComboBox customNameBox = nameBox;
-                // customNameBox.Items.Remove("");
 
                 MessageComboBox inviteWindow = new MessageComboBox("Invite Player", "Select the player you want to invite", "Invite", customNameBox);
                 DialogResult dialogResult = inviteWindow.ShowDialog();
                 if (dialogResult == DialogResult.Yes && inviteWindow.nameBox.SelectedIndex != -1)
                 {
-                    var playerListIndex = game.PlayersInSaveSort.Select(x => Convert.ToInt32(x / 0xFFFFFF)).ToList();
-                    playerListIndex.Sort();
-                    int missingIndex = Enumerable.Range(0, 336).Except(playerListIndex).First();
+                    Game.RecruitPlayer(Game.Players.FirstOrDefault(x => x.Value.Name == inviteWindow.nameBox.Text.ToString()));
 
-                    var playerKeyValuePair = game.Players.FirstOrDefault(x => x.Value.Name == inviteWindow.nameBox.Text.ToString());
-                    Player newPlayer = new Player(playerKeyValuePair.Value);
-                    newPlayer.ID = playerKeyValuePair.Key;
-                    newPlayer.Style = 0;
-                    newPlayer.Level = 1;
-                    newPlayer.InvestedPoint = new List<int>(new int[8]);
-                    newPlayer.Avatar = game.Avatars[0x0];
-                    newPlayer.Invoke = false;
-                    newPlayer.Armed = false;
-                    newPlayer.Moves = new List<Move>();
-                    for (int i = 0; i < 4; i++)
-                    {
-                        newPlayer.Moves.Add(game.Moves[playerKeyValuePair.Value.UInt32Moves[i]]);
-                    }
-                    newPlayer.Moves.Add(game.Moves[0x00]);
-                    newPlayer.Moves.Add(game.Moves[0x00]);
-                    newPlayer.Equipments = new List<Equipment>();
-                    newPlayer.Equipments.Add(game.Equipments[0x0]);
-                    newPlayer.Equipments.Add(game.Equipments[0x1]);
-                    newPlayer.Equipments.Add(game.Equipments[0x2]);
-                    newPlayer.Equipments.Add(game.Equipments[0x3]);
-                    UInt32 newIndex = (uint)missingIndex * 0x1000000 + (uint)(missingIndex + 1) * 0x100;
-                    game.PlayersInSaveSort.Add(newIndex);
-                    newPlayer.PositionInFile = 23324 + 260 * game.PlayersInSaveSort.Count;
-                    game.PlayersInSave.Add(newIndex, newPlayer);
-
-                    CreatePage(Convert.ToInt32(Math.Ceiling((double)game.PlayersInSave.Count / 16.0)));
+                    CreatePage(Convert.ToInt32(Math.Ceiling((double)Game.PlayersInSave.Count / 16.0)));
                     pageComboBox.SelectedIndex = pageComboBox.Items.Count - 1;
-                    currentPlayer = game.PlayersInSave.Count - 1;
-                    PrintPlayer(newPlayer);
+
+                    SelectedPlayer = Game.PlayersInSave.Count - 1;
+                    PrintPlayer(Game.GetPlayer(Game.PlayersInSave.Count - 1));
+
                     MessageBox.Show(inviteWindow.nameBox.Text + " has joined you");
                 }
             } else
             {
-                Console.WriteLine("Maximum player reached");
+                MessageBox.Show("Maximum player reached");
             }
         }
 
         private void DismissToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ComboBox customNameBox = new ComboBox();
-            for (int i = 0; i < game.PlayersInSaveSort.Count; i++)
+            for (int i = 0; i < Game.PlayersInSaveSort.Count; i++)
             {
-                customNameBox.Items.Add(game.GetPlayer(i).Name);
+                customNameBox.Items.Add(Game.GetPlayer(i).Name);
             }
             customNameBox.Sorted = false;
 
@@ -1673,23 +1636,23 @@ namespace NoFarmForMeOpenSource
 
             if (dialogResult == DialogResult.Yes && inviteWindow.nameBox.SelectedIndex != -1)
             {
-                UInt32 playerIndex = game.PlayersInSaveSort[inviteWindow.nameBox.SelectedIndex];
+                UInt32 playerIndex = Game.PlayersInSaveSort[inviteWindow.nameBox.SelectedIndex];
 
                 // Remove Mixi Max Aura Linked
-                foreach (KeyValuePair<UInt32, Player> player in game.PlayersInSave)
+                foreach (KeyValuePair<UInt32, Player> player in Game.PlayersInSave)
                 {
-                    if (player.Value.MixiMax != null && player.Value.MixiMax.AuraPlayer == game.PlayersInSave[playerIndex])
+                    if (player.Value.MixiMax != null && player.Value.MixiMax.AuraPlayer == Game.PlayersInSave[playerIndex])
                     {
                         player.Value.MixiMax = null;
                     }
                 }
 
-                game.PlayersInSaveSort.Remove(playerIndex);
-                game.PlayersInSave.Remove(playerIndex);
+                Game.PlayersInSaveSort.Remove(playerIndex);
+                Game.PlayersInSave.Remove(playerIndex);
 
-                CreatePage(Convert.ToInt32(Math.Ceiling((double)game.PlayersInSave.Count / 16.0)));
+                CreatePage(Convert.ToInt32(Math.Ceiling((double)Game.PlayersInSave.Count / 16.0)));
                 pageComboBox.SelectedIndex = 0;
-                currentPlayer = -1;
+                SelectedPlayer = -1;
                 tabControl1.Enabled = false;
 
                 MessageBox.Show(inviteWindow.nameBox.Text + " left the team");
@@ -1700,32 +1663,14 @@ namespace NoFarmForMeOpenSource
         {
             if (!scoreNumericUpDown.Focused) return;
 
-            game.GetPlayer(currentPlayer).Score = Convert.ToInt32(scoreNumericUpDown.Value);
+            Game.GetPlayer(SelectedPlayer).Score = Convert.ToInt32(scoreNumericUpDown.Value);
         }
 
         private void ParticipationNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             if (!participationNumericUpDown.Focused) return;
 
-            game.GetPlayer(currentPlayer).Participation = Convert.ToInt32(participationNumericUpDown.Value);
-        }
-
-        private void SaveInformationButton_Click(object sender, EventArgs e)
-        {
-            SaveInfoWindow saveInfoWindow = new SaveInfoWindow(game);
-            saveInfoWindow.ShowDialog();
-        }
-
-        private void PlayRecordsButton_Click(object sender, EventArgs e)
-        {
-            PlayRecordsWindow playRecordsWindow = new PlayRecordsWindow(game);
-            playRecordsWindow.ShowDialog();
-        }
-
-        private void InventoryButton_Click(object sender, EventArgs e)
-        {
-            InventoryWindow inventoryWindow = new InventoryWindow(game);
-            inventoryWindow.ShowDialog();
+            Game.GetPlayer(SelectedPlayer).Participation = Convert.ToInt32(participationNumericUpDown.Value);
         }
     }
 }

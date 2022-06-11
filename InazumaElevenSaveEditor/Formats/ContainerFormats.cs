@@ -2,7 +2,7 @@
 
 namespace InazumaElevenSaveEditor.Formats
 {
-    public interface SaveFormat
+    public interface IFormat
     {
         string Name { get; }
 
@@ -16,6 +16,6 @@ namespace InazumaElevenSaveEditor.Formats
 
         bool CanBeCompressed { get; }
 
-        ContainerGames Open(DataReader file);
+        IGame Open(DataReader file);
     }
 }

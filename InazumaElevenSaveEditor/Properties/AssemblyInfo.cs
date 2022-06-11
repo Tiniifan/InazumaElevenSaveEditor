@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // Les informations générales relatives à un assembly dépendent de
 // l'ensemble d'attributs suivant. Changez les valeurs de ces attributs pour modifier les informations
 // associées à un assembly.
-[assembly: AssemblyTitle("NoFarmForMeOpenSource")]
+[assembly: AssemblyTitle("InazumaElevenSaveEditor")]
 [assembly: AssemblyDescription("Inazuma Eleven Save Editor")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Tinifan")]
-[assembly: AssemblyProduct("NoFarmForMeOpenSource")]
+[assembly: AssemblyProduct("InazumaElevenSaveEditor")]
 [assembly: AssemblyCopyright("Copyright © Tinifan 2022")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

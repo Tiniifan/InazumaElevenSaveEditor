@@ -6,11 +6,13 @@ using InazumaElevenSaveEditor.Tools;
 
 namespace InazumaElevenSaveEditor.Formats
 {
-    public interface ContainerGames
+    public interface IGame
     {
         DataReader File { get; set; }
 
         string GameNameCode { get; }
+
+        int MaximumPlayer { get; }
 
         IDictionary<UInt32, Player> Players { get; set; }
 
@@ -30,7 +32,9 @@ namespace InazumaElevenSaveEditor.Formats
 
         Player GetPlayer(int index);
 
-        string ConvertPlayerToString(Player player, bool clipboard);
+        void ChangePlayer(Player selectedPlayer, KeyValuePair<UInt32, Player> newPlayer);
+
+        void RecruitPlayer(KeyValuePair<UInt32, Player> newPlayer);
 
         void Open();
 
@@ -43,8 +47,6 @@ namespace InazumaElevenSaveEditor.Formats
         void Save(OpenFileDialog initialDirectory);
 
         void UpdateResource();
-
-        Player ReadPlayer(Player player);
 
         (int, int, string, bool) Training(Player player, int newStat, int statIndex);
     }

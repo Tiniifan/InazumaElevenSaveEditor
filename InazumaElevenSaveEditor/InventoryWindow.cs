@@ -9,9 +9,9 @@ namespace InazumaElevenSaveEditor
 {
     public partial class InventoryWindow : Form
     {
-        public ContainerGames Game = null;
+        public IGame Game = null;
 
-        public InventoryWindow(ContainerGames _Game)
+        public InventoryWindow(IGame _Game)
         {
             InitializeComponent();
             Game = _Game;

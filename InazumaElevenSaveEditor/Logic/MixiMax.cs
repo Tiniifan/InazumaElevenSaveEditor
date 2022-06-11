@@ -43,11 +43,5 @@ namespace InazumaElevenSaveEditor.Logic
                 MixiMaxMoveNumber.Add(_MixiMaxMove.Item2);
             BestMatch = _BestMatch;
         }
-
-        public List<int> GetStat(Player _BasePlayer)
-        {
-            List<int> miximaxStat = new List<int>(new int[10]);
-            return miximaxStat;
-        }
     }
 }
