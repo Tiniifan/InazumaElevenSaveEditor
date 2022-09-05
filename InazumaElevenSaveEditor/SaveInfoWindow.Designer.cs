@@ -29,22 +29,21 @@ namespace InazumaElevenSaveEditor
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SaveInfoWindow));
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.button1 = new System.Windows.Forms.Button();
-            this.numericUpDown11 = new System.Windows.Forms.NumericUpDown();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.coinNumericUpDown5 = new System.Windows.Forms.NumericUpDown();
+            this.coinPictureBox5 = new System.Windows.Forms.PictureBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.numericUpDown10 = new System.Windows.Forms.NumericUpDown();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.numericUpDown9 = new System.Windows.Forms.NumericUpDown();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.numericUpDown8 = new System.Windows.Forms.NumericUpDown();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.numericUpDown7 = new System.Windows.Forms.NumericUpDown();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.coinNumericUpDown4 = new System.Windows.Forms.NumericUpDown();
+            this.coinPictureBox4 = new System.Windows.Forms.PictureBox();
+            this.coinNumericUpDown3 = new System.Windows.Forms.NumericUpDown();
+            this.coinPictureBox3 = new System.Windows.Forms.PictureBox();
+            this.coinNumericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.coinPictureBox2 = new System.Windows.Forms.PictureBox();
+            this.coinNumericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.coinPictureBox1 = new System.Windows.Forms.PictureBox();
             this.label6 = new System.Windows.Forms.Label();
             this.numericUpDown5 = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown6 = new System.Windows.Forms.NumericUpDown();
@@ -63,17 +62,17 @@ namespace InazumaElevenSaveEditor
             this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.tabPage3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.coinNumericUpDown5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.coinPictureBox5)).BeginInit();
             this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown10)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.coinNumericUpDown4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.coinPictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.coinNumericUpDown3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.coinPictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.coinNumericUpDown2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.coinPictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.coinNumericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.coinPictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown6)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -128,42 +127,42 @@ namespace InazumaElevenSaveEditor
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
-            // numericUpDown11
+            // coinNumericUpDown5
             // 
-            this.numericUpDown11.Location = new System.Drawing.Point(109, 67);
-            this.numericUpDown11.Maximum = new decimal(new int[] {
+            this.coinNumericUpDown5.Location = new System.Drawing.Point(109, 67);
+            this.coinNumericUpDown5.Maximum = new decimal(new int[] {
             999,
             0,
             0,
             0});
-            this.numericUpDown11.Name = "numericUpDown11";
-            this.numericUpDown11.Size = new System.Drawing.Size(42, 20);
-            this.numericUpDown11.TabIndex = 45;
-            this.numericUpDown11.Visible = false;
+            this.coinNumericUpDown5.Name = "coinNumericUpDown5";
+            this.coinNumericUpDown5.Size = new System.Drawing.Size(42, 20);
+            this.coinNumericUpDown5.TabIndex = 45;
+            this.coinNumericUpDown5.Visible = false;
             // 
-            // pictureBox5
+            // coinPictureBox5
             // 
-            this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
-            this.pictureBox5.Location = new System.Drawing.Point(82, 68);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(20, 20);
-            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox5.TabIndex = 44;
-            this.pictureBox5.TabStop = false;
-            this.pictureBox5.Visible = false;
+            this.coinPictureBox5.Image = global::InazumaElevenSaveEditor.Properties.Resources.YellowCoin;
+            this.coinPictureBox5.Location = new System.Drawing.Point(82, 68);
+            this.coinPictureBox5.Name = "coinPictureBox5";
+            this.coinPictureBox5.Size = new System.Drawing.Size(20, 20);
+            this.coinPictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.coinPictureBox5.TabIndex = 44;
+            this.coinPictureBox5.TabStop = false;
+            this.coinPictureBox5.Visible = false;
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.numericUpDown11);
-            this.tabPage2.Controls.Add(this.pictureBox5);
-            this.tabPage2.Controls.Add(this.numericUpDown10);
-            this.tabPage2.Controls.Add(this.pictureBox4);
-            this.tabPage2.Controls.Add(this.numericUpDown9);
-            this.tabPage2.Controls.Add(this.pictureBox3);
-            this.tabPage2.Controls.Add(this.numericUpDown8);
-            this.tabPage2.Controls.Add(this.pictureBox2);
-            this.tabPage2.Controls.Add(this.numericUpDown7);
-            this.tabPage2.Controls.Add(this.pictureBox1);
+            this.tabPage2.Controls.Add(this.coinNumericUpDown5);
+            this.tabPage2.Controls.Add(this.coinPictureBox5);
+            this.tabPage2.Controls.Add(this.coinNumericUpDown4);
+            this.tabPage2.Controls.Add(this.coinPictureBox4);
+            this.tabPage2.Controls.Add(this.coinNumericUpDown3);
+            this.tabPage2.Controls.Add(this.coinPictureBox3);
+            this.tabPage2.Controls.Add(this.coinNumericUpDown2);
+            this.tabPage2.Controls.Add(this.coinPictureBox2);
+            this.tabPage2.Controls.Add(this.coinNumericUpDown1);
+            this.tabPage2.Controls.Add(this.coinPictureBox1);
             this.tabPage2.Controls.Add(this.label6);
             this.tabPage2.Controls.Add(this.numericUpDown5);
             this.tabPage2.Controls.Add(this.numericUpDown6);
@@ -176,101 +175,101 @@ namespace InazumaElevenSaveEditor
             this.tabPage2.Text = "Money";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // numericUpDown10
+            // coinNumericUpDown4
             // 
-            this.numericUpDown10.Location = new System.Drawing.Point(34, 67);
-            this.numericUpDown10.Maximum = new decimal(new int[] {
+            this.coinNumericUpDown4.Location = new System.Drawing.Point(34, 67);
+            this.coinNumericUpDown4.Maximum = new decimal(new int[] {
             999,
             0,
             0,
             0});
-            this.numericUpDown10.Name = "numericUpDown10";
-            this.numericUpDown10.Size = new System.Drawing.Size(42, 20);
-            this.numericUpDown10.TabIndex = 43;
-            this.numericUpDown10.Visible = false;
+            this.coinNumericUpDown4.Name = "coinNumericUpDown4";
+            this.coinNumericUpDown4.Size = new System.Drawing.Size(42, 20);
+            this.coinNumericUpDown4.TabIndex = 43;
+            this.coinNumericUpDown4.Visible = false;
             // 
-            // pictureBox4
+            // coinPictureBox4
             // 
-            this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(7, 68);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(20, 20);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox4.TabIndex = 42;
-            this.pictureBox4.TabStop = false;
-            this.pictureBox4.Visible = false;
+            this.coinPictureBox4.Image = global::InazumaElevenSaveEditor.Properties.Resources.PurpleCoin;
+            this.coinPictureBox4.Location = new System.Drawing.Point(7, 68);
+            this.coinPictureBox4.Name = "coinPictureBox4";
+            this.coinPictureBox4.Size = new System.Drawing.Size(20, 20);
+            this.coinPictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.coinPictureBox4.TabIndex = 42;
+            this.coinPictureBox4.TabStop = false;
+            this.coinPictureBox4.Visible = false;
             // 
-            // numericUpDown9
+            // coinNumericUpDown3
             // 
-            this.numericUpDown9.Location = new System.Drawing.Point(184, 41);
-            this.numericUpDown9.Maximum = new decimal(new int[] {
+            this.coinNumericUpDown3.Location = new System.Drawing.Point(184, 41);
+            this.coinNumericUpDown3.Maximum = new decimal(new int[] {
             999,
             0,
             0,
             0});
-            this.numericUpDown9.Name = "numericUpDown9";
-            this.numericUpDown9.Size = new System.Drawing.Size(42, 20);
-            this.numericUpDown9.TabIndex = 41;
-            this.numericUpDown9.Visible = false;
+            this.coinNumericUpDown3.Name = "coinNumericUpDown3";
+            this.coinNumericUpDown3.Size = new System.Drawing.Size(42, 20);
+            this.coinNumericUpDown3.TabIndex = 41;
+            this.coinNumericUpDown3.Visible = false;
             // 
-            // pictureBox3
+            // coinPictureBox3
             // 
-            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(157, 42);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(20, 20);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox3.TabIndex = 40;
-            this.pictureBox3.TabStop = false;
-            this.pictureBox3.Visible = false;
+            this.coinPictureBox3.Image = global::InazumaElevenSaveEditor.Properties.Resources.SilverCoin;
+            this.coinPictureBox3.Location = new System.Drawing.Point(157, 42);
+            this.coinPictureBox3.Name = "coinPictureBox3";
+            this.coinPictureBox3.Size = new System.Drawing.Size(20, 20);
+            this.coinPictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.coinPictureBox3.TabIndex = 40;
+            this.coinPictureBox3.TabStop = false;
+            this.coinPictureBox3.Visible = false;
             // 
-            // numericUpDown8
+            // coinNumericUpDown2
             // 
-            this.numericUpDown8.Location = new System.Drawing.Point(109, 41);
-            this.numericUpDown8.Maximum = new decimal(new int[] {
+            this.coinNumericUpDown2.Location = new System.Drawing.Point(109, 41);
+            this.coinNumericUpDown2.Maximum = new decimal(new int[] {
             999,
             0,
             0,
             0});
-            this.numericUpDown8.Name = "numericUpDown8";
-            this.numericUpDown8.Size = new System.Drawing.Size(42, 20);
-            this.numericUpDown8.TabIndex = 39;
-            this.numericUpDown8.Visible = false;
+            this.coinNumericUpDown2.Name = "coinNumericUpDown2";
+            this.coinNumericUpDown2.Size = new System.Drawing.Size(42, 20);
+            this.coinNumericUpDown2.TabIndex = 39;
+            this.coinNumericUpDown2.Visible = false;
             // 
-            // pictureBox2
+            // coinPictureBox2
             // 
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(82, 42);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(20, 20);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 38;
-            this.pictureBox2.TabStop = false;
-            this.pictureBox2.Visible = false;
+            this.coinPictureBox2.Image = global::InazumaElevenSaveEditor.Properties.Resources.RedCoin;
+            this.coinPictureBox2.Location = new System.Drawing.Point(82, 42);
+            this.coinPictureBox2.Name = "coinPictureBox2";
+            this.coinPictureBox2.Size = new System.Drawing.Size(20, 20);
+            this.coinPictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.coinPictureBox2.TabIndex = 38;
+            this.coinPictureBox2.TabStop = false;
+            this.coinPictureBox2.Visible = false;
             // 
-            // numericUpDown7
+            // coinNumericUpDown1
             // 
-            this.numericUpDown7.Location = new System.Drawing.Point(34, 41);
-            this.numericUpDown7.Maximum = new decimal(new int[] {
+            this.coinNumericUpDown1.Location = new System.Drawing.Point(34, 41);
+            this.coinNumericUpDown1.Maximum = new decimal(new int[] {
             999,
             0,
             0,
             0});
-            this.numericUpDown7.Name = "numericUpDown7";
-            this.numericUpDown7.Size = new System.Drawing.Size(42, 20);
-            this.numericUpDown7.TabIndex = 37;
-            this.numericUpDown7.Visible = false;
+            this.coinNumericUpDown1.Name = "coinNumericUpDown1";
+            this.coinNumericUpDown1.Size = new System.Drawing.Size(42, 20);
+            this.coinNumericUpDown1.TabIndex = 37;
+            this.coinNumericUpDown1.Visible = false;
             // 
-            // pictureBox1
+            // coinPictureBox1
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(7, 42);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(20, 20);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 36;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Visible = false;
+            this.coinPictureBox1.Image = global::InazumaElevenSaveEditor.Properties.Resources.blueCoin;
+            this.coinPictureBox1.Location = new System.Drawing.Point(7, 42);
+            this.coinPictureBox1.Name = "coinPictureBox1";
+            this.coinPictureBox1.Size = new System.Drawing.Size(20, 20);
+            this.coinPictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.coinPictureBox1.TabIndex = 36;
+            this.coinPictureBox1.TabStop = false;
+            this.coinPictureBox1.Visible = false;
             // 
             // label6
             // 
@@ -457,18 +456,18 @@ namespace InazumaElevenSaveEditor
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.coinNumericUpDown5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.coinPictureBox5)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.coinNumericUpDown4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.coinPictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.coinNumericUpDown3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.coinPictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.coinNumericUpDown2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.coinPictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.coinNumericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.coinPictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown6)).EndInit();
             this.tabControl1.ResumeLayout(false);
@@ -487,17 +486,17 @@ namespace InazumaElevenSaveEditor
         public System.Windows.Forms.Label label5;
         public System.Windows.Forms.TabPage tabPage3;
         public System.Windows.Forms.Button button1;
-        public System.Windows.Forms.NumericUpDown numericUpDown11;
-        public System.Windows.Forms.PictureBox pictureBox5;
+        public System.Windows.Forms.NumericUpDown coinNumericUpDown5;
+        public System.Windows.Forms.PictureBox coinPictureBox5;
         public System.Windows.Forms.TabPage tabPage2;
-        public System.Windows.Forms.NumericUpDown numericUpDown10;
-        public System.Windows.Forms.PictureBox pictureBox4;
-        public System.Windows.Forms.NumericUpDown numericUpDown9;
-        public System.Windows.Forms.PictureBox pictureBox3;
-        public System.Windows.Forms.NumericUpDown numericUpDown8;
-        public System.Windows.Forms.PictureBox pictureBox2;
-        public System.Windows.Forms.NumericUpDown numericUpDown7;
-        public System.Windows.Forms.PictureBox pictureBox1;
+        public System.Windows.Forms.NumericUpDown coinNumericUpDown4;
+        public System.Windows.Forms.PictureBox coinPictureBox4;
+        public System.Windows.Forms.NumericUpDown coinNumericUpDown3;
+        public System.Windows.Forms.PictureBox coinPictureBox3;
+        public System.Windows.Forms.NumericUpDown coinNumericUpDown2;
+        public System.Windows.Forms.PictureBox coinPictureBox2;
+        public System.Windows.Forms.NumericUpDown coinNumericUpDown1;
+        public System.Windows.Forms.PictureBox coinPictureBox1;
         public System.Windows.Forms.Label label6;
         public System.Windows.Forms.NumericUpDown numericUpDown5;
         public System.Windows.Forms.NumericUpDown numericUpDown6;

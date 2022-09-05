@@ -142,7 +142,7 @@ namespace NoFarmForMeOpenSource
             avatarNumericUpDown.Value = player.Avatar.Level;
             invokeBox.Checked = player.Invoke;
             avatarNameBox.Enabled = player.Invoke;
-            avatarNumericUpDown.Enabled = player.Invoke;
+            avatarNumericUpDown.Enabled = player.Invoke & player.Avatar.IsFightingSpirit;
             armedBox.Checked = player.Armed;
             armedBox.Enabled = player.Invoke;
 
@@ -222,7 +222,7 @@ namespace NoFarmForMeOpenSource
                     miximaxAvatarNameBox.Visible = true;
                     miximaxAvatarNameBox.Enabled = true;
                     miximaxAvatarNumericUpDown.Visible = true;
-                    miximaxAvatarNumericUpDown.Enabled = true;
+                    miximaxAvatarNumericUpDown.Enabled = player.MixiMax.AuraPlayer.Avatar.IsFightingSpirit;
                     miximaxAvatarLabel.Visible = true;
                     miximaxAvatarLabel.Enabled = true;
                 }
@@ -400,7 +400,7 @@ namespace NoFarmForMeOpenSource
             SelectedPlayer = -1;
             managePlayerToolStripMenuItem.Enabled = true;
             inventoryButton.Enabled = true;
-            teamButton.Enabled = true;
+            // teamButton.Enabled = true;
             saveInformationButton.Enabled = true;
             playRecordsButton.Enabled = true;
             saveToolStripMenuItem1.Enabled = true;
@@ -410,10 +410,8 @@ namespace NoFarmForMeOpenSource
 
         private void OpenToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            if (openFileDialog1.FileName == "openFileDialog1") openFileDialog1.FileName = null;
-
-            openFileDialog1.Title = "Open IEGOCS save file";
-            openFileDialog1.Filter = "IEGOCS save file (*.ie*)|*.ie*";
+            openFileDialog1.Title = "Open Inazuma Eleven save file";
+            openFileDialog1.Filter = "IEGOCS/IEGOGALAXY save file (*.ie*)|*.ie*";
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 LoadFile(openFileDialog1.FileName);
@@ -486,11 +484,14 @@ namespace NoFarmForMeOpenSource
             }
         }
 
-        private void PlayerPictureBox1_MouseDown(object sender, MouseEventArgs e)
+        private void PlayerPictureBox_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Left) return;
 
-            SelectedPlayer = pageComboBox.SelectedIndex * 16 + 0;
+            PictureBox playerPictureBox = (PictureBox)sender;
+            int playerNumber = Convert.ToInt32(playerPictureBox.Name.Replace("playerPictureBox", "")) - 1;
+
+            SelectedPlayer = pageComboBox.SelectedIndex * 16 + playerNumber;
 
             if (SelectedPlayer >= Game.PlayersInSave.Count)
             {
@@ -502,579 +503,30 @@ namespace NoFarmForMeOpenSource
             }
         }
 
-        private void PlayerPictureBox2_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Button != MouseButtons.Left) return;
-
-            SelectedPlayer = pageComboBox.SelectedIndex * 16 + 1;
-
-            if (SelectedPlayer >= Game.PlayersInSave.Count)
-            {
-                RecruitToolStripMenuItem_Click(sender, e);
-            }
-            else
-            {
-                PrintPlayer(Game.GetPlayer(SelectedPlayer));
-            }
-        }
-
-        private void PlayerPictureBox3_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Button != MouseButtons.Left) return;
-
-            SelectedPlayer = pageComboBox.SelectedIndex * 16 + 2;
-
-            if (SelectedPlayer >= Game.PlayersInSave.Count)
-            {
-                RecruitToolStripMenuItem_Click(sender, e);
-            }
-            else
-            {
-                PrintPlayer(Game.GetPlayer(SelectedPlayer));
-            }
-        }
-
-        private void PlayerPictureBox4_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Button != MouseButtons.Left) return;
-
-            SelectedPlayer = pageComboBox.SelectedIndex * 16 + 3;
-
-            if (SelectedPlayer >= Game.PlayersInSave.Count)
-            {
-                RecruitToolStripMenuItem_Click(sender, e);
-            }
-            else
-            {
-                PrintPlayer(Game.GetPlayer(SelectedPlayer));
-            }
-        }
-
-        private void PlayerPictureBox5_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Button != MouseButtons.Left) return;
-
-            SelectedPlayer = pageComboBox.SelectedIndex * 16 + 4;
-
-            if (SelectedPlayer >= Game.PlayersInSave.Count)
-            {
-                RecruitToolStripMenuItem_Click(sender, e);
-            }
-            else
-            {
-                PrintPlayer(Game.GetPlayer(SelectedPlayer));
-            }
-        }
-
-        private void PlayerPictureBox6_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Button != MouseButtons.Left) return;
-
-            SelectedPlayer = pageComboBox.SelectedIndex * 16 + 5;
-
-            if (SelectedPlayer >= Game.PlayersInSave.Count)
-            {
-                RecruitToolStripMenuItem_Click(sender, e);
-            }
-            else
-            {
-                PrintPlayer(Game.GetPlayer(SelectedPlayer));
-            }
-        }
-
-        private void PlayerPictureBox7_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Button != MouseButtons.Left) return;
-
-            SelectedPlayer = pageComboBox.SelectedIndex * 16 + 6;
-
-            if (SelectedPlayer >= Game.PlayersInSave.Count)
-            {
-                RecruitToolStripMenuItem_Click(sender, e);
-            }
-            else
-            {
-                PrintPlayer(Game.GetPlayer(SelectedPlayer));
-            }
-        }
-
-        private void PlayerPictureBox8_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Button != MouseButtons.Left) return;
-
-            SelectedPlayer = pageComboBox.SelectedIndex * 16 + 7;
-
-            if (SelectedPlayer >= Game.PlayersInSave.Count)
-            {
-                RecruitToolStripMenuItem_Click(sender, e);
-            }
-            else
-            {
-                PrintPlayer(Game.GetPlayer(SelectedPlayer));
-            }
-        }
-
-        private void PlayerPictureBox9_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Button != MouseButtons.Left) return;
-
-            SelectedPlayer = pageComboBox.SelectedIndex * 16 + 8;
-
-            if (SelectedPlayer >= Game.PlayersInSave.Count)
-            {
-                RecruitToolStripMenuItem_Click(sender, e);
-            }
-            else
-            {
-                PrintPlayer(Game.GetPlayer(SelectedPlayer));
-            }
-        }
-
-        private void PlayerPictureBox10_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Button != MouseButtons.Left) return;
-
-            SelectedPlayer = pageComboBox.SelectedIndex * 16 + 9;
-
-            if (SelectedPlayer >= Game.PlayersInSave.Count)
-            {
-                RecruitToolStripMenuItem_Click(sender, e);
-            }
-            else
-            {
-                PrintPlayer(Game.GetPlayer(SelectedPlayer));
-            }
-        }
-
-        private void PlayerPictureBox11_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Button != MouseButtons.Left) return;
-
-            SelectedPlayer = pageComboBox.SelectedIndex * 16 + 10;
-
-            if (SelectedPlayer >= Game.PlayersInSave.Count)
-            {
-                RecruitToolStripMenuItem_Click(sender, e);
-            }
-            else
-            {
-                PrintPlayer(Game.GetPlayer(SelectedPlayer));
-            }
-        }
-
-        private void PlayerPictureBox12_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Button != MouseButtons.Left) return;
-
-            SelectedPlayer = pageComboBox.SelectedIndex * 16 + 11;
-
-            if (SelectedPlayer >= Game.PlayersInSave.Count)
-            {
-                RecruitToolStripMenuItem_Click(sender, e);
-            }
-            else
-            {
-                PrintPlayer(Game.GetPlayer(SelectedPlayer));
-            }
-        }
-
-        private void PlayerPictureBox13_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Button != MouseButtons.Left) return;
-
-            SelectedPlayer = pageComboBox.SelectedIndex * 16 + 12;
-
-            if (SelectedPlayer >= Game.PlayersInSave.Count)
-            {
-                RecruitToolStripMenuItem_Click(sender, e);
-            }
-            else
-            {
-                PrintPlayer(Game.GetPlayer(SelectedPlayer));
-            }
-        }
-
-        private void PlayerPictureBox14_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Button != MouseButtons.Left) return;
-
-            SelectedPlayer = pageComboBox.SelectedIndex * 16 + 13;
-
-            if (SelectedPlayer >= Game.PlayersInSave.Count)
-            {
-                RecruitToolStripMenuItem_Click(sender, e);
-            }
-            else
-            {
-                PrintPlayer(Game.GetPlayer(SelectedPlayer));
-            }
-        }
-
-        private void PlayerPictureBox15_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Button != MouseButtons.Left) return;
-
-            SelectedPlayer = pageComboBox.SelectedIndex * 16 + 14;
-
-            if (SelectedPlayer >= Game.PlayersInSave.Count)
-            {
-                RecruitToolStripMenuItem_Click(sender, e);
-            }
-            else
-            {
-                PrintPlayer(Game.GetPlayer(SelectedPlayer));
-            }
-        }
-
-        private void PlayerPictureBox16_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Button != MouseButtons.Left) return;
-
-            SelectedPlayer = pageComboBox.SelectedIndex * 16 + 15;
-
-            if (SelectedPlayer >= Game.PlayersInSave.Count)
-            {
-                RecruitToolStripMenuItem_Click(sender, e);
-            }
-            else
-            {
-                PrintPlayer(Game.GetPlayer(SelectedPlayer));
-            }
-        }
-
-        private void PlayerPictureBox1_MouseMove(object sender, MouseEventArgs e)
+        private void PlayerPictureBox_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Right) return;
-            if (pageComboBox.SelectedIndex * 16 + 0 >= Game.PlayersInSave.Count) return;
-            if (movedPlayerPictureBox.Visible == false) SelectedPlayer = pageComboBox.SelectedIndex * 16 + 0;
 
-            MovePictureBox(playerPictureBox1, sender, e);
+            PictureBox playerPictureBox = (PictureBox)sender;
+            int playerNumber = Convert.ToInt32(playerPictureBox.Name.Replace("playerPictureBox", "")) - 1;
+
+            if (pageComboBox.SelectedIndex * 16 + playerNumber >= Game.PlayersInSave.Count) return;
+            if (movedPlayerPictureBox.Visible == false) SelectedPlayer = pageComboBox.SelectedIndex * 16 + playerNumber;
+
+            MovePictureBox(playerPictureBox, sender, e);
         }
 
-        private void PlayerPictureBox2_MouseMove(object sender, MouseEventArgs e)
+        private void PlayerPictureBox_MouseUp(object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Right) return;
-            if (pageComboBox.SelectedIndex * 16 + 1 >= Game.PlayersInSave.Count) return;
-            if (movedPlayerPictureBox.Visible == false) SelectedPlayer = pageComboBox.SelectedIndex * 16 + 1;
 
-            MovePictureBox(playerPictureBox2, sender, e);
-        }
-
-        private void PlayerPictureBox3_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (e.Button != MouseButtons.Right) return;
-            if (pageComboBox.SelectedIndex * 16 + 2 >= Game.PlayersInSave.Count) return;
-            if (movedPlayerPictureBox.Visible == false) SelectedPlayer = pageComboBox.SelectedIndex * 16 + 2;
-
-            MovePictureBox(playerPictureBox3, sender, e);
-        }
-
-        private void PlayerPictureBox4_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (e.Button != MouseButtons.Right) return;
-            if (pageComboBox.SelectedIndex * 16 + 3 >= Game.PlayersInSave.Count) return;
-            if (movedPlayerPictureBox.Visible == false) SelectedPlayer = pageComboBox.SelectedIndex * 16 + 3;
-
-            MovePictureBox(playerPictureBox4, sender, e);
-        }
-
-        private void PlayerPictureBox5_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (e.Button != MouseButtons.Right) return;
-            if (pageComboBox.SelectedIndex * 16 + 4 >= Game.PlayersInSave.Count) return;
-            if (movedPlayerPictureBox.Visible == false) SelectedPlayer = pageComboBox.SelectedIndex * 16 + 4;
-
-            MovePictureBox(playerPictureBox5, sender, e);
-        }
-
-        private void PlayerPictureBox6_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (e.Button != MouseButtons.Right) return;
-            if (pageComboBox.SelectedIndex * 16 + 5 >= Game.PlayersInSave.Count) return;
-            if (movedPlayerPictureBox.Visible == false) SelectedPlayer = pageComboBox.SelectedIndex * 16 + 5;
-
-            MovePictureBox(playerPictureBox6, sender, e);
-        }
-
-        private void PlayerPictureBox7_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (e.Button != MouseButtons.Right) return;
-            if (pageComboBox.SelectedIndex * 16 + 6 >= Game.PlayersInSave.Count) return;
-            if (movedPlayerPictureBox.Visible == false) SelectedPlayer = pageComboBox.SelectedIndex * 16 + 6;
-
-            MovePictureBox(playerPictureBox7, sender, e);
-        }
-
-        private void PlayerPictureBox8_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (e.Button != MouseButtons.Right) return;
-            if (pageComboBox.SelectedIndex * 16 + 7 >= Game.PlayersInSave.Count) return;
-            if (movedPlayerPictureBox.Visible == false) SelectedPlayer = pageComboBox.SelectedIndex * 16 + 7;
-
-            MovePictureBox(playerPictureBox8, sender, e);
-        }
-
-        private void PlayerPictureBox9_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (e.Button != MouseButtons.Right) return;
-            if (pageComboBox.SelectedIndex * 16 + 8 >= Game.PlayersInSave.Count) return;
-            if (movedPlayerPictureBox.Visible == false) SelectedPlayer = pageComboBox.SelectedIndex * 16 + 8;
-
-            MovePictureBox(playerPictureBox9, sender, e);
-        }
-
-        private void PlayerPictureBox10_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (e.Button != MouseButtons.Right) return;
-            if (pageComboBox.SelectedIndex * 16 + 9 >= Game.PlayersInSave.Count) return;
-            if (movedPlayerPictureBox.Visible == false) SelectedPlayer = pageComboBox.SelectedIndex * 16 + 9;
-
-            MovePictureBox(playerPictureBox10, sender, e);
-        }
-
-        private void PlayerPictureBox11_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (e.Button != MouseButtons.Right) return;
-            if (pageComboBox.SelectedIndex * 16 + 10 >= Game.PlayersInSave.Count) return;
-            if (movedPlayerPictureBox.Visible == false) SelectedPlayer = pageComboBox.SelectedIndex * 16 + 10;
-
-            MovePictureBox(playerPictureBox11, sender, e);
-        }
-
-        private void PlayerPictureBox12_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (e.Button != MouseButtons.Right) return;
-            if (pageComboBox.SelectedIndex * 16 + 11 >= Game.PlayersInSave.Count) return;
-            if (movedPlayerPictureBox.Visible == false) SelectedPlayer = pageComboBox.SelectedIndex * 16 + 11;
-
-            MovePictureBox(playerPictureBox12, sender, e);
-        }
-
-        private void PlayerPictureBox13_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (e.Button != MouseButtons.Right) return;
-            if (pageComboBox.SelectedIndex * 16 + 12 >= Game.PlayersInSave.Count) return;
-            if (movedPlayerPictureBox.Visible == false) SelectedPlayer = pageComboBox.SelectedIndex * 16 + 12;
-
-            MovePictureBox(playerPictureBox13, sender, e);
-        }
-
-        private void PlayerPictureBox14_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (e.Button != MouseButtons.Right) return;
-            if (pageComboBox.SelectedIndex * 16 + 13 >= Game.PlayersInSave.Count) return;
-            if (movedPlayerPictureBox.Visible == false) SelectedPlayer = pageComboBox.SelectedIndex * 16 + 13;
-
-            MovePictureBox(playerPictureBox14, sender, e);
-        }
-
-        private void PlayerPictureBox15_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (e.Button != MouseButtons.Right) return;
-            if (pageComboBox.SelectedIndex * 16 + 14 >= Game.PlayersInSave.Count) return;
-            if (movedPlayerPictureBox.Visible == false) SelectedPlayer = pageComboBox.SelectedIndex * 16 + 14;
-
-            MovePictureBox(playerPictureBox15, sender, e);
-        }
-
-        private void PlayerPictureBox16_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (e.Button != MouseButtons.Right) return;
-            if (pageComboBox.SelectedIndex * 16 + 15 >= Game.PlayersInSave.Count) return;
-            if (movedPlayerPictureBox.Visible == false) SelectedPlayer = pageComboBox.SelectedIndex * 16 + 1;
-
-            MovePictureBox(playerPictureBox16, sender, e);
-        }
-
-        private void PlayerPictureBox1_MouseUp(object sender, MouseEventArgs e)
-        {
-            if (e.Button != MouseButtons.Right) return;
+            PictureBox playerPictureBox = (PictureBox)sender;
 
             SwitchPlayer();
 
             SelectedPlayer = -1;
             tabControl1.Enabled = false;
-            playerPictureBox1.Visible = true;
-            movedPlayerPictureBox.Visible = false;
-            PageComboBox_SelectedIndexChanged(sender, e);
-        }
-
-        private void PlayerPictureBox2_MouseUp(object sender, MouseEventArgs e)
-        {
-            if (e.Button != MouseButtons.Right) return;
-
-            SwitchPlayer();
-            SelectedPlayer = -1;
-            tabControl1.Enabled = false;
-            playerPictureBox2.Visible = true;
-            movedPlayerPictureBox.Visible = false;
-            PageComboBox_SelectedIndexChanged(sender, e);
-        }
-
-        private void PlayerPictureBox3_MouseUp(object sender, MouseEventArgs e)
-        {
-            if (e.Button != MouseButtons.Right) return;
-
-            SwitchPlayer();
-            SelectedPlayer = -1;
-            tabControl1.Enabled = false;
-            playerPictureBox3.Visible = true;
-            movedPlayerPictureBox.Visible = false;
-            PageComboBox_SelectedIndexChanged(sender, e);
-        }
-
-        private void PlayerPictureBox4_MouseUp(object sender, MouseEventArgs e)
-        {
-            if (e.Button != MouseButtons.Right) return;
-
-            SwitchPlayer();
-            SelectedPlayer = -1;
-            tabControl1.Enabled = false;
-            playerPictureBox4.Visible = true;
-            movedPlayerPictureBox.Visible = false;
-            PageComboBox_SelectedIndexChanged(sender, e);
-        }
-
-        private void PlayerPictureBox5_MouseUp(object sender, MouseEventArgs e)
-        {
-            if (e.Button != MouseButtons.Right) return;
-
-            SwitchPlayer();
-            SelectedPlayer = -1;
-            tabControl1.Enabled = false;
-            playerPictureBox5.Visible = true;
-            movedPlayerPictureBox.Visible = false;
-            PageComboBox_SelectedIndexChanged(sender, e);
-        }
-
-        private void PlayerPictureBox6_MouseUp(object sender, MouseEventArgs e)
-        {
-            if (e.Button != MouseButtons.Right) return;
-
-            SwitchPlayer();
-            SelectedPlayer = -1;
-            tabControl1.Enabled = false;
-            playerPictureBox6.Visible = true;
-            movedPlayerPictureBox.Visible = false;
-            PageComboBox_SelectedIndexChanged(sender, e);
-        }
-
-        private void PlayerPictureBox7_MouseUp(object sender, MouseEventArgs e)
-        {
-            if (e.Button != MouseButtons.Right) return;
-
-            SwitchPlayer();
-            SelectedPlayer = -1;
-            tabControl1.Enabled = false;
-            playerPictureBox7.Visible = true;
-            movedPlayerPictureBox.Visible = false;
-            PageComboBox_SelectedIndexChanged(sender, e);
-        }
-
-        private void PlayerPictureBox8_MouseUp(object sender, MouseEventArgs e)
-        {
-            if (e.Button != MouseButtons.Right) return;
-
-            SwitchPlayer();
-            SelectedPlayer = -1;
-            tabControl1.Enabled = false;
-            playerPictureBox8.Visible = true;
-            movedPlayerPictureBox.Visible = false;
-            PageComboBox_SelectedIndexChanged(sender, e);
-        }
-
-        private void PlayerPictureBox9_MouseUp(object sender, MouseEventArgs e)
-        {
-            if (e.Button != MouseButtons.Right) return;
-
-            SwitchPlayer();
-            SelectedPlayer = -1;
-            tabControl1.Enabled = false;
-            playerPictureBox9.Visible = true;
-            movedPlayerPictureBox.Visible = false;
-            PageComboBox_SelectedIndexChanged(sender, e);
-        }
-
-        private void PlayerPictureBox10_MouseUp(object sender, MouseEventArgs e)
-        {
-            if (e.Button != MouseButtons.Right) return;
-
-            SwitchPlayer();
-            SelectedPlayer = -1;
-            tabControl1.Enabled = false;
-            playerPictureBox10.Visible = true;
-            movedPlayerPictureBox.Visible = false;
-            PageComboBox_SelectedIndexChanged(sender, e);
-        }
-
-        private void PlayerPictureBox11_MouseUp(object sender, MouseEventArgs e)
-        {
-            if (e.Button != MouseButtons.Right) return;
-
-            SwitchPlayer();
-            SelectedPlayer = -1;
-            tabControl1.Enabled = false;
-            playerPictureBox11.Visible = true;
-            movedPlayerPictureBox.Visible = false;
-            PageComboBox_SelectedIndexChanged(sender, e);
-        }
-
-        private void PlayerPictureBox12_MouseUp(object sender, MouseEventArgs e)
-        {
-            if (e.Button != MouseButtons.Right) return;
-
-            SwitchPlayer();
-            SelectedPlayer = -1;
-            tabControl1.Enabled = false;
-            playerPictureBox12.Visible = true;
-            movedPlayerPictureBox.Visible = false;
-            PageComboBox_SelectedIndexChanged(sender, e);
-        }
-
-        private void PlayerPictureBox13_MouseUp(object sender, MouseEventArgs e)
-        {
-            if (e.Button != MouseButtons.Right) return;
-
-            SwitchPlayer();
-            SelectedPlayer = -1;
-            tabControl1.Enabled = false;
-            playerPictureBox13.Visible = true;
-            movedPlayerPictureBox.Visible = false;
-            PageComboBox_SelectedIndexChanged(sender, e);
-        }
-
-        private void PlayerPictureBox14_MouseUp(object sender, MouseEventArgs e)
-        {
-            if (e.Button != MouseButtons.Right) return;
-
-            SwitchPlayer();
-            SelectedPlayer = -1;
-            tabControl1.Enabled = false;
-            playerPictureBox14.Visible = true;
-            movedPlayerPictureBox.Visible = false;
-            PageComboBox_SelectedIndexChanged(sender, e);
-        }
-
-        private void PlayerPictureBox15_MouseUp(object sender, MouseEventArgs e)
-        {
-            if (e.Button != MouseButtons.Right) return;
-
-            SwitchPlayer();
-            SelectedPlayer = -1;
-            tabControl1.Enabled = false;
-            playerPictureBox15.Visible = true;
-            movedPlayerPictureBox.Visible = false;
-            PageComboBox_SelectedIndexChanged(sender, e);
-        }
-
-        private void PlayerPictureBox16_MouseUp(object sender, MouseEventArgs e)
-        {
-            if (e.Button != MouseButtons.Right) return;
-
-            SwitchPlayer();
-            SelectedPlayer = -1;
-            tabControl1.Enabled = false;
-            playerPictureBox16.Visible = true;
+            playerPictureBox.Visible = true;
             movedPlayerPictureBox.Visible = false;
             PageComboBox_SelectedIndexChanged(sender, e);
         }
@@ -1107,60 +559,14 @@ namespace NoFarmForMeOpenSource
             Game.GetPlayer(SelectedPlayer).Style = styleBox.SelectedIndex;
         }
 
-        private void InvestedNumericUpDown3_ValueChanged(object sender, EventArgs e)
+        private void InvestedNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
-            if (!investedNumericUpDown3.Focused) return;
+            NumericUpDown investedNumericUpDown = (NumericUpDown)sender;
 
-            TrainPlayer(Game.GetPlayer(SelectedPlayer), investedNumericUpDown3, 0);
-        }
+            if (!investedNumericUpDown.Focused) return;
+            int investedNumericUpDownNumber = Convert.ToInt32(investedNumericUpDown.Name.Replace("investedNumericUpDown", "")) - 3;
 
-        private void InvestedNumericUpDown4_ValueChanged(object sender, EventArgs e)
-        {
-            if (!investedNumericUpDown4.Focused) return;
-
-            TrainPlayer(Game.GetPlayer(SelectedPlayer), investedNumericUpDown4, 1);
-        }
-
-        private void InvestedNumericUpDown6_ValueChanged(object sender, EventArgs e)
-        {
-            if (!investedNumericUpDown6.Focused) return;
-
-            TrainPlayer(Game.GetPlayer(SelectedPlayer), investedNumericUpDown6, 3);
-        }
-
-        private void InvestedNumericUpDown9_ValueChanged(object sender, EventArgs e)
-        {
-            if (!investedNumericUpDown9.Focused) return;
-
-            TrainPlayer(Game.GetPlayer(SelectedPlayer), investedNumericUpDown9, 6);
-        }
-
-        private void InvestedNumericUpDown5_ValueChanged(object sender, EventArgs e)
-        {
-            if (!investedNumericUpDown5.Focused) return;
-
-            TrainPlayer(Game.GetPlayer(SelectedPlayer), investedNumericUpDown5, 2);
-        }
-
-        private void InvestedNumericUpDown7_ValueChanged(object sender, EventArgs e)
-        {
-            if (!investedNumericUpDown7.Focused) return;
-
-            TrainPlayer(Game.GetPlayer(SelectedPlayer), investedNumericUpDown7, 4);
-        }
-
-        private void InvestedNumericUpDown8_ValueChanged(object sender, EventArgs e)
-        {
-            if (!investedNumericUpDown8.Focused) return;
-
-            TrainPlayer(Game.GetPlayer(SelectedPlayer), investedNumericUpDown8, 5);
-        }
-
-        private void InvestedNumericUpDown10_ValueChanged(object sender, EventArgs e)
-        {
-            if (!investedNumericUpDown10.Focused) return;
-
-            TrainPlayer(Game.GetPlayer(SelectedPlayer), investedNumericUpDown10, 7);
+            TrainPlayer(Game.GetPlayer(SelectedPlayer), investedNumericUpDown, investedNumericUpDownNumber);
         }
 
         private void ResetButton_Click(object sender, EventArgs e)
@@ -1179,7 +585,7 @@ namespace NoFarmForMeOpenSource
                 investedNumericUpDown.Value = player.InvestedPoint[i];
 
                 TextBox statBox = this.Controls.Find("statBox" + (i + 3), true).First() as TextBox;
-                statBox.Text = (Convert.ToInt32(statBox.Text) + investedNumericUpDown.Value).ToString();
+                statBox.Text = (Convert.ToInt32(player.Stat[i+2]) + investedNumericUpDown.Value).ToString();
             }
 
             resetButton.Enabled = false;
@@ -1192,9 +598,11 @@ namespace NoFarmForMeOpenSource
             Player player = Game.GetPlayer(SelectedPlayer);
             Avatar oldAvatar = player.Avatar;
 
+            player.Invoke = true;
             player.Avatar = Game.Avatars.FirstOrDefault(x => x.Value.Name == avatarNameBox.Text).Value;
             player.Avatar.Level = oldAvatar.Level;
-            player.Invoke = true;
+
+            avatarNumericUpDown.Enabled = player.Avatar.IsFightingSpirit;
         }
 
         private void AvatarNumericUpDown_ValueChanged(object sender, EventArgs e)
@@ -1234,276 +642,100 @@ namespace NoFarmForMeOpenSource
             Game.GetPlayer(SelectedPlayer).Armed = armedBox.Checked;
         }
 
-        private void MoveBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void MoveBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (!moveBox1.Focused) return;
+            ComboBox moveBox = (ComboBox)sender;
+            int moveBoxNumber = Convert.ToInt32(moveBox.Name.Replace("moveBox", "")) - 1;
+
+            if (!moveBox.Focused) return;
 
             Player player = Game.GetPlayer(SelectedPlayer);
 
-            Move newMove = Game.Moves.FirstOrDefault(x => x.Value.Name == moveBox1.Text).Value;
+            Move newMove = Game.Moves.FirstOrDefault(x => x.Value.Name == moveBox.Text).Value;
             newMove.Level = 1;
             newMove.TimeLevel = newMove.EvolutionSpeed.TimeLevel[0];
             newMove.Unlock = true;
-            player.Moves[0] = newMove;
+            player.Moves[moveBoxNumber] = newMove;
 
-            moveNumericUpDown1.Maximum = newMove.EvolutionCount;
+            NumericUpDown moveNumericUpDown = (NumericUpDown)tabPage5.Controls.Find("moveNumericUpDown" + (moveBoxNumber+1), false)[0];
+            moveNumericUpDown.Maximum = newMove.EvolutionCount;
         }
 
-        private void MoveBox2_SelectedIndexChanged(object sender, EventArgs e)
+        private void MoveNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
-            if (!moveBox2.Focused) return;
+            NumericUpDown moveNumericUpDown = (NumericUpDown)sender;
+            int moveNumericUpDownNumber = Convert.ToInt32(moveNumericUpDown.Name.Replace("moveNumericUpDown", "")) - 1;
+
+            if (!moveNumericUpDown.Focused) return;
 
             Player player = Game.GetPlayer(SelectedPlayer);
-
-            Move newMove = Game.Moves.FirstOrDefault(x => x.Value.Name == moveBox2.Text).Value;
-            newMove.Level = 1;
-            newMove.TimeLevel = newMove.EvolutionSpeed.TimeLevel[0];
-            newMove.Unlock = true;
-            player.Moves[1] = newMove;
-
-            moveNumericUpDown2.Maximum = newMove.EvolutionCount;
+            player.Moves[moveNumericUpDownNumber].Level = Convert.ToInt32(moveNumericUpDown.Value);
+            player.Moves[moveNumericUpDownNumber].TimeLevel = player.Moves[0].EvolutionSpeed.TimeLevel[Convert.ToInt32(moveNumericUpDown.Value)];
         }
 
-        private void MoveBox3_SelectedIndexChanged(object sender, EventArgs e)
+        private void MoveCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            if (!moveBox3.Focused) return;
+            CheckBox moveCheckBox = (CheckBox)sender;
+            int moveCheckBoxNumber = Convert.ToInt32(moveCheckBox.Name.Replace("moveCheckBox", "")) - 1;
 
-            Player player = Game.GetPlayer(SelectedPlayer);
+            if (!moveCheckBox.Focused) return;
 
-            Move newMove = Game.Moves.FirstOrDefault(x => x.Value.Name == moveBox3.Text).Value;
-            newMove.Level = 1;
-            newMove.TimeLevel = newMove.EvolutionSpeed.TimeLevel[0];
-            newMove.Unlock = true;
-            player.Moves[2] = newMove;
+            Game.GetPlayer(SelectedPlayer).Moves[moveCheckBoxNumber].Unlock = moveCheckBox.Checked;
 
-            moveNumericUpDown3.Maximum = newMove.EvolutionCount;
+            ComboBox moveBox = (ComboBox)tabPage5.Controls.Find("moveBox" + (moveCheckBoxNumber + 1), false)[0];
+            moveBox.Enabled = moveCheckBox.Checked;
+
+            NumericUpDown moveNumericUpDown = (NumericUpDown)tabPage5.Controls.Find("moveNumericUpDown" + (moveCheckBoxNumber + 1), false)[0];
+            moveNumericUpDown.Enabled = moveCheckBox.Checked;
         }
 
-        private void MoveBox4_SelectedIndexChanged(object sender, EventArgs e)
+        private void MoveBoxMixiMax_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (!moveBox4.Focused) return;
+            ComboBox moveBox = (ComboBox)sender;
+            int moveBoxNumber = Convert.ToInt32(moveBox.Name.Replace("moveBox", "")) - 1;
+            int mixiMaxMove = moveBoxNumber - 6;
 
-            Player player = Game.GetPlayer(SelectedPlayer);
+            if (!moveBox.Focused) return;
 
-            Move newMove = Game.Moves.FirstOrDefault(x => x.Value.Name == moveBox4.Text).Value;
-            newMove.Level = 1;
-            newMove.TimeLevel = newMove.EvolutionSpeed.TimeLevel[0];
-            newMove.Unlock = true;
-            player.Moves[3] = newMove;
-
-            moveNumericUpDown4.Maximum = newMove.EvolutionCount;
-        }
-
-        private void MoveBox5_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (!moveBox5.Focused) return;
-
-            Player player = Game.GetPlayer(SelectedPlayer);
-
-            Move newMove = Game.Moves.FirstOrDefault(x => x.Value.Name == moveBox5.Text).Value;
-            newMove.Level = 1;
-            newMove.TimeLevel = newMove.EvolutionSpeed.TimeLevel[0];
-            newMove.Unlock = true;
-            player.Moves[4] = newMove;
-
-            moveNumericUpDown5.Maximum = newMove.EvolutionCount;
-        }
-
-        private void MoveBox6_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (!moveBox6.Focused) return;
-
-            Player player = Game.GetPlayer(SelectedPlayer);
-
-            Move newMove = Game.Moves.FirstOrDefault(x => x.Value.Name == moveBox6.Text).Value;
-            newMove.Level = 1;
-            newMove.TimeLevel = newMove.EvolutionSpeed.TimeLevel[0];
-            newMove.Unlock = true;
-            player.Moves[5] = newMove;
-
-            moveNumericUpDown6.Maximum = newMove.EvolutionCount;
-        }
-
-        private void MoveNumericUpDown1_ValueChanged(object sender, EventArgs e)
-        {
-            if (!moveNumericUpDown1.Focused) return;
-
-            Player player = Game.GetPlayer(SelectedPlayer);
-            player.Moves[0].Level = Convert.ToInt32(moveNumericUpDown1.Value);
-            player.Moves[0].TimeLevel = player.Moves[0].EvolutionSpeed.TimeLevel[Convert.ToInt32(moveNumericUpDown1.Value)];
-        }
-
-        private void MoveNumericUpDown2_ValueChanged(object sender, EventArgs e)
-        {
-            if (!moveNumericUpDown2.Focused) return;
-
-            Player player = Game.GetPlayer(SelectedPlayer);
-            player.Moves[1].Level = Convert.ToInt32(moveNumericUpDown2.Value);
-            player.Moves[1].TimeLevel = player.Moves[1].EvolutionSpeed.TimeLevel[Convert.ToInt32(moveNumericUpDown2.Value)];
-        }
-
-        private void MoveNumericUpDown3_ValueChanged(object sender, EventArgs e)
-        {
-            if (!moveNumericUpDown3.Focused) return;
-
-            Player player = Game.GetPlayer(SelectedPlayer);
-            player.Moves[2].Level = Convert.ToInt32(moveNumericUpDown3.Value);
-            player.Moves[2].TimeLevel = player.Moves[2].EvolutionSpeed.TimeLevel[Convert.ToInt32(moveNumericUpDown3.Value)];
-        }
-
-        private void MoveNumericUpDown4_ValueChanged(object sender, EventArgs e)
-        {
-            if (!moveNumericUpDown4.Focused) return;
-
-            Player player = Game.GetPlayer(SelectedPlayer);
-            player.Moves[3].Level = Convert.ToInt32(moveNumericUpDown4.Value);
-            player.Moves[3].TimeLevel = player.Moves[3].EvolutionSpeed.TimeLevel[Convert.ToInt32(moveNumericUpDown4.Value)];
-        }
-
-        private void MoveNumericUpDown5_ValueChanged(object sender, EventArgs e)
-        {
-            if (!moveNumericUpDown5.Focused) return;
-
-            Player player = Game.GetPlayer(SelectedPlayer);
-            player.Moves[4].Level = Convert.ToInt32(moveNumericUpDown5.Value);
-            player.Moves[4].TimeLevel = player.Moves[4].EvolutionSpeed.TimeLevel[Convert.ToInt32(moveNumericUpDown5.Value)];
-        }
-
-        private void MoveNumericUpDown6_ValueChanged(object sender, EventArgs e)
-        {
-            if (!moveNumericUpDown6.Focused) return;
-
-            Player player = Game.GetPlayer(SelectedPlayer);
-            player.Moves[5].Level = Convert.ToInt32(moveNumericUpDown6.Value);
-            player.Moves[5].TimeLevel = player.Moves[5].EvolutionSpeed.TimeLevel[Convert.ToInt32(moveNumericUpDown6.Value)];
-        }
-
-        private void MoveCheckBox1_CheckedChanged(object sender, EventArgs e)
-        {
-            if (!moveCheckBox1.Focused) return;
-
-            Game.GetPlayer(SelectedPlayer).Moves[0].Unlock = moveCheckBox1.Checked;
-            moveBox1.Enabled = moveCheckBox1.Checked;
-            moveNumericUpDown1.Enabled = moveCheckBox1.Checked;
-        }
-
-        private void MoveCheckBox2_CheckedChanged(object sender, EventArgs e)
-        {
-            if (!moveCheckBox2.Focused) return;
-
-            Game.GetPlayer(SelectedPlayer).Moves[1].Unlock = moveCheckBox2.Checked;
-            moveBox2.Enabled = moveCheckBox2.Checked;
-            moveNumericUpDown2.Enabled = moveCheckBox2.Checked;
-        }
-
-        private void MoveCheckBox3_CheckedChanged(object sender, EventArgs e)
-        {
-            if (!moveCheckBox3.Focused) return;
-
-            Game.GetPlayer(SelectedPlayer).Moves[2].Unlock = moveCheckBox3.Checked;
-            moveBox3.Enabled = moveCheckBox3.Checked;
-            moveNumericUpDown3.Enabled = moveCheckBox3.Checked;
-        }
-
-        private void MoveCheckBox4_CheckedChanged(object sender, EventArgs e)
-        {
-            if (!moveCheckBox4.Focused) return;
-
-            Game.GetPlayer(SelectedPlayer).Moves[3].Unlock = moveCheckBox4.Checked;
-            moveBox4.Enabled = moveCheckBox4.Checked;
-            moveNumericUpDown4.Enabled = moveCheckBox4.Checked;
-        }
-
-        private void MoveCheckBox5_CheckedChanged(object sender, EventArgs e)
-        {
-            if (!moveCheckBox5.Focused) return;
-
-            Game.GetPlayer(SelectedPlayer).Moves[4].Unlock = moveCheckBox5.Checked;
-            moveBox5.Enabled = moveCheckBox5.Checked;
-            moveNumericUpDown5.Enabled = moveCheckBox5.Checked;
-        }
-
-        private void MoveCheckBox6_CheckedChanged(object sender, EventArgs e)
-        {
-            if (!moveCheckBox6.Focused) return;
-
-            Game.GetPlayer(SelectedPlayer).Moves[5].Unlock = moveCheckBox6.Checked;
-            moveBox6.Enabled = moveCheckBox6.Checked;
-            moveNumericUpDown6.Enabled = moveCheckBox6.Checked;
-        }
-
-        private void MoveBox7_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (!moveBox7.Focused) return;
+            NumericUpDown moveNumericUpDown = (NumericUpDown)tabPage5.Controls.Find("moveNumericUpDown" + (moveBoxNumber + 1), false)[0];
 
             Player player = Game.GetPlayer(SelectedPlayer);
 
             if (moveBox7.SelectedIndex != moveBox8.SelectedIndex)
             {
-                if (moveBox7.SelectedIndex == moveBox7.Items.Count - 1 && player.MixiMax.BestMatch != null)
+                if (moveBox.SelectedIndex == moveBox.Items.Count - 1 && player.MixiMax.BestMatch != null)
                 {
-                    player.MixiMax.MixiMaxMoveNumber[0] = 6;
-                    moveNumericUpDown7.Maximum = 1;
-                    moveNumericUpDown7.Value = 1;
-                    moveNumericUpDown7.Enabled = false;
+                    player.MixiMax.MixiMaxMoveNumber[mixiMaxMove] = 6;
+                    moveNumericUpDown.Maximum = 1;
+                    moveNumericUpDown.Value = 1;
+                    moveNumericUpDown.Enabled = false;
                 }
                 else
                 {
-                    player.MixiMax.MixiMaxMoveNumber[0] = moveBox7.SelectedIndex;
-                    moveNumericUpDown7.Maximum = player.MixiMax.AuraPlayer.Moves[moveBox7.SelectedIndex].EvolutionCount;
-                    moveNumericUpDown7.Value = player.MixiMax.AuraPlayer.Moves[moveBox7.SelectedIndex].Level;
-                    moveNumericUpDown7.Enabled = true;
+                    player.MixiMax.MixiMaxMoveNumber[mixiMaxMove] = moveBox.SelectedIndex;
+                    moveNumericUpDown.Maximum = player.MixiMax.AuraPlayer.Moves[moveBox.SelectedIndex].EvolutionCount;
+                    moveNumericUpDown.Value = player.MixiMax.AuraPlayer.Moves[moveBox.SelectedIndex].Level;
+                    moveNumericUpDown.Enabled = true;
                 }
-            } else
+            }
+            else
             {
-                moveBox7.SelectedIndex = player.MixiMax.MixiMaxMoveNumber[0];
+                moveBox.SelectedIndex = player.MixiMax.MixiMaxMoveNumber[mixiMaxMove];
             }
         }
 
-        private void MoveBox8_SelectedIndexChanged(object sender, EventArgs e)
+        private void MoveNumericUpDownMixiMax_ValueChanged(object sender, EventArgs e)
         {
-            if (!moveBox8.Focused) return;
+            NumericUpDown moveNumericUpDown = (NumericUpDown)sender;
+            int moveNumericUpDownNumber = Convert.ToInt32(moveNumericUpDown.Name.Replace("moveNumericUpDown", "")) - 1;
 
-            Player player = Game.GetPlayer(SelectedPlayer);
-
-            if (moveBox8.SelectedIndex != moveBox7.SelectedIndex)
-            {
-                if (moveBox8.SelectedIndex == moveBox8.Items.Count - 1 && player.MixiMax.BestMatch != null)
-                {
-                    player.MixiMax.MixiMaxMoveNumber[1] = 6;
-                    moveNumericUpDown8.Maximum = 1;
-                    moveNumericUpDown8.Value = 1;
-                    moveNumericUpDown8.Enabled = false;
-                }
-                else
-                {
-                    player.MixiMax.MixiMaxMoveNumber[1] = moveBox8.SelectedIndex;
-                    moveNumericUpDown8.Maximum = player.MixiMax.AuraPlayer.Moves[moveBox8.SelectedIndex].EvolutionCount;
-                    moveNumericUpDown8.Value = player.MixiMax.AuraPlayer.Moves[moveBox8.SelectedIndex].Level;
-                    moveNumericUpDown8.Enabled = true;
-                }
-            } else
-            {
-                moveBox8.SelectedIndex = player.MixiMax.MixiMaxMoveNumber[1];
-            }
-        }
-
-        private void MoveNumericUpDown7_ValueChanged(object sender, EventArgs e)
-        {
-            if (!moveNumericUpDown7.Focused) return;
+            if (!moveNumericUpDown.Focused) return;
 
             Player player = Game.GetPlayer(SelectedPlayer).MixiMax.AuraPlayer;
-            player.Moves[moveBox7.SelectedIndex].Level = Convert.ToInt32(moveNumericUpDown7.Value);
-            player.Moves[moveBox7.SelectedIndex].TimeLevel = player.Moves[moveBox7.SelectedIndex].EvolutionSpeed.TimeLevel[Convert.ToInt32(moveNumericUpDown7.Value)];
-        }
 
-        private void MoveNumericUpDown8_ValueChanged(object sender, EventArgs e)
-        {
-            if (!moveNumericUpDown8.Focused) return;
-
-            Player player = Game.GetPlayer(SelectedPlayer).MixiMax.AuraPlayer;
-            player.Moves[moveBox8.SelectedIndex].Level = Convert.ToInt32(moveNumericUpDown8.Value);
-            player.Moves[moveBox8.SelectedIndex].TimeLevel = player.Moves[moveBox8.SelectedIndex].EvolutionSpeed.TimeLevel[Convert.ToInt32(moveNumericUpDown8.Value)];
+            ComboBox moveBox = (ComboBox)tabPage5.Controls.Find("moveBox" + (moveNumericUpDownNumber + 1), false)[0];
+            player.Moves[moveBox.SelectedIndex].Level = Convert.ToInt32(moveNumericUpDown.Value);
+            player.Moves[moveBox.SelectedIndex].TimeLevel = player.Moves[moveBox.SelectedIndex].EvolutionSpeed.TimeLevel[Convert.ToInt32(moveNumericUpDown.Value)];
         }
 
         private void MiximaxAvatarNameBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -1515,6 +747,8 @@ namespace NoFarmForMeOpenSource
 
             player.Avatar = Game.Avatars.FirstOrDefault(x => x.Value.Name == miximaxAvatarNameBox.Text).Value;
             player.Avatar.Level = oldAvatar.Level;
+
+            miximaxAvatarNumericUpDown.Enabled = player.Avatar.IsFightingSpirit;
         }
 
         private void MiximaxAvatarNumericUpDown_ValueChanged(object sender, EventArgs e)

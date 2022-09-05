@@ -60,6 +60,7 @@
     <Compile Include="Formats\ContainerFormats.cs" />
     <Compile Include="Formats\ContainerGames.cs" />
     <Compile Include="Formats\Games\IEGOCS.cs" />
+    <Compile Include="Formats\Games\IEGOGALAXY.cs" />
     <Compile Include="Formats\Saves\IE.cs" />
     <Compile Include="InventoryWindow.cs">
       <SubType>Form</SubType>
@@ -325,6 +326,20 @@
   <ItemGroup>
     <None Include="Common\InazumaElevenGo\Formations\F-Sandstorm.txt" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\PurpleCoin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blueCoin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SilverCoin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RedCoin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\YellowCoin.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

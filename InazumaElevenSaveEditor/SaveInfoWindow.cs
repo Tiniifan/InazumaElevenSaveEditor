@@ -16,6 +16,29 @@ namespace InazumaElevenSaveEditor
 
         private void SaveInfoWindow_Load(object sender, EventArgs e)
         {
+            // Change Text Depending Of The Game Loaded
+            switch (Game.GameNameCode)
+            {
+                case "IEGO":
+                    label2.Text = "Team Name";
+                    label9.Visible = true;
+                    numericUpDown6.Visible = true;
+                    button1.Text = "Unlock Data Download + Password + Link with Go Content";
+                    break;
+                case "IEGOCS":
+                    label2.Text = "Chrono Stone Name";
+                    label9.Visible = true;
+                    numericUpDown6.Visible = true;
+                    button1.Text = "Unlock Data Download + Password + Link with Go Content";
+                    break;
+                case "IEGOGALAXY":
+                    label2.Text = "Team Name";
+                    label9.Visible = false;
+                    numericUpDown6.Visible = false;
+                    button1.Text = "Unlock Data Download + QRcode + Link with GO/CS Content";
+                    break;
+            }
+
             Game.OpenSaveInfo();
 
             textBox1.Text = Game.SaveInfo.Name;
@@ -44,7 +67,21 @@ namespace InazumaElevenSaveEditor
             }
 
             numericUpDown5.Value = Game.SaveInfo.Prestige;
-            numericUpDown6.Value = Game.SaveInfo.Friendship;
+
+            if (Game.GameNameCode == "IEGOGALAXY")
+            {
+                for (int i = 0; i < 5; i++)
+                {
+                    PictureBox coinPictureBox = (PictureBox)tabPage2.Controls.Find("coinPictureBox" + (i + 1), false)[0];
+                    NumericUpDown coinNumericUpDown = (NumericUpDown)tabPage2.Controls.Find("coinNumericUpDown" + (i + 1), false)[0];
+                    coinPictureBox.Visible = true;
+                    coinNumericUpDown.Visible = true;
+                    coinNumericUpDown.Value = Game.SaveInfo.Coins[i];
+                }
+            } else
+            {
+                numericUpDown6.Value = Game.SaveInfo.Friendship;
+            }
         }
 
         private void SaveInfoWindow_FormClosing(object sender, FormClosingEventArgs e)
@@ -55,6 +92,12 @@ namespace InazumaElevenSaveEditor
             Game.SaveInfo.Min = Convert.ToInt32(numericUpDown4.Value);
             Game.SaveInfo.Prestige = Convert.ToInt32(numericUpDown5.Value);
             Game.SaveInfo.Friendship = Convert.ToInt32(numericUpDown6.Value);
+
+            for (int i = 0; i < 5; i++)
+            {
+                NumericUpDown coinNumericUpDown = (NumericUpDown)tabPage2.Controls.Find("coinNumericUpDown" + (i + 1), false)[0];
+                Game.SaveInfo.Coins[i] = Convert.ToInt32(coinNumericUpDown.Value);
+            }
         }
 
         private void Button1_Click(object sender, EventArgs e)

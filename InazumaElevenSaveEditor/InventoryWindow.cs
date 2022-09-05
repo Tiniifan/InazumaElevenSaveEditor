@@ -83,7 +83,6 @@ namespace InazumaElevenSaveEditor
                     byte[] rightByte = BitConverter.GetBytes(x1);
                     byte[] leftByte = BitConverter.GetBytes(x2);
                     UInt32 newIndex = BitConverter.ToUInt32(new byte[4] { leftByte[1], leftByte[0], rightByte[1], rightByte[0] }, 0);
-                    Console.WriteLine(Game.SaveInfo.Inventory.ContainsKey(newIndex)) ;
 
                     Item item = Game.Items.FirstOrDefault(x => x.Value.Name == itemName).Value;
                     item.Quantity = quantity;
@@ -119,6 +118,14 @@ namespace InazumaElevenSaveEditor
             PopulateDataGridView(dataGridView21, 21, Game.Items.Count(x => x.Value.SubCategory == 21));
             PopulateDataGridView(dataGridView23, 23, 120);
 
+            if (Game.GameNameCode == "IEGOGALAXY")
+            {
+                PopulateDataGridView(dataGridView22, 22, Game.Items.Count(x => x.Value.SubCategory == 22));
+            } else
+            {
+                tabControl2.TabPages.RemoveAt(6);
+            }
+
             int count = 0;
             foreach (KeyValuePair<UInt32, Item> item in Game.SaveInfo.Inventory)
             {
@@ -131,7 +138,6 @@ namespace InazumaElevenSaveEditor
                 count++;
             }
 
-            tabControl2.TabPages.RemoveAt(6);
             tabControl1.Enabled = true;
         }
 
@@ -160,6 +166,11 @@ namespace InazumaElevenSaveEditor
             SaveDataGridView(dataGridView20, 3, 20);
             SaveDataGridView(dataGridView21, 3, 21);
             SaveDataGridView(dataGridView23, 3, 23);
+
+            if (Game.GameNameCode == "IEGOGALAXY")
+            {
+                SaveDataGridView(dataGridView22, 3, 22);
+            }
 
             // Reset Aura Item and Equipment
             Game.UpdateResource();

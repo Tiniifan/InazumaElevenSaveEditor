@@ -724,7 +724,7 @@ namespace NoFarmForMeOpenSource
             this.investedNumericUpDown9.Name = "investedNumericUpDown9";
             this.investedNumericUpDown9.Size = new System.Drawing.Size(48, 20);
             this.investedNumericUpDown9.TabIndex = 204;
-            this.investedNumericUpDown9.ValueChanged += new System.EventHandler(this.InvestedNumericUpDown9_ValueChanged);
+            this.investedNumericUpDown9.ValueChanged += new System.EventHandler(this.InvestedNumericUpDown_ValueChanged);
             // 
             // label7
             // 
@@ -761,7 +761,7 @@ namespace NoFarmForMeOpenSource
             this.investedNumericUpDown8.Name = "investedNumericUpDown8";
             this.investedNumericUpDown8.Size = new System.Drawing.Size(48, 20);
             this.investedNumericUpDown8.TabIndex = 205;
-            this.investedNumericUpDown8.ValueChanged += new System.EventHandler(this.InvestedNumericUpDown8_ValueChanged);
+            this.investedNumericUpDown8.ValueChanged += new System.EventHandler(this.InvestedNumericUpDown_ValueChanged);
             // 
             // investedNumericUpDown10
             // 
@@ -780,7 +780,7 @@ namespace NoFarmForMeOpenSource
             this.investedNumericUpDown10.Name = "investedNumericUpDown10";
             this.investedNumericUpDown10.Size = new System.Drawing.Size(48, 20);
             this.investedNumericUpDown10.TabIndex = 203;
-            this.investedNumericUpDown10.ValueChanged += new System.EventHandler(this.InvestedNumericUpDown10_ValueChanged);
+            this.investedNumericUpDown10.ValueChanged += new System.EventHandler(this.InvestedNumericUpDown_ValueChanged);
             // 
             // label6
             // 
@@ -817,7 +817,7 @@ namespace NoFarmForMeOpenSource
             this.investedNumericUpDown7.Name = "investedNumericUpDown7";
             this.investedNumericUpDown7.Size = new System.Drawing.Size(48, 20);
             this.investedNumericUpDown7.TabIndex = 206;
-            this.investedNumericUpDown7.ValueChanged += new System.EventHandler(this.InvestedNumericUpDown7_ValueChanged);
+            this.investedNumericUpDown7.ValueChanged += new System.EventHandler(this.InvestedNumericUpDown_ValueChanged);
             // 
             // investedNumericUpDown6
             // 
@@ -836,7 +836,7 @@ namespace NoFarmForMeOpenSource
             this.investedNumericUpDown6.Name = "investedNumericUpDown6";
             this.investedNumericUpDown6.Size = new System.Drawing.Size(48, 20);
             this.investedNumericUpDown6.TabIndex = 202;
-            this.investedNumericUpDown6.ValueChanged += new System.EventHandler(this.InvestedNumericUpDown6_ValueChanged);
+            this.investedNumericUpDown6.ValueChanged += new System.EventHandler(this.InvestedNumericUpDown_ValueChanged);
             // 
             // label5
             // 
@@ -864,7 +864,7 @@ namespace NoFarmForMeOpenSource
             this.investedNumericUpDown5.Name = "investedNumericUpDown5";
             this.investedNumericUpDown5.Size = new System.Drawing.Size(48, 20);
             this.investedNumericUpDown5.TabIndex = 201;
-            this.investedNumericUpDown5.ValueChanged += new System.EventHandler(this.InvestedNumericUpDown5_ValueChanged);
+            this.investedNumericUpDown5.ValueChanged += new System.EventHandler(this.InvestedNumericUpDown_ValueChanged);
             // 
             // investedNumericUpDown4
             // 
@@ -883,7 +883,7 @@ namespace NoFarmForMeOpenSource
             this.investedNumericUpDown4.Name = "investedNumericUpDown4";
             this.investedNumericUpDown4.Size = new System.Drawing.Size(48, 20);
             this.investedNumericUpDown4.TabIndex = 200;
-            this.investedNumericUpDown4.ValueChanged += new System.EventHandler(this.InvestedNumericUpDown4_ValueChanged);
+            this.investedNumericUpDown4.ValueChanged += new System.EventHandler(this.InvestedNumericUpDown_ValueChanged);
             // 
             // label4
             // 
@@ -911,7 +911,7 @@ namespace NoFarmForMeOpenSource
             this.investedNumericUpDown3.Name = "investedNumericUpDown3";
             this.investedNumericUpDown3.Size = new System.Drawing.Size(48, 20);
             this.investedNumericUpDown3.TabIndex = 199;
-            this.investedNumericUpDown3.ValueChanged += new System.EventHandler(this.InvestedNumericUpDown3_ValueChanged);
+            this.investedNumericUpDown3.ValueChanged += new System.EventHandler(this.InvestedNumericUpDown_ValueChanged);
             // 
             // label3
             // 
@@ -1110,7 +1110,7 @@ namespace NoFarmForMeOpenSource
             this.moveBox8.Name = "moveBox8";
             this.moveBox8.Size = new System.Drawing.Size(185, 21);
             this.moveBox8.TabIndex = 251;
-            this.moveBox8.SelectedIndexChanged += new System.EventHandler(this.MoveBox8_SelectedIndexChanged);
+            this.moveBox8.SelectedIndexChanged += new System.EventHandler(this.MoveBoxMixiMax_SelectedIndexChanged);
             // 
             // moveBox7
             // 
@@ -1122,7 +1122,7 @@ namespace NoFarmForMeOpenSource
             this.moveBox7.Name = "moveBox7";
             this.moveBox7.Size = new System.Drawing.Size(185, 21);
             this.moveBox7.TabIndex = 252;
-            this.moveBox7.SelectedIndexChanged += new System.EventHandler(this.MoveBox7_SelectedIndexChanged);
+            this.moveBox7.SelectedIndexChanged += new System.EventHandler(this.MoveBoxMixiMax_SelectedIndexChanged);
             // 
             // moveLabel8
             // 
@@ -1157,7 +1157,7 @@ namespace NoFarmForMeOpenSource
             0,
             0,
             0});
-            this.moveNumericUpDown8.ValueChanged += new System.EventHandler(this.MoveNumericUpDown8_ValueChanged);
+            this.moveNumericUpDown8.ValueChanged += new System.EventHandler(this.MoveNumericUpDownMixiMax_ValueChanged);
             // 
             // moveNumericUpDown7
             // 
@@ -1182,7 +1182,7 @@ namespace NoFarmForMeOpenSource
             0,
             0,
             0});
-            this.moveNumericUpDown7.ValueChanged += new System.EventHandler(this.MoveNumericUpDown7_ValueChanged);
+            this.moveNumericUpDown7.ValueChanged += new System.EventHandler(this.MoveNumericUpDownMixiMax_ValueChanged);
             // 
             // moveLabel7
             // 
@@ -1224,7 +1224,7 @@ namespace NoFarmForMeOpenSource
             this.moveCheckBox6.TabIndex = 245;
             this.moveCheckBox6.Text = "Unlock";
             this.moveCheckBox6.UseVisualStyleBackColor = true;
-            this.moveCheckBox6.CheckedChanged += new System.EventHandler(this.MoveCheckBox6_CheckedChanged);
+            this.moveCheckBox6.CheckedChanged += new System.EventHandler(this.MoveCheckBox_CheckedChanged);
             // 
             // moveCheckBox5
             // 
@@ -1235,7 +1235,7 @@ namespace NoFarmForMeOpenSource
             this.moveCheckBox5.TabIndex = 244;
             this.moveCheckBox5.Text = "Unlock";
             this.moveCheckBox5.UseVisualStyleBackColor = true;
-            this.moveCheckBox5.CheckedChanged += new System.EventHandler(this.MoveCheckBox5_CheckedChanged);
+            this.moveCheckBox5.CheckedChanged += new System.EventHandler(this.MoveCheckBox_CheckedChanged);
             // 
             // moveCheckBox4
             // 
@@ -1246,7 +1246,7 @@ namespace NoFarmForMeOpenSource
             this.moveCheckBox4.TabIndex = 243;
             this.moveCheckBox4.Text = "Unlock";
             this.moveCheckBox4.UseVisualStyleBackColor = true;
-            this.moveCheckBox4.CheckedChanged += new System.EventHandler(this.MoveCheckBox4_CheckedChanged);
+            this.moveCheckBox4.CheckedChanged += new System.EventHandler(this.MoveCheckBox_CheckedChanged);
             // 
             // moveCheckBox3
             // 
@@ -1257,7 +1257,7 @@ namespace NoFarmForMeOpenSource
             this.moveCheckBox3.TabIndex = 242;
             this.moveCheckBox3.Text = "Unlock";
             this.moveCheckBox3.UseVisualStyleBackColor = true;
-            this.moveCheckBox3.CheckedChanged += new System.EventHandler(this.MoveCheckBox3_CheckedChanged);
+            this.moveCheckBox3.CheckedChanged += new System.EventHandler(this.MoveCheckBox_CheckedChanged);
             // 
             // moveCheckBox2
             // 
@@ -1268,7 +1268,7 @@ namespace NoFarmForMeOpenSource
             this.moveCheckBox2.TabIndex = 241;
             this.moveCheckBox2.Text = "Unlock";
             this.moveCheckBox2.UseVisualStyleBackColor = true;
-            this.moveCheckBox2.CheckedChanged += new System.EventHandler(this.MoveCheckBox2_CheckedChanged);
+            this.moveCheckBox2.CheckedChanged += new System.EventHandler(this.MoveCheckBox_CheckedChanged);
             // 
             // moveCheckBox1
             // 
@@ -1279,7 +1279,7 @@ namespace NoFarmForMeOpenSource
             this.moveCheckBox1.TabIndex = 240;
             this.moveCheckBox1.Text = "Unlock";
             this.moveCheckBox1.UseVisualStyleBackColor = true;
-            this.moveCheckBox1.CheckedChanged += new System.EventHandler(this.MoveCheckBox1_CheckedChanged);
+            this.moveCheckBox1.CheckedChanged += new System.EventHandler(this.MoveCheckBox_CheckedChanged);
             // 
             // moveLabel1
             // 
@@ -1300,7 +1300,7 @@ namespace NoFarmForMeOpenSource
             this.moveBox3.Size = new System.Drawing.Size(185, 21);
             this.moveBox3.Sorted = true;
             this.moveBox3.TabIndex = 238;
-            this.moveBox3.SelectedIndexChanged += new System.EventHandler(this.MoveBox3_SelectedIndexChanged);
+            this.moveBox3.SelectedIndexChanged += new System.EventHandler(this.MoveBox_SelectedIndexChanged);
             // 
             // moveBox6
             // 
@@ -1312,7 +1312,7 @@ namespace NoFarmForMeOpenSource
             this.moveBox6.Size = new System.Drawing.Size(185, 21);
             this.moveBox6.Sorted = true;
             this.moveBox6.TabIndex = 215;
-            this.moveBox6.SelectedIndexChanged += new System.EventHandler(this.MoveBox6_SelectedIndexChanged);
+            this.moveBox6.SelectedIndexChanged += new System.EventHandler(this.MoveBox_SelectedIndexChanged);
             // 
             // label17
             // 
@@ -1334,7 +1334,7 @@ namespace NoFarmForMeOpenSource
             this.moveBox5.Size = new System.Drawing.Size(185, 21);
             this.moveBox5.Sorted = true;
             this.moveBox5.TabIndex = 217;
-            this.moveBox5.SelectedIndexChanged += new System.EventHandler(this.MoveBox5_SelectedIndexChanged);
+            this.moveBox5.SelectedIndexChanged += new System.EventHandler(this.MoveBox_SelectedIndexChanged);
             // 
             // moveBox4
             // 
@@ -1346,7 +1346,7 @@ namespace NoFarmForMeOpenSource
             this.moveBox4.Size = new System.Drawing.Size(185, 21);
             this.moveBox4.Sorted = true;
             this.moveBox4.TabIndex = 216;
-            this.moveBox4.SelectedIndexChanged += new System.EventHandler(this.MoveBox4_SelectedIndexChanged);
+            this.moveBox4.SelectedIndexChanged += new System.EventHandler(this.MoveBox_SelectedIndexChanged);
             // 
             // label22
             // 
@@ -1432,7 +1432,7 @@ namespace NoFarmForMeOpenSource
             0,
             0,
             0});
-            this.moveNumericUpDown1.ValueChanged += new System.EventHandler(this.MoveNumericUpDown1_ValueChanged);
+            this.moveNumericUpDown1.ValueChanged += new System.EventHandler(this.MoveNumericUpDown_ValueChanged);
             // 
             // moveNumericUpDown2
             // 
@@ -1456,7 +1456,7 @@ namespace NoFarmForMeOpenSource
             0,
             0,
             0});
-            this.moveNumericUpDown2.ValueChanged += new System.EventHandler(this.MoveNumericUpDown2_ValueChanged);
+            this.moveNumericUpDown2.ValueChanged += new System.EventHandler(this.MoveNumericUpDown_ValueChanged);
             // 
             // label18
             // 
@@ -1490,7 +1490,7 @@ namespace NoFarmForMeOpenSource
             0,
             0,
             0});
-            this.moveNumericUpDown3.ValueChanged += new System.EventHandler(this.MoveNumericUpDown3_ValueChanged);
+            this.moveNumericUpDown3.ValueChanged += new System.EventHandler(this.MoveNumericUpDown_ValueChanged);
             // 
             // moveLabel4
             // 
@@ -1541,7 +1541,7 @@ namespace NoFarmForMeOpenSource
             0,
             0,
             0});
-            this.moveNumericUpDown4.ValueChanged += new System.EventHandler(this.MoveNumericUpDown4_ValueChanged);
+            this.moveNumericUpDown4.ValueChanged += new System.EventHandler(this.MoveNumericUpDown_ValueChanged);
             // 
             // moveBox1
             // 
@@ -1553,7 +1553,7 @@ namespace NoFarmForMeOpenSource
             this.moveBox1.Size = new System.Drawing.Size(185, 21);
             this.moveBox1.Sorted = true;
             this.moveBox1.TabIndex = 223;
-            this.moveBox1.SelectedIndexChanged += new System.EventHandler(this.MoveBox1_SelectedIndexChanged);
+            this.moveBox1.SelectedIndexChanged += new System.EventHandler(this.MoveBox_SelectedIndexChanged);
             // 
             // moveBox2
             // 
@@ -1565,7 +1565,7 @@ namespace NoFarmForMeOpenSource
             this.moveBox2.Size = new System.Drawing.Size(185, 21);
             this.moveBox2.Sorted = true;
             this.moveBox2.TabIndex = 225;
-            this.moveBox2.SelectedIndexChanged += new System.EventHandler(this.MoveBox2_SelectedIndexChanged);
+            this.moveBox2.SelectedIndexChanged += new System.EventHandler(this.MoveBox_SelectedIndexChanged);
             // 
             // moveNumericUpDown6
             // 
@@ -1589,7 +1589,7 @@ namespace NoFarmForMeOpenSource
             0,
             0,
             0});
-            this.moveNumericUpDown6.ValueChanged += new System.EventHandler(this.MoveNumericUpDown6_ValueChanged);
+            this.moveNumericUpDown6.ValueChanged += new System.EventHandler(this.MoveNumericUpDown_ValueChanged);
             // 
             // moveNumericUpDown5
             // 
@@ -1613,7 +1613,7 @@ namespace NoFarmForMeOpenSource
             0,
             0,
             0});
-            this.moveNumericUpDown5.ValueChanged += new System.EventHandler(this.MoveNumericUpDown5_ValueChanged);
+            this.moveNumericUpDown5.ValueChanged += new System.EventHandler(this.MoveNumericUpDown_ValueChanged);
             // 
             // moveLabel2
             // 
@@ -2137,9 +2137,9 @@ namespace NoFarmForMeOpenSource
             this.playerPictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.playerPictureBox1.TabIndex = 0;
             this.playerPictureBox1.TabStop = false;
-            this.playerPictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox1_MouseDown);
-            this.playerPictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox1_MouseMove);
-            this.playerPictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox1_MouseUp);
+            this.playerPictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox_MouseDown);
+            this.playerPictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox_MouseMove);
+            this.playerPictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox_MouseUp);
             // 
             // playerPictureBox16
             // 
@@ -2149,9 +2149,9 @@ namespace NoFarmForMeOpenSource
             this.playerPictureBox16.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.playerPictureBox16.TabIndex = 19;
             this.playerPictureBox16.TabStop = false;
-            this.playerPictureBox16.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox16_MouseDown);
-            this.playerPictureBox16.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox16_MouseMove);
-            this.playerPictureBox16.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox16_MouseUp);
+            this.playerPictureBox16.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox_MouseDown);
+            this.playerPictureBox16.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox_MouseMove);
+            this.playerPictureBox16.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox_MouseUp);
             // 
             // playerPictureBox8
             // 
@@ -2161,9 +2161,9 @@ namespace NoFarmForMeOpenSource
             this.playerPictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.playerPictureBox8.TabIndex = 18;
             this.playerPictureBox8.TabStop = false;
-            this.playerPictureBox8.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox8_MouseDown);
-            this.playerPictureBox8.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox8_MouseMove);
-            this.playerPictureBox8.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox8_MouseUp);
+            this.playerPictureBox8.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox_MouseDown);
+            this.playerPictureBox8.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox_MouseMove);
+            this.playerPictureBox8.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox_MouseUp);
             // 
             // playerPictureBox15
             // 
@@ -2173,9 +2173,9 @@ namespace NoFarmForMeOpenSource
             this.playerPictureBox15.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.playerPictureBox15.TabIndex = 17;
             this.playerPictureBox15.TabStop = false;
-            this.playerPictureBox15.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox15_MouseDown);
-            this.playerPictureBox15.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox15_MouseMove);
-            this.playerPictureBox15.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox15_MouseUp);
+            this.playerPictureBox15.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox_MouseDown);
+            this.playerPictureBox15.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox_MouseMove);
+            this.playerPictureBox15.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox_MouseUp);
             // 
             // playerPictureBox7
             // 
@@ -2185,9 +2185,9 @@ namespace NoFarmForMeOpenSource
             this.playerPictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.playerPictureBox7.TabIndex = 16;
             this.playerPictureBox7.TabStop = false;
-            this.playerPictureBox7.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox7_MouseDown);
-            this.playerPictureBox7.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox7_MouseMove);
-            this.playerPictureBox7.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox7_MouseUp);
+            this.playerPictureBox7.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox_MouseDown);
+            this.playerPictureBox7.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox_MouseMove);
+            this.playerPictureBox7.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox_MouseUp);
             // 
             // playerPictureBox14
             // 
@@ -2197,9 +2197,9 @@ namespace NoFarmForMeOpenSource
             this.playerPictureBox14.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.playerPictureBox14.TabIndex = 15;
             this.playerPictureBox14.TabStop = false;
-            this.playerPictureBox14.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox14_MouseDown);
-            this.playerPictureBox14.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox14_MouseMove);
-            this.playerPictureBox14.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox14_MouseUp);
+            this.playerPictureBox14.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox_MouseDown);
+            this.playerPictureBox14.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox_MouseMove);
+            this.playerPictureBox14.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox_MouseUp);
             // 
             // playerPictureBox6
             // 
@@ -2209,9 +2209,9 @@ namespace NoFarmForMeOpenSource
             this.playerPictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.playerPictureBox6.TabIndex = 14;
             this.playerPictureBox6.TabStop = false;
-            this.playerPictureBox6.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox6_MouseDown);
-            this.playerPictureBox6.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox6_MouseMove);
-            this.playerPictureBox6.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox6_MouseUp);
+            this.playerPictureBox6.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox_MouseDown);
+            this.playerPictureBox6.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox_MouseMove);
+            this.playerPictureBox6.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox_MouseUp);
             // 
             // playerPictureBox13
             // 
@@ -2221,9 +2221,9 @@ namespace NoFarmForMeOpenSource
             this.playerPictureBox13.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.playerPictureBox13.TabIndex = 13;
             this.playerPictureBox13.TabStop = false;
-            this.playerPictureBox13.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox13_MouseDown);
-            this.playerPictureBox13.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox13_MouseMove);
-            this.playerPictureBox13.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox13_MouseUp);
+            this.playerPictureBox13.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox_MouseDown);
+            this.playerPictureBox13.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox_MouseMove);
+            this.playerPictureBox13.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox_MouseUp);
             // 
             // playerPictureBox5
             // 
@@ -2233,9 +2233,9 @@ namespace NoFarmForMeOpenSource
             this.playerPictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.playerPictureBox5.TabIndex = 12;
             this.playerPictureBox5.TabStop = false;
-            this.playerPictureBox5.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox5_MouseDown);
-            this.playerPictureBox5.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox5_MouseMove);
-            this.playerPictureBox5.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox5_MouseUp);
+            this.playerPictureBox5.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox_MouseDown);
+            this.playerPictureBox5.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox_MouseMove);
+            this.playerPictureBox5.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox_MouseUp);
             // 
             // playerPictureBox12
             // 
@@ -2245,9 +2245,9 @@ namespace NoFarmForMeOpenSource
             this.playerPictureBox12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.playerPictureBox12.TabIndex = 11;
             this.playerPictureBox12.TabStop = false;
-            this.playerPictureBox12.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox12_MouseDown);
-            this.playerPictureBox12.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox12_MouseMove);
-            this.playerPictureBox12.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox12_MouseUp);
+            this.playerPictureBox12.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox_MouseDown);
+            this.playerPictureBox12.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox_MouseMove);
+            this.playerPictureBox12.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox_MouseUp);
             // 
             // playerPictureBox4
             // 
@@ -2257,9 +2257,9 @@ namespace NoFarmForMeOpenSource
             this.playerPictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.playerPictureBox4.TabIndex = 10;
             this.playerPictureBox4.TabStop = false;
-            this.playerPictureBox4.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox4_MouseDown);
-            this.playerPictureBox4.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox4_MouseMove);
-            this.playerPictureBox4.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox4_MouseUp);
+            this.playerPictureBox4.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox_MouseDown);
+            this.playerPictureBox4.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox_MouseMove);
+            this.playerPictureBox4.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox_MouseUp);
             // 
             // playerPictureBox11
             // 
@@ -2269,9 +2269,9 @@ namespace NoFarmForMeOpenSource
             this.playerPictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.playerPictureBox11.TabIndex = 9;
             this.playerPictureBox11.TabStop = false;
-            this.playerPictureBox11.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox11_MouseDown);
-            this.playerPictureBox11.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox11_MouseMove);
-            this.playerPictureBox11.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox11_MouseUp);
+            this.playerPictureBox11.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox_MouseDown);
+            this.playerPictureBox11.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox_MouseMove);
+            this.playerPictureBox11.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox_MouseUp);
             // 
             // playerPictureBox3
             // 
@@ -2281,9 +2281,9 @@ namespace NoFarmForMeOpenSource
             this.playerPictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.playerPictureBox3.TabIndex = 8;
             this.playerPictureBox3.TabStop = false;
-            this.playerPictureBox3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox3_MouseDown);
-            this.playerPictureBox3.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox3_MouseMove);
-            this.playerPictureBox3.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox3_MouseUp);
+            this.playerPictureBox3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox_MouseDown);
+            this.playerPictureBox3.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox_MouseMove);
+            this.playerPictureBox3.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox_MouseUp);
             // 
             // playerPictureBox10
             // 
@@ -2293,9 +2293,9 @@ namespace NoFarmForMeOpenSource
             this.playerPictureBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.playerPictureBox10.TabIndex = 7;
             this.playerPictureBox10.TabStop = false;
-            this.playerPictureBox10.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox10_MouseDown);
-            this.playerPictureBox10.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox10_MouseMove);
-            this.playerPictureBox10.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox10_MouseUp);
+            this.playerPictureBox10.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox_MouseDown);
+            this.playerPictureBox10.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox_MouseMove);
+            this.playerPictureBox10.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox_MouseUp);
             // 
             // playerPictureBox2
             // 
@@ -2305,9 +2305,9 @@ namespace NoFarmForMeOpenSource
             this.playerPictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.playerPictureBox2.TabIndex = 6;
             this.playerPictureBox2.TabStop = false;
-            this.playerPictureBox2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox2_MouseDown);
-            this.playerPictureBox2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox2_MouseMove);
-            this.playerPictureBox2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox2_MouseUp);
+            this.playerPictureBox2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox_MouseDown);
+            this.playerPictureBox2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox_MouseMove);
+            this.playerPictureBox2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox_MouseUp);
             // 
             // playerPictureBox9
             // 
@@ -2317,9 +2317,9 @@ namespace NoFarmForMeOpenSource
             this.playerPictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.playerPictureBox9.TabIndex = 5;
             this.playerPictureBox9.TabStop = false;
-            this.playerPictureBox9.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox9_MouseDown);
-            this.playerPictureBox9.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox9_MouseMove);
-            this.playerPictureBox9.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox9_MouseUp);
+            this.playerPictureBox9.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox_MouseDown);
+            this.playerPictureBox9.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox_MouseMove);
+            this.playerPictureBox9.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PlayerPictureBox_MouseUp);
             // 
             // previousButton
             // 
@@ -2436,10 +2436,6 @@ namespace NoFarmForMeOpenSource
             this.inventoryButton.Text = "Inventory";
             this.inventoryButton.UseVisualStyleBackColor = true;
             this.inventoryButton.Click += new System.EventHandler(this.InventoryButton_Click);
-            // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // Welcome
             // 
