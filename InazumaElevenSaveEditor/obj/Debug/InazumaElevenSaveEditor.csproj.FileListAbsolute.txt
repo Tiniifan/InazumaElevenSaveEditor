@@ -1,4 +1,3 @@
-C:\Users\Mathieu\source\repos\InazumaElevenSaveEditor\InazumaElevenSaveEditor\obj\Debug\InazumaElevenSaveEditor.csprojAssemblyReference.cache
 C:\Users\Mathieu\source\repos\InazumaElevenSaveEditor\InazumaElevenSaveEditor\obj\Debug\NoFarmForMeOpenSource.Welcome.resources
 C:\Users\Mathieu\source\repos\InazumaElevenSaveEditor\InazumaElevenSaveEditor\obj\Debug\InazumaElevenSaveEditor.csproj.GenerateResource.cache
 C:\Users\Mathieu\source\repos\InazumaElevenSaveEditor\InazumaElevenSaveEditor\obj\Debug\InazumaElevenSaveEditor.csproj.CoreCompileInputs.cache
@@ -13,3 +12,4 @@ C:\Users\Mathieu\source\repos\InazumaElevenSaveEditor\InazumaElevenSaveEditor\ob
 C:\Users\Mathieu\source\repos\InazumaElevenSaveEditor\InazumaElevenSaveEditor\obj\Debug\InazumaElevenSaveEditor.SaveInfoWindow.resources
 C:\Users\Mathieu\source\repos\InazumaElevenSaveEditor\InazumaElevenSaveEditor\obj\Debug\InazumaElevenSaveEditor.PlayRecordsWindow.resources
 C:\Users\Mathieu\source\repos\InazumaElevenSaveEditor\InazumaElevenSaveEditor\obj\Debug\InazumaElevenSaveEditor.InventoryWindow.resources
+C:\Users\Mathieu\source\repos\InazumaElevenSaveEditor\InazumaElevenSaveEditor\obj\Debug\InazumaElevenSaveEditor.csproj.AssemblyReference.cache

@@ -40,8 +40,7 @@ namespace InazumaElevenSaveEditor.Formats.Saves
                 case 0x4CF1:
                     return new CS(file);
                 case 0x40F1:
-                    MessageBox.Show("IEGO Galaxy save support isn't available, wait update");
-                    throw new FormatException("IEGO Galaxy save support isn't available");
+                    return new Galaxy(file);
                 default:
                     throw new FormatException("Save Game not supported");
             }

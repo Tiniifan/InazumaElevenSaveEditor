@@ -21,6 +21,8 @@ namespace InazumaElevenSaveEditor.Logic
 
         public int SecretLinkLevel;
 
+        public List<int> Coins;
+
         public bool UnlockAllData;
 
         public Dictionary<int, List<PlayRecord>> PlayRecords;

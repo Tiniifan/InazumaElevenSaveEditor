@@ -304,7 +304,7 @@ namespace InazumaElevenSaveEditor.Tools
             byte[] output = new byte[input.Length];
 
             List<int> table = (from x in Enumerable.Range(0, 0x100) select x).ToList();
-            long seed = BitConverter.ToUInt32(input, 0x24E5C);
+            long seed = BitConverter.ToUInt32(input, input.Length-4);
             List<long> states = GenerateStateList(seed, 3);
             states.Add(0x03DF95B3);
 

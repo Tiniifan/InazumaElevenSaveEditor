@@ -61,6 +61,16 @@ namespace InazumaElevenSaveEditor.Properties {
         }
         
         /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap blueCoin {
+            get {
+                object obj = ResourceManager.GetObject("blueCoin", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à form_start &lt;- {
         ///	name = &quot;form_start&quot;,
         ///	data = [
@@ -1903,6 +1913,46 @@ namespace InazumaElevenSaveEditor.Properties {
         internal static System.Drawing.Bitmap PlayerRectangleBox {
             get {
                 object obj = ResourceManager.GetObject("PlayerRectangleBox", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap PurpleCoin {
+            get {
+                object obj = ResourceManager.GetObject("PurpleCoin", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap RedCoin {
+            get {
+                object obj = ResourceManager.GetObject("RedCoin", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap SilverCoin {
+            get {
+                object obj = ResourceManager.GetObject("SilverCoin", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap YellowCoin {
+            get {
+                object obj = ResourceManager.GetObject("YellowCoin", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

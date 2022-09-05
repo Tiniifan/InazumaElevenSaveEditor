@@ -7,7 +7,6 @@ C:\Users\Mathieu\source\repos\NoFarmForMeOpenSource\NoFarmForMeOpenSource\bin\Re
 C:\Users\Mathieu\source\repos\InazumaElevenSaveEditor\InazumaElevenSaveEditor\bin\Release\InazumaElevenSaveEditor.exe.config
 C:\Users\Mathieu\source\repos\InazumaElevenSaveEditor\InazumaElevenSaveEditor\bin\Release\InazumaElevenSaveEditor.exe
 C:\Users\Mathieu\source\repos\InazumaElevenSaveEditor\InazumaElevenSaveEditor\bin\Release\InazumaElevenSaveEditor.pdb
-C:\Users\Mathieu\source\repos\InazumaElevenSaveEditor\InazumaElevenSaveEditor\obj\Release\InazumaElevenSaveEditor.csprojAssemblyReference.cache
 C:\Users\Mathieu\source\repos\InazumaElevenSaveEditor\InazumaElevenSaveEditor\obj\Release\InazumaElevenSaveEditor.Properties.Resources.resources
 C:\Users\Mathieu\source\repos\InazumaElevenSaveEditor\InazumaElevenSaveEditor\obj\Release\NoFarmForMeOpenSource.Welcome.resources
 C:\Users\Mathieu\source\repos\InazumaElevenSaveEditor\InazumaElevenSaveEditor\obj\Release\InazumaElevenSaveEditor.csproj.GenerateResource.cache
@@ -19,3 +18,4 @@ C:\Users\Mathieu\source\repos\InazumaElevenSaveEditor\InazumaElevenSaveEditor\ob
 C:\Users\Mathieu\source\repos\InazumaElevenSaveEditor\InazumaElevenSaveEditor\obj\Release\InazumaElevenSaveEditor.PlayRecordsWindow.resources
 C:\Users\Mathieu\source\repos\InazumaElevenSaveEditor\InazumaElevenSaveEditor\obj\Release\InazumaElevenSaveEditor.SaveInfoWindow.resources
 C:\Users\Mathieu\source\repos\InazumaElevenSaveEditor\InazumaElevenSaveEditor\obj\Release\InazumaElevenSaveEditor.InventoryWindow.resources
+C:\Users\Mathieu\source\repos\InazumaElevenSaveEditor\InazumaElevenSaveEditor\obj\Release\InazumaElevenSaveEditor.csproj.AssemblyReference.cache

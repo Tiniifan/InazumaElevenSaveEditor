@@ -211,7 +211,7 @@ namespace InazumaElevenSaveEditor.Logic
             }
         }
 
-        public static EvolutionSpeed Turbo()
+        public static EvolutionSpeed Turbo(int evolutionCount, string game)
         {
             return new EvolutionSpeed("Turbo", new List<int> { }, new List<int> { 5, 10, 10, 15, 0 });
         }
