@@ -15,7 +15,7 @@ Inazuma Eleven Save Editor is a project to create an application that can read a
 - IE3 ❌
 - IEGO ❌
 - IEGOCS ✅
-- IEGOGALAXY ❌
+- IEGOGALAXY ✅
 
 **Screenshots**
 
