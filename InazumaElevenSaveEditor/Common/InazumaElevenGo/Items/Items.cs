@@ -3208,7 +3208,7 @@ namespace InazumaElevenSaveEditor.Common.InazumaElevenGo
             {0x59D29996, new Item ("Cooldown", 2, 5)},
             {0xCFE29EE1, new Item ("Twirl and catch", 2, 5)},
             {0x2A6B5981, new Item ("Acceleration jump", 2, 5)},
-            {0x27FA62B4, new Item ("Soft drink", 2, 5)},
+            {0x27FA62B4, new Item ("Soft drink", 1, 6)},
             {0x9DAB6B2D, new Item ("Isotonic drink", 1, 6)},
             {0x0B9B6C5A, new Item ("Protein shake", 1, 6)},
             {0xA80E08C4, new Item ("Milk", 1, 6)},
