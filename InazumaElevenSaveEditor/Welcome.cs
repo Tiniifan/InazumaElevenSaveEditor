@@ -23,9 +23,15 @@ namespace NoFarmForMeOpenSource
 
         private int SelectedPlayer = -1;
 
-        public Welcome()
+        public Welcome(string path)
         {
             InitializeComponent();
+
+            if (path != string.Empty)
+            {
+                openFileDialog1.FileName = path;
+                LoadFile(openFileDialog1.FileName);
+            }
         }
 
         private void InitializeRessource()
@@ -425,6 +431,27 @@ namespace NoFarmForMeOpenSource
             Game.Save(openFileDialog1);
         }
 
+        private void Welcome_DragDrop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+                string dragPath = Path.GetFullPath(files[0]);
+                string dragExt = Path.GetExtension(files[0]);
+
+                if (files.Length > 1) return;
+                if (dragExt != ".ie" & dragExt != ".ie4") return;
+
+                openFileDialog1.FileName = dragPath;
+                LoadFile(openFileDialog1.FileName);
+            }
+        }
+
+        private void Welcome_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop)) e.Effect = DragDropEffects.Copy;
+        }
+
         private void TeamButton_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Be careful, the team editor doesn't have save function.\nYou can just look your teams");
@@ -564,9 +591,16 @@ namespace NoFarmForMeOpenSource
             NumericUpDown investedNumericUpDown = (NumericUpDown)sender;
 
             if (!investedNumericUpDown.Focused) return;
-            int investedNumericUpDownNumber = Convert.ToInt32(investedNumericUpDown.Name.Replace("investedNumericUpDown", "")) - 3;
 
-            TrainPlayer(Game.GetPlayer(SelectedPlayer), investedNumericUpDown, investedNumericUpDownNumber);
+            Player player = Game.GetPlayer(SelectedPlayer);
+            if (player.Level != 99 && Game.GameNameCode == "IEGOCS")
+            {
+                MessageBox.Show("The player must be level 99 to be trained");
+            } else
+            {
+                int investedNumericUpDownNumber = Convert.ToInt32(investedNumericUpDown.Name.Replace("investedNumericUpDown", "")) - 3;
+                TrainPlayer(player, investedNumericUpDown, investedNumericUpDownNumber);
+            }
         }
 
         private void ResetButton_Click(object sender, EventArgs e)

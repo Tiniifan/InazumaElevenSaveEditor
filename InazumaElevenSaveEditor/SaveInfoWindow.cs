@@ -33,6 +33,7 @@ namespace InazumaElevenSaveEditor
                     break;
                 case "IEGOGALAXY":
                     label2.Text = "Team Name";
+                    textBox2.Enabled = false;
                     label9.Visible = false;
                     numericUpDown6.Visible = false;
                     button1.Text = "Unlock Data Download + QRcode + Link with GO/CS Content";

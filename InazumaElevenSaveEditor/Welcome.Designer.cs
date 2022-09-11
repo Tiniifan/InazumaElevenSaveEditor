@@ -2439,6 +2439,7 @@ namespace NoFarmForMeOpenSource
             // 
             // Welcome
             // 
+            this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(852, 433);
@@ -2450,6 +2451,8 @@ namespace NoFarmForMeOpenSource
             this.MaximumSize = new System.Drawing.Size(868, 472);
             this.Name = "Welcome";
             this.Text = "Inazuma Eleven Save Editor";
+            this.DragDrop += new System.Windows.Forms.DragEventHandler(this.Welcome_DragDrop);
+            this.DragEnter += new System.Windows.Forms.DragEventHandler(this.Welcome_DragEnter);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
