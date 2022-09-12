@@ -269,6 +269,10 @@ namespace NoFarmForMeOpenSource
             investedNumericUpDownSelected.Minimum = trainingInformation.Item1;
             investedNumericUpDownSelected.Maximum = trainingInformation.Item2;
             downStatNumericUpDown.Enabled = trainingInformation.Item4;
+            if (downStatNumericUpDown.Enabled == false & Game.GameNameCode == "IEGOCS")
+            {
+                downStatNumericUpDown.Minimum = -65535;
+            }
 
             // Print Stat
             for (int i = 0; i < player.Stat.Count; i++)
