@@ -14,8 +14,9 @@ namespace InazumaElevenSaveEditor.Common.InazumaElevenGo
         };
 
         public static IDictionary<UInt32, Item> Cs = new Dictionary<UInt32, Item>
-        {
+        {            
             {0x00000000, new Item(" ", -1, -1)},
+            {0x00000001, new Item("Unknown Item", -1, -1)},
             {0x03451545, new Item("Practice Boots", 2, 1)},
             {0xA21FD033, new Item("Raimon Boots", 2, 1)},
             {0x184ED9AA, new Item("Black Boots", 2, 1)},

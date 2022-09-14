@@ -16,7 +16,7 @@ namespace InazumaElevenSaveEditor.Common.InazumaElevenGo
         public static IDictionary<UInt32, Player> Cs = new Dictionary<UInt32, Player>
         {
             {0x00000000, new Player("", null, null, null, null, null, 0)},
-            {0xBAE86391, new Player("Samgunk Han", Position.Goalkeeper(), Element.Fire(), Gender.Boy(), new List<UInt32>(){0x64B0300A, 0xF280377D, 0xAA754163, 0x1DB214B8}, new List<int>(){144, 147, 55, 71, 107, 95, 100, 76, 138, 83}, 99)},
+            {0xBAE86391, new Player("Samguk Han", Position.Goalkeeper(), Element.Fire(), Gender.Boy(), new List<UInt32>(){0x64B0300A, 0xF280377D, 0xAA754163, 0x1DB214B8}, new List<int>(){144, 147, 55, 71, 107, 95, 100, 76, 138, 83}, 99)},
             {0x00B96A08, new Player("Subaru Honda", Position.Defender(), Element.Fire(), Gender.Boy(), new List<UInt32>(){0x16B20416, 0xED6CBD57, 0xD6E152B1, 0x57831F0F}, new List<int>(){147, 142, 66, 75, 100, 117, 92, 95, 71, 83}, 70)},
             {0x96896D7F, new Player("Gabriel Garcia", Position.Defender(), Element.Wood(), Gender.Boy(), new List<UInt32>(){0x2D814031, 0x1B245854, 0x67459DD4, 0x5A15434D}, new List<int>(){130, 142, 66, 90, 116, 141, 119, 88, 50, 102}, 85)},
             {0x351C09E1, new Player("Wanli Changcheng", Position.Defender(), Element.Earth(), Gender.Boy(), new List<UInt32>(){0x8D145F23, 0x7BE211E1, 0xA17551CD, 0x117713FE}, new List<int>(){147, 124, 83, 83, 112, 146, 68, 107, 54, 107}, 95)},
@@ -1600,7 +1600,7 @@ namespace InazumaElevenSaveEditor.Common.InazumaElevenGo
         public static IDictionary<UInt32, Player> Galaxy = new Dictionary<UInt32, Player>
         {
             {0x00000000, new Player("", null, null, null, null, null, 0)},
-            {0xBAE86391, new Player ("Samgunk Han", Position.Goalkeeper(), Element.Fire(), Gender.Girl(), new List<UInt32>(){ 0xF6455B19, 0xF280377D, 0xAA754163, 0x1DB214B8}, new List<int>(){144, 147, 55, 71, 95, 138, 107, 100, 76, 83}, 250)},
+            {0xBAE86391, new Player ("Samguk Han", Position.Goalkeeper(), Element.Fire(), Gender.Girl(), new List<UInt32>(){ 0xF6455B19, 0xF280377D, 0xAA754163, 0x1DB214B8}, new List<int>(){144, 147, 55, 71, 95, 138, 107, 100, 76, 83}, 250)},
             {0x00B96A08, new Player ("Subaru Honda", Position.Defender(), Element.Fire(), Gender.Girl(), new List<UInt32>(){ 0x16B20416, 0xED6CBD57, 0xD6E152B1, 0x57831F0F}, new List<int>(){147, 142, 66, 75, 117, 71, 100, 92, 95, 83}, 230)},
             {0x96896D7F, new Player ("Gabriel Garcia", Position.Defender(), Element.Wood(), Gender.Girl(), new List<UInt32>(){ 0x231767FF, 0x1B245854, 0x67459DD4, 0x5A15434D}, new List<int>(){139, 144, 73, 90, 144, 73, 116, 119, 88, 102}, 250)},
             {0x351C09E1, new Player ("Wanli Changcheng", Position.Defender(), Element.Earth(), Gender.Girl(), new List<UInt32>(){ 0x8D145F23, 0x7BE211E1, 0xA17551CD, 0x117713FE}, new List<int>(){147, 124, 83, 83, 146, 54, 112, 66, 107, 87}, 240)},
