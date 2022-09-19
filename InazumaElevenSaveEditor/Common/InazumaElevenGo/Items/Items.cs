@@ -10,7 +10,8 @@ namespace InazumaElevenSaveEditor.Common.InazumaElevenGo
 
         public static IDictionary<UInt32, Item> Go = new Dictionary<UInt32, Item>
         {
-
+            {0x00000000, new Item(" ", -1, -1)},
+            {0x00000001, new Item("Unknown Item", -1, -1)},
         };
 
         public static IDictionary<UInt32, Item> Cs = new Dictionary<UInt32, Item>
@@ -2928,7 +2929,7 @@ namespace InazumaElevenSaveEditor.Common.InazumaElevenGo
         public static IDictionary<UInt32, Item> Galaxy = new Dictionary<UInt32, Item>
         {
             {0x00000000, new Item(" ", -1, -1)},
-            {0x03451545, new Item ("Practice boots", 2, 1)},
+            {0x00000001, new Item("Unknown Item", -1, -1)},
             {0xA21FD033, new Item ("Raimon boots", 2, 1)},
             {0x184ED9AA, new Item ("Black boots", 2, 1)},
             {0x8E7EDEDD, new Item ("Prodigy boots", 2, 1)},
@@ -2967,7 +2968,7 @@ namespace InazumaElevenSaveEditor.Common.InazumaElevenGo
             {0x29429350, new Item ("Despairado boots", 2, 1)},
             {0xBF729427, new Item ("Legendary boots", 2, 1)},
             {0xD8996575, new Item ("Global boots", 2, 1)},
-            {0x4EA96202, new Item ("Friendship boots", 2, 1)},
+            {0x4EA96202, new Item ("National boots", 2, 1)},
             {0xF4F86B9B, new Item ("Genesis boots", 2, 1)},
             {0x41F09FA8, new Item ("Fire boots", 2, 1)},
             {0xD7C098DF, new Item ("Waves boots", 2, 1)},
