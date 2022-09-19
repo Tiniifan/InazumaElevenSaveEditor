@@ -22,10 +22,10 @@ Inazuma Eleven Save Editor is a project to create an application that can read a
 
 **Screenshots**
 
-![alt text](https://i.imgur.com/op1mGIg.png)
+![alt text](https://i.imgur.com/Om5qRLI.png)
 
 Now, it's you turn to create your dream team!
 
-[Download the Save Editor](https://github.com/Tiniifan/InazumaElevenSaveEditor/releases/download/1.1.0.0/InazumaElevenSaveEditor.exe)
+[Download the Save Editor](https://github.com/Tiniifan/InazumaElevenSaveEditor/releases/download/1.2.0.0/InazumaElevenSaveEditor.exe)
 
 [Discord Server Link](https://discord.gg/3FpDBSz)
