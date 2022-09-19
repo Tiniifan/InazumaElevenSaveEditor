@@ -59,8 +59,11 @@
     <Compile Include="Common\InazumaElevenGo\Players\Players.cs" />
     <Compile Include="Formats\ContainerFormats.cs" />
     <Compile Include="Formats\ContainerGames.cs" />
+    <Compile Include="Formats\ContainerPlayerFiles.cs" />
     <Compile Include="Formats\Games\IEGOCS.cs" />
     <Compile Include="Formats\Games\IEGOGALAXY.cs" />
+    <Compile Include="Formats\Player Files\INZ5.cs" />
+    <Compile Include="Formats\Player Files\INZ6.cs" />
     <Compile Include="Formats\Saves\IE.cs" />
     <Compile Include="InventoryWindow.cs">
       <SubType>Form</SubType>

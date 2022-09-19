@@ -94,6 +94,7 @@ namespace InazumaElevenSaveEditor
             Game.SaveInfo.Prestige = Convert.ToInt32(numericUpDown5.Value);
             Game.SaveInfo.Friendship = Convert.ToInt32(numericUpDown6.Value);
 
+
             for (int i = 0; i < 5; i++)
             {
                 NumericUpDown coinNumericUpDown = (NumericUpDown)tabPage2.Controls.Find("coinNumericUpDown" + (i + 1), false)[0];
