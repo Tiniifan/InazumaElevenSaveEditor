@@ -28,13 +28,19 @@ namespace InazumaElevenSaveEditor.Formats
 
         Dictionary<UInt32, Player> PlayersInSave { get; set; }
 
+        Dictionary<UInt32, Player> AuraInSave { get; set; }
+
         List<UInt32> PlayersInSaveSort { get; set; }
 
         Player GetPlayer(int index);
 
         void ChangePlayer(Player selectedPlayer, KeyValuePair<UInt32, Player> newPlayer);
 
+        void ChangePlayer(Player selectedPlayer, Player newPlayer);
+
         void RecruitPlayer(KeyValuePair<UInt32, Player> newPlayer);
+
+        void RecruitPlayer(Player newPlayer);
 
         void Open();
 
@@ -45,6 +51,8 @@ namespace InazumaElevenSaveEditor.Formats
         void OpenPlayRecords();
 
         void Save(OpenFileDialog initialDirectory);
+
+        void NewMixiMax(Player player, UInt32 playerAura, int mixiMaxMove1, int mixiMaxMove2);
 
         void UpdateResource();
 

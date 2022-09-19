@@ -21,7 +21,7 @@ namespace InazumaElevenSaveEditor.Logic
 
         public int SecretLinkLevel;
 
-        public List<int> Coins;
+        public List<int> Coins = new List<int>(new int[5]);
 
         public bool UnlockAllData;
 

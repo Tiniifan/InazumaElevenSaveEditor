@@ -89,6 +89,29 @@ namespace InazumaElevenSaveEditor.Formats.Games
             }
         }
 
+        public void ChangePlayer(Player selectedPlayer, Player newPlayer)
+        {
+            selectedPlayer.Name = newPlayer.Name;
+            selectedPlayer.ID = newPlayer.ID;
+            selectedPlayer.Element = newPlayer.Element;
+            selectedPlayer.Position = newPlayer.Position;
+            selectedPlayer.Gender = newPlayer.Gender;
+            selectedPlayer.Stat = newPlayer.Stat;
+            selectedPlayer.Freedom = newPlayer.Freedom;
+            selectedPlayer.Moves = newPlayer.Moves;
+            selectedPlayer.UInt32Moves = newPlayer.UInt32Moves;
+            selectedPlayer.Level = newPlayer.Level;
+            selectedPlayer.Invoke = newPlayer.Invoke;
+            selectedPlayer.Armed = newPlayer.Armed;
+            selectedPlayer.Style = newPlayer.Style;
+            selectedPlayer.InvestedPoint = newPlayer.InvestedPoint;
+            selectedPlayer.Avatar = newPlayer.Avatar;
+            selectedPlayer.Equipments = newPlayer.Equipments;
+            selectedPlayer.MixiMax = newPlayer.MixiMax;
+            selectedPlayer.Participation = newPlayer.Participation;
+            selectedPlayer.Score = newPlayer.Score;
+        }
+
         public void RecruitPlayer(KeyValuePair<UInt32, Player> playerKeyValuePair)
         {
             int getPlayerIndex(UInt32 x)
@@ -131,6 +154,25 @@ namespace InazumaElevenSaveEditor.Formats.Games
             PlayersInSave.Add(newIndex, newPlayer);
         }
 
+        public void RecruitPlayer(Player player)
+        {
+            int getPlayerIndex(UInt32 x)
+            {
+                UInt16 uint16 = Convert.ToUInt16(x / 0x10000);
+                uint16 = (UInt16)((uint16 & 0xFFU) << 8 | (uint16 & 0xFF00U) >> 8);
+                return Convert.ToInt32(uint16);
+            }
+
+            var playerListIndex = PlayersInSaveSort.Select(x => getPlayerIndex(x)).ToList();
+            playerListIndex.Sort();
+            int missingIndex = Enumerable.Range(0, MaximumPlayer).Except(playerListIndex).First();
+
+            UInt32 newIndex = (uint)missingIndex * 0x1000000 + (uint)(missingIndex + 1) * 0x100;
+            PlayersInSaveSort.Add(newIndex);
+            player.PositionInFile = 23324 + 260 * PlayersInSaveSort.Count;
+            PlayersInSave.Add(newIndex, player);
+        }
+
         public void Open()
         {
             // Initialize Resources
@@ -150,69 +192,120 @@ namespace InazumaElevenSaveEditor.Formats.Games
             File.Seek(0x14F4);
             for (int i = 0; i < 512; i++)
             {
-                UInt32 itemPositionID = File.Reverse(File.ReadUInt32());
+                // Check If The Key/Index Is Valid
+                UInt32 index = File.Reverse(File.ReadUInt32());
+                if (index == 0x0 || ((index >> (8 * 3)) & 0xff) + ((index >> (8 * 2)) & 0xff - 16) * 256 != i)
+                {
+                    index = BitConverter.ToUInt32(new byte[4]
+                    {
+                        Convert.ToByte((i+1)/256),
+                        Convert.ToByte((i+1) % 0x100),
+                        Convert.ToByte(i/256),
+                        Convert.ToByte(i % 0x100),
+                    }, 0);
+                }
 
-                if (itemPositionID == 0x0)
+                // Create Empty Item
+                Item newItem = new Item(" ", 1, -1);
+
+                // Load Item Values
+                UInt32 itemID = File.Reverse(File.ReadUInt32());
+                short quantity = File.ReadByte();
+
+                // Check If The Item Exists
+                if (itemID != 0x0)
                 {
-                    break;
+                    if (Items.ContainsKey(itemID))
+                        newItem = Items[itemID];
+                    else
+                        newItem = Items[0x01];
+
+                    newItem.Quantity = quantity;
                 }
-                else
-                {
-                    Item newItem = Items[File.Reverse(File.ReadUInt32())];
-                    newItem.Quantity = File.ReadByte();
-                    SaveInfo.Inventory.Add(itemPositionID, newItem);
-                    File.Skip(3);
-                }
+
+                SaveInfo.Inventory.Add(index, newItem);
+                File.Skip(3);
             }
 
             // Second Item Category - 336 maximum items
             File.Seek(0x2D00);
             for (int i = 0; i < 336; i++)
             {
-                UInt32 itemPositionID = File.Reverse(File.ReadUInt32());
-
-                if (itemPositionID == 0x0)
+                // Check If The Key/Index Is Valid
+                UInt32 index = File.Reverse(File.ReadUInt32());
+                if (index == 0x0 || ((index >> (8 * 3)) & 0xff) + ((index >> (8 * 2)) & 0xff - 16) * 256 != i)
                 {
-                    break;
+                    index = BitConverter.ToUInt32(new byte[4]
+                    {
+                        Convert.ToByte((i+1)/256),
+                        Convert.ToByte((i+1) % 0x100),
+                        Convert.ToByte(0x10 + i/256),
+                        Convert.ToByte(i % 0x100),
+                    }, 0);
                 }
-                else
+
+                // Create Empty Item
+                Item newItem = new Item(" ", 2, -1);
+
+                // Load Item Values
+                UInt32 itemID = File.Reverse(File.ReadUInt32());
+                short quantity = File.ReadByte();
+
+                // Check If The Item Exists
+                if (itemID != 0x0)
                 {
-                    UInt32 itemID = File.Reverse(File.ReadUInt32());
+                    if (Items.ContainsKey(itemID))
+                        newItem = Items[itemID];
+                    else
+                        newItem = Items[0x01];
 
-                    Item newItem = Items[itemID];
-                    newItem.Quantity = File.ReadByte();
+                    newItem.Quantity = quantity;
 
-                    // Fills The Equipment List
                     if (AllEquipments.ContainsKey(itemID))
                     {
                         Equipment newEquipment = AllEquipments[itemID];
                         newEquipment.ID = itemID;
-                        Equipments.Add(itemPositionID, newEquipment);
+                        Equipments.Add(index, newEquipment);
                     }
-
-                    SaveInfo.Inventory.Add(itemPositionID, newItem);
-                    File.Skip(7);
                 }
+
+                SaveInfo.Inventory.Add(index, newItem);
+                File.Skip(7);
             }
 
             // Third Item Category - 800 Maximum Items
             File.Seek(0x420C);
             for (int i = 0; i < 800; i++)
             {
-                UInt32 itemPositionID = File.Reverse(File.ReadUInt32());
-
-                if (itemPositionID == 0x0)
+                // Check If The Key/Index Is Valid
+                UInt32 index = File.Reverse(File.ReadUInt32());
+                if (index == 0x0 || ((index >> (8 * 3)) & 0xff) + ((index >> (8 * 2)) & 0xff - 16) * 256 != i)
                 {
-                    break;
+                    index = BitConverter.ToUInt32(new byte[4]
+                    {
+                        Convert.ToByte((i+1)/256),
+                        Convert.ToByte((i+1) % 0x100),
+                        Convert.ToByte(0x20 + i/256),
+                        Convert.ToByte(i % 0x100),
+                    }, 0);
                 }
-                else
-                {
-                    UInt32 itemID = File.Reverse(File.ReadUInt32());
 
-                    Item newItem = Items[itemID];
+                // Create Empty Item
+                Item newItem = new Item(" ", 3, -1);
+
+                // Load Item Values
+                UInt32 itemID = File.Reverse(File.ReadUInt32());
+
+                // Check If The Item Exists
+                if (itemID != 0x0)
+                {
+                    if (Items.ContainsKey(itemID))
+                        newItem = Items[itemID];
+                    else
+                        newItem = Items[0x01];
+
                     newItem.Quantity = 1;
 
-                    // Fills The Aura List
                     if (Auras.ContainsKey(itemID))
                     {
                         Player newAura = Auras[itemID];
@@ -222,11 +315,11 @@ namespace InazumaElevenSaveEditor.Formats.Games
                         {
                             newAura.Moves.Add(Moves[move]);
                         }
-                        AuraInSave.Add(itemPositionID, newAura);
+                        AuraInSave.Add(index, newAura);
                     }
-
-                    SaveInfo.Inventory.Add(itemPositionID, newItem);
                 }
+
+                SaveInfo.Inventory.Add(index, newItem);
             }
 
             // Add Empty Equipment
@@ -270,35 +363,7 @@ namespace InazumaElevenSaveEditor.Formats.Games
                     int mixiMaxMove1 = File.ReadByte();
                     int mixiMaxMove2 = File.ReadByte();
 
-                    // True = The aura is a Player
-                    // False = The aura is a Item
-                    if (PlayersInSave.ContainsKey(playerAura))
-                    {
-                        BestMatch isBestMatch = IsBestMatch(player.Value.ID, PlayersInSave[playerAura].ID);
-                        if (isBestMatch != null)
-                        {
-                            player.Value.MixiMax = new MixiMax(PlayersInSave[playerAura], (mixiMaxMove1, mixiMaxMove2), isBestMatch);
-                        }
-                        else
-                        {
-                            player.Value.MixiMax = new MixiMax(PlayersInSave[playerAura], (mixiMaxMove1, mixiMaxMove2));
-                        }
-                    }
-                    else
-                    {
-                        BestMatch isBestMatch = IsBestMatch(player.Value.ID, AuraInSave[playerAura].ID);
-                        MixiMax newMixiMax;
-                        if (isBestMatch != null)
-                        {
-                            newMixiMax = new MixiMax(AuraInSave[playerAura], (mixiMaxMove1, mixiMaxMove2), isBestMatch);
-                        }
-                        else
-                        {
-                            newMixiMax = new MixiMax(AuraInSave[playerAura], (mixiMaxMove1, mixiMaxMove2));
-                        }
-                        newMixiMax.AuraData = true;
-                        player.Value.MixiMax = newMixiMax;
-                    }
+                    NewMixiMax(player.Value, playerAura, mixiMaxMove1, mixiMaxMove2);
                 }
             }
         }
@@ -461,11 +526,18 @@ namespace InazumaElevenSaveEditor.Formats.Games
             var firstItemCategory = SaveInfo.Inventory.Where(x => x.Value.Category == 1).ToDictionary(x => x.Key, x => x.Value);
             foreach (KeyValuePair<UInt32, Item> item in firstItemCategory)
             {
-                dataWriter.WriteUInt32(item.Key);
-                var newItem = Items.FirstOrDefault(x => x.Value.Name == item.Value.Name && x.Value.SubCategory == item.Value.SubCategory);
-                dataWriter.WriteUInt32(newItem.Key);
-                dataWriter.WriteByte(item.Value.Quantity);
-                dataWriter.Skip(3);
+                if (item.Value.SubCategory != -1)
+                {
+                    dataWriter.WriteUInt32(item.Key);
+                    var newItem = Items.FirstOrDefault(x => x.Value.Name == item.Value.Name && x.Value.SubCategory == item.Value.SubCategory);
+                    dataWriter.WriteUInt32(newItem.Key);
+                    dataWriter.WriteByte(item.Value.Quantity);
+                    dataWriter.Skip(3);
+                }
+                else
+                {
+                    dataWriter.Skip(12);
+                }
             }
 
             // Second Item Category - 336 maximum items
@@ -473,11 +545,18 @@ namespace InazumaElevenSaveEditor.Formats.Games
             var secondItemCategory = SaveInfo.Inventory.Where(x => x.Value.Category == 2).ToDictionary(x => x.Key, x => x.Value);
             foreach (KeyValuePair<UInt32, Item> item in secondItemCategory)
             {
-                dataWriter.WriteUInt32(item.Key);
-                var newItem = Items.FirstOrDefault(x => x.Value.Name == item.Value.Name && x.Value.SubCategory == item.Value.SubCategory);
-                dataWriter.WriteUInt32(newItem.Key);
-                dataWriter.WriteByte(item.Value.Quantity);
-                dataWriter.Skip(7);
+                if (item.Value.SubCategory != -1)
+                {
+                    dataWriter.WriteUInt32(item.Key);
+                    var newItem = Items.FirstOrDefault(x => x.Value.Name == item.Value.Name && x.Value.SubCategory == item.Value.SubCategory);
+                    dataWriter.WriteUInt32(newItem.Key);
+                    dataWriter.WriteByte(item.Value.Quantity);
+                    dataWriter.Skip(7);
+                }
+                else
+                {
+                    dataWriter.Skip(16);
+                }
             }
 
             // Third Item Category - 800 Maximum Items
@@ -485,9 +564,16 @@ namespace InazumaElevenSaveEditor.Formats.Games
             var thirdItemCategory = SaveInfo.Inventory.Where(x => x.Value.Category == 3).ToDictionary(x => x.Key, x => x.Value);
             foreach (KeyValuePair<UInt32, Item> item in thirdItemCategory)
             {
-                dataWriter.WriteUInt32(item.Key);
-                var newItem = Items.FirstOrDefault(x => x.Value.Name == item.Value.Name && x.Value.SubCategory == item.Value.SubCategory);
-                dataWriter.WriteUInt32(newItem.Key);
+                if (item.Value.SubCategory != -1)
+                {
+                    dataWriter.WriteUInt32(item.Key);
+                    var newItem = Items.FirstOrDefault(x => x.Value.Name == item.Value.Name && x.Value.SubCategory == item.Value.SubCategory);
+                    dataWriter.WriteUInt32(newItem.Key);
+                }
+                else
+                {
+                    dataWriter.Skip(8);
+                }
             }
 
             // Save Player Order
@@ -531,6 +617,7 @@ namespace InazumaElevenSaveEditor.Formats.Games
                         if (player.Value.MixiMax.AuraData == true)
                         {
                             miximaxPositionID = AuraInSave.FirstOrDefault(x => x.Value == player.Value.MixiMax.AuraPlayer).Key;
+
                         }
                         else
                         {
@@ -646,9 +733,10 @@ namespace InazumaElevenSaveEditor.Formats.Games
 
             foreach (KeyValuePair<UInt32, Item> item in SaveInfo.Inventory)
             {
+                if (item.Value.SubCategory == -1) continue;
+               
                 if (AllEquipments.Values.Any(x => x.Name == item.Value.Name) == true)
                 {
-                    // Console.WriteLine(item.Key.ToString("X8") + " | " + item.Value.Name);
                     var equipmentKeyValuePair = AllEquipments.FirstOrDefault(x => x.Value.Name == item.Value.Name);
                     Equipment newEquipment = equipmentKeyValuePair.Value;
                     newEquipment.ID = equipmentKeyValuePair.Key;
@@ -731,7 +819,7 @@ namespace InazumaElevenSaveEditor.Formats.Games
             {
                 Equipment newEquipment = null;
                 UInt32 equipmentPositionID = File.Reverse(File.ReadUInt32());
-                if (equipmentPositionID != 0x0)
+                if (equipmentPositionID != 0x0 && Equipments.ContainsKey(equipmentPositionID))
                 {
                     newEquipment = Equipments[equipmentPositionID];
                 }
@@ -764,6 +852,44 @@ namespace InazumaElevenSaveEditor.Formats.Games
             File.Skip(100);
 
             return newPlayer;
+        }
+
+        public void NewMixiMax(Player player, UInt32 playerAura, int mixiMaxMove1, int mixiMaxMove2)
+        {
+            // True = The aura is a Player & False = The aura is a Item
+            if (PlayersInSave.ContainsKey(playerAura))
+            {
+                BestMatch isBestMatch = IsBestMatch(player.ID, PlayersInSave[playerAura].ID);
+
+                if (isBestMatch != null)
+                {
+                    player.MixiMax = new MixiMax(PlayersInSave[playerAura], (mixiMaxMove1, mixiMaxMove2), isBestMatch);
+                }
+                else
+                {
+                    player.MixiMax = new MixiMax(PlayersInSave[playerAura], (mixiMaxMove1, mixiMaxMove2));
+                }
+
+                PlayersInSave[playerAura].IsAura = true;
+            }
+            else
+            {
+                BestMatch isBestMatch = IsBestMatch(player.ID, AuraInSave[playerAura].ID);
+                MixiMax newMixiMax;
+
+                if (isBestMatch != null)
+                {
+                    newMixiMax = new MixiMax(AuraInSave[playerAura], (mixiMaxMove1, mixiMaxMove2), isBestMatch);
+                }
+                else
+                {
+                    newMixiMax = new MixiMax(AuraInSave[playerAura], (mixiMaxMove1, mixiMaxMove2));
+                }
+
+                newMixiMax.AuraData = true;
+                player.MixiMax = newMixiMax;
+                AuraInSave[playerAura].IsAura = true;
+            }
         }
 
         private Team LoadTeam(uint teamInfo, uint teamName, uint teamPlayers)
