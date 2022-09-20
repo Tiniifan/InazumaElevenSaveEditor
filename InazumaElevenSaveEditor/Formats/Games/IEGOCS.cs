@@ -808,7 +808,7 @@ namespace InazumaElevenSaveEditor.Formats.Games
             }
 
             Avatar newAvatar = Avatars[File.Reverse(File.ReadUInt32())];
-            newPlayer.Avatar = newAvatar;
+            newPlayer.Avatar = new Avatar(newAvatar);
             newPlayer.Invoke = invoke;
             newPlayer.Armed = armed;
             newPlayer.Avatar.Level = File.ReadByte();

@@ -8,6 +8,13 @@
 
         public int Level;
 
+        public Avatar(Avatar avatar)
+        {
+            Name = avatar.Name;
+            IsFightingSpirit = avatar.IsFightingSpirit;
+            Level = avatar.Level;
+        }
+
         public Avatar(string _Name, bool _IsFightingSpirit)
         {
             Name = _Name;
