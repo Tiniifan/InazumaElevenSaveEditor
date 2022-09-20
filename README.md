@@ -1,4 +1,4 @@
-# [Inazuma Eleven Save Editor](https://github.com/Tiniifan/InazumaElevenSaveEditor/releases/tag/latest)
+# [Inazuma Eleven Save Editor](https://github.com/Tiniifan/InazumaElevenSaveEditor/releases/tag/1.2.0.0)
 ___________________________________________________________________________
 **What is a save editor?**
 
