@@ -28,4 +28,4 @@ Now, it's you turn to create your dream team!
 
 [Download the Save Editor](https://github.com/Tiniifan/InazumaElevenSaveEditor/releases/download/1.2.0.0/InazumaElevenSaveEditor.exe)
 
-[Discord Server Link](https://discord.gg/3FpDBSz)
+[Discord Server Link](https://discord.gg/3wKp5ZxA9N)
