@@ -1,23 +1,24 @@
 ﻿using System;
 using System.Windows.Forms;
-using InazumaElevenSaveEditor.Formats;
+using InazumaElevenSaveEditor.InazumaEleven.Saves;
 
 namespace InazumaElevenSaveEditor
 {
     public partial class SaveInfoWindow : Form
     {
-        public IGame Game = null;
+        private ISave Save = null;
 
-        public SaveInfoWindow(IGame _Game)
+        public SaveInfoWindow(ISave save)
         {
             InitializeComponent();
-            Game = _Game;
+
+            Save = save;
         }
 
         private void SaveInfoWindow_Load(object sender, EventArgs e)
         {
             // Change Text Depending Of The Game Loaded
-            switch (Game.GameNameCode)
+            switch (Save.Game.Code)
             {
                 case "IEGO":
                     label2.Text = "Team Name";
@@ -40,20 +41,21 @@ namespace InazumaElevenSaveEditor
                     break;
             }
 
-            Game.OpenSaveInfo();
+            Save.Game.OpenSaveInfo();
 
-            textBox1.Text = Game.SaveInfo.Name;
-            textBox2.Text = Game.SaveInfo.TeamName;
-            numericUpDown1.Value = Game.SaveInfo.SecretLinkLevel;
-            numericUpDown3.Value = Game.SaveInfo.Hours;
-            numericUpDown4.Value = Game.SaveInfo.Min;
+            textBox1.Text = Save.Game.SaveInfo.Name;
+            textBox2.Text = Save.Game.SaveInfo.TeamName;
+            numericUpDown1.Value = Save.Game.SaveInfo.SecretLinkLevel;
+            numericUpDown3.Value = Save.Game.SaveInfo.Hours;
+            numericUpDown4.Value = Save.Game.SaveInfo.Min;
 
-            numericUpDown12.Value = Game.SaveInfo.Chapter;
+            numericUpDown12.Value = Save.Game.SaveInfo.Chapter;
 
             if (numericUpDown12.Value < 2)
             {
                 button1.Enabled = false;
-            } else
+            }
+            else
             {
                 button1.Enabled = true;
             }
@@ -67,9 +69,9 @@ namespace InazumaElevenSaveEditor
                 numericUpDown1.Maximum = 3;
             }
 
-            numericUpDown5.Value = Game.SaveInfo.Prestige;
+            numericUpDown5.Value = Save.Game.SaveInfo.Prestige;
 
-            if (Game.GameNameCode == "IEGOGALAXY")
+            if (Save.Game.Code == "IEGOGALAXY")
             {
                 for (int i = 0; i < 5; i++)
                 {
@@ -77,34 +79,35 @@ namespace InazumaElevenSaveEditor
                     NumericUpDown coinNumericUpDown = (NumericUpDown)tabPage2.Controls.Find("coinNumericUpDown" + (i + 1), false)[0];
                     coinPictureBox.Visible = true;
                     coinNumericUpDown.Visible = true;
-                    coinNumericUpDown.Value = Game.SaveInfo.Coins[i];
+                    coinNumericUpDown.Value = Save.Game.SaveInfo.Coins[i];
                 }
-            } else
+            }
+            else
             {
-                numericUpDown6.Value = Game.SaveInfo.Friendship;
+                numericUpDown6.Value = Save.Game.SaveInfo.Friendship;
             }
         }
 
         private void SaveInfoWindow_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Game.SaveInfo.Name = textBox1.Text;
-            Game.SaveInfo.TeamName = textBox2.Text;
-            Game.SaveInfo.Hours = Convert.ToInt32(numericUpDown3.Value);
-            Game.SaveInfo.Min = Convert.ToInt32(numericUpDown4.Value);
-            Game.SaveInfo.Prestige = Convert.ToInt32(numericUpDown5.Value);
-            Game.SaveInfo.Friendship = Convert.ToInt32(numericUpDown6.Value);
+            Save.Game.SaveInfo.Name = textBox1.Text;
+            Save.Game.SaveInfo.TeamName = textBox2.Text;
+            Save.Game.SaveInfo.Hours = Convert.ToInt32(numericUpDown3.Value);
+            Save.Game.SaveInfo.Min = Convert.ToInt32(numericUpDown4.Value);
+            Save.Game.SaveInfo.Prestige = Convert.ToInt32(numericUpDown5.Value);
+            Save.Game.SaveInfo.Friendship = Convert.ToInt32(numericUpDown6.Value);
 
 
             for (int i = 0; i < 5; i++)
             {
                 NumericUpDown coinNumericUpDown = (NumericUpDown)tabPage2.Controls.Find("coinNumericUpDown" + (i + 1), false)[0];
-                Game.SaveInfo.Coins[i] = Convert.ToInt32(coinNumericUpDown.Value);
+                Save.Game.SaveInfo.Coins[i] = Convert.ToInt32(coinNumericUpDown.Value);
             }
         }
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            Game.SaveInfo.UnlockAllData = true;
+            Save.Game.SaveInfo.UnlockAllData = true;
             MessageBox.Show("All additional content has been added, check the Inalink for more details!");
         }
 
@@ -114,14 +117,14 @@ namespace InazumaElevenSaveEditor
 
             if (numericUpDown12.Value == 10 & numericUpDown1.Value == 3)
             {
-                DialogResult dialogResult = MessageBox.Show("You must have beaten your exclusive team before activate the Link Level 3\nDo you want to activate the Link Level 3?", "Warning", MessageBoxButtons.YesNo);
+                DialogResult dialogResult = MessageBox.Show("You must defeat the exclusive team in your version before activating the level 3 secret.\nIf you activate the level 3 secret without defeating the exclusive team, you will get a glitched save file.\n\nHave you defeated the exclusive team? If you don't know, please answer no.", "Warning", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.No)
                 {
                     numericUpDown1.Value = 2;
                 }
             }
 
-            Game.SaveInfo.SecretLinkLevel = Convert.ToInt32(numericUpDown1.Value);
+            Save.Game.SaveInfo.SecretLinkLevel = Convert.ToInt32(numericUpDown1.Value);
         }
     }
 }

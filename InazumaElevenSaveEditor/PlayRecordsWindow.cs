@@ -1,26 +1,27 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
-using InazumaElevenSaveEditor.Logic;
-using InazumaElevenSaveEditor.Formats;
+using System.Collections.Generic;
+using InazumaElevenSaveEditor.InazumaEleven.Logic;
+using InazumaElevenSaveEditor.InazumaEleven.Saves;
 
 namespace InazumaElevenSaveEditor
 {
     public partial class PlayRecordsWindow : Form
     {
-        public IGame Game = null;
+        private ISave Save = null;
 
-        public PlayRecordsWindow(IGame _Game)
+        public PlayRecordsWindow(ISave save)
         {
             InitializeComponent();
-            Game = _Game;
+
+            Save = save;
         }
 
         private void PlayRecordsWindow_Load(object sender, EventArgs e)
         {
-            Game.OpenPlayRecords();
+            Save.Game.OpenPlayRecords();
 
-            foreach (KeyValuePair<int, List<PlayRecord>> playRecord in Game.SaveInfo.PlayRecords)
+            foreach (KeyValuePair<int, List<PlayRecord>> playRecord in Save.Game.PlayRecords)
             {
                 for (int i = 0; i < playRecord.Value.Count; i++)
                 {
@@ -56,10 +57,10 @@ namespace InazumaElevenSaveEditor
 
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
-                Game.SaveInfo.PlayRecords[key][count].Unlocked = Convert.ToBoolean(row.Cells[1].Value);
+                Save.Game.PlayRecords[key][count].Unlocked = Convert.ToBoolean(row.Cells[1].Value);
                 count++;
 
-                if (count >= Game.SaveInfo.PlayRecords[key].Count)
+                if (count >= Save.Game.PlayRecords[key].Count)
                 {
                     key++;
                     count = 0;

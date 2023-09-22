@@ -2,23 +2,22 @@
 using System.Linq;
 using System.Windows.Forms;
 using System.Collections.Generic;
-using InazumaElevenSaveEditor.Logic;
-using InazumaElevenSaveEditor.Formats;
+using InazumaElevenSaveEditor.InazumaEleven.Logic;
+using InazumaElevenSaveEditor.InazumaEleven.Saves;
 
 namespace InazumaElevenSaveEditor
 {
     public partial class InventoryWindow : Form
     {
-        public IGame Game = null;
+        private ISave Save = null;
 
         private DataGridView CurrentDataGridView;
 
         List<DataGridView> DataGridViews;
 
-        public InventoryWindow(IGame _Game)
+        public InventoryWindow(ISave save)
         {
             InitializeComponent();
-            Game = _Game;
 
             DataGridViews = new List<DataGridView>
             {
@@ -46,11 +45,13 @@ namespace InazumaElevenSaveEditor
                 dataGridView22,
                 dataGridView23,
             };
+
+            Save = save;
         }
 
         private void PopulateDataGridView(DataGridView dataGridView, int subcategory, int maximum)
         {
-            var items = Game.Items.Where(x => x.Value.SubCategory == subcategory).Select(x => x.Value.Name).ToList();
+            var items = Save.Game.Items.Where(x => x.Value.SubCategory == subcategory).Select(x => x.Value.Name).ToList();
 
             ((DataGridViewComboBoxColumn)dataGridView.Columns[0]).Items.AddRange(items.ToArray());
             for (int i = 1; i < maximum; i++)
@@ -80,9 +81,29 @@ namespace InazumaElevenSaveEditor
 
                 if (row.Cells[0].Value != null)
                 {
-                    Item newItem = Game.Items.FirstOrDefault(x => x.Value.Name == row.Cells[0].Value.ToString() & x.Value.SubCategory == subCategory).Value;
-                    newItem.Quantity = Convert.ToInt32(row.Cells[1].Value);
-                    Game.SaveInfo.Inventory[Convert.ToUInt32(row.Cells[2].Value.ToString())] = newItem;
+                    KeyValuePair<uint, Item> itemKeyValuePair = Save.Game.Items.FirstOrDefault(x => x.Value.Name == row.Cells[0].Value.ToString() & x.Value.SubCategory == subCategory);
+                    Item newItem = new Item(itemKeyValuePair.Key, itemKeyValuePair.Value);
+                    newItem.Quantity = (row.Cells[1].Value == null) ? 1 : Convert.ToInt32(row.Cells[1].Value);
+
+                    if (row.Cells[2].Value != null && Save.Game.Inventory.ContainsKey(Convert.ToInt32(row.Cells[2].Value.ToString())))
+                    {
+                        Save.Game.Inventory[Convert.ToInt32(row.Cells[2].Value.ToString())] = newItem;
+                    } else
+                    {
+                        int newIndex = Save.Game.Inventory.Where(x => x.Value.Category == newItem.Category).Last().Key;
+
+                        while (Save.Game.Inventory.ContainsKey(newIndex))
+                        {
+                            short lowInt16 = (short)(newIndex & 0xFFFF);
+                            short hightInt16 = (short)((newIndex >> 16) & 0xFFFF);
+                            lowInt16++;
+                            hightInt16++;
+
+                            newIndex = (int)lowInt16 | ((int)hightInt16 << 16);
+                        }
+                       
+                        Save.Game.Inventory.Add(newIndex, newItem);
+                    }
                 }
             }
         }
@@ -93,19 +114,19 @@ namespace InazumaElevenSaveEditor
             for (int i = 1; i < 24; i++)
             {
                 if (i != 23)
-                    PopulateDataGridView(DataGridViews[i-1], i, Game.Items.Count(x => x.Value.SubCategory == i));
+                    PopulateDataGridView(DataGridViews[i - 1], i, Save.Game.Items.Count(x => x.Value.SubCategory == i));
                 else
-                    PopulateDataGridView(DataGridViews[i-1], i, 120);
+                    PopulateDataGridView(DataGridViews[i - 1], i, 120);
             }
 
             // Remove totems entry
-            if (Game.GameNameCode != "IEGOGALAXY")
+            if (Save.Game.Code != "IEGOGALAXY")
             {
-                tabControl2.TabPages.RemoveAt(6);        
+                tabControl2.TabPages.RemoveAt(6);
             }
 
             // Print items
-            foreach (KeyValuePair<UInt32, Item> item in Game.SaveInfo.Inventory)
+            foreach (KeyValuePair<int, Item> item in Save.Game.Inventory)
             {
                 if (item.Value != null && item.Value.SubCategory != -1)
                 {
@@ -128,27 +149,28 @@ namespace InazumaElevenSaveEditor
             // Update item index
             for (int i = 1; i < 24; i++)
             {
-                SaveDataGridView(DataGridViews[i-1], i);
+                SaveDataGridView(DataGridViews[i - 1], i);
             }
 
             // Reset Aura Item and Equipment
-            Game.UpdateResource();
-            NoFarmForMeOpenSource.Welcome welcome = (NoFarmForMeOpenSource.Welcome)Application.OpenForms["Welcome"];
+            Save.Game.UpdateInventory();
+            Welcome welcome = (Welcome)Application.OpenForms["Welcome"];
             welcome.bootsBox.Items.Clear();
             welcome.glovesBox.Items.Clear();
             welcome.braceletBox.Items.Clear();
             welcome.pendantBox.Items.Clear();
-            foreach (KeyValuePair<UInt32, Equipment> entry in Game.Equipments)
-            {
-                if (entry.Value.Type.Name == "Boots")
-                    welcome.bootsBox.Items.Add(entry.Value.Name);
-                else if (entry.Value.Type.Name == "Gloves")
-                    welcome.glovesBox.Items.Add(entry.Value.Name);
-                else if (entry.Value.Type.Name == "Bracelet")
-                    welcome.braceletBox.Items.Add(entry.Value.Name);
-                else if (entry.Value.Type.Name == "Pendant")
-                    welcome.pendantBox.Items.Add(entry.Value.Name);
-            }
+
+            // Equipment
+            welcome.bootsBox.Items.AddRange(Save.Game.Equipments.Where(x => x.Value.Type.Name == "Boots").Select(x => x.Value).ToArray());
+            welcome.glovesBox.Items.AddRange(Save.Game.Equipments.Where(x => x.Value.Type.Name == "Gloves").Select(x => x.Value).ToArray());
+            welcome.braceletBox.Items.AddRange(Save.Game.Equipments.Where(x => x.Value.Type.Name == "Bracelet").Select(x => x.Value).ToArray());
+            welcome.pendantBox.Items.AddRange(Save.Game.Equipments.Where(x => x.Value.Type.Name == "Pendant").Select(x => x.Value).ToArray());
+
+            // None equipment
+            welcome.bootsBox.Items.Add(Save.Game.Equipments[0x0]);
+            welcome.glovesBox.Items.Add(Save.Game.Equipments[0x0]);
+            welcome.braceletBox.Items.Add(Save.Game.Equipments[0x0]);
+            welcome.pendantBox.Items.Add(Save.Game.Equipments[0x0]);
         }
 
         private void TabControl_SelectedIndexChanged(object sender, EventArgs e)
@@ -156,10 +178,10 @@ namespace InazumaElevenSaveEditor
             TabControl tabControl = (TabControl)sender;
 
             Control control = tabControl.TabPages[tabControl.SelectedIndex];
-            
+
             while (control is DataGridView == false)
             {
-                control = control.Controls[0];               
+                control = control.Controls[0];
             }
 
             CurrentDataGridView = (DataGridView)control;
@@ -167,42 +189,32 @@ namespace InazumaElevenSaveEditor
         }
 
         private void UnlockAllItemsToolStripMenuItem_Click(object sender, EventArgs e)
-        {   
-            // Get all index
-            List<int> myItemsIndex = Enumerable.Range(0, CurrentDataGridView.Rows.Count).ToList();
+        {
+            // Get all items
+            int subCategory = Convert.ToInt32(CurrentDataGridView.Name.Replace("dataGridView", ""));
+            List<string> itemNames = Save.Game.Items.Where(x => x.Value.SubCategory == subCategory).Select(x => x.Value.Name).ToList();
+
+            // Remove items already owned
             foreach (DataGridViewRow row in CurrentDataGridView.Rows)
             {
-                DataGridViewComboBoxCell comboBox = (row.Cells[0] as DataGridViewComboBoxCell);
-
-                if (row.Cells[0].Value == null) break;
-
-                // Removes existing items
-                if (myItemsIndex.IndexOf(comboBox.Items.IndexOf(comboBox.Value)) != -1) myItemsIndex.Remove(comboBox.Items.IndexOf(comboBox.Value));      
+                if (row.Cells[0].Value != null)
+                {
+                    int index = itemNames.IndexOf(row.Cells[0].Value.ToString());
+                    if (index != -1)
+                    {
+                        itemNames.RemoveAt(index);
+                    }
+                }
             }
 
-            // Unlock all items
+            // add missing items
             foreach (DataGridViewRow row in CurrentDataGridView.Rows)
             {
-                DataGridViewComboBoxCell comboBox = (row.Cells[0] as DataGridViewComboBoxCell);
-
                 if (row.Cells[0].Value == null)
                 {
-                    // Get sub category of the item
-                    int subCategory = Convert.ToInt32(CurrentDataGridView.Name.Replace("dataGridView", ""));
-
-                    // Update row
                     row.Cells[1].Value = 1;
-                    row.Cells[0].Value = comboBox.Items[myItemsIndex[0]];
-
-                    // Create new item from comboBox text and subCategory
-                    Item newItem = Game.Items.FirstOrDefault(x => x.Value.Name == row.Cells[0].Value.ToString() & x.Value.SubCategory == subCategory).Value;
-                    newItem.Quantity = 1;
-
-                    // Update row Index and Inventory
-                    row.Cells[2].Value = Game.SaveInfo.Inventory.First(x => x.Value.Name == " " & x.Value.Category == newItem.Category).Key;
-                    Game.SaveInfo.Inventory[Convert.ToUInt32(row.Cells[2].Value.ToString())] = newItem;
-
-                    myItemsIndex.Remove(myItemsIndex[0]);
+                    row.Cells[0].Value = itemNames[0];
+                    itemNames.RemoveAt(0);
                 }
             }
         }

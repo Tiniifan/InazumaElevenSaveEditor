@@ -1,5 +1,5 @@
 ﻿
-namespace NoFarmForMeOpenSource
+namespace InazumaElevenSaveEditor
 {
     partial class Welcome
     {
@@ -60,8 +60,6 @@ namespace NoFarmForMeOpenSource
             this.genderBox = new System.Windows.Forms.TextBox();
             this.elementBox = new System.Windows.Forms.TextBox();
             this.positionBox = new System.Windows.Forms.TextBox();
-            this.statBox2 = new System.Windows.Forms.TextBox();
-            this.statBox1 = new System.Windows.Forms.TextBox();
             this.freedomBox = new System.Windows.Forms.TextBox();
             this.statBox10 = new System.Windows.Forms.TextBox();
             this.statBox8 = new System.Windows.Forms.TextBox();
@@ -219,6 +217,9 @@ namespace NoFarmForMeOpenSource
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tabControl4 = new System.Windows.Forms.TabControl();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.fpNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.tpNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -268,6 +269,8 @@ namespace NoFarmForMeOpenSource
             this.groupBox2.SuspendLayout();
             this.tabControl4.SuspendLayout();
             this.tabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.fpNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tpNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -327,14 +330,14 @@ namespace NoFarmForMeOpenSource
             this.exportToolStripMenuItem});
             this.managePlayerToolStripMenuItem.Enabled = false;
             this.managePlayerToolStripMenuItem.Name = "managePlayerToolStripMenuItem";
-            this.managePlayerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.managePlayerToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.managePlayerToolStripMenuItem.Text = "Manage Player";
             // 
             // recruitToolStripMenuItem
             // 
             this.recruitToolStripMenuItem.Name = "recruitToolStripMenuItem";
             this.recruitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.recruitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.recruitToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.recruitToolStripMenuItem.Text = "Recruit";
             this.recruitToolStripMenuItem.Click += new System.EventHandler(this.RecruitToolStripMenuItem_Click);
             // 
@@ -342,7 +345,7 @@ namespace NoFarmForMeOpenSource
             // 
             this.dismissToolStripMenuItem.Name = "dismissToolStripMenuItem";
             this.dismissToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.K)));
-            this.dismissToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.dismissToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.dismissToolStripMenuItem.Text = "Dismiss";
             this.dismissToolStripMenuItem.Click += new System.EventHandler(this.DismissToolStripMenuItem_Click);
             // 
@@ -350,7 +353,7 @@ namespace NoFarmForMeOpenSource
             // 
             this.importToolStripMenuItem.Name = "importToolStripMenuItem";
             this.importToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.I)));
-            this.importToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.importToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.importToolStripMenuItem.Text = "Import";
             this.importToolStripMenuItem.Click += new System.EventHandler(this.ImportToolStripMenuItem_Click);
             // 
@@ -358,7 +361,7 @@ namespace NoFarmForMeOpenSource
             // 
             this.replaceToolStripMenuItem.Name = "replaceToolStripMenuItem";
             this.replaceToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
-            this.replaceToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.replaceToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.replaceToolStripMenuItem.Text = "Replace";
             this.replaceToolStripMenuItem.Click += new System.EventHandler(this.ReplaceToolStripMenuItem_Click);
             // 
@@ -366,7 +369,7 @@ namespace NoFarmForMeOpenSource
             // 
             this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
             this.exportToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.E)));
-            this.exportToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.exportToolStripMenuItem.Text = "Export";
             this.exportToolStripMenuItem.Click += new System.EventHandler(this.ExportToolStripMenuItem_Click);
             // 
@@ -377,7 +380,7 @@ namespace NoFarmForMeOpenSource
             this.removeToolStripMenuItem});
             this.managePlayerTabToolStripMenuItem.Enabled = false;
             this.managePlayerTabToolStripMenuItem.Name = "managePlayerTabToolStripMenuItem";
-            this.managePlayerTabToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.managePlayerTabToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.managePlayerTabToolStripMenuItem.Text = "Manage Player Tab";
             // 
             // addToolStripMenuItem
@@ -450,6 +453,8 @@ namespace NoFarmForMeOpenSource
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.tpNumericUpDown);
+            this.tabPage1.Controls.Add(this.fpNumericUpDown);
             this.tabPage1.Controls.Add(this.label23);
             this.tabPage1.Controls.Add(this.participationNumericUpDown);
             this.tabPage1.Controls.Add(this.label13);
@@ -459,8 +464,6 @@ namespace NoFarmForMeOpenSource
             this.tabPage1.Controls.Add(this.genderBox);
             this.tabPage1.Controls.Add(this.elementBox);
             this.tabPage1.Controls.Add(this.positionBox);
-            this.tabPage1.Controls.Add(this.statBox2);
-            this.tabPage1.Controls.Add(this.statBox1);
             this.tabPage1.Controls.Add(this.freedomBox);
             this.tabPage1.Controls.Add(this.statBox10);
             this.tabPage1.Controls.Add(this.statBox8);
@@ -609,26 +612,6 @@ namespace NoFarmForMeOpenSource
             this.positionBox.ReadOnly = true;
             this.positionBox.Size = new System.Drawing.Size(89, 20);
             this.positionBox.TabIndex = 238;
-            // 
-            // statBox2
-            // 
-            this.statBox2.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.statBox2.Enabled = false;
-            this.statBox2.Location = new System.Drawing.Point(208, 69);
-            this.statBox2.Name = "statBox2";
-            this.statBox2.ReadOnly = true;
-            this.statBox2.Size = new System.Drawing.Size(48, 20);
-            this.statBox2.TabIndex = 236;
-            // 
-            // statBox1
-            // 
-            this.statBox1.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.statBox1.Enabled = false;
-            this.statBox1.Location = new System.Drawing.Point(128, 69);
-            this.statBox1.Name = "statBox1";
-            this.statBox1.ReadOnly = true;
-            this.statBox1.Size = new System.Drawing.Size(48, 20);
-            this.statBox1.TabIndex = 235;
             // 
             // freedomBox
             // 
@@ -2192,6 +2175,7 @@ namespace NoFarmForMeOpenSource
             // tabControl2
             // 
             this.tabControl2.Controls.Add(this.tabPage3);
+            this.tabControl2.Enabled = false;
             this.tabControl2.Location = new System.Drawing.Point(442, 39);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
@@ -2540,12 +2524,14 @@ namespace NoFarmForMeOpenSource
             // tabControl4
             // 
             this.tabControl4.Controls.Add(this.tabPage4);
+            this.tabControl4.Controls.Add(this.tabPage5);
             this.tabControl4.Location = new System.Drawing.Point(12, 39);
             this.tabControl4.Name = "tabControl4";
             this.tabControl4.SelectedIndex = 0;
             this.tabControl4.Size = new System.Drawing.Size(424, 437);
             this.tabControl4.TabIndex = 10;
             this.tabControl4.SelectedIndexChanged += new System.EventHandler(this.TabControl4_SelectedIndexChanged);
+            this.tabControl4.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.TabControl4_Selecting);
             // 
             // tabPage4
             // 
@@ -2557,6 +2543,44 @@ namespace NoFarmForMeOpenSource
             this.tabPage4.Size = new System.Drawing.Size(416, 411);
             this.tabPage4.TabIndex = 0;
             this.tabPage4.Text = "Player";
+            // 
+            // tabPage5
+            // 
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Size = new System.Drawing.Size(416, 411);
+            this.tabPage5.TabIndex = 1;
+            this.tabPage5.Text = "+";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // fpNumericUpDown
+            // 
+            this.fpNumericUpDown.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.fpNumericUpDown.Location = new System.Drawing.Point(128, 69);
+            this.fpNumericUpDown.Maximum = new decimal(new int[] {
+            65535,
+            0,
+            0,
+            0});
+            this.fpNumericUpDown.Name = "fpNumericUpDown";
+            this.fpNumericUpDown.Size = new System.Drawing.Size(48, 20);
+            this.fpNumericUpDown.TabIndex = 248;
+            this.fpNumericUpDown.ValueChanged += new System.EventHandler(this.FpNumericUpDown_ValueChanged);
+            // 
+            // tpNumericUpDown
+            // 
+            this.tpNumericUpDown.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.tpNumericUpDown.Location = new System.Drawing.Point(208, 69);
+            this.tpNumericUpDown.Maximum = new decimal(new int[] {
+            65535,
+            0,
+            0,
+            0});
+            this.tpNumericUpDown.Name = "tpNumericUpDown";
+            this.tpNumericUpDown.Size = new System.Drawing.Size(48, 20);
+            this.tpNumericUpDown.TabIndex = 249;
+            this.tpNumericUpDown.ValueChanged += new System.EventHandler(this.TpNumericUpDown_ValueChanged);
             // 
             // Welcome
             // 
@@ -2571,6 +2595,7 @@ namespace NoFarmForMeOpenSource
             this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
             this.MaximumSize = new System.Drawing.Size(890, 520);
+            this.MinimumSize = new System.Drawing.Size(890, 520);
             this.Name = "Welcome";
             this.Text = "Inazuma Eleven Save Editor";
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.Welcome_DragDrop);
@@ -2629,6 +2654,8 @@ namespace NoFarmForMeOpenSource
             this.groupBox2.ResumeLayout(false);
             this.tabControl4.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.fpNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tpNumericUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2651,8 +2678,6 @@ namespace NoFarmForMeOpenSource
         public System.Windows.Forms.TextBox genderBox;
         public System.Windows.Forms.TextBox elementBox;
         public System.Windows.Forms.TextBox positionBox;
-        public System.Windows.Forms.TextBox statBox2;
-        public System.Windows.Forms.TextBox statBox1;
         public System.Windows.Forms.TextBox freedomBox;
         public System.Windows.Forms.TextBox statBox10;
         public System.Windows.Forms.TextBox statBox8;
@@ -2826,5 +2851,8 @@ namespace NoFarmForMeOpenSource
         private System.Windows.Forms.ToolStripMenuItem importToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem replaceToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exportToolStripMenuItem;
+        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.NumericUpDown tpNumericUpDown;
+        private System.Windows.Forms.NumericUpDown fpNumericUpDown;
     }
 }

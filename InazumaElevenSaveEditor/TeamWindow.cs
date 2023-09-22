@@ -4,27 +4,28 @@ using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Collections.Generic;
-using InazumaElevenSaveEditor.Logic;
 using InazumaElevenSaveEditor.Tools;
-using InazumaElevenSaveEditor.Formats;
 using System.Text.RegularExpressions;
 using System.Windows.Forms.DataVisualization.Charting;
+using InazumaElevenSaveEditor.InazumaEleven.Logic;
+using InazumaElevenSaveEditor.InazumaEleven.Saves;
 
 namespace InazumaElevenSaveEditor
 {
     public partial class TeamWindow : Form
     {
-        public IGame Game = null;
+        private ISave Save = null;
 
         private List<string> FormationTextContent = new List<string>();
 
-        public TeamWindow(IGame _Game)
+        public TeamWindow(ISave save)
         {
             InitializeComponent();
-            Game = _Game;
+
+            Save = save;
         }
 
-        private void InitializeRessource()
+        private void BindRessource()
         {
             teamTextBox.Name = null;
             teamNumericUpDown.Value = 0;
@@ -34,33 +35,41 @@ namespace InazumaElevenSaveEditor
             emblemBox.Items.Clear();
 
             // Fills Emblem/Kit/Formation/Coach box
-            foreach (KeyValuePair<UInt32, Item> entry in Game.SaveInfo.Inventory)
+            foreach (KeyValuePair<int, Item> entry in Save.Game.Inventory)
             {
                 if (entry.Value.SubCategory == 16)
                 {
                     if (entry.Value.Name.StartsWith("B-") == false)
                     {
-                        formationBox.Items.Add(entry.Value.Name);
+                        formationBox.Items.Add(entry.Value);
                     }
                 }
                 else if (entry.Value.SubCategory == 17)
                 {
-                    coachBox.Items.Add(entry.Value.Name);
+                    coachBox.Items.Add(entry.Value);
                 }
                 else if (entry.Value.SubCategory == 19)
                 {
-                    kitBox.Items.Add(entry.Value.Name);
+                    kitBox.Items.Add(entry.Value);
                 }
                 else if (entry.Value.SubCategory == 20)
                 {
-                    emblemBox.Items.Add(entry.Value.Name);
+                    emblemBox.Items.Add(entry.Value);
                 }
             }
 
+            // Create empty player
+            Player emptyPlayer = new Player();
+            emptyPlayer.Name = " ";
+            emptyPlayer.Index = 0x0;
+            List<Player> players = new List<Player>();
+            players.AddRange(Save.Game.Reserve);
+            players.Add(emptyPlayer);
+
             // Fills playerComBoBox with Player Names from the save
-            for (int i = 0; i < Game.PlayersInSaveSort.Count; i++)
+            for (int i = 0; i < players.Count; i++)
             {
-                playerComboBox1.Items.Add(Game.GetPlayer(i).Name);
+                playerComboBox1.Items.Add(players[i]);
             }
             for (int i = 1; i < 16; i++)
             {
@@ -76,21 +85,22 @@ namespace InazumaElevenSaveEditor
         private void PrintTeam(Team team)
         {
             teamTextBox.Text = team.Name;
-            formationBox.SelectedIndex = formationBox.Items.IndexOf(team.Formation.Name);
-            coachBox.SelectedIndex = coachBox.Items.IndexOf(team.Coach.Name);
-            kitBox.SelectedIndex = kitBox.Items.IndexOf(team.Kit.Name);
-            emblemBox.SelectedIndex = emblemBox.Items.IndexOf(team.Emblem.Name);
+            formationBox.SelectedIndex = formationBox.Items.IndexOf(team.Formation);
+            coachBox.SelectedIndex = coachBox.Items.IndexOf(team.Coach);
+            kitBox.SelectedIndex = kitBox.Items.IndexOf(team.Kit);
+            emblemBox.SelectedIndex = emblemBox.Items.IndexOf(team.Emblem);
 
             // Fills playerIndexComBoBox with Player Names from the Team
             playerIndexComboBox1.Items.Clear();
-            foreach (KeyValuePair<UInt32, Player> entry in team.Players)
+            for (int i = 0; i < 16; i++)
             {
-                if (entry.Value != null)
+                if (i < team.Players.Count)
                 {
-                    playerIndexComboBox1.Items.Add(entry.Value.Name);
-                } else
+                    playerIndexComboBox1.Items.Add(team.Players[i]);
+                }
+                else
                 {
-                    playerIndexComboBox1.Items.Add(" ");
+                    playerIndexComboBox1.Items.Add(playerComboBox1.Items[playerComboBox1.Items.Count - 1]);
                 }
             }
             for (int i = 1; i < 16; i++)
@@ -102,28 +112,36 @@ namespace InazumaElevenSaveEditor
 
             // Print Player Name of the team and Player Number Kit
             int playerNumber = 1;
-            foreach (KeyValuePair<UInt32, Player> player in team.Players)
+            for (int i = 0; i < 16; i++)
             {
                 ComboBox playerComboBox = this.Controls.Find("playerComboBox" + playerNumber, true).First() as ComboBox;
-                ComboBox playerIndexComboBox = this.Controls.Find("playerIndexComboBox" + team.PlayersFormationIndex[playerNumber-1], true).First() as ComboBox;
+                ComboBox playerIndexComboBox = this.Controls.Find("playerIndexComboBox" + team.PlayersFormationIndex[playerNumber - 1], true).First() as ComboBox;
                 NumericUpDown playerNumericUpDown = this.Controls.Find("playerNumericUpDown" + (playerNumber), true).First() as NumericUpDown;
 
-                playerComboBox.SelectedIndex = Game.PlayersInSaveSort.IndexOf(player.Key);
+                if (i < team.Players.Count)
+                {
+                    playerComboBox.SelectedItem = team.Players[i];
+                } else
+                {
+                    playerComboBox.SelectedIndex = playerComboBox.Items.Count - 1;
+                }
+
                 playerIndexComboBox.SelectedIndex = playerNumber - 1;
-                playerNumericUpDown.Value = team.PlayersKitNumber[playerNumber-1];
+                playerNumericUpDown.Value = team.PlayersKitNumber[playerNumber - 1];
+
                 playerNumber++;
-            };
+            }
 
             // Calc The Maximum Of Some Values
-            double totalPlayer = team.Players.SumIf(x => x.Value != null, x => 1.0);
-            double totalKick = team.Players.SumIf(x => x.Value != null, x => x.Value.Stat[2] + x.Value.InvestedPoint[0] + x.Value.Equipments[0].Stat[2]);
-            double totalDribble = team.Players.SumIf(x => x.Value != null, x => x.Value.Stat[3] + x.Value.InvestedPoint[1] + x.Value.Equipments[2].Stat[3]);
-            double totalBlock = team.Players.SumIf(x => x.Value != null, x => x.Value.Stat[5] + x.Value.InvestedPoint[3] + x.Value.Equipments[2].Stat[5]);
-            double totalCatch = team.Players.SumIf(x => x.Value != null, x => x.Value.Stat[8] + x.Value.InvestedPoint[6] + x.Value.Equipments[3].Stat[8]);
-            double totalTechnique = team.Players.SumIf(x => x.Value != null, x => x.Value.Stat[4] + x.Value.InvestedPoint[2] + x.Value.Equipments[3].Stat[4]);
-            double totalSpeed = team.Players.SumIf(x => x.Value != null, x => x.Value.Stat[6] + x.Value.InvestedPoint[4] + x.Value.Equipments[0].Stat[6]);
-            double totalStamina = team.Players.SumIf(x => x.Value != null, x => x.Value.Stat[7] + x.Value.InvestedPoint[5] + x.Value.Equipments[1].Stat[7]);
-            double totalLuck = team.Players.SumIf(x => x.Value != null, x => x.Value.Stat[9] + x.Value.InvestedPoint[7] + x.Value.Equipments[1].Stat[9]);
+            double totalPlayer = team.Players.SumIf(x => x != null, x => 1.0);
+            double totalKick = team.Players.SumIf(x => x != null, x => x.Stat[2] + x.InvestedPoint[0] + x.Equipments[0].Stat[2]);
+            double totalDribble = team.Players.SumIf(x => x != null, x => x.Stat[3] + x.InvestedPoint[1] + x.Equipments[2].Stat[3]);
+            double totalBlock = team.Players.SumIf(x => x != null, x => x.Stat[5] + x.InvestedPoint[3] + x.Equipments[2].Stat[5]);
+            double totalCatch = team.Players.SumIf(x => x != null, x => x.Stat[8] + x.InvestedPoint[6] + x.Equipments[3].Stat[8]);
+            double totalTechnique = team.Players.SumIf(x => x != null, x => x.Stat[4] + x.InvestedPoint[2] + x.Equipments[3].Stat[4]);
+            double totalSpeed = team.Players.SumIf(x => x != null, x => x.Stat[6] + x.InvestedPoint[4] + x.Equipments[0].Stat[6]);
+            double totalStamina = team.Players.SumIf(x => x != null, x => x.Stat[7] + x.InvestedPoint[5] + x.Equipments[1].Stat[7]);
+            double totalLuck = team.Players.SumIf(x => x != null, x => x.Stat[9] + x.InvestedPoint[7] + x.Equipments[1].Stat[9]);
 
             // Draw Point (Graphic Stat)
             chart2.Series[0].Points.Clear();
@@ -138,24 +156,24 @@ namespace InazumaElevenSaveEditor
 
             // Draw Label and Team Level
             kickLabel.Text = "Kick: " + totalKick;
-            dribbleLabel.Text = "Dribble: "  + totalDribble;
-            blockLabel.Text = "Block: "  + totalBlock;
-            catchLabel.Text = "Catch: "  + totalCatch;
-            techniqueLabel.Text = "Tech. "  + totalTechnique;
-            speedLabel.Text = "Speed: "  + totalSpeed;
+            dribbleLabel.Text = "Dribble: " + totalDribble;
+            blockLabel.Text = "Block: " + totalBlock;
+            catchLabel.Text = "Catch: " + totalCatch;
+            techniqueLabel.Text = "Tech. " + totalTechnique;
+            speedLabel.Text = "Speed: " + totalSpeed;
             staminaLabel.Text = "Stamina: " + totalStamina;
-            luckLabel.Text = "Luck: "  + totalLuck;
+            luckLabel.Text = "Luck: " + totalLuck;
             if (totalPlayer != 0)
             {
-                windLabel.Text = "Wind: " + Convert.ToInt32(team.Players.SumIf(x => x.Value != null && x.Value.Element.Name == "Wind", x => 1.0) / totalPlayer * 100) + "%";
-                woodLabel.Text = "Wood: " + Convert.ToInt32(team.Players.SumIf(x => x.Value != null && x.Value.Element.Name == "Wood", x => 1.0) / totalPlayer * 100) + "%";
-                fireLabel.Text = "Fire: " + Convert.ToInt32(team.Players.SumIf(x => x.Value != null && x.Value.Element.Name == "Fire", x => 1.0) / totalPlayer * 100) + "%";
-                earthLabel.Text = "Earth: " + Convert.ToInt32(team.Players.SumIf(x => x.Value != null && x.Value.Element.Name == "Earth", x => 1.0) / totalPlayer * 100) + "%";
-                boyLabel.Text = "Boy: " + Convert.ToInt32(team.Players.SumIf(x => x.Value != null && x.Value.Gender.Name == "Boy", x => 1.0) / totalPlayer * 100) + "%";
-                girlLabel.Text = "Girl: " + Convert.ToInt32(team.Players.SumIf(x => x.Value != null && x.Value.Gender.Name == "Girl", x => 1.0) / totalPlayer * 100) + "%";
-                unknownLabel.Text = "Unknown: " + Convert.ToInt32(team.Players.SumIf(x => x.Value != null && x.Value.Gender.Name == "Unknown", x => 1.0) / totalPlayer * 100) + "%";
-                teamNumericUpDown.Value = Convert.ToInt32(team.Players.SumIf(x => x.Value != null, x => x.Value.Level / totalPlayer));
-            } 
+                windLabel.Text = "Wind: " + Convert.ToInt32(team.Players.SumIf(x => x != null && x.Element.Name == "Wind", x => 1.0) / totalPlayer * 100) + "%";
+                woodLabel.Text = "Wood: " + Convert.ToInt32(team.Players.SumIf(x => x != null && x.Element.Name == "Wood", x => 1.0) / totalPlayer * 100) + "%";
+                fireLabel.Text = "Fire: " + Convert.ToInt32(team.Players.SumIf(x => x != null && x.Element.Name == "Fire", x => 1.0) / totalPlayer * 100) + "%";
+                earthLabel.Text = "Earth: " + Convert.ToInt32(team.Players.SumIf(x => x != null && x.Element.Name == "Earth", x => 1.0) / totalPlayer * 100) + "%";
+                boyLabel.Text = "Boy: " + Convert.ToInt32(team.Players.SumIf(x => x != null && x.Gender.Name == "Boy", x => 1.0) / totalPlayer * 100) + "%";
+                girlLabel.Text = "Girl: " + Convert.ToInt32(team.Players.SumIf(x => x != null && x.Gender.Name == "Girl", x => 1.0) / totalPlayer * 100) + "%";
+                unknownLabel.Text = "Unknown: " + Convert.ToInt32(team.Players.SumIf(x => x != null && x.Gender.Name == "Unknown", x => 1.0) / totalPlayer * 100) + "%";
+                teamNumericUpDown.Value = Convert.ToInt32(team.Players.SumIf(x => x != null, x => x.Level / totalPlayer));
+            }
             else
             {
                 windLabel.Text = "Wind: 0";
@@ -169,22 +187,23 @@ namespace InazumaElevenSaveEditor
             }
 
             // Update Formation
-            FormationTextContent = Properties.Resources.ResourceManager.GetObject(team.Formation.Name).ToString().Split('\n').ToList();
+            FormationTextContent = new ResourceReader("InazumaElevenSaveEditor.InazumaEleven.Common.GO.Formations.F-Gihl.txt").Content;
             strategyComboBox.SelectedIndex = 0;
+            StrategyComboBox_SelectedIndexChanged(strategyComboBox, EventArgs.Empty);
         }
 
         private void TeamWindow_Load(object sender, EventArgs e)
         {
-            InitializeRessource();
+            BindRessource();
 
-            if (Game.SaveInfo.Teams == null)
+            if (Save.Game.Teams == null)
             {
-                Game.OpenTactics();
+                Save.Game.OpenTactics();
             }
 
-            for (int i = 0; i < Game.SaveInfo.Teams.Count; i++)
+            for (int i = 0; i < Save.Game.Teams.Count; i++)
             {
-                teamListBox.Items.Add(Game.SaveInfo.Teams[i].Name);
+                teamListBox.Items.Add(Save.Game.Teams[i].Name);
             }
         }
 
@@ -192,7 +211,7 @@ namespace InazumaElevenSaveEditor
         {
             if (teamListBox.SelectedIndex == -1) return;
 
-            PrintTeam(Game.SaveInfo.Teams[teamListBox.SelectedIndex]);
+            PrintTeam(Save.Game.Teams[teamListBox.SelectedIndex]);
             tabControl1.Enabled = true;
         }
 
@@ -202,7 +221,8 @@ namespace InazumaElevenSaveEditor
 
             for (int i = 0; i < 11; i++)
             {
-                ComboBox playerIndexComboBox = this.Controls.Find("playerIndexComboBox" + (i+1), true).First() as ComboBox;
+                ComboBox playerIndexComboBox = this.Controls.Find("playerIndexComboBox" + (i + 1), true).First() as ComboBox;
+                NumericUpDown numericUpDown = this.Controls.Find("playerNumericUpDown" + (i + 1), true).First() as NumericUpDown;
 
                 List<string> playerInformation = Regex.Split(Regex.Replace(FormationTextContent[strategyComboBox.SelectedIndex * 17 + 13 - i].Trim(), @"(\[|\],|\"")", ""), @",\s").ToList();
 
@@ -225,7 +245,7 @@ namespace InazumaElevenSaveEditor
                         break;
                 }
 
-                chart1.Series["player" + i].Label = playerIndexComboBox.Text;
+                chart1.Series["player" + i].Label = playerIndexComboBox.Text + " (" + numericUpDown.Value + ")";
                 chart1.Series["player" + i].Points.Clear();
                 chart1.Series["player" + i].Points.AddXY(Convert.ToDecimal(playerInformation[2]), Convert.ToDecimal(playerInformation[3]));
             }
@@ -267,13 +287,102 @@ namespace InazumaElevenSaveEditor
             }
         }
 
+        private void EmblemBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!emblemBox.Focused) return;
+
+            Save.Game.Teams[teamListBox.SelectedIndex].Emblem = emblemBox.SelectedItem as Item;
+        }
+
+        private void KitBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!kitBox.Focused) return;
+
+            Save.Game.Teams[teamListBox.SelectedIndex].Kit = kitBox.SelectedItem as Item;
+        }
+
+        private void CoachBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!coachBox.Focused) return;
+
+            Save.Game.Teams[teamListBox.SelectedIndex].Coach = coachBox.SelectedItem as Item;
+        }
+
         private void FormationBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!formationBox.Focused) return;
 
-            Game.SaveInfo.Teams[teamListBox.SelectedIndex].Formation = Game.SaveInfo.Inventory.FirstOrDefault(x => x.Value.Name == formationBox.Text).Value;
-            FormationTextContent = Properties.Resources.ResourceManager.GetObject(formationBox.Text).ToString().Split('\n').ToList();
+            Save.Game.Teams[teamListBox.SelectedIndex].Formation = formationBox.SelectedItem as Item;
+            FormationTextContent = new ResourceReader("InazumaElevenSaveEditor.InazumaEleven.Common.GO.Formations.F-Gihl.txt").Content;
             StrategyComboBox_SelectedIndexChanged(sender, e);
+        }
+
+        private void PlayerNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            NumericUpDown numericUpDown = sender as NumericUpDown;
+            if (!numericUpDown.Focused) return;
+
+            int index = Convert.ToInt32(numericUpDown.Name.Replace("playerNumericUpDown", "")) - 1;
+            Save.Game.Teams[teamListBox.SelectedIndex].PlayersKitNumber[index] = Convert.ToInt32(numericUpDown.Value);
+            PrintTeam(Save.Game.Teams[teamListBox.SelectedIndex]);
+        }
+
+        private void PlayerComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ComboBox comboBox = sender as ComboBox;
+            if (!comboBox.Focused) return;
+
+            int index = Convert.ToInt32(comboBox.Name.Replace("playerComboBox", "")) - 1;
+            Save.Game.Teams[teamListBox.SelectedIndex].Players[index] = comboBox.SelectedItem as Player;
+            PrintTeam(Save.Game.Teams[teamListBox.SelectedIndex]);
+        }
+
+        private void PlayerIndexComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ComboBox comboBox = sender as ComboBox;
+            if (!comboBox.Focused) return;
+
+            // Get player index
+            int index = Convert.ToInt32(comboBox.Name.Replace("playerIndexComboBox", ""));
+            index = Save.Game.Teams[teamListBox.SelectedIndex].PlayersFormationIndex.FindIndex(x => x == index);
+            int newIndex = Save.Game.Teams[teamListBox.SelectedIndex].Players.FindIndex(x => x == comboBox.SelectedItem);
+
+            // Get player formation index
+            int formationIndex = Save.Game.Teams[teamListBox.SelectedIndex].PlayersFormationIndex[index];
+            int formationNewIndex = Save.Game.Teams[teamListBox.SelectedIndex].PlayersFormationIndex[newIndex];
+
+            // Swap formation Index
+            Save.Game.Teams[teamListBox.SelectedIndex].PlayersFormationIndex[index] = formationNewIndex;
+            Save.Game.Teams[teamListBox.SelectedIndex].PlayersFormationIndex[newIndex] = formationIndex;
+
+            // Update form
+            ComboBox playerIndexComboBox = this.Controls.Find("playerIndexComboBox" + (formationNewIndex), true).First() as ComboBox;
+            playerIndexComboBox.SelectedItem = Save.Game.Teams[teamListBox.SelectedIndex].Players[index];
+            StrategyComboBox_SelectedIndexChanged(sender, e);
+        }
+
+        private void PreviousButton_Click(object sender, EventArgs e)
+        {
+            if (strategyComboBox.SelectedIndex == 0)
+            {
+                strategyComboBox.SelectedIndex = strategyComboBox.Items.Count - 1;
+            }
+            else
+            {
+                strategyComboBox.SelectedIndex--;
+            }
+        }
+
+        private void NextButton_Click(object sender, EventArgs e)
+        {
+            if (strategyComboBox.SelectedIndex < strategyComboBox.Items.Count - 1)
+            {
+                strategyComboBox.SelectedIndex++;
+            }
+            else
+            {
+                strategyComboBox.SelectedIndex = 0;
+            }
         }
     }
 }

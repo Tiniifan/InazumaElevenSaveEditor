@@ -4,23 +4,18 @@ using System.Linq;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
-using InazumaElevenSaveEditor;
 using System.Collections.Generic;
-using InazumaElevenSaveEditor.Logic;
 using InazumaElevenSaveEditor.Tools;
-using InazumaElevenSaveEditor.Formats;
-using InazumaElevenSaveEditor.Formats.Saves;
-using InazumaElevenSaveEditor.Formats.Player_Files;
+using InazumaElevenSaveEditor.InazumaEleven.INZ;
+using InazumaElevenSaveEditor.InazumaEleven.Logic;
+using InazumaElevenSaveEditor.InazumaEleven.Saves;
+using InazumaElevenSaveEditor.InazumaEleven.Saves.IE;
 
-namespace NoFarmForMeOpenSource
+namespace InazumaElevenSaveEditor
 {
     public partial class Welcome : Form
     {
-        private DataReader FileData = null;
-
-        private IFormat Format = null;
-
-        private IGame Game = null;
+        public ISave Save = null;
 
         private List<int> SelectedPlayers = null;
 
@@ -35,10 +30,10 @@ namespace NoFarmForMeOpenSource
             }
         }
 
-        private void InitializeRessource()
+        private void BindRessource()
         {
             // Print Name Code Of The Game
-            this.Text = Game.GameNameCode + " Save Editor";
+            this.Text = Save.Game.Name + " Save Editor";
 
             // Clear All ComboBoxs
             nameBox.Items.Clear();
@@ -56,33 +51,39 @@ namespace NoFarmForMeOpenSource
             pendantBox.Items.Clear();
 
             // Remove All Extra PlayerTabPages
-            while (tabControl4.TabPages.Count > 1)
+            while (tabControl4.TabPages.Count > 2)
             {
-                RemoveToolStripMenuItem_Click(tabControl4, System.EventArgs.Empty);
+                RemoveToolStripMenuItem_Click(tabControl4, EventArgs.Empty);
             }
 
             // Fill All ComboBoxs
             // Player Name
-            nameBox.Items.AddRange(Game.Players.Select(x => x.Value.Name).ToArray());
-            nameBox.Items.Remove("");
+            nameBox.Items.AddRange(Save.Game.Players.Select(x => new Player(x.Value, x.Key)).ToArray());
+            nameBox.Items.Remove(nameBox.Items.Cast<Player>().FirstOrDefault(p => p.ID == 0x00));
 
             // Avatars Name
-            avatarNameBox.Items.AddRange(Game.Avatars.Select(x => x.Value.Name).ToArray());
+            avatarNameBox.Items.AddRange(Save.Game.Avatars.Select(x => x.Value).ToArray());
             miximaxAvatarNameBox.Items.AddRange(avatarNameBox.Items.Cast<Object>().ToArray());
 
             // Special Moves Name
-            moveBox1.Items.AddRange(Game.Moves.Select(x => x.Value.Name).ToArray());
+            moveBox1.Items.AddRange(Save.Game.Moves.Select(x => x.Value).ToArray());
             moveBox2.Items.AddRange(moveBox1.Items.Cast<Object>().ToArray());
             moveBox3.Items.AddRange(moveBox1.Items.Cast<Object>().ToArray());
             moveBox4.Items.AddRange(moveBox1.Items.Cast<Object>().ToArray());
             moveBox5.Items.AddRange(moveBox1.Items.Cast<Object>().ToArray());
             moveBox6.Items.AddRange(moveBox1.Items.Cast<Object>().ToArray());
 
-            // Equipment Name
-            bootsBox.Items.AddRange(Game.Equipments.Where(x => x.Value.Type.Name == "Boots").Select(x => x.Value.Name).ToArray());
-            glovesBox.Items.AddRange(Game.Equipments.Where(x => x.Value.Type.Name == "Gloves").Select(x => x.Value.Name).ToArray());
-            braceletBox.Items.AddRange(Game.Equipments.Where(x => x.Value.Type.Name == "Bracelet").Select(x => x.Value.Name).ToArray());
-            pendantBox.Items.AddRange(Game.Equipments.Where(x => x.Value.Type.Name == "Pendant").Select(x => x.Value.Name).ToArray());
+            // Equipment
+            bootsBox.Items.AddRange(Save.Game.Equipments.Where(x => x.Value.Type.Name == "Boots").Select(x => x.Value).ToArray());
+            glovesBox.Items.AddRange(Save.Game.Equipments.Where(x => x.Value.Type.Name == "Gloves").Select(x => x.Value).ToArray());
+            braceletBox.Items.AddRange(Save.Game.Equipments.Where(x => x.Value.Type.Name == "Bracelet").Select(x => x.Value).ToArray());
+            pendantBox.Items.AddRange(Save.Game.Equipments.Where(x => x.Value.Type.Name == "Pendant").Select(x => x.Value).ToArray());
+
+            // None equipment
+            bootsBox.Items.Add(Save.Game.Equipments[0x0]);
+            glovesBox.Items.Add(Save.Game.Equipments[0x0]);
+            braceletBox.Items.Add(Save.Game.Equipments[0x0]);
+            pendantBox.Items.Add(Save.Game.Equipments[0x0]);
         }
 
         private void CreatePage(int maximum)
@@ -101,15 +102,24 @@ namespace NoFarmForMeOpenSource
             for (int i = 0; i < 16; i++)
             {
                 int index = page * 16 + i;
+
                 PictureBox playerPictureBox = this.Controls.Find("playerPictureBox" + (i + 1), true).First() as PictureBox;
 
-                if (index < Game.PlayersInSave.Count)
+                if (index < Save.Game.Reserve.Count)
                 {
-                    playerPictureBox.Image = Draw.DrawString(InazumaElevenSaveEditor.Properties.Resources.PlayerRectangleBox, Game.GetPlayer(index).Name, 3, 2);
-                } 
+                    string name = Save.Game.Reserve[index].Name;
+
+                    if (name.Length > 20)
+                    {
+                        name = name.Substring(0, 20) + "...";
+                    }
+
+                    playerPictureBox.Image = Draw.DrawString(InazumaElevenSaveEditor.Properties.Resources.PlayerRectangleBox, name, 3, 2);
+                    playerPictureBox.Image = Draw.DrawString(playerPictureBox.Image, "LV." + Save.Game.Reserve[index].Level, 160, 2);
+                }
                 else
                 {
-                    playerPictureBox.Image = InazumaElevenSaveEditor.Properties.Resources.PlayerRectangleBox;
+                    playerPictureBox.Image = Properties.Resources.PlayerRectangleBox;
                 }
             }
         }
@@ -120,8 +130,8 @@ namespace NoFarmForMeOpenSource
             tabControl4.TabPages[tabControl4.SelectedIndex].Text = player.Name + " (Lv." + player.Level + ")";
 
             // Print General Player Information
-            nameBox.SelectedIndex = nameBox.Items.IndexOf(player.Name);
-            positionBox.Text = player.Position.ToString();
+            nameBox.SelectedItem = nameBox.Items.Cast<Player>().FirstOrDefault(p => p.ID == player.ID);
+            positionBox.Text = player.Position?.ToString() ?? "Goalkeeper";
             elementBox.Text = player.Element.ToString();
             genderBox.Text = player.Gender.ToString();
             levelNumericUpDown.Value = player.Level;
@@ -129,8 +139,14 @@ namespace NoFarmForMeOpenSource
             scoreNumericUpDown.Value = player.Score;
             participationNumericUpDown.Value = player.Participation;
 
+            // Print Player FP -  TP
+            fpNumericUpDown.Value = player.FP;
+            fpNumericUpDown.Maximum = player.Stat[0];
+            tpNumericUpDown.Value = player.TP;
+            tpNumericUpDown.Maximum = player.Stat[1];
+
             // Print Player Stat Level 99 and Freedom
-            for (int i = 0; i < player.Stat.Count; i++)
+            for (int i = 2; i < player.Stat.Count; i++)
             {
                 TextBox statBox = this.Controls.Find("statBox" + (i + 1), true).First() as TextBox;
                 statBox.Text = player.Stat[i].ToString();
@@ -157,7 +173,11 @@ namespace NoFarmForMeOpenSource
             }
 
             // Print Figthing Spirit
-            avatarNameBox.SelectedIndex = avatarNameBox.Items.IndexOf(player.Avatar.Name);
+            int avatarIndex = avatarNameBox.Items.Cast<Avatar>()
+                           .Select((item, idx) => new { Item = item, Index = idx })
+                           .FirstOrDefault(x => x.Item.Name == player.Avatar.Name)?.Index ?? -1;
+
+            avatarNameBox.SelectedIndex = avatarIndex;
             avatarNumericUpDown.Value = player.Avatar.Level;
             invokeBox.Checked = player.Invoke;
             avatarNameBox.Enabled = player.Invoke;
@@ -171,24 +191,30 @@ namespace NoFarmForMeOpenSource
                 ComboBox moveBox = this.Controls.Find("moveBox" + (i + 1), true).First() as ComboBox;
                 NumericUpDown moveNumericUpDown = this.Controls.Find("moveNumericUpDown" + (i + 1), true).First() as NumericUpDown;
                 CheckBox moveCheckBox = this.Controls.Find("moveCheckBox" + (i + 1), true).First() as CheckBox;
-                moveBox.SelectedIndex = moveBox.Items.IndexOf(player.Moves[i].Name);
+
+                int moveIndex = moveBox.Items.Cast<Move>()
+                           .Select((item, idx) => new { Item = item, Index = idx })
+                           .FirstOrDefault(x => x.Item.Name == player.Moves[i].Name)?.Index ?? -1;
+
+                moveBox.SelectedIndex = moveIndex;
                 moveBox.Enabled = player.Moves[i].Unlock;
                 moveNumericUpDown.Maximum = player.Moves[i].EvolutionCount;
+
                 if (player.Moves[i].Level > player.Moves[i].EvolutionCount)
                 {
                     player.Moves[i].Level = player.Moves[i].EvolutionCount;
                 }
+
                 moveNumericUpDown.Value = player.Moves[i].Level;
                 moveNumericUpDown.Enabled = player.Moves[i].Unlock;
                 moveCheckBox.Checked = player.Moves[i].Unlock;
             }
 
             // Print Equipment
-            for (int i = 0; i < player.Equipments.Count; i++)
-            {
-                ComboBox equipmentBox = this.Controls.Find(player.Equipments[i].Type.Name.ToLower() + "Box", true).First() as ComboBox;
-                equipmentBox.SelectedIndex = equipmentBox.Items.IndexOf(player.Equipments[i].Name);
-            }
+            bootsBox.SelectedIndex = bootsBox.Items.IndexOf(player.Equipments[0]);
+            braceletBox.SelectedIndex = braceletBox.Items.IndexOf(player.Equipments[1]);
+            pendantBox.SelectedIndex = pendantBox.Items.IndexOf(player.Equipments[2]);
+            glovesBox.SelectedIndex = glovesBox.Items.IndexOf(player.Equipments[3]);
 
             // Print MixiMax
             if (player.MixiMax != null)
@@ -220,8 +246,8 @@ namespace NoFarmForMeOpenSource
                 }
                 if (player.MixiMax.BestMatch != null)
                 {
-                    moveBox7.Items.Add(Game.Moves[player.MixiMax.BestMatch.MixiMaxMove].Name);
-                    moveBox8.Items.Add(Game.Moves[player.MixiMax.BestMatch.MixiMaxMove].Name);
+                    moveBox7.Items.Add(Save.Game.Moves[player.MixiMax.BestMatch.MixiMaxMove].Name);
+                    moveBox8.Items.Add(Save.Game.Moves[player.MixiMax.BestMatch.MixiMaxMove].Name);
                 }
 
                 // Print Miximax Moves Selected
@@ -294,7 +320,7 @@ namespace NoFarmForMeOpenSource
                 if (player.IsAura == true)
                 {
                     label24.Text = "Aura of";
-                    auraButton.Text = Game.PlayersInSave.First(x => x.Value.MixiMax != null && x.Value.MixiMax.AuraPlayer == player).Value.Name;
+                    auraButton.Text = Save.Game.Reserve.First(x => x.MixiMax != null && x.MixiMax.AuraPlayer == player).Name;
                     auraButton.Visible = true;
                     auraComboBox.Visible = false;
                 } 
@@ -302,18 +328,19 @@ namespace NoFarmForMeOpenSource
                 {
                     // Fill Aura ComboBox
                     List<string> playersWhoCanBeAura = new List<string>();
-                    foreach (KeyValuePair<UInt32, Player> auraKeyValue in Game.AuraInSave)
+                    foreach (KeyValuePair<int, Player> auraKeyValue in Save.Game.Auras)
                     {
                         if (auraKeyValue.Value.IsAura == false)
                         {
                             playersWhoCanBeAura.Add(auraKeyValue.Value.Name);
                         }
                     }
-                    foreach (KeyValuePair<UInt32, Player> playerKeyValue in Game.PlayersInSave)
+
+                    foreach (Player playerInReserve in Save.Game.Reserve)
                     {
-                        if (playerKeyValue.Value.MixiMax == null & playerKeyValue.Value != player & playerKeyValue.Value.IsAura == false)
+                        if (playerInReserve.MixiMax == null & playerInReserve != player & playerInReserve.IsAura == false)
                         {
-                            playersWhoCanBeAura.Add(playerKeyValue.Value.Name);
+                            playersWhoCanBeAura.Add(playerInReserve.Name);
                         }
                     }
 
@@ -355,19 +382,19 @@ namespace NoFarmForMeOpenSource
 
         private void TrainPlayer(Player player, NumericUpDown investedNumericUpDownSelected, int startIndex)
         {
-            var trainingInformation = Game.Training(player, Convert.ToInt32(investedNumericUpDownSelected.Value), startIndex);
+            var trainingInformation = Save.Game.Training(player, Convert.ToInt32(investedNumericUpDownSelected.Value), startIndex);
 
             NumericUpDown downStatNumericUpDown = this.Controls.Find(trainingInformation.Item3, true).First() as NumericUpDown;
             investedNumericUpDownSelected.Minimum = trainingInformation.Item1;
             investedNumericUpDownSelected.Maximum = trainingInformation.Item2;
             downStatNumericUpDown.Enabled = trainingInformation.Item4;
-            if (downStatNumericUpDown.Enabled == false & Game.GameNameCode == "IEGOCS")
+            if (downStatNumericUpDown.Enabled == false & Save.Game.Code == "IEGOCS")
             {
-                downStatNumericUpDown.Minimum = -65535;
+                //downStatNumericUpDown.Minimum = -65535;
             }
 
             // Print Stat
-            for (int i = 0; i < player.Stat.Count; i++)
+            for (int i = 2; i < player.Stat.Count; i++)
             {
                 TextBox statBox = this.Controls.Find("statBox" + (i + 1), true).First() as TextBox;
                 statBox.Text = player.Stat[i].ToString();
@@ -422,8 +449,12 @@ namespace NoFarmForMeOpenSource
             // Show or Hide current Picture Box
             pictureBox.Visible = pageComboBox.SelectedIndex != SelectedPlayers[tabControl4.SelectedIndex] / 16;
 
+            Player player = Save.Game.Reserve[SelectedPlayers[tabControl4.SelectedIndex]];
+
             // Draw Moved Player Picture Box
-            movedPlayerPictureBox.Image = Draw.DrawString(InazumaElevenSaveEditor.Properties.Resources.MovedPlayerRectangleBox, Game.GetPlayer(SelectedPlayers[tabControl4.SelectedIndex]).Name, 3, 2);
+            movedPlayerPictureBox.Image = Draw.DrawString(InazumaElevenSaveEditor.Properties.Resources.MovedPlayerRectangleBox, player.Name, 3, 2);
+            movedPlayerPictureBox.Image = Draw.DrawString(movedPlayerPictureBox.Image, "LV." + player.Level, 160, 2);
+
             movedPlayerPictureBox.Left = tabControl2.PointToClient(Cursor.Position).X;
             movedPlayerPictureBox.Top = tabControl2.PointToClient(Cursor.Position).Y;
             movedPlayerPictureBox.Visible = true;
@@ -452,15 +483,21 @@ namespace NoFarmForMeOpenSource
         {
             foreach (Control control in tabPage3.Controls)
             {
+                // Check if the control is a PictureBox and not the movedPlayerPictureBox
                 if (!control.Equals(movedPlayerPictureBox) && control is PictureBox && movedPlayerPictureBox.Bounds.IntersectsWith(control.Bounds))
                 {
                     int newIndex = pageComboBox.SelectedIndex * 16 + Convert.ToInt32(control.Name.Replace("playerPictureBox", "")) - 1;
-                    if (newIndex != SelectedPlayers[tabControl4.SelectedIndex] && newIndex <= Game.PlayersInSave.Count)
+
+                    if (newIndex != SelectedPlayers[tabControl4.SelectedIndex] && newIndex <= Save.Game.Reserve.Count)
                     {
-                        UInt32 playerPositionID = Game.PlayersInSaveSort[SelectedPlayers[tabControl4.SelectedIndex]];
-                        UInt32 newPlayerPositionID = Game.PlayersInSaveSort[newIndex];
-                        Game.PlayersInSaveSort[SelectedPlayers[tabControl4.SelectedIndex]] = newPlayerPositionID;
-                        Game.PlayersInSaveSort[newIndex] = playerPositionID;
+                        // Get the old position index and new position index
+                        int oldPositionIndex = Save.Game.Reserve[SelectedPlayers[tabControl4.SelectedIndex]].Index;
+                        int newPositionIndex = Save.Game.Reserve[newIndex].Index;
+
+                        // Swap the indexes of the players
+                        Save.Game.Reserve[SelectedPlayers[tabControl4.SelectedIndex]].Index = newPositionIndex;
+                        Save.Game.Reserve[newIndex].Index = oldPositionIndex;
+
                         break;
                     }
                 }
@@ -469,38 +506,46 @@ namespace NoFarmForMeOpenSource
 
         private void LoadFile(string filePath)
         {
-            FileData = new DataReader(File.ReadAllBytes(filePath));
+            MemoryStream memoryStream = null;
 
-            switch (Path.GetExtension(filePath))
+            try
             {
-                case ".ie":
-                    Format = new IE();
-                    break;
-                case ".ie4":
-                    Format = new IE();
-                    break;
-                default:
-                    MessageBox.Show("Format isn't supported");
-                    return;
+                switch (Path.GetExtension(filePath))
+                {
+                    case ".ie":
+                        Save = new IE();
+                        break;
+                    case ".ie4":
+                        Save = new IE();
+                        break;
+                    default:
+                        MessageBox.Show("Format isn't supported");
+                        return;
+                }
+
+                memoryStream = new MemoryStream(File.ReadAllBytes(filePath));
+                Save.Open(new BinaryDataReader(memoryStream));
+
+                CreatePage(Convert.ToInt32(Math.Ceiling((double)Save.Game.Reserve.Count / 16.0)));
+                pageComboBox.SelectedIndex = 0;
+
+                BindRessource();
+                SelectedPlayers = new List<int>() { -1 };
+
+                managePlayerToolStripMenuItem.Enabled = true;
+                inventoryButton.Enabled = true;
+                teamButton.Enabled = true;
+                saveInformationButton.Enabled = true;
+                playRecordsButton.Enabled = true;
+                saveToolStripMenuItem1.Enabled = true;
+                tabControl1.Enabled = false;
+                managePlayerTabToolStripMenuItem.Enabled = true;
+                tabControl2.Enabled = true;
             }
-
-            Game = Format.Open(FileData);
-            Game.Open();
-
-            CreatePage(Convert.ToInt32(Math.Ceiling((double)Game.PlayersInSave.Count / 16.0)));
-            pageComboBox.SelectedIndex = 0;
-
-            InitializeRessource();
-            SelectedPlayers = new List<int>() { -1 };
-
-            managePlayerToolStripMenuItem.Enabled = true;
-            inventoryButton.Enabled = true;
-            // teamButton.Enabled = true;
-            saveInformationButton.Enabled = true;
-            playRecordsButton.Enabled = true;
-            saveToolStripMenuItem1.Enabled = true;
-            tabControl1.Enabled = false;
-            managePlayerTabToolStripMenuItem.Enabled = true;
+            finally
+            {
+                memoryStream?.Dispose();
+            }
         }
 
         private Player LoadPlayerFile(string filePath)
@@ -515,7 +560,7 @@ namespace NoFarmForMeOpenSource
                 return null;
             }
 
-            switch (Game.GameNameCode)
+            switch (Save.Game.Code)
             {
                 case "IEGOCS":
                     playerFile = new INZ5();
@@ -524,6 +569,7 @@ namespace NoFarmForMeOpenSource
                     playerFile = new INZ6();
                     break;
             }
+
 
             player = playerFile.NewPlayer(filePath);
 
@@ -535,14 +581,14 @@ namespace NoFarmForMeOpenSource
 
             for (int i = 0; i < 4; i++)
             {
-                if (Game.Equipments.Values.Contains(player.Equipments[i]) == false)
+                if (Save.Game.Equipments.Values.Contains(player.Equipments[i]) == false)
                 {
-                    player.Equipments[i] = Game.Equipments[(uint)i];
+                    player.Equipments[i] = Save.Game.Equipments[i];
                 }
 
-                if (player.MixiMax != null && Game.Equipments.Values.Contains(player.MixiMax.AuraPlayer.Equipments[i]) == false)
+                if (player.MixiMax != null && Save.Game.Equipments.Values.Contains(player.MixiMax.AuraPlayer.Equipments[i]) == false)
                 {
-                    player.MixiMax.AuraPlayer.Equipments[i] = Game.Equipments[(uint)i];
+                    player.MixiMax.AuraPlayer.Equipments[i] = Save.Game.Equipments[i];
                 }
             }
 
@@ -562,14 +608,28 @@ namespace NoFarmForMeOpenSource
 
         private void SaveToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            if (Game == null) return;
+            if (Save == null) return;
 
-            Game.Save(openFileDialog1);
+            Save.Save(openFileDialog1);
+        }
+
+        private void TabControl4_Selecting(object sender, TabControlCancelEventArgs e)
+        {
+            if (e.TabPage == tabPage5)
+            {
+                this.BeginInvoke((MethodInvoker)delegate
+                {
+                    AddToolStripMenuItem_Click(sender, e);
+                });
+                e.Cancel = true;
+            }
         }
 
         private void TabControl4_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!tabControl4.Focused) return;
+
+            if (tabControl4.TabPages[tabControl4.SelectedIndex] == tabPage5) return;
 
             Control[] ctrlArray = new Control[tabControl1.Controls.Count];
             tabControl1.Controls.CopyTo(ctrlArray, 0);
@@ -577,16 +637,17 @@ namespace NoFarmForMeOpenSource
 
             if (SelectedPlayers[tabControl4.SelectedIndex] == -1)
             {
+                tabControl4.TabPages[tabControl4.TabPages.Count - 2].Text = "Player";
                 tabControl1.Enabled = false;
             } else
             {
-                PrintPlayer(Game.GetPlayer(SelectedPlayers[tabControl4.SelectedIndex]));
+                PrintPlayer(Save.Game.Reserve[SelectedPlayers[tabControl4.SelectedIndex]]);
             }
         }
 
         private void AddToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (Game == null) return;
+            if (Save == null) return;
 
             bool mouseOnControl = false;
             Control playerPictureBox = null;
@@ -604,7 +665,7 @@ namespace NoFarmForMeOpenSource
             {
                 int newIndex = pageComboBox.SelectedIndex * 16 + Convert.ToInt32(playerPictureBox.Name.Replace("playerPictureBox", "")) - 1;
 
-                Player player = Game.GetPlayer(newIndex);
+                Player player = Save.Game.Reserve[SelectedPlayers[tabControl4.SelectedIndex]];
                 PrintPlayer(player);
 
                 if (SelectedPlayers[tabControl4.SelectedIndex] == -1)
@@ -620,9 +681,11 @@ namespace NoFarmForMeOpenSource
             } 
             else
             {
+                var lastIndex = SelectedPlayers.Count() - 1;
+
                 SelectedPlayers.Add(-1);
-                tabControl4.TabPages.Add("Player");
-                tabControl4.SelectedIndex = SelectedPlayers.Count() - 1;
+                tabControl4.TabPages.Insert(lastIndex, "Player");
+                tabControl4.SelectedIndex = lastIndex;
                 tabControl1.Enabled = false;
             }
 
@@ -633,22 +696,22 @@ namespace NoFarmForMeOpenSource
 
         private void RemoveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (Game == null) return;
+            if (Save == null) return;
 
-            if (tabControl4.TabPages.Count == 1) return;
+            if (tabControl4.TabPages.Count == 2) return;
 
             SelectedPlayers.RemoveAt(tabControl4.SelectedIndex);
             tabControl4.TabPages.RemoveAt(tabControl4.SelectedIndex);
-            tabControl4.SelectedIndex = tabControl4.TabPages.Count - 1;
+            tabControl4.SelectedIndex = tabControl4.TabPages.Count - 2;
 
             TabControl4_SelectedIndexChanged(sender, e);
         }
 
         private void RecruitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (Game == null) return;
+            if (Save == null) return;
 
-            if (Game.PlayersInSave.Count > Game.MaximumPlayer)
+            if (Save.Game.Reserve.Count > Save.Game.MaximumPlayer)
             {
                 MessageBox.Show("Maximum player reached");
                 return;
@@ -661,15 +724,15 @@ namespace NoFarmForMeOpenSource
 
             if (dialogResult == DialogResult.Yes && inviteWindow.nameBox.SelectedIndex != -1)
             {
-                Game.RecruitPlayer(Game.Players.FirstOrDefault(x => x.Value.Name == inviteWindow.nameBox.Text.ToString()));
+                Save.Game.RecruitPlayer(inviteWindow.nameBox.SelectedItem as Player, true);
 
-                CreatePage(Convert.ToInt32(Math.Ceiling((double)Game.PlayersInSave.Count / 16.0)));
+                CreatePage(Convert.ToInt32(Math.Ceiling((double)Save.Game.Reserve.Count / 16.0)));
                 pageComboBox.SelectedIndex = pageComboBox.Items.Count - 1;
 
-                Player player = Game.GetPlayer(Game.PlayersInSave.Count - 1);
+                Player player = Save.Game.Reserve[Save.Game.Reserve.Count - 1];
                 PrintPlayer(player);
 
-                SelectedPlayers[tabControl4.SelectedIndex] = Game.PlayersInSave.Count - 1;
+                SelectedPlayers[tabControl4.SelectedIndex] = Save.Game.Reserve.Count - 1;
 
                 MessageBox.Show(inviteWindow.nameBox.Text + " has joined you");
             }
@@ -677,11 +740,11 @@ namespace NoFarmForMeOpenSource
 
         private void DismissToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (Game == null) return;
+            if (Save == null) return;
 
             ComboBox customNameBox = new ComboBox();
 
-            customNameBox.Items.AddRange(Game.PlayersInSave.Select(x => x.Value.Name).ToArray());
+            customNameBox.Items.AddRange(Save.Game.Reserve.ToArray());
             customNameBox.Sorted = false;
 
             MessageComboBox inviteWindow = new MessageComboBox("Dismiss Player", "Select the player you want to dismiss", "Dismiss", customNameBox);
@@ -689,19 +752,19 @@ namespace NoFarmForMeOpenSource
 
             if (dialogResult == DialogResult.Yes && inviteWindow.nameBox.SelectedIndex != -1)
             {
-                UInt32 playerIndex = Game.PlayersInSaveSort[inviteWindow.nameBox.SelectedIndex];
+                Player removedPlayer = inviteWindow.nameBox.SelectedItem as Player;
 
                 // Remove Mixi Max Aura Linked
-                foreach (KeyValuePair<UInt32, Player> player in Game.PlayersInSave)
+                foreach (Player player in Save.Game.Reserve)
                 {
-                    if (player.Value.MixiMax != null && player.Value.MixiMax.AuraPlayer == Game.PlayersInSave[playerIndex])
+                    if (player.MixiMax != null && player.MixiMax.AuraPlayer == removedPlayer)
                     {
-                        player.Value.MixiMax = null;
+                        player.MixiMax = null;
                     }
                 }
 
                 // Remove Tabpages Which contains The PLayer Data
-                int selectedIndex = Game.PlayersInSaveSort.IndexOf(playerIndex);
+                int selectedIndex = Save.Game.Reserve.IndexOf(removedPlayer);
                 int selectedPlayersLength = SelectedPlayers.Count;
                 for (int i = 0; i < selectedPlayersLength; i++)
                 {
@@ -717,17 +780,16 @@ namespace NoFarmForMeOpenSource
                         else
                         {
                             tabControl4.SelectedIndex = index;
-                            RemoveToolStripMenuItem_Click(tabControl4, System.EventArgs.Empty);
+                            RemoveToolStripMenuItem_Click(tabControl4, EventArgs.Empty);
                         }
                     }
                 }
 
                 // Remove The Player From The Save
-                Game.PlayersInSaveSort.Remove(playerIndex);
-                Game.PlayersInSave.Remove(playerIndex);
+                Save.Game.Reserve.Remove(removedPlayer);
 
                 // Reset Pages
-                CreatePage(Convert.ToInt32(Math.Ceiling((double)Game.PlayersInSave.Count / 16.0)));
+                CreatePage(Convert.ToInt32(Math.Ceiling((double)Save.Game.Reserve.Count / 16.0)));
                 pageComboBox.SelectedIndex = 0;
                 SelectedPlayers[tabControl4.SelectedIndex] = -1;
                 tabControl1.Enabled = false;
@@ -738,7 +800,7 @@ namespace NoFarmForMeOpenSource
 
         private void ExportToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (Game == null) return;
+            if (Save == null) return;
 
             IPlayerFiles playerFile = null;
             Player player = null;
@@ -747,7 +809,7 @@ namespace NoFarmForMeOpenSource
             {
                 ComboBox customNameBox = new ComboBox();
 
-                customNameBox.Items.AddRange(Game.PlayersInSave.Select(x => x.Value.Name).ToArray());
+                customNameBox.Items.AddRange(Save.Game.Reserve.ToArray());
                 customNameBox.Sorted = false;
 
                 MessageComboBox inviteWindow = new MessageComboBox("Export Player", "Select the player you want to export", "Export", customNameBox);
@@ -755,7 +817,7 @@ namespace NoFarmForMeOpenSource
 
                 if (dialogResult == DialogResult.Yes && inviteWindow.nameBox.SelectedIndex != -1)
                 {
-                    player = Game.GetPlayer(inviteWindow.nameBox.SelectedIndex);
+                    player = inviteWindow.nameBox.SelectedItem as Player;
                 }
                 else
                 {
@@ -764,17 +826,17 @@ namespace NoFarmForMeOpenSource
             }
             else
             {
-                player = Game.GetPlayer(SelectedPlayers[tabControl4.SelectedIndex]);
+                player = Save.Game.Reserve[SelectedPlayers[tabControl4.SelectedIndex]];
             }
 
-            switch (Game.GameNameCode)
+            switch (Save.Game.Code)
             {
                 case "IEGOCS":
-                    playerFile = new INZ5();
+                   playerFile = new INZ5();
                     break;
                 case "IEGOGALAXY":
                     playerFile = new INZ6();
-                    break;
+                   break;
             }
 
             SaveFileDialog saveFileDialog = new SaveFileDialog();
@@ -784,16 +846,16 @@ namespace NoFarmForMeOpenSource
 
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                System.IO.File.WriteAllText(saveFileDialog.FileName, playerFile.NewFile(player));
+                File.WriteAllText(saveFileDialog.FileName, playerFile.NewFile(player));
                 MessageBox.Show(player.Name + " exported!");
             }
         }
 
         private void ImportToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (Game == null) return;
+            if (Save == null) return;
 
-            if (Game.PlayersInSave.Count > Game.MaximumPlayer)
+            if (Save.Game.Reserve.Count > Save.Game.MaximumPlayer)
             {
                 MessageBox.Show("Maximum player reached");
                 return;
@@ -808,33 +870,33 @@ namespace NoFarmForMeOpenSource
             {
                 Player importPlayer = LoadPlayerFile(openFileDialog.FileName);
 
-                if (importPlayer.MixiMax != null & Game.PlayersInSave.Count + 1 < Game.MaximumPlayer)
+                if (importPlayer.MixiMax != null & Save.Game.Reserve.Count + 1 < Save.Game.MaximumPlayer)
                 {
                     DialogResult dialogResult = MessageBox.Show("Do you want to import Miximax?", "Import Miximax", MessageBoxButtons.YesNo);
 
                     if (dialogResult == DialogResult.Yes)
                     {
-                        Game.RecruitPlayer(importPlayer);
-                        Game.RecruitPlayer(importPlayer.MixiMax.AuraPlayer);
+                        Save.Game.RecruitPlayer(importPlayer, false);
+                        Save.Game.RecruitPlayer(importPlayer.MixiMax.AuraPlayer, false);
                     }
                     else
                     {
                         importPlayer.MixiMax = null;
-                        Game.RecruitPlayer(importPlayer);
+                        Save.Game.RecruitPlayer(importPlayer, false);
                     }
                 }
                 else
                 {
                     importPlayer.MixiMax = null;
-                    Game.RecruitPlayer(importPlayer);
+                    Save.Game.RecruitPlayer(importPlayer, false);
                 }
 
-                CreatePage(Convert.ToInt32(Math.Ceiling((double)Game.PlayersInSave.Count / 16.0)));
+                CreatePage(Convert.ToInt32(Math.Ceiling((double)Save.Game.Reserve.Count / 16.0)));
                 pageComboBox.SelectedIndex = pageComboBox.Items.Count - 1;
 
                 PrintPlayer(importPlayer);
 
-                SelectedPlayers[tabControl4.SelectedIndex] = Game.PlayersInSave.Count - 1;
+                SelectedPlayers[tabControl4.SelectedIndex] = Save.Game.Reserve.Count - 1;
 
                 MessageBox.Show(importPlayer.Name + " imported!");
             }
@@ -842,7 +904,7 @@ namespace NoFarmForMeOpenSource
 
         private void ReplaceToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (Game == null) return;
+            if (Save == null) return;
 
             Player player = null;
 
@@ -850,7 +912,7 @@ namespace NoFarmForMeOpenSource
             {
                 ComboBox customNameBox = new ComboBox();
 
-                customNameBox.Items.AddRange(Game.PlayersInSave.Select(x => x.Value.Name).ToArray());
+                customNameBox.Items.AddRange(Save.Game.Reserve.ToArray());
                 customNameBox.Sorted = false;
 
                 MessageComboBox inviteWindow = new MessageComboBox("Replace Player", "Select the player you want to replace", "Replace", customNameBox);
@@ -858,7 +920,7 @@ namespace NoFarmForMeOpenSource
 
                 if (dialogResult == DialogResult.Yes && inviteWindow.nameBox.SelectedIndex != -1)
                 {
-                    player = Game.GetPlayer(inviteWindow.nameBox.SelectedIndex);
+                    player = inviteWindow.nameBox.SelectedItem as Player;
                 }
                 else
                 {
@@ -867,7 +929,7 @@ namespace NoFarmForMeOpenSource
             }
             else
             {
-                player = Game.GetPlayer(SelectedPlayers[tabControl4.SelectedIndex]);
+                player = Save.Game.Reserve[SelectedPlayers[tabControl4.SelectedIndex]];
             }
 
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -883,22 +945,23 @@ namespace NoFarmForMeOpenSource
                 if (player.MixiMax != null)
                 {
                     player.MixiMax.AuraPlayer.IsAura = false;
-                } else if (player.IsAura == true)
+                }
+                else if (player.IsAura == true)
                 {
                     player.IsAura = false;
-                    Game.PlayersInSave.First(x => x.Value.MixiMax != null && x.Value.MixiMax.AuraPlayer == player).Value.MixiMax = null;
+                    Save.Game.Reserve.First(x => x.MixiMax != null && x.MixiMax.AuraPlayer == player).MixiMax = null;
                 }
 
                 Player importPlayer = LoadPlayerFile(openFileDialog.FileName);
-                Game.ChangePlayer(player, importPlayer);
+                Save.Game.ChangePlayer(player, importPlayer, false);
 
-                if (importPlayer.MixiMax != null & Game.PlayersInSave.Count + 1 < Game.MaximumPlayer)
+                if (importPlayer.MixiMax != null & Save.Game.Reserve.Count + 1 < Save.Game.MaximumPlayer)
                 {
                     DialogResult dialogResult = MessageBox.Show("Do you want to import Miximax?", "Import Miximax", MessageBoxButtons.YesNo);
 
                     if (dialogResult == DialogResult.Yes)
                     {
-                        Game.RecruitPlayer(importPlayer.MixiMax.AuraPlayer);
+                        Save.Game.RecruitPlayer(importPlayer.MixiMax.AuraPlayer, false);
                     }
                     else
                     {
@@ -940,26 +1003,25 @@ namespace NoFarmForMeOpenSource
 
         private void TeamButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Be careful, the team editor doesn't have save function.\nYou can just look your teams");
-            TeamWindow teamWindow = new TeamWindow(Game);
-            teamWindow.Show();
+            TeamWindow teamWindow = new TeamWindow(Save);
+            teamWindow.ShowDialog();
         }
 
         private void SaveInformationButton_Click(object sender, EventArgs e)
         {
-            SaveInfoWindow saveInfoWindow = new SaveInfoWindow(Game);
+            SaveInfoWindow saveInfoWindow = new SaveInfoWindow(Save);
             saveInfoWindow.ShowDialog();
         }
 
         private void PlayRecordsButton_Click(object sender, EventArgs e)
         {
-            PlayRecordsWindow playRecordsWindow = new PlayRecordsWindow(Game);
+            PlayRecordsWindow playRecordsWindow = new PlayRecordsWindow(Save);
             playRecordsWindow.ShowDialog();
         }
 
         private void InventoryButton_Click(object sender, EventArgs e)
         {
-            InventoryWindow inventoryWindow = new InventoryWindow(Game);
+            InventoryWindow inventoryWindow = new InventoryWindow(Save);
             inventoryWindow.ShowDialog();
         }
 
@@ -1003,13 +1065,13 @@ namespace NoFarmForMeOpenSource
 
             SelectedPlayers[tabControl4.SelectedIndex] = pageComboBox.SelectedIndex * 16 + playerNumber;
 
-            if (SelectedPlayers[tabControl4.SelectedIndex] >= Game.PlayersInSave.Count)
+            if (SelectedPlayers[tabControl4.SelectedIndex] >= Save.Game.Reserve.Count)
             {
                 RecruitToolStripMenuItem_Click(sender, e);
             }
             else
             {
-                Player player = Game.GetPlayer(SelectedPlayers[tabControl4.SelectedIndex]);
+                Player player = Save.Game.Reserve[SelectedPlayers[tabControl4.SelectedIndex]];
                 PrintPlayer(player);
             }
         }
@@ -1021,7 +1083,7 @@ namespace NoFarmForMeOpenSource
             PictureBox playerPictureBox = (PictureBox)sender;
             int playerNumber = Convert.ToInt32(playerPictureBox.Name.Replace("playerPictureBox", "")) - 1;
 
-            if (pageComboBox.SelectedIndex * 16 + playerNumber >= Game.PlayersInSave.Count) return;
+            if (pageComboBox.SelectedIndex * 16 + playerNumber >= Save.Game.Reserve.Count) return;
 
             if (movedPlayerPictureBox.Visible == false)
             {
@@ -1051,12 +1113,12 @@ namespace NoFarmForMeOpenSource
             if (!nameBox.Focused) return;
 
             // Update Player
-            Player selectedPlayer = Game.GetPlayer(SelectedPlayers[tabControl4.SelectedIndex]);
-            Game.ChangePlayer(selectedPlayer, Game.Players.FirstOrDefault(x => x.Value.Name == nameBox.Items[nameBox.SelectedIndex].ToString()));
-
+            Player selectedPlayer = Save.Game.Reserve[SelectedPlayers[tabControl4.SelectedIndex]];
+            selectedPlayer = Save.Game.ChangePlayer(selectedPlayer, nameBox.SelectedItem as Player, true);
+            
             // Reset Invested Point + Print Current Page
             ResetButton_Click(sender, e);
-            PrintPlayer(Game.GetPlayer(SelectedPlayers[tabControl4.SelectedIndex]));
+            PrintPlayer(selectedPlayer);
             PageComboBox_SelectedIndexChanged(sender, e);
         }
 
@@ -1064,28 +1126,29 @@ namespace NoFarmForMeOpenSource
         {
             if (!levelNumericUpDown.Focused) return;
 
-            Game.GetPlayer(SelectedPlayers[tabControl4.SelectedIndex]).Level = Convert.ToInt32(levelNumericUpDown.Value);
+            Save.Game.Reserve[SelectedPlayers[tabControl4.SelectedIndex]].Level = Convert.ToInt32(levelNumericUpDown.Value);
+            PageComboBox_SelectedIndexChanged(sender, e);
         }
 
         private void StyleBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!styleBox.Focused) return;
 
-            Game.GetPlayer(SelectedPlayers[tabControl4.SelectedIndex]).Style = styleBox.SelectedIndex;
+            Save.Game.Reserve[SelectedPlayers[tabControl4.SelectedIndex]].Style = styleBox.SelectedIndex;
         }
 
         private void ScoreNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             if (!scoreNumericUpDown.Focused) return;
 
-            Game.GetPlayer(SelectedPlayers[tabControl4.SelectedIndex]).Score = Convert.ToInt32(scoreNumericUpDown.Value);
+            Save.Game.Reserve[SelectedPlayers[tabControl4.SelectedIndex]].Score = Convert.ToInt32(scoreNumericUpDown.Value);
         }
 
         private void ParticipationNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             if (!participationNumericUpDown.Focused) return;
 
-            Game.GetPlayer(SelectedPlayers[tabControl4.SelectedIndex]).Participation = Convert.ToInt32(participationNumericUpDown.Value);
+            Save.Game.Reserve[SelectedPlayers[tabControl4.SelectedIndex]].Participation = Convert.ToInt32(participationNumericUpDown.Value);
         }
 
         private void InvestedNumericUpDown_ValueChanged(object sender, EventArgs e)
@@ -1093,12 +1156,13 @@ namespace NoFarmForMeOpenSource
             NumericUpDown investedNumericUpDown = (NumericUpDown)sender;
             if (!investedNumericUpDown.Focused) return;
 
-            Player player = Game.GetPlayer(SelectedPlayers[tabControl4.SelectedIndex]);
+            Player player = Save.Game.Reserve[SelectedPlayers[tabControl4.SelectedIndex]];
 
-            if (player.Level != 99 && Game.GameNameCode == "IEGOCS")
+            if (player.Level != 99 && Save.Game.Code == "IEGOCS")
             {
                 MessageBox.Show("The player must be level 99 to be trained");
-            } else
+            }
+            else
             {
                 int investedNumericUpDownNumber = Convert.ToInt32(investedNumericUpDown.Name.Replace("investedNumericUpDown", "")) - 3;
                 TrainPlayer(player, investedNumericUpDown, investedNumericUpDownNumber);
@@ -1107,21 +1171,21 @@ namespace NoFarmForMeOpenSource
 
         private void ResetButton_Click(object sender, EventArgs e)
         {
-            Player player = Game.GetPlayer(SelectedPlayers[tabControl4.SelectedIndex]);
+            Player player = Save.Game.Reserve[SelectedPlayers[tabControl4.SelectedIndex]];
 
             for (int i = 0; i < player.InvestedPoint.Count; i++)
             {
-                player.InvestedPoint[i] = 0;
-                player.InvestedFreedom[i] = 0;
+            player.InvestedPoint[i] = 0;
+            player.InvestedFreedom[i] = 0;
 
-                NumericUpDown investedNumericUpDown = this.Controls.Find("investedNumericUpDown" + (i + 3), true).First() as NumericUpDown;
-                investedNumericUpDown.Enabled = true;
-                investedNumericUpDown.Maximum = 65535;
-                investedNumericUpDown.Minimum = 0;
-                investedNumericUpDown.Value = player.InvestedPoint[i];
+            NumericUpDown investedNumericUpDown = this.Controls.Find("investedNumericUpDown" + (i + 3), true).First() as NumericUpDown;
+            investedNumericUpDown.Enabled = true;
+            investedNumericUpDown.Maximum = 65535;
+            investedNumericUpDown.Minimum = 0;
+            investedNumericUpDown.Value = player.InvestedPoint[i];
 
-                TextBox statBox = this.Controls.Find("statBox" + (i + 3), true).First() as TextBox;
-                statBox.Text = (Convert.ToInt32(player.Stat[i+2]) + investedNumericUpDown.Value).ToString();
+            TextBox statBox = this.Controls.Find("statBox" + (i + 3), true).First() as TextBox;
+            statBox.Text = (Convert.ToInt32(player.Stat[i+2]) + investedNumericUpDown.Value).ToString();
             }
 
             resetButton.Enabled = false;
@@ -1131,11 +1195,11 @@ namespace NoFarmForMeOpenSource
         {
             if (!avatarNameBox.Focused) return;
 
-            Player player = Game.GetPlayer(SelectedPlayers[tabControl4.SelectedIndex]);
+            Player player = Save.Game.Reserve[SelectedPlayers[tabControl4.SelectedIndex]];
             Avatar oldAvatar = player.Avatar;
 
             player.Invoke = true;
-            player.Avatar = Game.Avatars.FirstOrDefault(x => x.Value.Name == avatarNameBox.Text).Value;
+            player.Avatar = Save.Game.Avatars.FirstOrDefault(x => x.Value.Name == avatarNameBox.Text).Value;
             player.Avatar.Level = oldAvatar.Level;
 
             avatarNumericUpDown.Enabled = player.Avatar.IsFightingSpirit;
@@ -1145,18 +1209,18 @@ namespace NoFarmForMeOpenSource
         {
             if (!avatarNumericUpDown.Focused) return;
 
-            Game.GetPlayer(SelectedPlayers[tabControl4.SelectedIndex]).Avatar.Level = Convert.ToInt32(avatarNumericUpDown.Value);
+            Save.Game.Reserve[SelectedPlayers[tabControl4.SelectedIndex]].Avatar.Level = Convert.ToInt32(avatarNumericUpDown.Value);
         }
 
         private void InvokeBox_CheckedChanged(object sender, EventArgs e)
         {
             if (!invokeBox.Focused) return;
 
-            Player player = Game.GetPlayer(SelectedPlayers[tabControl4.SelectedIndex]);
+            Player player = Save.Game.Reserve[SelectedPlayers[tabControl4.SelectedIndex]];
 
             if (invokeBox.Checked == false)
             {
-                Avatar newAvatar = Game.Avatars[0x0];
+                Avatar newAvatar = Save.Game.Avatars[0x0];
                 newAvatar.Level = 1;
                 player.Avatar = newAvatar;
                 player.Armed = false;
@@ -1165,17 +1229,17 @@ namespace NoFarmForMeOpenSource
                 avatarNumericUpDown.Value = 1;
             }
 
-            player.Invoke = invokeBox.Checked;
-            armedBox.Enabled = invokeBox.Checked;
-            avatarNameBox.Enabled = invokeBox.Checked;
-            avatarNumericUpDown.Enabled = invokeBox.Checked;
+           player.Invoke = invokeBox.Checked;
+           armedBox.Enabled = invokeBox.Checked;
+           avatarNameBox.Enabled = invokeBox.Checked;
+           avatarNumericUpDown.Enabled = invokeBox.Checked;
         }
 
         private void ArmedBox_CheckedChanged(object sender, EventArgs e)
         {
             if (!armedBox.Focused) return;
 
-            Game.GetPlayer(SelectedPlayers[tabControl4.SelectedIndex]).Armed = armedBox.Checked;
+            Save.Game.Reserve[SelectedPlayers[tabControl4.SelectedIndex]].Armed = armedBox.Checked;
         }
 
         private void MoveBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -1185,11 +1249,11 @@ namespace NoFarmForMeOpenSource
 
             int moveBoxNumber = Convert.ToInt32(moveBox.Name.Replace("moveBox", "")) - 1;
 
-            Player player = Game.GetPlayer(SelectedPlayers[tabControl4.SelectedIndex]);
+            Player player = Save.Game.Reserve[SelectedPlayers[tabControl4.SelectedIndex]];
 
-            Move newMove = Game.Moves.FirstOrDefault(x => x.Value.Name == moveBox.Text).Value;
+            Move newMove = Save.Game.Moves.FirstOrDefault(x => x.Value.Name == moveBox.Text).Value;
             newMove.Level = 1;
-            newMove.TimeLevel = newMove.EvolutionSpeed.TimeLevel[0];
+            newMove.UsedCount = newMove.EvolutionSpeed.TimeLevel[0];
             newMove.Unlock = true;
             player.Moves[moveBoxNumber] = newMove;
 
@@ -1205,15 +1269,15 @@ namespace NoFarmForMeOpenSource
 
             int moveNumericUpDownNumber = Convert.ToInt32(moveNumericUpDown.Name.Replace("moveNumericUpDown", "")) - 1;
 
-            Player player = Game.GetPlayer(SelectedPlayers[tabControl4.SelectedIndex]);
-            player.Moves[moveNumericUpDownNumber].Level = Convert.ToInt32(moveNumericUpDown.Value);
+            Player player = Save.Game.Reserve[SelectedPlayers[tabControl4.SelectedIndex]];
+           player.Moves[moveNumericUpDownNumber].Level = Convert.ToInt32(moveNumericUpDown.Value);
 
             if (moveNumericUpDown.Value < 6)
             {
-                player.Moves[moveNumericUpDownNumber].TimeLevel = player.Moves[moveNumericUpDownNumber].EvolutionSpeed.TimeLevel[Convert.ToInt32(moveNumericUpDown.Value)];
+                player.Moves[moveNumericUpDownNumber].UsedCount = player.Moves[moveNumericUpDownNumber].EvolutionSpeed.TimeLevel[Convert.ToInt32(moveNumericUpDown.Value)];
             } else
             {
-                player.Moves[moveNumericUpDownNumber].TimeLevel = 0;
+                player.Moves[moveNumericUpDownNumber].UsedCount = 0;
             }
         }
 
@@ -1224,7 +1288,7 @@ namespace NoFarmForMeOpenSource
 
             int moveCheckBoxNumber = Convert.ToInt32(moveCheckBox.Name.Replace("moveCheckBox", "")) - 1;
 
-            Game.GetPlayer(SelectedPlayers[tabControl4.SelectedIndex]).Moves[moveCheckBoxNumber].Unlock = moveCheckBox.Checked;
+            Save.Game.Reserve[SelectedPlayers[tabControl4.SelectedIndex]].Moves[moveCheckBoxNumber].Unlock = moveCheckBox.Checked;
 
             ComboBox moveBox = (ComboBox)tabPage2.Controls.Find("moveBox" + (moveCheckBoxNumber + 1), false)[0];
             moveBox.Enabled = moveCheckBox.Checked;
@@ -1235,56 +1299,58 @@ namespace NoFarmForMeOpenSource
 
         private void AuraButton_Click(object sender, EventArgs e)
         {
-            Player player = Game.GetPlayer(SelectedPlayers[tabControl4.SelectedIndex]);
+            Player player = Save.Game.Reserve[SelectedPlayers[tabControl4.SelectedIndex]];
 
             if (player.IsAura == true)
             {
-                player = Game.PlayersInSave.First(x => x.Value.MixiMax != null && x.Value.MixiMax.AuraPlayer == player).Value;
+                player = Save.Game.Reserve.First(x => x.MixiMax != null && x.MixiMax.AuraPlayer == player);
             } else if (player.MixiMax != null)
             {
                 player = player.MixiMax.AuraPlayer;
             }
 
-            var playerKey = Game.PlayersInSave.FirstOrDefault(x => x.Value == player).Key;
-            int playerIndex = Game.PlayersInSaveSort.IndexOf(playerKey);
+            int playerIndex = Save.Game.Reserve.IndexOf(player);
 
             pageComboBox.SelectedIndex = playerIndex / 16;
             SelectedPlayers[tabControl4.SelectedIndex] = playerIndex;
 
-            PrintPlayer(Game.GetPlayer(SelectedPlayers[tabControl4.SelectedIndex]));
+            PrintPlayer(Save.Game.Reserve[SelectedPlayers[tabControl4.SelectedIndex]]);
         }
 
         private void AuraComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!auraComboBox.Focused) return;
 
-            Player player = Game.GetPlayer(SelectedPlayers[tabControl4.SelectedIndex]);
+            Player player = Save.Game.Reserve[SelectedPlayers[tabControl4.SelectedIndex]];
 
-            // Get List Player Of Aura
-            List<KeyValuePair<UInt32, Player>> playersWhoCanBeAura = new List<KeyValuePair<UInt32, Player>>();
-            foreach (KeyValuePair<UInt32, Player> auraKeyValue in Game.AuraInSave)
+            List<KeyValuePair<int, Player>> playersWhoCanBeAura = new List<KeyValuePair<int, Player>>();
+
+            // Get Available Item for Aura
+            foreach (KeyValuePair<int, Player> auraKeyValue in Save.Game.Auras)
             {
                 if (auraKeyValue.Value.IsAura == false)
                 {
                     playersWhoCanBeAura.Add(auraKeyValue);
                 }
             }
-            foreach (KeyValuePair<UInt32, Player> playerKeyValue in Game.PlayersInSave)
+
+            // Get Available Player for Aura
+            foreach (Player playerAvailable in Save.Game.Reserve)
             {
-                if (playerKeyValue.Value.MixiMax == null & playerKeyValue.Value != player & playerKeyValue.Value.IsAura == false)
+                if (playerAvailable.MixiMax == null & playerAvailable != player & playerAvailable.IsAura == false)
                 {
-                    playersWhoCanBeAura.Add(playerKeyValue);
+                    playersWhoCanBeAura.Add(new KeyValuePair<int, Player>(playerAvailable.Index, playerAvailable));
                 }
             }
 
             playersWhoCanBeAura.Sort((x, y) => x.Value.Name.CompareTo(y.Value.Name));
-            Game.NewMixiMax(player, playersWhoCanBeAura[auraComboBox.SelectedIndex].Key, 0, 1);
+            Save.Game.NewMixiMax(player, playersWhoCanBeAura[auraComboBox.SelectedIndex].Key, 0, 1);
             PrintPlayer(player);
         }
 
         private void RemoveMiximaxButton_Click(object sender, EventArgs e)
         {
-            Player player = Game.GetPlayer(SelectedPlayers[tabControl4.SelectedIndex]);
+            Player player = Save.Game.Reserve[SelectedPlayers[tabControl4.SelectedIndex]];
 
             if (player.MixiMax != null)
             {
@@ -1304,7 +1370,7 @@ namespace NoFarmForMeOpenSource
 
             NumericUpDown moveNumericUpDown = (NumericUpDown)groupBox1.Controls.Find("moveNumericUpDown" + (moveBoxNumber + 1), false)[0];
 
-            Player player = Game.GetPlayer(SelectedPlayers[tabControl4.SelectedIndex]);
+            Player player = Save.Game.Reserve[SelectedPlayers[tabControl4.SelectedIndex]];
 
             if (moveBox7.SelectedIndex != moveBox8.SelectedIndex)
             {
@@ -1336,17 +1402,17 @@ namespace NoFarmForMeOpenSource
 
             int moveNumericUpDownNumber = Convert.ToInt32(moveNumericUpDown.Name.Replace("moveNumericUpDown", "")) - 1;
 
-            Player player = Game.GetPlayer(SelectedPlayers[tabControl4.SelectedIndex]).MixiMax.AuraPlayer;
+            Player player = Save.Game.Reserve[SelectedPlayers[tabControl4.SelectedIndex]].MixiMax.AuraPlayer;
 
             ComboBox moveBox = (ComboBox)groupBox1.Controls.Find("moveBox" + (moveNumericUpDownNumber + 1), false)[0];
             player.Moves[moveBox.SelectedIndex].Level = Convert.ToInt32(moveNumericUpDown.Value);
 
             if (moveNumericUpDown.Value < 6)
             {
-                player.Moves[moveBox.SelectedIndex].TimeLevel = player.Moves[moveBox.SelectedIndex].EvolutionSpeed.TimeLevel[Convert.ToInt32(moveNumericUpDown.Value)];
+                player.Moves[moveBox.SelectedIndex].UsedCount = player.Moves[moveBox.SelectedIndex].EvolutionSpeed.TimeLevel[Convert.ToInt32(moveNumericUpDown.Value)];
             } else
             {
-                player.Moves[moveBox.SelectedIndex].TimeLevel = 0;
+                player.Moves[moveBox.SelectedIndex].UsedCount = 0;
             }
         }
 
@@ -1354,27 +1420,27 @@ namespace NoFarmForMeOpenSource
         {
             if (!miximaxAvatarNameBox.Focused) return;
 
-            Player player = Game.GetPlayer(SelectedPlayers[tabControl4.SelectedIndex]).MixiMax.AuraPlayer;
+            Player player = Save.Game.Reserve[SelectedPlayers[tabControl4.SelectedIndex]].MixiMax.AuraPlayer;
             Avatar oldAvatar = player.Avatar;
 
-            player.Avatar = Game.Avatars.FirstOrDefault(x => x.Value.Name == miximaxAvatarNameBox.Text).Value;
-            player.Avatar.Level = oldAvatar.Level;
+           player.Avatar = Save.Game.Avatars.FirstOrDefault(x => x.Value.Name == miximaxAvatarNameBox.Text).Value;
+           player.Avatar.Level = oldAvatar.Level;
 
-            miximaxAvatarNumericUpDown.Enabled = player.Avatar.IsFightingSpirit;
+           miximaxAvatarNumericUpDown.Enabled = player.Avatar.IsFightingSpirit;
         }
 
         private void MiximaxAvatarNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             if (!miximaxAvatarNumericUpDown.Focused) return;
 
-            Game.GetPlayer(SelectedPlayers[tabControl4.SelectedIndex]).MixiMax.AuraPlayer.Avatar.Level = Convert.ToInt32(avatarNumericUpDown.Value);
+            Save.Game.Reserve[SelectedPlayers[tabControl4.SelectedIndex]].MixiMax.AuraPlayer.Avatar.Level = Convert.ToInt32(avatarNumericUpDown.Value);
         }
 
         private void TabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (tabControl1.SelectedIndex == 2)
             {
-                PrintPlayerFullStat(Game.GetPlayer(SelectedPlayers[tabControl4.SelectedIndex]));
+               PrintPlayerFullStat(Save.Game.Reserve[SelectedPlayers[tabControl4.SelectedIndex]]);
             }
         }
 
@@ -1400,19 +1466,35 @@ namespace NoFarmForMeOpenSource
                     break;
             }
 
-            Player player = Game.GetPlayer(SelectedPlayers[tabControl4.SelectedIndex]);
-            var newEquipment = Game.Equipments.FirstOrDefault(x => x.Value.Name == equipmentComboBox.Text);
+            Player player = Save.Game.Reserve[SelectedPlayers[tabControl4.SelectedIndex]];
+            KeyValuePair<int, Equipment> newEquipment = Save.Game.Equipments.FirstOrDefault(x => x.Value.Name == equipmentComboBox.Text);
 
             if (newEquipment.Key == 0x0)
             {
-                player.Equipments[equipmentIndex] = Game.Equipments[(uint)equipmentIndex];
+                player.Equipments[equipmentIndex] = Save.Game.Equipments[equipmentIndex];
             }
             else
             {
                 player.Equipments[equipmentIndex] = newEquipment.Value;
             }
 
-            PrintPlayerFullStat(player);
+           PrintPlayerFullStat(player);
+        }
+
+        private void FpNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            if (!fpNumericUpDown.Focused) return;
+
+            Player player = Save.Game.Reserve[SelectedPlayers[tabControl4.SelectedIndex]];
+            player.FP = Convert.ToInt32(fpNumericUpDown.Value);
+        }
+
+        private void TpNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            if (!tpNumericUpDown.Focused) return;
+
+            Player player = Save.Game.Reserve[SelectedPlayers[tabControl4.SelectedIndex]];
+            player.TP = Convert.ToInt32(tpNumericUpDown.Value);
         }
     }
 }

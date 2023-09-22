@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace NoFarmForMeOpenSource
+namespace InazumaElevenSaveEditor
 {
     static class Program
     {

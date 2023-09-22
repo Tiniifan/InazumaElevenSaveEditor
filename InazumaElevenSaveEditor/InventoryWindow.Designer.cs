@@ -34,14 +34,8 @@ namespace InazumaElevenSaveEditor
             this.tabControl30 = new System.Windows.Forms.TabControl();
             this.tabPage8 = new System.Windows.Forms.TabPage();
             this.dataGridView6 = new System.Windows.Forms.DataGridView();
-            this.dataGridViewComboBoxColumn6 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage9 = new System.Windows.Forms.TabPage();
             this.dataGridView12 = new System.Windows.Forms.DataGridView();
-            this.dataGridViewComboBoxColumn12 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage10 = new System.Windows.Forms.TabPage();
             this.dataGridView13 = new System.Windows.Forms.DataGridView();
             this.dataGridViewComboBoxColumn13 = new System.Windows.Forms.DataGridViewComboBoxColumn();
@@ -155,8 +149,14 @@ namespace InazumaElevenSaveEditor
             this.Column24 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.manageTabToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.unlockAllItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.x99AllItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.unlockAllItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewComboBoxColumn12 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.dataGridViewComboBoxColumn6 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabControl30.SuspendLayout();
@@ -280,28 +280,6 @@ namespace InazumaElevenSaveEditor
             this.dataGridView6.Size = new System.Drawing.Size(330, 316);
             this.dataGridView6.TabIndex = 0;
             // 
-            // dataGridViewComboBoxColumn6
-            // 
-            this.dataGridViewComboBoxColumn6.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.dataGridViewComboBoxColumn6.HeaderText = "Name";
-            this.dataGridViewComboBoxColumn6.Name = "dataGridViewComboBoxColumn6";
-            this.dataGridViewComboBoxColumn6.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewComboBoxColumn6.Sorted = true;
-            this.dataGridViewComboBoxColumn6.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewComboBoxColumn6.Width = 210;
-            // 
-            // dataGridViewTextBoxColumn9
-            // 
-            this.dataGridViewTextBoxColumn9.HeaderText = "Quantity";
-            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
-            this.dataGridViewTextBoxColumn9.Width = 60;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Column1";
-            this.Column1.Name = "Column1";
-            this.Column1.Visible = false;
-            // 
             // tabPage9
             // 
             this.tabPage9.Controls.Add(this.dataGridView12);
@@ -325,28 +303,6 @@ namespace InazumaElevenSaveEditor
             this.dataGridView12.Name = "dataGridView12";
             this.dataGridView12.Size = new System.Drawing.Size(330, 316);
             this.dataGridView12.TabIndex = 1;
-            // 
-            // dataGridViewComboBoxColumn12
-            // 
-            this.dataGridViewComboBoxColumn12.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.dataGridViewComboBoxColumn12.HeaderText = "Name";
-            this.dataGridViewComboBoxColumn12.Name = "dataGridViewComboBoxColumn12";
-            this.dataGridViewComboBoxColumn12.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewComboBoxColumn12.Sorted = true;
-            this.dataGridViewComboBoxColumn12.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewComboBoxColumn12.Width = 210;
-            // 
-            // dataGridViewTextBoxColumn11
-            // 
-            this.dataGridViewTextBoxColumn11.HeaderText = "Quantity";
-            this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
-            this.dataGridViewTextBoxColumn11.Width = 60;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Column3";
-            this.Column3.Name = "Column3";
-            this.Column3.Visible = false;
             // 
             // tabPage10
             // 
@@ -1417,6 +1373,13 @@ namespace InazumaElevenSaveEditor
             this.manageTabToolStripMenuItem.Size = new System.Drawing.Size(82, 20);
             this.manageTabToolStripMenuItem.Text = "Manage tab";
             // 
+            // x99AllItemsToolStripMenuItem
+            // 
+            this.x99AllItemsToolStripMenuItem.Name = "x99AllItemsToolStripMenuItem";
+            this.x99AllItemsToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
+            this.x99AllItemsToolStripMenuItem.Text = "X99 items owned";
+            this.x99AllItemsToolStripMenuItem.Click += new System.EventHandler(this.X99AllItemsToolStripMenuItem_Click);
+            // 
             // unlockAllItemsToolStripMenuItem
             // 
             this.unlockAllItemsToolStripMenuItem.Name = "unlockAllItemsToolStripMenuItem";
@@ -1424,12 +1387,49 @@ namespace InazumaElevenSaveEditor
             this.unlockAllItemsToolStripMenuItem.Text = "Unlock all missing items";
             this.unlockAllItemsToolStripMenuItem.Click += new System.EventHandler(this.UnlockAllItemsToolStripMenuItem_Click);
             // 
-            // x99AllItemsToolStripMenuItem
+            // Column3
             // 
-            this.x99AllItemsToolStripMenuItem.Name = "x99AllItemsToolStripMenuItem";
-            this.x99AllItemsToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
-            this.x99AllItemsToolStripMenuItem.Text = "X99 items owned";
-            this.x99AllItemsToolStripMenuItem.Click += new System.EventHandler(this.X99AllItemsToolStripMenuItem_Click);
+            this.Column3.HeaderText = "Column3";
+            this.Column3.Name = "Column3";
+            this.Column3.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn11
+            // 
+            this.dataGridViewTextBoxColumn11.HeaderText = "Quantity";
+            this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
+            this.dataGridViewTextBoxColumn11.Width = 60;
+            // 
+            // dataGridViewComboBoxColumn12
+            // 
+            this.dataGridViewComboBoxColumn12.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.dataGridViewComboBoxColumn12.HeaderText = "Name";
+            this.dataGridViewComboBoxColumn12.Name = "dataGridViewComboBoxColumn12";
+            this.dataGridViewComboBoxColumn12.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewComboBoxColumn12.Sorted = true;
+            this.dataGridViewComboBoxColumn12.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewComboBoxColumn12.Width = 210;
+            // 
+            // dataGridViewComboBoxColumn6
+            // 
+            this.dataGridViewComboBoxColumn6.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.dataGridViewComboBoxColumn6.HeaderText = "Name";
+            this.dataGridViewComboBoxColumn6.Name = "dataGridViewComboBoxColumn6";
+            this.dataGridViewComboBoxColumn6.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewComboBoxColumn6.Sorted = true;
+            this.dataGridViewComboBoxColumn6.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewComboBoxColumn6.Width = 210;
+            // 
+            // dataGridViewTextBoxColumn9
+            // 
+            this.dataGridViewTextBoxColumn9.HeaderText = "Quantity";
+            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
+            this.dataGridViewTextBoxColumn9.Width = 60;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Column1";
+            this.Column1.Name = "Column1";
+            this.Column1.Visible = false;
             // 
             // InventoryWindow
             // 
@@ -1562,8 +1562,6 @@ namespace InazumaElevenSaveEditor
         public System.Windows.Forms.DataGridView dataGridView17;
         public System.Windows.Forms.TabPage tabPage27;
         public System.Windows.Forms.DataGridView dataGridView18;
-        private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
         private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn13;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn13;
         private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn14;
@@ -1606,7 +1604,6 @@ namespace InazumaElevenSaveEditor
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn41;
         private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn18;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn43;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
@@ -1628,12 +1625,15 @@ namespace InazumaElevenSaveEditor
         private System.Windows.Forms.DataGridViewTextBoxColumn Column22;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column23;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column24;
-        private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn12;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem manageTabToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem unlockAllItemsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem x99AllItemsToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn12;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
     }
 }
