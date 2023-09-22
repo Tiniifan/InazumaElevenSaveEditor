@@ -1,6 +1,0 @@
-C:\Users\Mathieu\source\repos\NoFarmForMeOpenSource\NoFarmForMeOpenSource\bin\Release\NoFarmForMeOpenSource.exe.config
-C:\Users\Mathieu\source\repos\NoFarmForMeOpenSource\NoFarmForMeOpenSource\bin\Release\NoFarmForMeOpenSource.exe
-C:\Users\Mathieu\source\repos\NoFarmForMeOpenSource\NoFarmForMeOpenSource\bin\Release\NoFarmForMeOpenSource.pdb
-C:\Users\Mathieu\source\repos\NoFarmForMeOpenSource\NoFarmForMeOpenSource\obj\Release\NoFarmForMeOpenSource.csproj.CoreCompileInputs.cache
-C:\Users\Mathieu\source\repos\NoFarmForMeOpenSource\NoFarmForMeOpenSource\obj\Release\NoFarmForMeOpenSource.exe
-C:\Users\Mathieu\source\repos\NoFarmForMeOpenSource\NoFarmForMeOpenSource\obj\Release\NoFarmForMeOpenSource.pdb
