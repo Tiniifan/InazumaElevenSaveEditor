@@ -45,11 +45,30 @@ namespace InazumaElevenSaveEditor
 
             textBox1.Text = Save.Game.SaveInfo.Name;
             textBox2.Text = Save.Game.SaveInfo.TeamName;
-            numericUpDown1.Value = Save.Game.SaveInfo.SecretLinkLevel;
+
+            if (Save.Game.Code == "IEGO")
+            {
+                label5.Visible = false;
+                numericUpDown1.Visible = false;
+                button2.Enabled = true;
+            } else
+            {
+                label5.Visible = true;
+                numericUpDown1.Visible = true;
+                button2.Enabled = false;
+                numericUpDown1.Value = Save.Game.SaveInfo.SecretLinkLevel;
+            }
+
             numericUpDown3.Value = Save.Game.SaveInfo.Hours;
             numericUpDown4.Value = Save.Game.SaveInfo.Min;
 
-            numericUpDown12.Value = Save.Game.SaveInfo.Chapter;
+            if (Save.Game.SaveInfo.Chapter != -1)
+            {
+                numericUpDown12.Value = Save.Game.SaveInfo.Chapter;
+            } else
+            {
+                numericUpDown12.Enabled = false;
+            }
 
             if (numericUpDown12.Value < 2)
             {
@@ -125,6 +144,16 @@ namespace InazumaElevenSaveEditor
             }
 
             Save.Game.SaveInfo.SecretLinkLevel = Convert.ToInt32(numericUpDown1.Value);
+        }
+
+        private void Button2_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("You must defeat the exclusive team in your version before activating the level 3 secret.\nIf you activate the level 3 secret without defeating the exclusive team, you will get a glitched save file.\n\nHave you defeated the exclusive team? If you don't know, please answer no.", "Warning", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                MessageBox.Show("Link Level 3 Enabled!");
+                Save.Game.SaveInfo.SecretLinkLevel = 3;
+            }
         }
     }
 }

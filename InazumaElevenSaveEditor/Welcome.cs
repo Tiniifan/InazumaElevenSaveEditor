@@ -141,9 +141,7 @@ namespace InazumaElevenSaveEditor
 
             // Print Player FP -  TP
             fpNumericUpDown.Value = player.FP;
-            fpNumericUpDown.Maximum = player.Stat[0];
             tpNumericUpDown.Value = player.TP;
-            tpNumericUpDown.Maximum = player.Stat[1];
 
             // Print Player Stat Level 99 and Freedom
             for (int i = 2; i < player.Stat.Count; i++)
@@ -317,64 +315,71 @@ namespace InazumaElevenSaveEditor
             }
             else
             {
-                if (player.IsAura == true)
+                if (Save.Game.Code != "IEGO")
                 {
-                    label24.Text = "Aura of";
-                    auraButton.Text = Save.Game.Reserve.First(x => x.MixiMax != null && x.MixiMax.AuraPlayer == player).Name;
-                    auraButton.Visible = true;
-                    auraComboBox.Visible = false;
-                } 
+                    if (player.IsAura == true)
+                    {
+                        label24.Text = "Aura of";
+                        auraButton.Text = Save.Game.Reserve.First(x => x.MixiMax != null && x.MixiMax.AuraPlayer == player).Name;
+                        auraButton.Visible = true;
+                        auraComboBox.Visible = false;
+                    }
+                    else
+                    {
+                        // Fill Aura ComboBox
+                        List<string> playersWhoCanBeAura = new List<string>();
+                        foreach (KeyValuePair<int, Player> auraKeyValue in Save.Game.Auras)
+                        {
+                            if (auraKeyValue.Value.IsAura == false)
+                            {
+                                playersWhoCanBeAura.Add(auraKeyValue.Value.Name);
+                            }
+                        }
+
+                        foreach (Player playerInReserve in Save.Game.Reserve)
+                        {
+                            if (playerInReserve.MixiMax == null & playerInReserve != player & playerInReserve.IsAura == false)
+                            {
+                                playersWhoCanBeAura.Add(playerInReserve.Name);
+                            }
+                        }
+
+                        label24.Text = "Miximax";
+                        auraComboBox.Text = "";
+                        auraComboBox.Items.Clear();
+                        auraComboBox.Items.AddRange(playersWhoCanBeAura.ToArray());
+                        auraButton.Visible = false;
+                        auraComboBox.Visible = true;
+                    }
+
+                    removeMiximaxButton.Enabled = false;
+
+                    for (int i = 0; i < 2; i++)
+                    {
+                        ComboBox moveBox = this.Controls.Find("moveBox" + (i + 7), true).First() as ComboBox;
+                        NumericUpDown moveNumericUpDown = this.Controls.Find("moveNumericUpDown" + (i + 7), true).First() as NumericUpDown;
+                        Label moveLabel = this.Controls.Find("moveLabel" + (i + 7), true).First() as Label;
+                        moveBox.SelectedIndex = -1;
+                        moveBox.Visible = false;
+                        moveBox.Enabled = false;
+                        moveNumericUpDown.Visible = false;
+                        moveNumericUpDown.Enabled = false;
+                        moveLabel.Visible = false;
+                        moveLabel.Enabled = false;
+                    }
+                    miximaxAvatarNameBox.SelectedIndex = -1;
+                    miximaxAvatarNumericUpDown.Value = 1;
+                    miximaxAvatarNameBox.Visible = false;
+                    miximaxAvatarNameBox.Enabled = false;
+                    miximaxAvatarNumericUpDown.Visible = false;
+                    miximaxAvatarNumericUpDown.Enabled = false;
+                    miximaxAvatarLabel.Visible = false;
+                    miximaxAvatarLabel.Enabled = false;
+                }
                 else
                 {
-                    // Fill Aura ComboBox
-                    List<string> playersWhoCanBeAura = new List<string>();
-                    foreach (KeyValuePair<int, Player> auraKeyValue in Save.Game.Auras)
-                    {
-                        if (auraKeyValue.Value.IsAura == false)
-                        {
-                            playersWhoCanBeAura.Add(auraKeyValue.Value.Name);
-                        }
-                    }
-
-                    foreach (Player playerInReserve in Save.Game.Reserve)
-                    {
-                        if (playerInReserve.MixiMax == null & playerInReserve != player & playerInReserve.IsAura == false)
-                        {
-                            playersWhoCanBeAura.Add(playerInReserve.Name);
-                        }
-                    }
-
-                    label24.Text = "Miximax";
-                    auraComboBox.Text = "";
-                    auraComboBox.Items.Clear();
-                    auraComboBox.Items.AddRange(playersWhoCanBeAura.ToArray());
-                    auraButton.Visible = false;
-                    auraComboBox.Visible = true;
+                    groupBox1.Visible = false;
                 }
-
-                removeMiximaxButton.Enabled = false;
-
-                for (int i = 0; i < 2; i++)
-                {
-                    ComboBox moveBox = this.Controls.Find("moveBox" + (i + 7), true).First() as ComboBox;
-                    NumericUpDown moveNumericUpDown = this.Controls.Find("moveNumericUpDown" + (i + 7), true).First() as NumericUpDown;
-                    Label moveLabel = this.Controls.Find("moveLabel" + (i + 7), true).First() as Label;
-                    moveBox.SelectedIndex = -1;
-                    moveBox.Visible = false;
-                    moveBox.Enabled = false;
-                    moveNumericUpDown.Visible = false;
-                    moveNumericUpDown.Enabled = false;
-                    moveLabel.Visible = false;
-                    moveLabel.Enabled = false;
-                }
-                miximaxAvatarNameBox.SelectedIndex = -1;
-                miximaxAvatarNumericUpDown.Value = 1;
-                miximaxAvatarNameBox.Visible = false;
-                miximaxAvatarNameBox.Enabled = false;
-                miximaxAvatarNumericUpDown.Visible = false;
-                miximaxAvatarNumericUpDown.Enabled = false;
-                miximaxAvatarLabel.Visible = false;
-                miximaxAvatarLabel.Enabled = false;
             }
 
             tabControl1.Enabled = true;
@@ -536,11 +541,23 @@ namespace InazumaElevenSaveEditor
                 inventoryButton.Enabled = true;
                 teamButton.Enabled = true;
                 saveInformationButton.Enabled = true;
-                playRecordsButton.Enabled = true;
+                playRecordsButton.Enabled = Save.Game.Code != "IEGO";
+                styleBox.Enabled = Save.Game.Code != "IEGO";
+                armedBox.Visible = Save.Game.Code != "IEGO";
+                label22.Visible = Save.Game.Code != "IEGO";
                 saveToolStripMenuItem1.Enabled = true;
                 tabControl1.Enabled = false;
                 managePlayerTabToolStripMenuItem.Enabled = true;
                 tabControl2.Enabled = true;
+
+                if (Save.Game.Code == "IEGO")
+                {
+                    for (int i = 0; i < 8; i++)
+                    {
+                        NumericUpDown investedNumericUpDown = this.Controls.Find("investedNumericUpDown" + (i + 3), true).First() as NumericUpDown;
+                        investedNumericUpDown.Enabled = false;
+                    }
+                }
             }
             finally
             {
@@ -562,6 +579,9 @@ namespace InazumaElevenSaveEditor
 
             switch (Save.Game.Code)
             {
+                case "IEGO":
+                    playerFile = new INZ4();
+                    break;
                 case "IEGOCS":
                     playerFile = new INZ5();
                     break;
@@ -831,6 +851,9 @@ namespace InazumaElevenSaveEditor
 
             switch (Save.Game.Code)
             {
+                case "IEGO":
+                    playerFile = new INZ4();
+                    break;
                 case "IEGOCS":
                    playerFile = new INZ5();
                     break;
@@ -1175,17 +1198,17 @@ namespace InazumaElevenSaveEditor
 
             for (int i = 0; i < player.InvestedPoint.Count; i++)
             {
-            player.InvestedPoint[i] = 0;
-            player.InvestedFreedom[i] = 0;
+                player.InvestedPoint[i] = 0;
+                player.InvestedFreedom[i] = 0;
 
-            NumericUpDown investedNumericUpDown = this.Controls.Find("investedNumericUpDown" + (i + 3), true).First() as NumericUpDown;
-            investedNumericUpDown.Enabled = true;
-            investedNumericUpDown.Maximum = 65535;
-            investedNumericUpDown.Minimum = 0;
-            investedNumericUpDown.Value = player.InvestedPoint[i];
+                NumericUpDown investedNumericUpDown = this.Controls.Find("investedNumericUpDown" + (i + 3), true).First() as NumericUpDown;
+                investedNumericUpDown.Enabled = Save.Game.Code != "IEGO";
+                investedNumericUpDown.Maximum = 65535;
+                investedNumericUpDown.Minimum = 0;
+                investedNumericUpDown.Value = player.InvestedPoint[i];
 
-            TextBox statBox = this.Controls.Find("statBox" + (i + 3), true).First() as TextBox;
-            statBox.Text = (Convert.ToInt32(player.Stat[i+2]) + investedNumericUpDown.Value).ToString();
+                TextBox statBox = this.Controls.Find("statBox" + (i + 3), true).First() as TextBox;
+                statBox.Text = (Convert.ToInt32(player.Stat[i+2]) + investedNumericUpDown.Value).ToString();
             }
 
             resetButton.Enabled = false;

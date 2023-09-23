@@ -35,6 +35,9 @@
   <PropertyGroup>
     <StartupObject />
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -58,11 +61,14 @@
     <Compile Include="InazumaEleven\Common\GO\Players\Auras.cs" />
     <Compile Include="InazumaEleven\Common\GO\Players\Players.cs" />
     <Compile Include="InazumaEleven\Common\GO\Routes\Routes.cs" />
+    <Compile Include="InazumaEleven\Games\IEGO\IEGO.cs" />
     <Compile Include="InazumaEleven\Games\IEGOCS\IEGOCS.cs" />
     <Compile Include="InazumaEleven\Games\IEGOCS\IEGOCSHelper.cs" />
     <Compile Include="InazumaEleven\Games\IEGOGalaxy\IEGOGalaxy.cs" />
     <Compile Include="InazumaEleven\Games\IEGOGalaxy\IEGOGalaxyHelper.cs" />
+    <Compile Include="InazumaEleven\Games\IEGO\IEGOHelper.cs" />
     <Compile Include="InazumaEleven\Games\IGame.cs" />
+    <Compile Include="InazumaEleven\INZ\INZ4.cs" />
     <Compile Include="InazumaEleven\INZ\INZ5.cs" />
     <Compile Include="InazumaEleven\INZ\INZ6.cs" />
     <Compile Include="InazumaEleven\INZ\INZContainer.cs" />
@@ -247,6 +253,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\YellowCoin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -85,10 +85,10 @@ namespace InazumaElevenSaveEditor
         private void PrintTeam(Team team)
         {
             teamTextBox.Text = team.Name;
-            formationBox.SelectedIndex = formationBox.Items.IndexOf(team.Formation);
-            coachBox.SelectedIndex = coachBox.Items.IndexOf(team.Coach);
-            kitBox.SelectedIndex = kitBox.Items.IndexOf(team.Kit);
-            emblemBox.SelectedIndex = emblemBox.Items.IndexOf(team.Emblem);
+            formationBox.SelectedIndex = (team.Formation == null) ? -1 : formationBox.Items.IndexOf(team.Formation);
+            coachBox.SelectedIndex = (team.Coach == null) ? -1 : coachBox.Items.IndexOf(team.Coach);
+            kitBox.SelectedIndex = (team.Kit == null) ? -1 : kitBox.Items.IndexOf(team.Kit);
+            emblemBox.SelectedIndex = (team.Emblem == null) ? -1 : emblemBox.Items.IndexOf(team.Emblem);
 
             // Fills playerIndexComBoBox with Player Names from the Team
             playerIndexComboBox1.Items.Clear();

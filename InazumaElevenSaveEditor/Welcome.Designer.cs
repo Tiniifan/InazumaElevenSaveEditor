@@ -29,6 +29,7 @@ namespace InazumaElevenSaveEditor
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Welcome));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -51,6 +52,8 @@ namespace InazumaElevenSaveEditor
             this.joinDiscordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tpNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.fpNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.label23 = new System.Windows.Forms.Label();
             this.participationNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.label13 = new System.Windows.Forms.Label();
@@ -218,11 +221,11 @@ namespace InazumaElevenSaveEditor
             this.tabControl4 = new System.Windows.Forms.TabControl();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.fpNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.tpNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tpNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fpNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.participationNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.scoreNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.investedNumericUpDown9)).BeginInit();
@@ -269,8 +272,6 @@ namespace InazumaElevenSaveEditor
             this.groupBox2.SuspendLayout();
             this.tabControl4.SuspendLayout();
             this.tabPage4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.fpNumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tpNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -507,6 +508,34 @@ namespace InazumaElevenSaveEditor
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Informations";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tpNumericUpDown
+            // 
+            this.tpNumericUpDown.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.tpNumericUpDown.Location = new System.Drawing.Point(208, 69);
+            this.tpNumericUpDown.Maximum = new decimal(new int[] {
+            65535,
+            0,
+            0,
+            0});
+            this.tpNumericUpDown.Name = "tpNumericUpDown";
+            this.tpNumericUpDown.Size = new System.Drawing.Size(48, 20);
+            this.tpNumericUpDown.TabIndex = 249;
+            this.tpNumericUpDown.ValueChanged += new System.EventHandler(this.TpNumericUpDown_ValueChanged);
+            // 
+            // fpNumericUpDown
+            // 
+            this.fpNumericUpDown.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.fpNumericUpDown.Location = new System.Drawing.Point(128, 69);
+            this.fpNumericUpDown.Maximum = new decimal(new int[] {
+            65535,
+            0,
+            0,
+            0});
+            this.fpNumericUpDown.Name = "fpNumericUpDown";
+            this.fpNumericUpDown.Size = new System.Drawing.Size(48, 20);
+            this.fpNumericUpDown.TabIndex = 248;
+            this.fpNumericUpDown.ValueChanged += new System.EventHandler(this.FpNumericUpDown_ValueChanged);
             // 
             // label23
             // 
@@ -2554,34 +2583,6 @@ namespace InazumaElevenSaveEditor
             this.tabPage5.Text = "+";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
-            // fpNumericUpDown
-            // 
-            this.fpNumericUpDown.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.fpNumericUpDown.Location = new System.Drawing.Point(128, 69);
-            this.fpNumericUpDown.Maximum = new decimal(new int[] {
-            65535,
-            0,
-            0,
-            0});
-            this.fpNumericUpDown.Name = "fpNumericUpDown";
-            this.fpNumericUpDown.Size = new System.Drawing.Size(48, 20);
-            this.fpNumericUpDown.TabIndex = 248;
-            this.fpNumericUpDown.ValueChanged += new System.EventHandler(this.FpNumericUpDown_ValueChanged);
-            // 
-            // tpNumericUpDown
-            // 
-            this.tpNumericUpDown.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.tpNumericUpDown.Location = new System.Drawing.Point(208, 69);
-            this.tpNumericUpDown.Maximum = new decimal(new int[] {
-            65535,
-            0,
-            0,
-            0});
-            this.tpNumericUpDown.Name = "tpNumericUpDown";
-            this.tpNumericUpDown.Size = new System.Drawing.Size(48, 20);
-            this.tpNumericUpDown.TabIndex = 249;
-            this.tpNumericUpDown.ValueChanged += new System.EventHandler(this.TpNumericUpDown_ValueChanged);
-            // 
             // Welcome
             // 
             this.AllowDrop = true;
@@ -2592,6 +2593,7 @@ namespace InazumaElevenSaveEditor
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.tabControl2);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
             this.MaximumSize = new System.Drawing.Size(890, 520);
@@ -2605,6 +2607,8 @@ namespace InazumaElevenSaveEditor
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tpNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fpNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.participationNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.scoreNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.investedNumericUpDown9)).EndInit();
@@ -2654,8 +2658,6 @@ namespace InazumaElevenSaveEditor
             this.groupBox2.ResumeLayout(false);
             this.tabControl4.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.fpNumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tpNumericUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

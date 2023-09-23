@@ -60,6 +60,7 @@ namespace InazumaElevenSaveEditor
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.numericUpDown4 = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.coinNumericUpDown5)).BeginInit();
@@ -106,6 +107,7 @@ namespace InazumaElevenSaveEditor
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.button2);
             this.tabPage3.Controls.Add(this.numericUpDown1);
             this.tabPage3.Controls.Add(this.button1);
             this.tabPage3.Controls.Add(this.label5);
@@ -442,6 +444,16 @@ namespace InazumaElevenSaveEditor
             this.numericUpDown3.Size = new System.Drawing.Size(65, 20);
             this.numericUpDown3.TabIndex = 28;
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(15, 13);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(152, 23);
+            this.button2.TabIndex = 37;
+            this.button2.Text = "Unlock Link Level 3";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.Button2_Click);
+            // 
             // SaveInfoWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -513,5 +525,6 @@ namespace InazumaElevenSaveEditor
         public System.Windows.Forms.TextBox textBox2;
         public System.Windows.Forms.NumericUpDown numericUpDown4;
         public System.Windows.Forms.NumericUpDown numericUpDown3;
+        private System.Windows.Forms.Button button2;
     }
 }
