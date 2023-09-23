@@ -3,6 +3,7 @@ using System.IO;
 using System.Windows.Forms;
 using InazumaElevenSaveEditor.Tools;
 using InazumaElevenSaveEditor.InazumaEleven.Games;
+using InazumaElevenSaveEditor.InazumaEleven.Games.IEGO;
 using InazumaElevenSaveEditor.InazumaEleven.Games.IEGOCS;
 using InazumaElevenSaveEditor.InazumaEleven.Games.IEGOGalaxy;
 using InazumaElevenSaveEditor.Level_5.Compression.XORShift;
@@ -34,7 +35,8 @@ namespace InazumaElevenSaveEditor.InazumaEleven.Saves.IE
             switch (header)
             {
                 case 0x2CF1:
-                    throw new FormatException("IEGO save support isn't available");
+                    Game = new GO(reader.BaseStream);
+                    break;
                 case 0x4CF1:
                     Game = new CS(reader.BaseStream);
                     break;
@@ -51,8 +53,21 @@ namespace InazumaElevenSaveEditor.InazumaEleven.Saves.IE
             SaveFileDialog saveFileDialog = new SaveFileDialog();
 
             saveFileDialog.FileName = Path.GetFileName(initialDirectory.FileName);
-            saveFileDialog.Title = "Save IEGOCS save file";
-            saveFileDialog.Filter = "IE files|*.ie|IE files decrypted|*.ie";
+
+            if (Game.Code == "IEGO")
+            {
+                saveFileDialog.Title = "Save IEGO save file";
+                saveFileDialog.Filter = "IE files|*.ie4|IE files decrypted|*.ie4";
+            } else if (Game.Code == "IEGOCS")
+            {
+                saveFileDialog.Title = "Save IEGOCS save file";
+                saveFileDialog.Filter = "IE files|*.ie|IE files decrypted|*.ie";
+            } else
+            {
+                saveFileDialog.Title = "Save IEGOGalaxy save file";
+                saveFileDialog.Filter = "IE files|*.ie|IE files decrypted|*.ie";
+            }
+
             saveFileDialog.InitialDirectory = initialDirectory.InitialDirectory;
 
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
