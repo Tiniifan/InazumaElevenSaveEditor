@@ -328,11 +328,15 @@ namespace InazumaElevenSaveEditor
                     {
                         // Fill Aura ComboBox
                         List<string> playersWhoCanBeAura = new List<string>();
-                        foreach (KeyValuePair<int, Player> auraKeyValue in Save.Game.Auras)
+
+                        if (Save.Game.Code == "IEGOCS")
                         {
-                            if (auraKeyValue.Value.IsAura == false)
+                            foreach (KeyValuePair<int, Player> auraKeyValue in Save.Game.Auras)
                             {
-                                playersWhoCanBeAura.Add(auraKeyValue.Value.Name);
+                                if (auraKeyValue.Value.IsAura == false)
+                                {
+                                    playersWhoCanBeAura.Add(auraKeyValue.Value.Name);
+                                }
                             }
                         }
 
@@ -1349,11 +1353,14 @@ namespace InazumaElevenSaveEditor
             List<KeyValuePair<int, Player>> playersWhoCanBeAura = new List<KeyValuePair<int, Player>>();
 
             // Get Available Item for Aura
-            foreach (KeyValuePair<int, Player> auraKeyValue in Save.Game.Auras)
+            if (Save.Game.Code == "IEGOCS")
             {
-                if (auraKeyValue.Value.IsAura == false)
+                foreach (KeyValuePair<int, Player> auraKeyValue in Save.Game.Auras)
                 {
-                    playersWhoCanBeAura.Add(auraKeyValue);
+                    if (auraKeyValue.Value.IsAura == false)
+                    {
+                        playersWhoCanBeAura.Add(auraKeyValue);
+                    }
                 }
             }
 
