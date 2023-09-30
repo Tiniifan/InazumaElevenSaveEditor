@@ -37,6 +37,9 @@ namespace InazumaElevenSaveEditor.InazumaEleven.Saves.IE
                 case 0x2CF1:
                     Game = new GO(reader.BaseStream);
                     break;
+                case 0x6CF1:
+                    Game = new GOJp(reader.BaseStream);
+                    break;
                 case 0x4CF1:
                     Game = new CS(reader.BaseStream);
                     break;
