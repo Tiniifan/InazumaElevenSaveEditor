@@ -35,7 +35,10 @@ namespace InazumaElevenSaveEditor.InazumaEleven.Saves.IE
             switch (header)
             {
                 case 0x2CF1:
-                    Game = new GO(reader.BaseStream);
+                    Game = new GO(reader.BaseStream,false);
+                    break;
+                case 0x6CF1:
+                    Game = new GO(reader.BaseStream,true);
                     break;
                 case 0x4CF1:
                     Game = new CS(reader.BaseStream);

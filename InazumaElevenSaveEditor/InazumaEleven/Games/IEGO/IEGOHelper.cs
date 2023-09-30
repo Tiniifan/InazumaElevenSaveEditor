@@ -2,23 +2,48 @@
 
 namespace InazumaElevenSaveEditor.InazumaEleven.Games.IEGO
 {
-    public class IEGOHelper
+    public sealed class IEGOHelper
     {
-        public static long NameOffset = 0x3C;
+        public long NameOffset = 0x3C;
 
-        public static long TeamNameOffset = 0x64;
+        public long TeamNameOffset = 0x64;
 
-        public static long TimeOffset = 0x24;
+        public long TimeOffset = 0x24;
 
-        public static long LinkOffset = 0x253;
+        public long LinkOffset = 0x253;
 
-        public static long MoneyOffset = 0x8DDC;
+        public long MoneyOffset = 0x8DDC;
 
-        public static long PlayerDataOffset = 0x3488;
+        public long PlayerDataOffset = 0x3488;
 
-        public static long PlayerIndexOffset = 0x8EC8;
+        public long PlayerIndexOffset = 0x8EC8;
 
-        public static int MaximumPlayer = 112;
+        public int MaximumPlayer = 112;
+
+        public bool IsJP;
+
+        private IEGOHelper(bool isJP) {
+            IsJP = isJP;
+            if (isJP)
+            {
+                TeamNameOffset = 0x5C;
+                MoneyOffset = 0x8D8C;
+                PlayerDataOffset = 0x3438;
+                PlayerIndexOffset = 0x8E78;
+                ItemBlockGroup1Offset = 0xA10;
+                ItemBlockGroup2Offset = 0x161C;
+                ItemBlockGroup3Offset = 0x2428;
+            }
+
+        }
+
+        private static IEGOHelper _instance;
+
+        public static IEGOHelper GetInstance(bool isJP)
+        { 
+            _instance = new IEGOHelper(isJP);
+            return _instance;
+        }
 
         [StructLayout(LayoutKind.Sequential, Pack = 1)]
         public struct MoveBlock
@@ -66,7 +91,7 @@ namespace InazumaElevenSaveEditor.InazumaEleven.Games.IEGO
             public byte[] Unk10;
         }
 
-        public static long ItemBlockGroup1Offset = 0xA60;
+        public long ItemBlockGroup1Offset = 0xA60;
         [StructLayout(LayoutKind.Sequential, Pack = 1)]
         public struct ItemBlockGroup1
         {
@@ -75,7 +100,7 @@ namespace InazumaElevenSaveEditor.InazumaEleven.Games.IEGO
             public int Quantity;
         }
 
-        public static long ItemBlockGroup2Offset = 0x166C;
+        public long ItemBlockGroup2Offset = 0x166C;
         [StructLayout(LayoutKind.Sequential, Pack = 1)]
         public struct ItemBlockGroup2
         {
@@ -85,7 +110,7 @@ namespace InazumaElevenSaveEditor.InazumaEleven.Games.IEGO
             public int QuantityEquiped;
         }
 
-        public static long ItemBlockGroup3Offset = 0x2478;
+        public long ItemBlockGroup3Offset = 0x2478;
         [StructLayout(LayoutKind.Sequential, Pack = 1)]
         public struct ItemBlockGroup3
         {
@@ -112,5 +137,6 @@ namespace InazumaElevenSaveEditor.InazumaEleven.Games.IEGO
             [MarshalAs(UnmanagedType.ByValArray, SizeConst = 0x10)]
             public int[] PlayersIndex;
         }
+       
     }
 }
