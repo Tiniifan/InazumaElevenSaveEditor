@@ -20,13 +20,28 @@ namespace InazumaElevenSaveEditor.InazumaEleven.Games.IEGO
 
         public int MaximumPlayer = 112;
 
-        private IEGOHelper() { }
+        public bool IsJP;
+
+        private IEGOHelper(bool isJP) {
+            IsJP = isJP;
+            if (isJP)
+            {
+                TeamNameOffset = 0x5C;
+                MoneyOffset = 0x8D8C;
+                PlayerDataOffset = 0x3438;
+                PlayerIndexOffset = 0x8E78;
+                ItemBlockGroup1Offset = 0xA10;
+                ItemBlockGroup2Offset = 0x161C;
+                ItemBlockGroup3Offset = 0x2428;
+            }
+
+        }
 
         private static IEGOHelper _instance;
 
-        public static IEGOHelper GetInstance()
+        public static IEGOHelper GetInstance(bool isJP)
         { 
-            _instance = new IEGOHelper();
+            _instance = new IEGOHelper(isJP);
             return _instance;
         }
 

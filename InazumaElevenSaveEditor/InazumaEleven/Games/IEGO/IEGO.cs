@@ -281,17 +281,6 @@ namespace InazumaElevenSaveEditor.InazumaEleven.Games.IEGO
                 }
             }
         }
-        private void UseJPOffsets()
-        {
-                helper.TeamNameOffset = 0x5C;
-                helper.MoneyOffset = 0x8D8C;
-                helper.PlayerDataOffset = 0x3438;
-                helper.PlayerIndexOffset = 0x8E78;
-                helper.ItemBlockGroup1Offset = 0xA10;
-                helper.ItemBlockGroup2Offset = 0x161C;
-                helper.ItemBlockGroup3Offset = 0x2428;
-       
-        }
 
         public void OpenPlayRecords()
         {
@@ -729,11 +718,7 @@ namespace InazumaElevenSaveEditor.InazumaEleven.Games.IEGO
         public GO(Stream data,bool isJP)
         {
             Data = new BinaryDataReader(data);
-            helper = IEGOHelper.GetInstance();
-            if (isJP)
-            {
-                UseJPOffsets();
-            }
+            helper = IEGOHelper.GetInstance(isJP);
 
 
             Inventory = GetInventory();

@@ -67,8 +67,6 @@
     <Compile Include="InazumaEleven\Games\IEGOGalaxy\IEGOGalaxy.cs" />
     <Compile Include="InazumaEleven\Games\IEGOGalaxy\IEGOGalaxyHelper.cs" />
     <Compile Include="InazumaEleven\Games\IEGO\IEGOHelper.cs" />
-    <Compile Include="InazumaEleven\Games\IEGO\IEGOJp.cs" />
-    <Compile Include="InazumaEleven\Games\IEGO\IEGOJpHelper.cs" />
     <Compile Include="InazumaEleven\Games\IGame.cs" />
     <Compile Include="InazumaEleven\INZ\INZ4.cs" />
     <Compile Include="InazumaEleven\INZ\INZ5.cs" />
