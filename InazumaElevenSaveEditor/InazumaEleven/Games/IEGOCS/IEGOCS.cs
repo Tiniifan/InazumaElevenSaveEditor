@@ -17,6 +17,8 @@ namespace InazumaElevenSaveEditor.InazumaEleven.Games.IEGOCS
 
         public int MaximumPlayer => 336;
 
+        private IEGOCSHelper helper;
+
         public BinaryDataReader Data { get; set; }
 
         public List<Player> Reserve { get; set; }
@@ -44,15 +46,15 @@ namespace InazumaElevenSaveEditor.InazumaEleven.Games.IEGOCS
         private Dictionary<int, Item> GetInventory()
         {
             // Group Item 1
-            Data.Seek((uint)IEGOCSHelper.ItemBlockGroup1Offset);
+            Data.Seek((uint)helper.ItemBlockGroup1Offset);
             Dictionary<int, Item> itemBlockGroup1 = Data.ReadMultipleStruct<IEGOCSHelper.ItemBlockGroup1>(512).Where(x => Items.ContainsKey(x.ID) && x.ID != 0x00).ToDictionary(x => x.Index, y => new Item(y.ID, Common.GO.Items.Cs[y.ID], y.Quantity));
 
             // Group Item 2
-            Data.Seek((uint)IEGOCSHelper.ItemBlockGroup2Offset);
+            Data.Seek((uint)helper.ItemBlockGroup2Offset);
             Dictionary<int, Item> itemBlockGroup2 = Data.ReadMultipleStruct<IEGOCSHelper.ItemBlockGroup2>(336).Where(x => Items.ContainsKey(x.ID) && x.ID != 0x00).ToDictionary(x => x.Index, y => new Item(y.ID, Common.GO.Items.Cs[y.ID], y.Quantity, y.QuantityEquiped));
 
             // Group Item 3
-            Data.Seek((uint)IEGOCSHelper.ItemBlockGroup3Offset);
+            Data.Seek((uint)helper.ItemBlockGroup3Offset);
             Dictionary<int, Item> itemBlockGroup3 = Data.ReadMultipleStruct<IEGOCSHelper.ItemBlockGroup3>(800).Where(x => Items.ContainsKey(x.ID) && x.ID != 0x00).ToDictionary(x => x.Index, y => new Item(y.ID, Common.GO.Items.Cs[y.ID]));
 
             // Find Equipment
@@ -69,7 +71,7 @@ namespace InazumaElevenSaveEditor.InazumaEleven.Games.IEGOCS
         private void SaveInventory(BinaryDataWriter writer)
         {
             // Group Item 1
-            writer.Seek((uint)IEGOCSHelper.ItemBlockGroup1Offset);
+            writer.Seek((uint)helper.ItemBlockGroup1Offset);
             Dictionary<int, Item> itemGroup1 = Inventory.Where(x => x.Value.Category == 1).ToDictionary(x => x.Key, y => y.Value);
             for (int i =0; i < 512; i++)
             {
@@ -114,7 +116,7 @@ namespace InazumaElevenSaveEditor.InazumaEleven.Games.IEGOCS
             }
 
             // Group Item 2
-            writer.Seek((uint)IEGOCSHelper.ItemBlockGroup2Offset);
+            writer.Seek((uint)helper.ItemBlockGroup2Offset);
             Dictionary<int, Item> itemGroup2 = Inventory.Where(x => x.Value.Category == 2).ToDictionary(x => x.Key, y => y.Value);
             for (int i = 0; i < 336; i++)
             {
@@ -136,7 +138,7 @@ namespace InazumaElevenSaveEditor.InazumaEleven.Games.IEGOCS
             }
 
             // Group Item 3
-            writer.Seek((uint)IEGOCSHelper.ItemBlockGroup3Offset);
+            writer.Seek((uint)helper.ItemBlockGroup3Offset);
             Dictionary<int, Item> itemGroup3 = Inventory.Where(x => x.Value.Category == 3).ToDictionary(x => x.Key, y => y.Value);
             for (int i = 0; i < 800; i++)
             {
@@ -157,13 +159,13 @@ namespace InazumaElevenSaveEditor.InazumaEleven.Games.IEGOCS
         private List<Player> GetPlayers()
         {
             // Get player index
-            Data.Seek((uint)IEGOCSHelper.PlayerIndexOffset);
-            int[] index = Data.ReadMultipleStruct<int>(IEGOCSHelper.MaximumPlayer)
+            Data.Seek((uint)helper.PlayerIndexOffset);
+            int[] index = Data.ReadMultipleStruct<int>(helper.MaximumPlayer)
                 .Where(x => x != 0x0)
                 .ToArray();
 
             // Get player data according to their index
-            Data.Seek((uint)IEGOCSHelper.PlayerDataOffset);
+            Data.Seek((uint)helper.PlayerDataOffset);
             List<IEGOCSHelper.PlayerBlock> playerBlocks = Data.ReadMultipleStruct<IEGOCSHelper.PlayerBlock>(index.Length)
                 .ToList();
 
@@ -264,8 +266,8 @@ namespace InazumaElevenSaveEditor.InazumaEleven.Games.IEGOCS
         private void SavePlayers(BinaryDataWriter writer)
         {
             // Save player index
-            writer.Seek((uint)IEGOCSHelper.PlayerIndexOffset);
-            for (int i = 0; i < IEGOCSHelper.MaximumPlayer; i++)
+            writer.Seek((uint)helper.PlayerIndexOffset);
+            for (int i = 0; i < helper.MaximumPlayer; i++)
             {
                 if (i < Reserve.Count)
                 {
@@ -277,9 +279,9 @@ namespace InazumaElevenSaveEditor.InazumaEleven.Games.IEGOCS
             }
 
             // Save player data
-            writer.Seek((uint)IEGOCSHelper.PlayerDataOffset);
+            writer.Seek((uint)helper.PlayerDataOffset);
             List<Player> sortedReserve = Reserve.OrderBy(player => player.Index).ToList();
-            for (int i = 0; i < IEGOCSHelper.MaximumPlayer; i++)
+            for (int i = 0; i < helper.MaximumPlayer; i++)
             {
                 if (i < sortedReserve.Count)
                 {
@@ -357,7 +359,7 @@ namespace InazumaElevenSaveEditor.InazumaEleven.Games.IEGOCS
             {
                 PlayRecords = Common.GO.PlayRecords.Cs;
 
-                Data.Seek((uint)IEGOCSHelper.PlayRecordsOffset);
+                Data.Seek((uint)helper.PlayRecordsOffset);
 
                 foreach (KeyValuePair<int, List<PlayRecord>> playRecord in PlayRecords)
                 {
@@ -375,7 +377,7 @@ namespace InazumaElevenSaveEditor.InazumaEleven.Games.IEGOCS
         {
             if (PlayRecords == null) return;
 
-            writer.Seek((uint)IEGOCSHelper.PlayRecordsOffset);
+            writer.Seek((uint)helper.PlayRecordsOffset);
 
             foreach (KeyValuePair<int, List<PlayRecord>> playRecord in PlayRecords)
             {
@@ -400,13 +402,13 @@ namespace InazumaElevenSaveEditor.InazumaEleven.Games.IEGOCS
                 SaveInfo = new SaveInfo();
 
                 // Name
-                Data.Seek((uint)IEGOCSHelper.NameOffset);
+                Data.Seek((uint)helper.NameOffset);
                 SaveInfo.Name = Data.ReadString(Encoding.UTF8);
-                Data.Seek((uint)IEGOCSHelper.TeamNameOffset);
+                Data.Seek((uint)helper.TeamNameOffset);
                 SaveInfo.TeamName = Data.ReadString(Encoding.UTF8);
 
                 // Time Hours
-                Data.Seek((uint) IEGOCSHelper.TimeOffset);
+                Data.Seek((uint) helper.TimeOffset);
                 int seconds = Data.ReadValue<int>();
                 int hours = seconds / 3600;
                 int minutes = seconds / 60 % 60;
@@ -422,15 +424,15 @@ namespace InazumaElevenSaveEditor.InazumaEleven.Games.IEGOCS
                 SaveInfo.Min = minutes;
 
                 // Link Level
-                Data.Seek((uint)IEGOCSHelper.LinkOffset);
+                Data.Seek((uint)helper.LinkOffset);
                 SaveInfo.SecretLinkLevel = Data.ReadValue<byte>();
 
                 // Current Chapter
-                Data.Seek((uint)IEGOCSHelper.ChapterOffset);
+                Data.Seek((uint)helper.ChapterOffset);
                 SaveInfo.Chapter = Data.ReadValue<byte>();
 
                 // Money
-                Data.Seek((uint)IEGOCSHelper.MoneyOffset);
+                Data.Seek((uint)helper.MoneyOffset);
                 SaveInfo.Prestige = Data.ReadValue<int>();
                 SaveInfo.Friendship = Data.ReadValue<int>();
             }
@@ -441,28 +443,28 @@ namespace InazumaElevenSaveEditor.InazumaEleven.Games.IEGOCS
             if (SaveInfo == null) return;
 
             // Save Name
-            writer.Seek((uint)IEGOCSHelper.NameOffset);
+            writer.Seek((uint)helper.NameOffset);
             writer.Write(Encoding.UTF8.GetBytes(SaveInfo.Name));
             writer.Write((byte)0x0);
             writer.Write((byte)0x88);
 
             // Team Name
-            writer.Seek((uint)IEGOCSHelper.TeamNameOffset);
+            writer.Seek((uint)helper.TeamNameOffset);
             writer.Write(Encoding.UTF8.GetBytes(SaveInfo.TeamName));
             writer.Write((byte)0x0);
             writer.Write((byte)0x88);
 
             // Time Hours
-            writer.Seek((uint)IEGOCSHelper.TimeOffset);
+            writer.Seek((uint)helper.TimeOffset);
             int time = SaveInfo.Hours * 3600 + SaveInfo.Min * 60;
             writer.Write(time);
 
             // Link Level
-            writer.Seek((uint)IEGOCSHelper.LinkOffset);
+            writer.Seek((uint)helper.LinkOffset);
             writer.Write((byte)SaveInfo.SecretLinkLevel);
 
             // Money
-            writer.Seek((uint)IEGOCSHelper.MoneyOffset);
+            writer.Seek((uint)helper.MoneyOffset);
             writer.Write(SaveInfo.Prestige);
             writer.Write(SaveInfo.Friendship);
 
@@ -496,17 +498,17 @@ namespace InazumaElevenSaveEditor.InazumaEleven.Games.IEGOCS
                 Teams = new List<Team>();
 
                 // Chrono Storm Team
-                Teams.Add(LoadTeam(0x1C0C4, 0x1C494, 0x1C4E0));
+                Teams.Add(LoadTeam(helper.MainTeamInfoOffset, helper.MainTeamNameOffset, helper.MainTeamPlayersOffset));
 
                 // Custom Teams
-                uint teamInfo = 0x1C0F4;
-                uint teamName = 0x1C304;
-                uint teamPlayers = 0x1CA60;
+                uint teamInfo = helper.CustomTeamInfoOffset;
+                uint teamName = helper.CustomTeamNameOffset;
+                uint teamPlayers = helper.CustomTeamPlayersOffset;
                 for (int i = 0; i < 10; i++)
                 {
                     Teams.Add(LoadTeam(teamInfo, teamName, teamPlayers));
                     teamInfo += 0x30;
-                    teamName += 0x28;
+                    teamName += !helper.IsJP ? (uint)0x28 : 0x20;
                     teamPlayers += 0x40;
                 }
             }
@@ -517,17 +519,17 @@ namespace InazumaElevenSaveEditor.InazumaEleven.Games.IEGOCS
             if (Teams == null) return;
 
             // Chrono Storm Team
-            SaveTeam(writer, Teams[0], 0x1C0C4, 0x1C494, 0x1C4E0);
+            SaveTeam(writer, Teams[0], helper.MainTeamInfoOffset, helper.MainTeamNameOffset, helper.MainTeamPlayersOffset);
 
             // Custom Teams
-            uint teamInfo = 0x1C0F4;
-            uint teamName = 0x1C304;
-            uint teamPlayers = 0x1CA60;
+            uint teamInfo = helper.CustomTeamInfoOffset;
+            uint teamName = helper.CustomTeamNameOffset;
+            uint teamPlayers = helper.CustomTeamPlayersOffset;
             for (int i = 0; i < 10; i++)
             {
                 SaveTeam(writer, Teams[i+1], teamInfo, teamName, teamPlayers);
                 teamInfo += 0x30;
-                teamName += 0x28;
+                teamName += !helper.IsJP ? (uint)0x28 : 0x20;
                 teamPlayers += 0x40;
             }
         }
@@ -908,9 +910,10 @@ namespace InazumaElevenSaveEditor.InazumaEleven.Games.IEGOCS
             }
         }
 
-        public CS(Stream data)
+        public CS(Stream data,bool isJP)
         {
             Data = new BinaryDataReader(data);
+            helper = IEGOCSHelper.GetInstance(isJP);
 
             Inventory = GetInventory();
 

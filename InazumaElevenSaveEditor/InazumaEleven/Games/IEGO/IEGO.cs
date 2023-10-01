@@ -377,12 +377,12 @@ namespace InazumaElevenSaveEditor.InazumaEleven.Games.IEGO
                 // Main team
                 Data.Seek((uint)helper.TeamNameOffset);
                 string name = Data.ReadString(Encoding.UTF8);
-                Teams.Add(LoadTeam(0x8DF0, name, 0x8EC8));
+                Teams.Add(LoadTeam(helper.MainTeamInfoOffset, name, helper.MainTeamPlayersOffset));
 
                 // Custom Teams
-                uint teamInfo = 0x8E20;
+                uint teamInfo = helper.CustomTeamInfoOffset;
                 string[] names = new string[] { "Team A", "Team B", "Team C" };
-                uint teamPlayers = 0x9088;
+                uint teamPlayers = helper.CustomTeamPlayersOffset;
                 for (int i = 0; i < 3; i++)
                 {
                     Teams.Add(LoadTeam(teamInfo, names[i], teamPlayers));

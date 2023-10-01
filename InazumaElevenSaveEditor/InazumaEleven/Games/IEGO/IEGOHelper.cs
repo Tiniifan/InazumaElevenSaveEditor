@@ -18,6 +18,14 @@ namespace InazumaElevenSaveEditor.InazumaEleven.Games.IEGO
 
         public long PlayerIndexOffset = 0x8EC8;
 
+        public uint MainTeamInfoOffset = 0x8DF0;
+
+        public uint MainTeamPlayersOffset = 0x8EC8;
+
+        public uint CustomTeamInfoOffset = 0x8E20;
+
+        public uint CustomTeamPlayersOffset = 0x9088;
+
         public int MaximumPlayer = 112;
 
         public bool IsJP;
@@ -33,6 +41,10 @@ namespace InazumaElevenSaveEditor.InazumaEleven.Games.IEGO
                 ItemBlockGroup1Offset = 0xA10;
                 ItemBlockGroup2Offset = 0x161C;
                 ItemBlockGroup3Offset = 0x2428;
+                MainTeamInfoOffset = 0x8DA0;
+                MainTeamPlayersOffset = 0x8E78;
+                CustomTeamInfoOffset = 0x8DD0;
+                CustomTeamPlayersOffset = 0x9038;
             }
 
         }
