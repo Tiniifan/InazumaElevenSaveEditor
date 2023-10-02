@@ -140,8 +140,10 @@ namespace InazumaElevenSaveEditor.InazumaEleven.Common.GO
             {0xB152E1D6, new Move("Recovery!", null, null, 0, 0, 0, 0, 1, null, null)},
             {0xC655D140, new Move("Study!", null, null, 0, 0, 0, 0, 1, null, null)},
             {0x5F5C80FA, new Move("Slack Off", null, null, 0, 0, 0, 0, 1, null, null)},
-            {0x285BB06C, new Move("Helping Hand!", null, null, 0, 0, 0, 0, 1, null, null)},
-            {0xB8E4ADFD, new Move("Prestigious", null, null, 0, 0, 0, 0, 1, null, null)},
+            {0x285BB06C, new Move("Friendship", null, null, 0, 0, 0, 0, 1, null, null)},
+            {0xB8E4ADFD, new Move("Prestige", null, null, 0, 0, 0, 0, 1, null, null)},
+			{0xCFE39D6B, new Move("Power Element", null, null, 0, 0, 0, 0, 1, null, null)},
+			{0xAF24148E, new Move("Null Element", null, null, 0, 0, 0, 0, 1, null, null)},			
             {0xD8232418, new Move("Void Boost", null, null, 0, 0, 0, 0, 1, null, null)},
             {0x412A75A2, new Move("Air Boost", null, null, 0, 0, 0, 0, 1, null, null)},
             {0x362D4534, new Move("Wood Boost!", null, null, 0, 0, 0, 0, 1, null, null)},
@@ -152,7 +154,6 @@ namespace InazumaElevenSaveEditor.InazumaEleven.Common.GO
             {0xA1FF9CBC, new Move("Trickery!", null, null, 0, 0, 0, 0, 1, null, null)},
             {0xD6F8AC2A, new Move("Fair play!", null, null, 0, 0, 0, 0, 1, null, null)},
             {0xE0658249, new Move("Helping Hand!", null, null, 0, 0, 0, 0, 1, null, null)},
-            {0xCFE39D6B, new Move("Power Element", null, null, 0, 0, 0, 0, 1, null, null)},
         };
 
         public static Dictionary<UInt32, Move> Cs = new Dictionary<UInt32, Move>
