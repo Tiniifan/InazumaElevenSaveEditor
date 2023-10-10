@@ -329,7 +329,7 @@ namespace InazumaElevenSaveEditor.InazumaEleven.Games.IEGOGalaxy
         {
             if (PlayRecords == null)
             {
-                PlayRecords = Common.GO.PlayRecords.Cs;
+                PlayRecords = Common.GO.PlayRecords.Galaxy;
 
                 Data.Seek((uint)IEGOGalaxyHelper.PlayRecordsOffset);
 
