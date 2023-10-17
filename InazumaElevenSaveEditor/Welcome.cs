@@ -598,12 +598,12 @@ namespace InazumaElevenSaveEditor
             {
                 if (Save.Game.Equipments.Values.Contains(player.Equipments[i]) == false)
                 {
-                    player.Equipments[i] = Save.Game.Equipments[i];
+                    player.Equipments[i] = Save.Game.Equipments[0x00];
                 }
 
                 if (player.MixiMax != null && Save.Game.Equipments.Values.Contains(player.MixiMax.AuraPlayer.Equipments[i]) == false)
                 {
-                    player.MixiMax.AuraPlayer.Equipments[i] = Save.Game.Equipments[i];
+                    player.MixiMax.AuraPlayer.Equipments[i] = Save.Game.Equipments[0x00];
                 }
             }
 
