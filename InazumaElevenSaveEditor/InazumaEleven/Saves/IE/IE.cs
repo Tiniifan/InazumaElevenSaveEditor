@@ -22,10 +22,11 @@ namespace InazumaElevenSaveEditor.InazumaEleven.Saves.IE
 
         public void Open(BinaryDataReader reader)
         {
+            reader = new BinaryDataReader(reader.GetSection(0,(int)reader.Length));
             reader.Skip(4);
             ushort header = reader.ReadValue<ushort>();
 
-            if (header != 0x2CF1 & header != 0x4CF1 & header != 0x40F1)
+            if (header != 0x2CF1 & header != 0x4CF1 & header != 0x40F1 & header != 0x6CF1 & header != 0xC4F1)
             {
                 reader = new BinaryDataReader(new XORShift().Decompress(reader.GetSection(0, (int)reader.Length)));
                 reader.Skip(4);
@@ -41,7 +42,10 @@ namespace InazumaElevenSaveEditor.InazumaEleven.Saves.IE
                     Game = new GO(reader.BaseStream,true);
                     break;
                 case 0x4CF1:
-                    Game = new CS(reader.BaseStream);
+                    Game = new CS(reader.BaseStream,false);
+                    break;
+                case 0xC4F1:
+                    Game = new CS(reader.BaseStream,true);
                     break;
                 case 0x40F1:
                     Game = new Galaxy(reader.BaseStream);
