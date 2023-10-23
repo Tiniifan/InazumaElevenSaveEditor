@@ -22,6 +22,7 @@ namespace InazumaElevenSaveEditor.InazumaEleven.Saves.IE
 
         public void Open(BinaryDataReader reader)
         {
+            reader = new BinaryDataReader(reader.GetSection(0,(int)reader.Length));
             reader.Skip(4);
             ushort header = reader.ReadValue<ushort>();
 
