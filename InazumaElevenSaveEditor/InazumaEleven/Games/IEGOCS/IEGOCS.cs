@@ -676,13 +676,6 @@ namespace InazumaElevenSaveEditor.InazumaEleven.Games.IEGOCS
             }
         }
 
-        private int GetPlayerIndex(uint x)
-        {
-            UInt16 uint16 = Convert.ToUInt16(x / 0x10000);
-            uint16 = (UInt16)((uint16 & 0xFFU) << 8 | (uint16 & 0xFF00U) >> 8);
-            return Convert.ToInt32(uint16);
-        }
-
         public void RecruitPlayer(Player player, bool configure)
         {
             player = new Player(player);
@@ -701,8 +694,14 @@ namespace InazumaElevenSaveEditor.InazumaEleven.Games.IEGOCS
                 {
                     player.Moves.Add(Moves[player.UInt32Moves[i]]);
                 }
-                player.Moves.Add(Moves[0x00]);
-                player.Moves.Add(Moves[0x00]);
+
+                for (int i = 0; i < 2; i++)
+                {
+                    Move newMove = Moves[0x00];
+                    newMove.Level = 1;
+                    newMove.UsedCount = 0;
+                    player.Moves.Add(newMove);
+                }
 
                 player.Equipments = new List<Equipment>();
                 for (int i = 0; i < 4; i++)
@@ -711,11 +710,19 @@ namespace InazumaElevenSaveEditor.InazumaEleven.Games.IEGOCS
                 }
             }
 
-            var playerListIndex = Reserve.Select(x => GetPlayerIndex((uint)x.Index)).ToList();
-            playerListIndex.Sort();
-            int missingIndex = Enumerable.Range(0, MaximumPlayer).Except(playerListIndex).First();
+            int newIndex = Reserve.Last().Index;
 
-            player.Index = Convert.ToInt32((uint)missingIndex * 0x1000000 + (uint)(missingIndex + 1) * 0x100);
+            while (Reserve.Any(x => x.Index == newIndex))
+            {
+                short lowInt16 = (short)(newIndex & 0xFFFF);
+                short hightInt16 = (short)((newIndex >> 16) & 0xFFFF);
+                lowInt16++;
+                hightInt16++;
+
+                newIndex = (int)lowInt16 | ((int)hightInt16 << 16);
+            }
+
+            player.Index = newIndex;
             Reserve.Add(player);
         }
 
@@ -756,6 +763,14 @@ namespace InazumaElevenSaveEditor.InazumaEleven.Games.IEGOCS
                         newMove.Unlock = true;
                     }
 
+                    newPlayer.Moves.Add(newMove);
+                }
+
+                for (int i = 0; i < 2; i++)
+                {
+                    Move newMove = Moves[0x00];
+                    newMove.Level = 1;
+                    newMove.UsedCount = 0;
                     newPlayer.Moves.Add(newMove);
                 }
             }

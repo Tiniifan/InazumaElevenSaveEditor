@@ -17,6 +17,8 @@ namespace InazumaElevenSaveEditor
 
         private void SaveInfoWindow_Load(object sender, EventArgs e)
         {
+            Save.Game.OpenSaveInfo();
+
             // Change Text Depending Of The Game Loaded
             switch (Save.Game.Code)
             {
@@ -24,13 +26,20 @@ namespace InazumaElevenSaveEditor
                     label2.Text = "Team Name";
                     label9.Visible = true;
                     numericUpDown6.Visible = true;
-                    button1.Text = "Unlock Data Download + Password + Link with Go Content";
+                    button1.Text = "Unlock Data Download";
+                    button2.Visible = true;
+                    label5.Visible = false;
+                    numericUpDown1.Visible = false;
                     break;
                 case "IEGOCS":
                     label2.Text = "Chrono Stone Name";
                     label9.Visible = true;
                     numericUpDown6.Visible = true;
                     button1.Text = "Unlock Data Download + Password + Link with Go Content";
+                    button2.Visible = false;
+                    label5.Visible = true;
+                    numericUpDown1.Visible = true;
+                    numericUpDown1.Value = Save.Game.SaveInfo.SecretLinkLevel;
                     break;
                 case "IEGOGALAXY":
                     label2.Text = "Team Name";
@@ -38,26 +47,15 @@ namespace InazumaElevenSaveEditor
                     label9.Visible = false;
                     numericUpDown6.Visible = false;
                     button1.Text = "Unlock Data Download + QRcode + Link with GO/CS Content";
+                    button2.Visible = false;
+                    label5.Visible = true;
+                    numericUpDown1.Visible = true;
+                    numericUpDown1.Value = Save.Game.SaveInfo.SecretLinkLevel;
                     break;
             }
 
-            Save.Game.OpenSaveInfo();
-
             textBox1.Text = Save.Game.SaveInfo.Name;
             textBox2.Text = Save.Game.SaveInfo.TeamName;
-
-            if (Save.Game.Code == "IEGO")
-            {
-                label5.Visible = false;
-                numericUpDown1.Visible = false;
-                button2.Enabled = true;
-            } else
-            {
-                label5.Visible = true;
-                numericUpDown1.Visible = true;
-                button2.Enabled = false;
-                numericUpDown1.Value = Save.Game.SaveInfo.SecretLinkLevel;
-            }
 
             numericUpDown3.Value = Save.Game.SaveInfo.Hours;
             numericUpDown4.Value = Save.Game.SaveInfo.Min;
@@ -70,7 +68,7 @@ namespace InazumaElevenSaveEditor
                 numericUpDown12.Enabled = false;
             }
 
-            if (numericUpDown12.Value < 2)
+            if (numericUpDown12.Value < 2 && Save.Game.Code != "IEGO")
             {
                 button1.Enabled = false;
             }
@@ -127,7 +125,14 @@ namespace InazumaElevenSaveEditor
         private void Button1_Click(object sender, EventArgs e)
         {
             Save.Game.SaveInfo.UnlockAllData = true;
-            MessageBox.Show("All additional content has been added, check the Inalink for more details!");
+
+            if (Save.Game.Code == "IEGO")
+            {
+                MessageBox.Show("All additional content has been added, go to Raimon Main Building!");
+            } else
+            {
+                MessageBox.Show("All additional content has been added, check the Inalink for more details!");
+            }
         }
 
         private void NumericUpDown1_ValueChanged(object sender, EventArgs e)

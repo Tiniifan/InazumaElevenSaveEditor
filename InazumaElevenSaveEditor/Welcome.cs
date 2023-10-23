@@ -553,15 +553,6 @@ namespace InazumaElevenSaveEditor
                 tabControl1.Enabled = false;
                 managePlayerTabToolStripMenuItem.Enabled = true;
                 tabControl2.Enabled = true;
-
-                if (Save.Game.Code == "IEGO")
-                {
-                    for (int i = 0; i < 8; i++)
-                    {
-                        NumericUpDown investedNumericUpDown = this.Controls.Find("investedNumericUpDown" + (i + 3), true).First() as NumericUpDown;
-                        investedNumericUpDown.Enabled = false;
-                    }
-                }
             }
             finally
             {
@@ -607,12 +598,12 @@ namespace InazumaElevenSaveEditor
             {
                 if (Save.Game.Equipments.Values.Contains(player.Equipments[i]) == false)
                 {
-                    player.Equipments[i] = Save.Game.Equipments[i];
+                    player.Equipments[i] = Save.Game.Equipments[0x00];
                 }
 
                 if (player.MixiMax != null && Save.Game.Equipments.Values.Contains(player.MixiMax.AuraPlayer.Equipments[i]) == false)
                 {
-                    player.MixiMax.AuraPlayer.Equipments[i] = Save.Game.Equipments[i];
+                    player.MixiMax.AuraPlayer.Equipments[i] = Save.Game.Equipments[0x00];
                 }
             }
 
@@ -1142,7 +1133,8 @@ namespace InazumaElevenSaveEditor
             // Update Player
             Player selectedPlayer = Save.Game.Reserve[SelectedPlayers[tabControl4.SelectedIndex]];
             selectedPlayer = Save.Game.ChangePlayer(selectedPlayer, nameBox.SelectedItem as Player, true);
-            
+            Save.Game.Reserve[SelectedPlayers[tabControl4.SelectedIndex]] = selectedPlayer;
+
             // Reset Invested Point + Print Current Page
             ResetButton_Click(sender, e);
             PrintPlayer(selectedPlayer);
@@ -1185,7 +1177,7 @@ namespace InazumaElevenSaveEditor
 
             Player player = Save.Game.Reserve[SelectedPlayers[tabControl4.SelectedIndex]];
 
-            if (player.Level != 99 && Save.Game.Code == "IEGOCS")
+            if (player.Level != 99 && Save.Game.Code != "IEGOGALAXY")
             {
                 MessageBox.Show("The player must be level 99 to be trained");
             }
@@ -1206,7 +1198,7 @@ namespace InazumaElevenSaveEditor
                 player.InvestedFreedom[i] = 0;
 
                 NumericUpDown investedNumericUpDown = this.Controls.Find("investedNumericUpDown" + (i + 3), true).First() as NumericUpDown;
-                investedNumericUpDown.Enabled = Save.Game.Code != "IEGO";
+                investedNumericUpDown.Enabled = true;
                 investedNumericUpDown.Maximum = 65535;
                 investedNumericUpDown.Minimum = 0;
                 investedNumericUpDown.Value = player.InvestedPoint[i];

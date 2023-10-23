@@ -8,7 +8,7 @@ namespace InazumaElevenSaveEditor.InazumaEleven.Games.IEGOGalaxy
 
         public static long TeamNameOffset = 0x5C;
 
-        public static long TimeOffset = 0x23;
+        public static long TimeOffset = 0x20;
 
         public static long LinkOffset = 0x90B4;
 

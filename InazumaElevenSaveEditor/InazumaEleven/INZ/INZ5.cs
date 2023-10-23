@@ -138,7 +138,7 @@ namespace InazumaElevenSaveEditor.InazumaEleven.INZ
 
                 if (equipment == null)
                 {
-                    equipment = Equipments[(uint)i];
+                    equipment = Equipments[0x00];
                 }
 
                 player.Equipments.Add(equipment);
