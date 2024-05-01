@@ -73,6 +73,47 @@ namespace InazumaElevenSaveEditor
             return index;
         }
 
+        private void UnlockAllItems(DataGridView dataGridView)
+        {
+            // Get all items
+            int subCategory = Convert.ToInt32(dataGridView.Name.Replace("dataGridView", ""));
+            List<string> itemNames = Save.Game.Items.Where(x => x.Value.SubCategory == subCategory).Select(x => x.Value.Name).ToList();
+
+            // Remove items already owned
+            foreach (DataGridViewRow row in dataGridView.Rows)
+            {
+                if (row.Cells[0].Value != null)
+                {
+                    int index = itemNames.IndexOf(row.Cells[0].Value.ToString());
+                    if (index != -1)
+                    {
+                        itemNames.RemoveAt(index);
+                    }
+                }
+            }
+
+            // add missing items
+            foreach (DataGridViewRow row in dataGridView.Rows)
+            {
+                if (row.Cells[0].Value == null)
+                {
+                    row.Cells[1].Value = 1;
+                    row.Cells[0].Value = itemNames[0];
+                    itemNames.RemoveAt(0);
+                }
+            }
+        }
+
+        private void X99AllItems(DataGridView dataGridView)
+        {
+            // set x99 all owned items
+            foreach (DataGridViewRow row in dataGridView.Rows)
+            {
+                if (row.Cells[0].Value != null)
+                    row.Cells[1].Value = 99;
+            }
+        }
+
         private void SaveDataGridView(DataGridView dataGridView, int subCategory)
         {
             foreach (DataGridViewRow row in dataGridView.Rows)
@@ -90,7 +131,11 @@ namespace InazumaElevenSaveEditor
                         Save.Game.Inventory[Convert.ToInt32(row.Cells[2].Value.ToString())] = newItem;
                     } else
                     {
-                        int newIndex = Save.Game.Inventory.Where(x => x.Value.Category == newItem.Category).Last().Key;
+                        int newIndex = 0;
+                        if (Save.Game.Inventory.Where(x => x.Value.Category == newItem.Category).Count() > 0)
+                        {
+                            newIndex = Save.Game.Inventory.Where(x => x.Value.Category == newItem.Category).Last().Key;
+                        }
 
                         while (Save.Game.Inventory.ContainsKey(newIndex))
                         {
@@ -190,42 +235,36 @@ namespace InazumaElevenSaveEditor
 
         private void UnlockAllItemsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // Get all items
-            int subCategory = Convert.ToInt32(CurrentDataGridView.Name.Replace("dataGridView", ""));
-            List<string> itemNames = Save.Game.Items.Where(x => x.Value.SubCategory == subCategory).Select(x => x.Value.Name).ToList();
-
-            // Remove items already owned
-            foreach (DataGridViewRow row in CurrentDataGridView.Rows)
-            {
-                if (row.Cells[0].Value != null)
-                {
-                    int index = itemNames.IndexOf(row.Cells[0].Value.ToString());
-                    if (index != -1)
-                    {
-                        itemNames.RemoveAt(index);
-                    }
-                }
-            }
-
-            // add missing items
-            foreach (DataGridViewRow row in CurrentDataGridView.Rows)
-            {
-                if (row.Cells[0].Value == null)
-                {
-                    row.Cells[1].Value = 1;
-                    row.Cells[0].Value = itemNames[0];
-                    itemNames.RemoveAt(0);
-                }
-            }
+            UnlockAllItems(CurrentDataGridView);
         }
 
         private void X99AllItemsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // set x99 all owned items
-            foreach (DataGridViewRow row in CurrentDataGridView.Rows)
+            X99AllItems(CurrentDataGridView);
+        }
+
+        private void UnlockAllItemsToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            bool maxQuantity = false;
+
+            DialogResult dialogResult = MessageBox.Show("Do you want to unlock all items with the max quantity (x99)?", "Max Quantity", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
             {
-                if (row.Cells[0].Value != null)
-                    row.Cells[1].Value = 99;
+                maxQuantity = true;
+            }
+
+            foreach(DataGridView dataGridView in DataGridViews)
+            {
+                // exclude palpack card
+                if (dataGridView.Name != "dataGridView23")
+                {
+                    UnlockAllItems(dataGridView);
+
+                    if (maxQuantity)
+                    {
+                        X99AllItems(dataGridView);
+                    }
+                }
             }
         }
     }

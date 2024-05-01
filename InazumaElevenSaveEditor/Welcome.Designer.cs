@@ -2500,7 +2500,7 @@ namespace InazumaElevenSaveEditor
             this.saveInformationButton.Name = "saveInformationButton";
             this.saveInformationButton.Size = new System.Drawing.Size(99, 25);
             this.saveInformationButton.TabIndex = 3;
-            this.saveInformationButton.Text = "Save Information";
+            this.saveInformationButton.Text = "View Information";
             this.saveInformationButton.UseVisualStyleBackColor = true;
             this.saveInformationButton.Click += new System.EventHandler(this.SaveInformationButton_Click);
             // 

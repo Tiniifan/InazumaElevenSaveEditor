@@ -180,6 +180,7 @@ namespace InazumaElevenSaveEditor.InazumaEleven.Games.IEGO
                     player.Level = playerBlock.Level;
                     player.FP = playerBlock.GP;
                     player.TP = playerBlock.TP;
+                    player.IsKeyPlayer = playerBlock.IsKeyPlayer == 1;
 
                     player.InvestedPoint = playerBlock.InvestedPoint.Select(x => Convert.ToInt32(x)).ToList();
                     player.IsTrained = player.InvestedPoint.Any(value => value > 0);
@@ -243,7 +244,9 @@ namespace InazumaElevenSaveEditor.InazumaEleven.Games.IEGO
                     writer.Write((short)player.TP);
                     writer.Write((short)player.Freedom);
                     writer.Write((byte)player.Level);
-                    writer.Skip(0x03);
+                    writer.Skip(0x01);
+                    writer.Write((byte)Convert.ToInt32(player.IsKeyPlayer));
+                    writer.Skip(0x01);
                     writer.Write((byte) Convert.ToInt32(player.Invoke));
                     writer.Skip(0x01);
                     writer.Write((short)player.Participation);

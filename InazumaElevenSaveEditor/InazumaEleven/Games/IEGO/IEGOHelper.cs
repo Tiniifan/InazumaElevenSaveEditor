@@ -78,7 +78,7 @@ namespace InazumaElevenSaveEditor.InazumaEleven.Games.IEGO
             public short Freedom;
             public byte Level;
             public byte Unk2;
-            public byte Unk3;
+            public byte IsKeyPlayer;
             public byte Unk4;
             public byte CanInvoke;
             public byte Unk5;

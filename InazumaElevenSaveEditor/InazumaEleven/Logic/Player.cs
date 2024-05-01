@@ -55,6 +55,8 @@ namespace InazumaElevenSaveEditor.InazumaEleven.Logic
 
         public int TP;
 
+        public bool IsKeyPlayer;
+
         public Player()
         {
 
