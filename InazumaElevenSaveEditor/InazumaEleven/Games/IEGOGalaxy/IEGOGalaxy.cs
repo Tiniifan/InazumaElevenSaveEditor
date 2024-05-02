@@ -225,18 +225,25 @@ namespace InazumaElevenSaveEditor.InazumaEleven.Games.IEGOGalaxy
                 int miximaxMove1 = playerBlocks.First(x => x.Index == player.Index).MixiMaxMove1Index;
                 int miximaxMove2 = playerBlocks.First(x => x.Index == player.Index).MixiMaxMove2Index;
 
-                BestMatch isBestMatch = IsBestMatch(player.ID, players.Find(x => x.Index == miximaxIndex).ID);
-
-                if (isBestMatch != null)
+                if (players.Find(x => x.Index == miximaxIndex) != null)
                 {
-                    player.MixiMax = new MixiMax(players.Find(x => x.Index == miximaxIndex), (miximaxMove1, miximaxMove2), isBestMatch);
-                }
-                else
-                {
-                    player.MixiMax = new MixiMax(players.Find(x => x.Index == miximaxIndex), (miximaxMove1, miximaxMove2));
-                }
+                    BestMatch isBestMatch = IsBestMatch(player.ID, players.Find(x => x.Index == miximaxIndex).ID);
 
-                players.Find(x => x.Index == miximaxIndex).IsAura = true;
+                    if (isBestMatch != null)
+                    {
+                        player.MixiMax = new MixiMax(players.Find(x => x.Index == miximaxIndex), (miximaxMove1, miximaxMove2), isBestMatch);
+                    }
+                    else
+                    {
+                        player.MixiMax = new MixiMax(players.Find(x => x.Index == miximaxIndex), (miximaxMove1, miximaxMove2));
+                    }
+
+                    players.Find(x => x.Index == miximaxIndex).IsAura = true;
+                } else
+                {
+                    // Miximax not found -> remove miximax status
+                    player.MixiMax = null;
+                }
             }
 
             // Sort
