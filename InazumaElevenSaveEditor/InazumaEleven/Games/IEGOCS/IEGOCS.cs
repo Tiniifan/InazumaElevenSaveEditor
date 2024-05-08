@@ -241,21 +241,27 @@ namespace InazumaElevenSaveEditor.InazumaEleven.Games.IEGOCS
                 else
                 {
                     // The aura is a Item
-                    BestMatch isBestMatch = IsBestMatch(player.ID, Auras[miximaxIndex].ID);
-                    MixiMax newMixiMax;
-
-                    if (isBestMatch != null)
+                    if (Auras.Any(x => x.Key == miximaxIndex))
                     {
-                        newMixiMax = new MixiMax(Auras[miximaxIndex], (miximaxMove1, miximaxMove2), isBestMatch);
-                    }
-                    else
-                    {
-                        newMixiMax = new MixiMax(Auras[miximaxIndex], (miximaxMove1, miximaxMove2));
-                    }
+                        BestMatch isBestMatch = IsBestMatch(player.ID, Auras[miximaxIndex].ID);
+                        MixiMax newMixiMax;
 
-                    newMixiMax.AuraData = true;
-                    player.MixiMax = newMixiMax;
-                    Auras[miximaxIndex].IsAura = true;
+                        if (isBestMatch != null)
+                        {
+                            newMixiMax = new MixiMax(Auras[miximaxIndex], (miximaxMove1, miximaxMove2), isBestMatch);
+                        }
+                        else
+                        {
+                            newMixiMax = new MixiMax(Auras[miximaxIndex], (miximaxMove1, miximaxMove2));
+                        }
+
+                        newMixiMax.AuraData = true;
+                        player.MixiMax = newMixiMax;
+                        Auras[miximaxIndex].IsAura = true;
+                    } else
+                    {
+                        player.MixiMax = null;
+                    }
                 }
             }
 

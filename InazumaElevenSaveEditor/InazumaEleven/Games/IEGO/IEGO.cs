@@ -752,6 +752,8 @@ namespace InazumaElevenSaveEditor.InazumaEleven.Games.IEGO
 
             Inventory = GetInventory();
             Reserve = GetPlayers();
+
+            OpenTactics();
         }
     }
 }

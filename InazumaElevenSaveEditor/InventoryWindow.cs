@@ -77,29 +77,41 @@ namespace InazumaElevenSaveEditor
         {
             // Get all items
             int subCategory = Convert.ToInt32(dataGridView.Name.Replace("dataGridView", ""));
-            List<string> itemNames = Save.Game.Items.Where(x => x.Value.SubCategory == subCategory).Select(x => x.Value.Name).ToList();
+            List<string> itemNames = Save.Game.Items
+            .Where(x => x.Value.SubCategory == subCategory && x.Value.Name != "Scroll of Zhuge Liang")
+            .Select(x => x.Value.Name)
+            .ToList();
 
-            // Remove items already owned
-            foreach (DataGridViewRow row in dataGridView.Rows)
+            if (itemNames.Count() > 0)
             {
-                if (row.Cells[0].Value != null)
+                // Remove items already owned
+                foreach (DataGridViewRow row in dataGridView.Rows)
                 {
-                    int index = itemNames.IndexOf(row.Cells[0].Value.ToString());
-                    if (index != -1)
+                    if (itemNames.Count() > 0)
                     {
-                        itemNames.RemoveAt(index);
+                        if (row.Cells[0].Value != null)
+                        {
+                            int index = itemNames.IndexOf(row.Cells[0].Value.ToString());
+                            if (index != -1)
+                            {
+                                itemNames.RemoveAt(index);
+                            }
+                        }
                     }
                 }
-            }
 
-            // add missing items
-            foreach (DataGridViewRow row in dataGridView.Rows)
-            {
-                if (row.Cells[0].Value == null)
+                // add missing items
+                foreach (DataGridViewRow row in dataGridView.Rows)
                 {
-                    row.Cells[1].Value = 1;
-                    row.Cells[0].Value = itemNames[0];
-                    itemNames.RemoveAt(0);
+                    if (itemNames.Count() > 0)
+                    {
+                        if (row.Cells[0].Value == null)
+                        {
+                            row.Cells[1].Value = 1;
+                            row.Cells[0].Value = itemNames[0];
+                            itemNames.RemoveAt(0);
+                        }
+                    }
                 }
             }
         }
@@ -178,9 +190,12 @@ namespace InazumaElevenSaveEditor
                     DataGridView dataGridView = this.Controls.Find("dataGridView" + item.Value.SubCategory, true).First() as DataGridView;
                     DataGridViewComboBoxCell comboBox = (dataGridView.Rows[0].Cells[0] as DataGridViewComboBoxCell);
 
-                    dataGridView.Rows[GetFirstEmptyRow(dataGridView)].Cells[1].Value = item.Value.Quantity;
-                    dataGridView.Rows[GetFirstEmptyRow(dataGridView)].Cells[2].Value = item.Key;
-                    dataGridView.Rows[GetFirstEmptyRow(dataGridView)].Cells[0].Value = comboBox.Items[comboBox.Items.IndexOf(item.Value.Name)];
+                    if (GetFirstEmptyRow(dataGridView) < dataGridView.Rows.Count)
+                    {
+                        dataGridView.Rows[GetFirstEmptyRow(dataGridView)].Cells[1].Value = item.Value.Quantity;
+                        dataGridView.Rows[GetFirstEmptyRow(dataGridView)].Cells[2].Value = item.Key;
+                        dataGridView.Rows[GetFirstEmptyRow(dataGridView)].Cells[0].Value = comboBox.Items[comboBox.Items.IndexOf(item.Value.Name)];
+                    }                   
                 }
             }
 
