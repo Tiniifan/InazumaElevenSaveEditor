@@ -26,6 +26,6 @@ Inazuma Eleven Save Editor is a project to create an application that can read a
 
 Now, it's you turn to create your dream team!
 
-[Download the Save Editor](https://github.com/Tiniifan/InazumaElevenSaveEditor/releases/latest/download/InazumaElevenSaveEditor.exe)
+[Download the Save Editor](https://github.com/Tiniifan/InazumaElevenSaveEditor/releases/latest/download/InazumaElevenSaveEditor.zip)
 
 [Discord Server Link](https://discord.gg/3wKp5ZxA9N)
