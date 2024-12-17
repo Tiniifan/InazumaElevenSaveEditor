@@ -413,11 +413,11 @@ namespace InazumaElevenSaveEditor.InazumaEleven.Games.IEGO
             if (Teams == null) return;
 
             // Chrono Storm Team
-            SaveTeam(writer, Teams[0], 0x8DF0, 0x8EC8, true);
+            SaveTeam(writer, Teams[0], helper.MainTeamInfoOffset, helper.MainTeamPlayersOffset, true);
 
             // Custom Teams
-            uint teamInfo = 0x8E20;
-            uint teamPlayers = 0x9088;
+            uint teamInfo = helper.CustomTeamInfoOffset;
+            uint teamPlayers = helper.CustomTeamPlayersOffset;
             for (int i = 0; i < 3; i++)
             {
                 SaveTeam(writer, Teams[i + 1], teamInfo, teamPlayers);
