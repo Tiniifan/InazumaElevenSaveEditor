@@ -99,8 +99,7 @@ namespace InazumaElevenSaveEditor
             this.label21 = new System.Windows.Forms.Label();
             this.levelNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.label15 = new System.Windows.Forms.Label();
-            this.keyPlayerLabel = new System.Windows.Forms.Label();
-            this.keyPlayerBox = new System.Windows.Forms.CheckBox();
+            this.keyPlayerCheckBox = new System.Windows.Forms.CheckBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.removeMiximaxButton = new System.Windows.Forms.Button();
@@ -320,7 +319,7 @@ namespace InazumaElevenSaveEditor
             this.managePlayerToolStripMenuItem,
             this.managePlayerTabToolStripMenuItem});
             this.toolToolStripMenuItem.Name = "toolToolStripMenuItem";
-            this.toolToolStripMenuItem.Size = new System.Drawing.Size(41, 20);
+            this.toolToolStripMenuItem.Size = new System.Drawing.Size(42, 20);
             this.toolToolStripMenuItem.Text = "Tool";
             // 
             // managePlayerToolStripMenuItem
@@ -333,7 +332,7 @@ namespace InazumaElevenSaveEditor
             this.exportToolStripMenuItem});
             this.managePlayerToolStripMenuItem.Enabled = false;
             this.managePlayerToolStripMenuItem.Name = "managePlayerToolStripMenuItem";
-            this.managePlayerToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.managePlayerToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.managePlayerToolStripMenuItem.Text = "Manage Player";
             // 
             // recruitToolStripMenuItem
@@ -383,7 +382,7 @@ namespace InazumaElevenSaveEditor
             this.removeToolStripMenuItem});
             this.managePlayerTabToolStripMenuItem.Enabled = false;
             this.managePlayerTabToolStripMenuItem.Name = "managePlayerTabToolStripMenuItem";
-            this.managePlayerTabToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.managePlayerTabToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.managePlayerTabToolStripMenuItem.Text = "Manage Player Tab";
             // 
             // addToolStripMenuItem
@@ -503,8 +502,7 @@ namespace InazumaElevenSaveEditor
             this.tabPage1.Controls.Add(this.label21);
             this.tabPage1.Controls.Add(this.levelNumericUpDown);
             this.tabPage1.Controls.Add(this.label15);
-            this.tabPage1.Controls.Add(this.keyPlayerLabel);
-            this.tabPage1.Controls.Add(this.keyPlayerBox);
+            this.tabPage1.Controls.Add(this.keyPlayerCheckBox);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -544,7 +542,7 @@ namespace InazumaElevenSaveEditor
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(189, 100);
+            this.label23.Location = new System.Drawing.Point(173, 100);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(65, 13);
             this.label23.TabIndex = 247;
@@ -553,7 +551,7 @@ namespace InazumaElevenSaveEditor
             // participationNumericUpDown
             // 
             this.participationNumericUpDown.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.participationNumericUpDown.Location = new System.Drawing.Point(260, 98);
+            this.participationNumericUpDown.Location = new System.Drawing.Point(244, 98);
             this.participationNumericUpDown.Maximum = new decimal(new int[] {
             65535,
             0,
@@ -567,7 +565,7 @@ namespace InazumaElevenSaveEditor
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(70, 100);
+            this.label13.Location = new System.Drawing.Point(54, 100);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(35, 13);
             this.label13.TabIndex = 245;
@@ -576,7 +574,7 @@ namespace InazumaElevenSaveEditor
             // scoreNumericUpDown
             // 
             this.scoreNumericUpDown.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.scoreNumericUpDown.Location = new System.Drawing.Point(111, 98);
+            this.scoreNumericUpDown.Location = new System.Drawing.Point(95, 98);
             this.scoreNumericUpDown.Maximum = new decimal(new int[] {
             65535,
             0,
@@ -1071,25 +1069,17 @@ namespace InazumaElevenSaveEditor
             this.label15.TabIndex = 220;
             this.label15.Text = "TP";
             // 
-            // keyPlayerLabel
+            // keyPlayerCheckBox
             // 
-            this.keyPlayerLabel.AutoSize = true;
-            this.keyPlayerLabel.Location = new System.Drawing.Point(316, 12);
-            this.keyPlayerLabel.Name = "keyPlayerLabel";
-            this.keyPlayerLabel.Size = new System.Drawing.Size(57, 13);
-            this.keyPlayerLabel.TabIndex = 220;
-            this.keyPlayerLabel.Text = "Key Player";
-            // 
-            // keyPlayerBox
-            // 
-            this.keyPlayerBox.AutoSize = true;
-            this.keyPlayerBox.BackColor = System.Drawing.Color.White;
-            this.keyPlayerBox.Location = new System.Drawing.Point(295, 12);
-            this.keyPlayerBox.Name = "keyPlayerBox";
-            this.keyPlayerBox.Size = new System.Drawing.Size(15, 14);
-            this.keyPlayerBox.TabIndex = 223;
-            this.keyPlayerBox.UseVisualStyleBackColor = false;
-            this.keyPlayerBox.CheckedChanged += new System.EventHandler(this.KeyPlayerBox_CheckChanged);
+            this.keyPlayerCheckBox.AutoSize = true;
+            this.keyPlayerCheckBox.BackColor = System.Drawing.Color.Transparent;
+            this.keyPlayerCheckBox.Location = new System.Drawing.Point(308, 100);
+            this.keyPlayerCheckBox.Name = "keyPlayerCheckBox";
+            this.keyPlayerCheckBox.Size = new System.Drawing.Size(76, 17);
+            this.keyPlayerCheckBox.TabIndex = 223;
+            this.keyPlayerCheckBox.Text = "Key Player";
+            this.keyPlayerCheckBox.UseVisualStyleBackColor = false;
+            this.keyPlayerCheckBox.CheckedChanged += new System.EventHandler(this.KeyPlayerCheckBox_CheckedChanged);
             // 
             // tabPage2
             // 
@@ -2870,8 +2860,7 @@ namespace InazumaElevenSaveEditor
         public System.Windows.Forms.NumericUpDown moveNumericUpDown5;
         public System.Windows.Forms.Label moveLabel2;
         public System.Windows.Forms.Label moveLabel5;
-        public System.Windows.Forms.Label keyPlayerLabel;
-        public System.Windows.Forms.CheckBox keyPlayerBox;
+        public System.Windows.Forms.CheckBox keyPlayerCheckBox;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.ToolStripMenuItem managePlayerTabToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem;
