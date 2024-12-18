@@ -170,6 +170,9 @@ namespace InazumaElevenSaveEditor
                 investedNumericUpDown.Enabled = player.InvestedPoint.Sum() == 0;
             }
 
+            //print keyplayer
+            keyPlayerBox.Checked = player.IsKeyPlayer;
+
             // Print Figthing Spirit
             int avatarIndex = avatarNameBox.Items.Cast<Avatar>()
                            .Select((item, idx) => new { Item = item, Index = idx })
@@ -1518,5 +1521,16 @@ namespace InazumaElevenSaveEditor
             Player player = Save.Game.Reserve[SelectedPlayers[tabControl4.SelectedIndex]];
             player.TP = Convert.ToInt32(tpNumericUpDown.Value);
         }
+        private void KeyPlayerBox_CheckChanged(object sender, EventArgs e)
+        {
+            if (!keyPlayerBox.Focused) return;
+
+            Player player = Save.Game.Reserve[SelectedPlayers[tabControl4.SelectedIndex]];
+
+          
+
+            player.IsKeyPlayer = keyPlayerBox.Checked;
+        }
+
     }
 }

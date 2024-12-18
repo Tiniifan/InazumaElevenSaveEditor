@@ -99,6 +99,8 @@ namespace InazumaElevenSaveEditor
             this.label21 = new System.Windows.Forms.Label();
             this.levelNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.label15 = new System.Windows.Forms.Label();
+            this.keyPlayerLabel = new System.Windows.Forms.Label();
+            this.keyPlayerBox = new System.Windows.Forms.CheckBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.removeMiximaxButton = new System.Windows.Forms.Button();
@@ -501,6 +503,8 @@ namespace InazumaElevenSaveEditor
             this.tabPage1.Controls.Add(this.label21);
             this.tabPage1.Controls.Add(this.levelNumericUpDown);
             this.tabPage1.Controls.Add(this.label15);
+            this.tabPage1.Controls.Add(this.keyPlayerLabel);
+            this.tabPage1.Controls.Add(this.keyPlayerBox);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -1066,6 +1070,26 @@ namespace InazumaElevenSaveEditor
             this.label15.Size = new System.Drawing.Size(21, 13);
             this.label15.TabIndex = 220;
             this.label15.Text = "TP";
+            // 
+            // keyPlayerLabel
+            // 
+            this.keyPlayerLabel.AutoSize = true;
+            this.keyPlayerLabel.Location = new System.Drawing.Point(221, 352);
+            this.keyPlayerLabel.Name = "keyPlayerLabel";
+            this.keyPlayerLabel.Size = new System.Drawing.Size(54, 13);
+            this.keyPlayerLabel.TabIndex = 220;
+            this.keyPlayerLabel.Text = "KeyPlayer";
+            // 
+            // keyPlayerBox
+            // 
+            this.keyPlayerBox.AutoSize = true;
+            this.keyPlayerBox.BackColor = System.Drawing.Color.White;
+            this.keyPlayerBox.Location = new System.Drawing.Point(281, 352);
+            this.keyPlayerBox.Name = "keyPlayerBox";
+            this.keyPlayerBox.Size = new System.Drawing.Size(15, 14);
+            this.keyPlayerBox.TabIndex = 223;
+            this.keyPlayerBox.UseVisualStyleBackColor = false;
+            this.keyPlayerBox.CheckedChanged += new System.EventHandler(this.KeyPlayerBox_CheckChanged);
             // 
             // tabPage2
             // 
@@ -2846,6 +2870,8 @@ namespace InazumaElevenSaveEditor
         public System.Windows.Forms.NumericUpDown moveNumericUpDown5;
         public System.Windows.Forms.Label moveLabel2;
         public System.Windows.Forms.Label moveLabel5;
+        public System.Windows.Forms.Label keyPlayerLabel;
+        public System.Windows.Forms.CheckBox keyPlayerBox;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.ToolStripMenuItem managePlayerTabToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem;
