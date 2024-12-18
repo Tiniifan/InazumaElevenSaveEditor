@@ -552,6 +552,8 @@ namespace InazumaElevenSaveEditor
                 styleBox.Enabled = Save.Game.Code != "IEGO";
                 armedBox.Visible = Save.Game.Code != "IEGO";
                 label22.Visible = Save.Game.Code != "IEGO";
+                keyPlayerBox.Visible = Save.Game.Code == "IEGO";
+                keyPlayerLabel.Visible = Save.Game.Code == "IEGO";
                 saveToolStripMenuItem1.Enabled = true;
                 tabControl1.Enabled = false;
                 managePlayerTabToolStripMenuItem.Enabled = true;

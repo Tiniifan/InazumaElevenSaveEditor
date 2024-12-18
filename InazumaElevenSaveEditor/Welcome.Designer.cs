@@ -1074,17 +1074,17 @@ namespace InazumaElevenSaveEditor
             // keyPlayerLabel
             // 
             this.keyPlayerLabel.AutoSize = true;
-            this.keyPlayerLabel.Location = new System.Drawing.Point(221, 352);
+            this.keyPlayerLabel.Location = new System.Drawing.Point(302, 12);
             this.keyPlayerLabel.Name = "keyPlayerLabel";
-            this.keyPlayerLabel.Size = new System.Drawing.Size(54, 13);
+            this.keyPlayerLabel.Size = new System.Drawing.Size(57, 13);
             this.keyPlayerLabel.TabIndex = 220;
-            this.keyPlayerLabel.Text = "KeyPlayer";
+            this.keyPlayerLabel.Text = "Key Player";
             // 
             // keyPlayerBox
             // 
             this.keyPlayerBox.AutoSize = true;
             this.keyPlayerBox.BackColor = System.Drawing.Color.White;
-            this.keyPlayerBox.Location = new System.Drawing.Point(281, 352);
+            this.keyPlayerBox.Location = new System.Drawing.Point(365, 11);
             this.keyPlayerBox.Name = "keyPlayerBox";
             this.keyPlayerBox.Size = new System.Drawing.Size(15, 14);
             this.keyPlayerBox.TabIndex = 223;
