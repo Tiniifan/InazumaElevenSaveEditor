@@ -750,8 +750,8 @@ namespace InazumaElevenSaveEditor.InazumaEleven.Games.IEGO
         public void UpdateInventory()
         {
             // Find Equipment
-            Equipments = Inventory.Where(x => Common.GO.Equipments.Cs.ContainsKey(x.Value.ID)).ToDictionary(x => x.Key, y => Common.GO.Equipments.Cs[y.Value.ID]);
-            Equipments.Add(0, Common.GO.Equipments.Cs[0x0]);
+            Equipments = Inventory.Where(x => Common.GO.Equipments.Go.ContainsKey(x.Value.ID)).ToDictionary(x => x.Key, y => Common.GO.Equipments.Go[y.Value.ID]);
+            Equipments.Add(0, Common.GO.Equipments.Go[0x0]);
         }
 
         public GO(Stream data,bool isJP)
